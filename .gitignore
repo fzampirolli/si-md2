@@ -1,0 +1,325 @@
+# ============================================================================
+# .gitignore para Projeto de Material Didático - Sistemas Inteligentes
+# Notebooks Jupyter + Quarto + Python
+# ============================================================================
+
+# ============================================================================
+# Python
+# ============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ============================================================================
+# Jupyter Notebook
+# ============================================================================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+*.ipynb_checkpoints
+
+# Jupyter Notebook metadata
+.jupyter/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# ============================================================================
+# Quarto
+# ============================================================================
+/.quarto/
+_freeze/
+_publish/
+*.qmd.html
+
+# Build outputs - manter apenas PDF final
+_site/
+*.html
+
+# Manter apenas o PDF final do livro
+# Descomente se quiser versionar o PDF:
+# !_book/Sistemas-Inteligentes-e-Mineração-de-Dados.pdf
+
+# ============================================================================
+# LaTeX / PDF Generation
+# ============================================================================
+*.aux
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.synctex.gz(busy)
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.lof
+*.lot
+*.idx
+*.ilg
+*.ind
+*.tex
+
+# ============================================================================
+# Arquivos Temporários do Projeto
+# ============================================================================
+
+# Templates temporários de referências
+ref_template_cap*.qmd
+_temp_cap*.ipynb
+refs_cap*_temp.ipynb
+
+# Arquivos temporários de conversão PDF
+_temp_text.txt
+_temp_ocr/
+page_*.png
+text_*.txt
+
+# Cópias temporárias do references.bib nas pastas cap*
+cap*/references.bib
+
+# Backups e temporários
+*.bak
+*.backup
+*.tmp
+*~
+
+# ============================================================================
+# Pastas e Arquivos Específicos do Projeto
+# ============================================================================
+
+# PDFs fonte (já estão em si-md1, não precisam estar no Git)
+# Descomente se quiser versionar os PDFs originais:
+# si-md1/*.pdf
+
+# Outputs gerados (notebooks para alunos)
+# Comente a linha abaixo se quiser versionar os notebooks finais:
+# notebooks_alunos/*.ipynb
+
+
+# ============================================================================
+# Sistema Operacional
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# IDEs e Editores
+# ============================================================================
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+*.vsix
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+.netrwhist
+
+# ============================================================================
+# Dados e Arquivos Grandes
+# ============================================================================
+
+# Arquivos comprimidos
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.gz
+*.bz2
+
+# Datasets grandes (descomente se necessário)
+# *.csv
+# *.tsv
+# *.json
+# *.xlsx
+# *.xls
+
+# ============================================================================
+# Logs e Databases
+# ============================================================================
+*.log
+*.sql
+*.sqlite
+*.db
+
+# ============================================================================
+# Arquivos de Configuração Local
+# ============================================================================
+
+# Configurações locais
+.env
+.env.local
+.env.*.local
+*.local
+
+# Credenciais
+credentials.json
+token.json
+*.key
+*.pem
+
+# ============================================================================
+# Cache
+# ============================================================================
+.cache/
+*.sage.py
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# ============================================================================
+# Testes
+# ============================================================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# ============================================================================
+# Node modules (se usar ferramentas JS)
+# ============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================================================
+# Exceções - Arquivos que DEVEM ser versionados
+# ============================================================================
+
+# Manter arquivos de configuração importantes
+!.gitignore
+!.vscode/settings.json
+!README.md
+!LICENSE
+
+# Manter imagens necessárias
+!*/images/*.png
+!*/images/*.jpg
+!*/images/*.jpeg
+!*/images/*.gif
+!*/images/*.svg
+
+# Manter capa do livro
+!capa.png
+!capa0.png
+!capa1.png
+
+# Manter scripts
+!*.sh
+
+# Manter configurações do projeto
+!_quarto.yml
+!chapter_references.conf
+!references.bib
+!references.qmd
+!index.qmd
+
+# Manter dados de exemplo pequenos
+!*/data/exemplo*.csv
+!*/data/sample*.json
+
+# Manter notebooks finalizados em cap*.ok
+!cap*.ok/
+!cap*.ok/**
+
+# Manter README dos notebooks para alunos
+!notebooks_alunos/README.md
