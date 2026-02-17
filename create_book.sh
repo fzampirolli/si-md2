@@ -40,14 +40,23 @@ else
 fi
 
 setup_chapter () {
-    FOLDER=$1
-    FILE=$2
-    TITLE=$3
-    REFS=$4
+    FOLDER=$1    # Ex: cap01
+    FILE=$2      # Ex: cap01.ipynb
+    TITLE=$3     # Ex: Sistemas Inteligentes
+    REFS=$4      # Ex: $CAP01
     TARGET="$FOLDER/$FILE"
     
+    # 1. Criar estrutura de pastas
     mkdir -p "$FOLDER/images"
     mkdir -p "$FOLDER/data"
+
+    # 2. Copiar o selo do Colab para a pasta de imagens do capítulo
+    # Assume que a imagem original está em ./images/colab-badge.png em relação à raiz do script
+    if [ -f "images/colab-badge.png" ]; then
+        cp "images/colab-badge.png" "$FOLDER/images/colab-badge.png"
+    else
+        echo "Aviso: images/colab-badge.png não encontrado para copiar para $FOLDER"
+    fi
 
     # Formata referências: transforma "ref1 ref2" em "@ref1, @ref2"
     FORMATTED_REFS=$(echo "$REFS" | sed -E 's/([^ ]+)/@\1/g' | sed 's/ /, /g')
@@ -56,6 +65,13 @@ setup_chapter () {
     cat <<EOF > "$TARGET"
 {
  "cells": [
+{
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "[![](images/colab-badge.png)](https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/${FOLDER}/${FOLDER}_aluno.ipynb)"
+   ]
+  },
   {
    "cell_type": "markdown",
    "metadata": {},
