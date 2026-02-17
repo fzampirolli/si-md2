@@ -28,7 +28,7 @@ Repositório do material didático do curso de Sistemas Inteligentes e Mineraç�
 │   ├── _book_*                       # LIVRO COMPILADO (Gerado) 
 │   │
 │   ├── notebooks_alunos/            # NOTEBOOKS PARA DISTRIBUIÇÃO (Gerado)
-│   │   ├── cap01/cap01_aluno.ipynb  # Versão limpa com refs processadas
+│   │   ├── capX/capX_aluno.ipynb    # Versão limpa com refs processadas
 │   │   └── README.md
 │   │
 │   ├── gerar_notebooks_alunos.py    # Script de processamento de refs
