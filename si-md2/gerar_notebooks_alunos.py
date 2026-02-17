@@ -238,6 +238,38 @@ DIV_OPEN_RE = re.compile(
     re.MULTILINE
 )
 
+def md_inline_to_html(text: str) -> str:
+    """
+    Converte Markdown inline para HTML puro, necessario dentro de blocos
+    HTML (como <blockquote>) onde o Jupyter/Colab nao processa Markdown.
+      **[texto](url)**  ->  <strong><a href="url">texto</a></strong>
+      *[texto](url)*   ->  <em><a href="url">texto</a></em>
+      [texto](url)     ->  <a href="url">texto</a>
+      **texto**        ->  <strong>texto</strong>
+      *texto*          ->  <em>texto</em>
+      `codigo`         ->  <code>codigo</code>
+    """
+    # Negrito + link: **[texto](url)**
+    text = re.sub(
+        r'\*\*\[([^\]]+)\]\(([^)]+)\)\*\*',
+        r'<strong><a href="\2">\1</a></strong>', text)
+    # Italico + link: *[texto](url)*
+    text = re.sub(
+        r'\*\[([^\]]+)\]\(([^)]+)\)\*',
+        r'<em><a href="\2">\1</a></em>', text)
+    # Link simples: [texto](url)
+    text = re.sub(
+        r'\[([^\]]+)\]\(([^)]+)\)',
+        r'<a href="\2">\1</a>', text)
+    # Negrito: **texto**
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    # Italico: *texto*
+    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
+    # Codigo inline: `texto`
+    text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
+    return text
+
+
 def convert_callouts(text: str) -> str:
     """
     Converte blocos ::: {.callout-*} ... ::: e ::: {.classe} ... :::
@@ -300,9 +332,10 @@ def convert_callouts(text: str) -> str:
             if callout_type:
                 emoji, default_title = CALLOUT_STYLE[callout_type]
                 title = title_override or default_title
-                # Renderiza como blockquote HTML para compatibilidade maxima
-                # com Jupyter e Colab
-                inner_html = inner_text.replace('\n', '<br>\n')
+                # Converte Markdown inline para HTML (links, negrito, italico)
+                # para que o Colab/Jupyter renderize corretamente dentro do bloco HTML
+                inner_html = md_inline_to_html(inner_text)
+                inner_html = inner_html.replace('\n', '<br>\n')
                 block = (
                     f'<blockquote style="border-left: 4px solid #aaa; '
                     f'padding: 0.5em 1em; margin: 1em 0; background: #f9f9f9;">\n'
