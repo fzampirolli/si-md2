@@ -1,10 +1,7 @@
 # Quarto outputs
 /.quarto/
-/_book/
 /_book_epub/
-/_book_html/
 /_book_pdf/
-/_epub_src/
 /.jupyter_cache/
 
 # Python
