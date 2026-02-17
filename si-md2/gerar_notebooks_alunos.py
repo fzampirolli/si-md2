@@ -240,15 +240,19 @@ DIV_OPEN_RE = re.compile(
 
 def md_inline_to_html(text: str) -> str:
     """
-    Converte Markdown inline para HTML puro, necessario dentro de blocos
-    HTML (como <blockquote>) onde o Jupyter/Colab nao processa Markdown.
-      **[texto](url)**  ->  <strong><a href="url">texto</a></strong>
+    Converte Markdown inline e blocos simples para HTML puro, necessario dentro
+    de blocos HTML (como <blockquote>) onde o Jupyter/Colab nao processa Markdown.
+      > texto          ->  conteudo sem o '> ' (ja esta num blockquote)
+      **[texto](url)** ->  <strong><a href="url">texto</a></strong>
       *[texto](url)*   ->  <em><a href="url">texto</a></em>
       [texto](url)     ->  <a href="url">texto</a>
       **texto**        ->  <strong>texto</strong>
       *texto*          ->  <em>texto</em>
       `codigo`         ->  <code>codigo</code>
     """
+    # Remove marcas de blockquote Markdown (> ) — ja estamos dentro de um <blockquote>
+    text = re.sub(r'^> ?', '', text, flags=re.MULTILINE)
+
     # Negrito + link: **[texto](url)**
     text = re.sub(
         r'\*\*\[([^\]]+)\]\(([^)]+)\)\*\*',
