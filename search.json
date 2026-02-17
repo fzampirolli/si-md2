@@ -1,0 +1,102 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Sistemas Inteligentes e Mineração de Dados",
+    "section": "",
+    "text": "Prefácio\nBem-vindo à segunda edição do livro Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python.\nEsta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#motivação",
+    "href": "index.html#motivação",
+    "title": "Sistemas Inteligentes e Mineração de Dados",
+    "section": "Motivação",
+    "text": "Motivação\nA primeira edição deste livro focava principalmente no uso da ferramenta Weka, uma plataforma consolidada e amplamente utilizada no ensino de mineração de dados. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#estrutura-do-livro",
+    "href": "index.html#estrutura-do-livro",
+    "title": "Sistemas Inteligentes e Mineração de Dados",
+    "section": "Estrutura do Livro",
+    "text": "Estrutura do Livro\nO livro está organizado em seis capítulos que cobrem desde conceitos fundamentais até técnicas avançadas:\n\nCapítulo 1: Introdução aos Sistemas Inteligentes\nCapítulo 2: Fundamentos de Mineração de Dados\nCapítulo 3: Aprendizado de Máquina Supervisionado\nCapítulo 4: Aprendizado Não Supervisionado\nCapítulo 5: Avaliação e Validação de Modelos\nCapítulo 6: Aplicações Práticas e Estudos de Caso\n\nCada capítulo inclui exemplos práticos implementados em Python, com notebooks Jupyter que podem ser executados diretamente pelo leitor.",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#público-alvo",
+    "href": "index.html#público-alvo",
+    "title": "Sistemas Inteligentes e Mineração de Dados",
+    "section": "Público-Alvo",
+    "text": "Público-Alvo\nEste livro destina-se a:\n\nEstudantes de graduação em Ciência da Computação, Engenharia e áreas correlatas\nProfissionais que desejam atualizar seus conhecimentos em ciência de dados\nPesquisadores interessados em técnicas de inteligência artificial\nEntusiastas de aprendizado de máquina e análise de dados",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#como-usar-este-livro",
+    "href": "index.html#como-usar-este-livro",
+    "title": "Sistemas Inteligentes e Mineração de Dados",
+    "section": "Como Usar Este Livro",
+    "text": "Como Usar Este Livro\nO material está disponível em dois formatos:\n\nPDF: Para leitura completa e impressão\nNotebooks Jupyter: Para execução interativa dos exemplos\n\nRecomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados, experimentando modificações nos códigos e explorando os datasets fornecidos.",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "index.html#agradecimentos",
+    "href": "index.html#agradecimentos",
+    "title": "Sistemas Inteligentes e Mineração de Dados",
+    "section": "Agradecimentos",
+    "text": "Agradecimentos\nAgradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.\n\nOs Autores\nFevereiro de 2026",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "cap01/cap01.html",
+    "href": "cap01/cap01.html",
+    "title": "1  Sistemas Inteligentes",
+    "section": "",
+    "text": "1.1 Referências do Capítulo\nExemplo de tabela-imagem Tabela 1.1.\nExemplo de figura Figura 1.1.\nA equação Equação 1.1.\n\\[\nx^3\n\\tag{1.1}\\]\nA tabela Tabela 1.2.\nExemplo de ref direta: segundo Forouzan; Mosharraf (2011), em final de frase (Forouzan; Mosharraf, 2011).\nTem que citar neste capítulo: Forouzan; Mosharraf (2011), Goldschmidt; Passos (2005), Han; Kamber (2008), Padhy (2010), Pinheiro (2008), Rezende (2005), Russell; Norvig (2004), Tan; Steinbach; Kumar (2009), Witten; Frank (2005)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sistemas Inteligentes</span>"
+    ]
+  },
+  {
+    "objectID": "cap01/cap01.html#referências-do-capítulo",
+    "href": "cap01/cap01.html#referências-do-capítulo",
+    "title": "1  Sistemas Inteligentes",
+    "section": "",
+    "text": "FOROUZAN, B.; MOSHARRAF, F. Fundamentos da Ciência da Computação. [S.l.]: Cengage Learning, 2011.\n\n\nGOLDSCHMIDT, R.; PASSOS, E. Data Mining: Um Guia Prático. [S.l.]: Elsevier, 2005.\n\n\nHAN, J.; KAMBER, M. Data Mining: Concepts and Techniques. [S.l.]: Morgan Kaufmann Publishers, 2008.\n\n\nPADHY, N. P. Artificial Intelligence and Intelligent Systems. [S.l.]: Oxford University Press, 2010.\n\n\nPINHEIRO, C. A. R. Inteligência Analítica: Mineração de Dados e Descoberta de Conhecimento. [S.l.]: Editora Ciência Moderna Ltda., 2008.\n\n\nREZENDE, S. O. Sistemas Inteligentes: Fundamentos e Aplicações. [S.l.]: Editora Manole Ltda, 2005.\n\n\nRUSSELL, S.; NORVIG, P. Inteligência Artificial. [S.l.]: Elsevier, 2004.\n\n\nTAN, P. N.; STEINBACH, M.; KUMAR, V. Introdução ao Data Mining Mineração de Dados. [S.l.]: Editora Ciência Moderna Ltda., 2009.\n\n\nWITTEN, I. H.; FRANK, E. Data Mining: Practical Machine Learning Tools and Techniques. [S.l.]: Morgan Kaufmann Publishers, 2005.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Sistemas Inteligentes</span>"
+    ]
+  },
+  {
+    "objectID": "cap02/cap02.html",
+    "href": "cap02/cap02.html",
+    "title": "2  Mineração de Dados e Regras de Associação",
+    "section": "",
+    "text": "2.1 Referências do Capítulo\nTem que citar neste capítulo: Han; Kamber (2008), Tan; Steinbach; Kumar (2009), Witten; Frank (2005), Goldschmidt; Passos (2005)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Mineração de Dados e Regras de Associação</span>"
+    ]
+  },
+  {
+    "objectID": "cap02/cap02.html#referências-do-capítulo",
+    "href": "cap02/cap02.html#referências-do-capítulo",
+    "title": "2  Mineração de Dados e Regras de Associação",
+    "section": "",
+    "text": "GOLDSCHMIDT, R.; PASSOS, E. Data Mining: Um Guia Prático. [S.l.]: Elsevier, 2005.\n\n\nHAN, J.; KAMBER, M. Data Mining: Concepts and Techniques. [S.l.]: Morgan Kaufmann Publishers, 2008.\n\n\nTAN, P. N.; STEINBACH, M.; KUMAR, V. Introdução ao Data Mining Mineração de Dados. [S.l.]: Editora Ciência Moderna Ltda., 2009.\n\n\nWITTEN, I. H.; FRANK, E. Data Mining: Practical Machine Learning Tools and Techniques. [S.l.]: Morgan Kaufmann Publishers, 2005.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Mineração de Dados e Regras de Associação</span>"
+    ]
+  }
+]
