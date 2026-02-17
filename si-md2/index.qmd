@@ -24,11 +24,13 @@ No Capítulo 5, Máquina de Vetores de Suporte (MVS), são vistos inicialmente o
 
 O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.
 
-Roberto de Alencar Lotufo, professor titular
-
-Faculdade de Engenharia Elétrica e de Computação
-
+Roberto de Alencar Lotufo, professor titular\
+Faculdade de Engenharia Elétrica e de Computação\
 Universidade Estadual de Campinas -- Unicamp
+
+
+
+
 
 
 ## Prefácio da Segunda Edição {.unnumbered}
@@ -52,25 +54,55 @@ O livro está organizado em seis capítulos fundamentais:
 * **Capítulo 5**: Avaliação e Validação de Modelos
 * **Capítulo 6**: Aplicações Práticas e Estudos de Caso
 
-### Como Usar Este Livro {.unnumbered}
+### Como Estudar Este Material {.unnumbered}
 
-O material está disponível e pode ser consumido em três formatos principais:
+Para garantir o máximo aproveitamento, este material foi projetado para ser consumido de forma híbrida:
 
-1. **Versão Online (HTML)**: Disponível para leitura interativa e navegação rápida em: [https://fzampirolli.github.io/si-md2/]().
-2. **Documento PDF**: Ideal para leitura linear completa e impressão.
-3. **Notebooks Jupyter Práticos**: Para execução interativa dos exemplos. Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados na pasta `notebooks_alunos`, experimentando modificações nos códigos.
+#### 1. Prática Interativa (Notebooks)  {.unnumbered}
 
-#### Formas de Praticar com os Notebooks {.unnumbered}
+Cada capítulo possui uma parte prática que pode ser executada via **Google Colab** (clicando no botão "Open In Colab" no início do capítulo) ou localmente via **Jupyter Lab**. Recomendamos que você execute os códigos, como o exemplo de cálculo de IMC e geração de gráficos, enquanto estuda a teoria.
 
-Para executar os códigos, você tem duas opções:
+#### 2. Tutor Inteligente (NotebookLM)  {.unnumbered}
 
-* **Google Colab (Nuvem)**: Clique no botão **"Open In Colab"** no início de cada capítulo para abrir o ambiente na nuvem sem necessidade de instalação local.
-* **Ambiente Local**: Utilize o **Jupyter Lab** para abrir os arquivos `.ipynb` em sua máquina.
+Incentivamos o uso do **NotebookLM** como um tutor personalizado. Como a ferramenta ainda não processa arquivos `.ipynb` nativamente, você deve utilizar a **versão em PDF de cada capítulo** (gerada pelo Quarto) como fonte de dados para a IA.
+
+::: {.callout-tip appearance="simple"}
+
+#### 🚀 Acesse o Tutor de IA do Livro  {.unnumbered}
+
+Para cada capítulo, utilize o projeto configurado para tirar dúvidas, gerar resumos e ouvir o *Audio Overview* ou assistir o *Resumo em Vídeo*:
+
+**[Link do Projeto NotebookLM do Capítulo 1](https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635)**
+
+:::
+
+#### Dicas para o Leitor {.unnumbered}
+
+* **Experimente**: Altere os parâmetros das funções e observe como os gráficos de barras e dispersão reagem.
+* **Questione a IA**: Use o NotebookLM para perguntar, por exemplo: *"Neste código de IMC que acabamos de executar, onde o dado bruto se transforma em informação?"*.
+* **Sincronização**: Mantenha as pastas `data/` e `images/` sempre junto aos seus notebooks para garantir a execução correta.
 
 ### Agradecimentos {.unnumbered}
 
-Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.
+Agradecemos aos alunos e instituições que apoiaram o desenvolvimento deste conteúdo.
 
 ---
 
 *Os Autores* *Fevereiro de 2026*
+
+---
+
+### Nota para os Autores (Trecho em Construção)  {.unnumbered}
+
+::: {.callout-warning}
+
+## Atenção Autores  {.unnumbered}
+
+Sempre que finalizarem a edição de um capítulo, lembrem-se de gerar o PDF atualizado via Quarto. Este PDF é a fonte que os alunos devem subir no NotebookLM, já que os arquivos `.ipynb` não são aceitos pela plataforma.
+:::
+
+
+
+
+
+

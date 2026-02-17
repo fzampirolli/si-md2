@@ -97,6 +97,7 @@ Transforma todos os notebooks no formato final definido no `_quarto.yml`.
 ```bash
 quarto render --to pdf   # Gera o PDF em _book/
 quarto render --to html  # Gera o site em _book/
+quarto render --to epub  # Gera o ePub em _book/
 quarto publish gh-pages  # Publica em https://fzampirolli.github.io/si-md2/
 ```
 
