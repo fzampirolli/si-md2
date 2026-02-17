@@ -1,8 +1,9 @@
-# Quarto outputs
+# Quarto outputs (Pastas temporárias e cache são ignoradas)
 /.quarto/
-/_book_epub/
-/_book_pdf/
 /.jupyter_cache/
+/_book/
+/_book_html/
+/_epub_src/
 
 # Python
 .venv/
