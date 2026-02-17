@@ -24,6 +24,8 @@ Sintaxe Quarto suportada:
     Def tabela Markdown:     | col |...{#tbl-X-Y}      -> <div> com legenda "Tabela"
     Ref de equacao:          @eq-1-1                   -> [Equacao 1.1](#eq-1-1)
     Def de equacao:          $$ ... $$ {#eq-X-Y}       -> HTML com numero (X.Y)
+    Callout/div Quarto:      ::: {.callout-tip} ... ::: -> blockquote HTML
+    Div generico:            ::: {.qualquer} ... :::    -> conteudo sem marcas
 """
 
 import json
@@ -215,6 +217,110 @@ EQ_DEF_RE = re.compile(
     r'\{#(eq-[\w-]+)[^}]*\}',    # {#eq-X-Y}
 )
 
+# ---------------------------------------------------------------------------
+# Callouts e divs Quarto:  ::: {.callout-*}  ...  :::
+# Suporta callout-note, callout-tip, callout-warning, callout-important,
+# callout-caution, e divs genericos ::: {.qualquer-classe}
+# ---------------------------------------------------------------------------
+
+# Mapeamento de tipo de callout -> emoji + titulo padrao
+CALLOUT_STYLE = {
+    "callout-note":      ("📝", "Nota"),
+    "callout-tip":       ("💡", "Dica"),
+    "callout-warning":   ("⚠️", "Atenção"),
+    "callout-important": ("❗", "Importante"),
+    "callout-caution":   ("🔔", "Cuidado"),
+}
+
+# Regex para abertura de bloco div/callout: ::: {.classe ...} ou ::: {#id .classe}
+DIV_OPEN_RE = re.compile(
+    r'^:::+\s*\{([^}]*)\}\s*$',
+    re.MULTILINE
+)
+
+def convert_callouts(text: str) -> str:
+    """
+    Converte blocos ::: {.callout-*} ... ::: e ::: {.classe} ... :::
+    para Markdown/HTML compativel com Jupyter/Colab.
+
+    Callouts conhecidos viram um blockquote com emoji e titulo em negrito.
+    Divs genericos têm as marcas ::: removidas, mantendo apenas o conteudo.
+
+    Suporta aninhamento simples.
+    """
+    lines = text.split('\n')
+    out   = []
+    i     = 0
+
+    while i < len(lines):
+        line = lines[i]
+        m = re.match(r'^(:::+)\s*\{([^}]*)\}\s*$', line)
+
+        if m:
+            fence_len = len(m.group(1))   # numero de : (3, 4, ...)
+            attrs     = m.group(2).strip()
+
+            # Determina tipo de callout e titulo customizado (### Titulo)
+            callout_type = None
+            for ct in CALLOUT_STYLE:
+                if ct in attrs:
+                    callout_type = ct
+                    break
+
+            # Coleta linhas ate o ::: de fechamento correspondente
+            i += 1
+            depth   = 1
+            inner   = []
+            title_override = None
+
+            while i < len(lines) and depth > 0:
+                l = lines[i]
+                # Fechamento: mesma ou maior quantidade de :
+                if re.match(r'^:{' + str(fence_len) + r',}\s*$', l):
+                    depth -= 1
+                    if depth == 0:
+                        i += 1
+                        break
+                # Abertura aninhada
+                elif re.match(r'^:::+\s*\{', l):
+                    depth += 1
+                    inner.append(l)
+                else:
+                    # Titulo customizado dentro do callout (### Titulo)
+                    # Aceita em qualquer posicao, desde que seja o primeiro heading
+                    hm = re.match(r'^#{1,4}\s+(.+)$', l)
+                    if hm and title_override is None and callout_type:
+                        title_override = hm.group(1).strip()
+                    else:
+                        inner.append(l)
+                i += 1
+
+            inner_text = '\n'.join(inner).strip()
+
+            if callout_type:
+                emoji, default_title = CALLOUT_STYLE[callout_type]
+                title = title_override or default_title
+                # Renderiza como blockquote HTML para compatibilidade maxima
+                # com Jupyter e Colab
+                inner_html = inner_text.replace('\n', '<br>\n')
+                block = (
+                    f'<blockquote style="border-left: 4px solid #aaa; '
+                    f'padding: 0.5em 1em; margin: 1em 0; background: #f9f9f9;">\n'
+                    f'<strong>{emoji} {title}</strong><br>\n'
+                    f'{inner_html}\n'
+                    f'</blockquote>'
+                )
+                out.append(block)
+            else:
+                # Div generico: descarta as marcas ::: e mantem o conteudo
+                if inner_text:
+                    out.append(inner_text)
+        else:
+            out.append(line)
+            i += 1
+
+    return '\n'.join(out)
+
 
 # ---------------------------------------------------------------------------
 # 6. Extrai label -> numero de todos os elementos do notebook
@@ -375,6 +481,9 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
          [@key]  -> indireta: (AUTOR, ano)
     """
     text = source_to_str(source)
+
+    # 0. Converte callouts e divs Quarto (::: {.callout-*} ... :::)
+    text = convert_callouts(text)
 
     # 1. Equacoes
     def replace_eq(m):
