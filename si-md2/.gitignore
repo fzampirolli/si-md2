@@ -1,16 +1,15 @@
-# Quarto e saídas
-.quarto/
-_book/
-_epub_src/
-/_site/
+# Quarto outputs
+/.quarto/
+/_book/
+/_book_epub/
+/_book_html/
+/_book_pdf/
+/_epub_src/
 /.jupyter_cache/
 
-# Jupyter e Python
-.ipynb_checkpoints/
-*/.ipynb_checkpoints/
-__pycache__/
+# Python
 .venv/
-venv/
+__pycache__/
 
-# Arquivos de sistema
+# OS
 .DS_Store
