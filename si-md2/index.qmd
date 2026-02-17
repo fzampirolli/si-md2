@@ -1,49 +1,76 @@
 # Prefácio {.unnumbered}
 
+## Prefácio da Primeira Edição {.unnumbered}
+
+O início do século XXI é caracterizado pela era da informação e crescimento exponencial de dados gerados em praticamente todas as áreas de atividade humana. Cada vez mais se torna necessário o conhecimento e aperfeiçoamento de ferramentas apropriadas para extrair informações úteis destes dados. A Mineração de Dados combina inteligência artificial, aprendizagem de máquina, estatística, base de dados e técnicas avançadas de programação para tratar grandes volumes de dados.
+
+Este livro foi escrito com o objetivo de oferecer uma visão pragmática da Mineração de Dados. Ele é apropriado para ser utilizado como livro texto de curso na área, trazendo vários exercícios práticos utilizando o pacote gratuito e aberto Weka de rotinas escritas em Java, incluindo exercícios no final de cada capítulo, juntamente com uma boa lista de referências bibliográficas.
+
+O livro procura passar uma experiência prática de uso do pacote de software permitindo que o leitor seja introduzido na área vivenciando as várias modalidades de ferramentas disponíveis. Como nenhum algoritmo ou técnica tem um desempenho superior para qualquer base de dados, é importante que o leitor adquira uma sensibilidade para poder explorar e escolher a técnica mais apropriada em cada caso.
+
+O livro está organizado em seis capítulos que devem ser lidos na sua sequência.
+
+O Capítulo 1, Sistemas Inteligentes traz as principais definições necessárias, como sistemas, inteligência, dados, informação, conhecimento e desempenho. É feita uma breve descrição das três etapas da Descoberta ou Extração de conhecimento em Base de Dados: pré-processamento, mineração de dados e pós-processamento. A Mineração de Dados, por sua vez é dividida nas tarefas de Associação, Classificação, Agrupamento e Detecção de Anomalias. O capítulo é finalizado fazendo considerações sobre a questão ética da Mineração de Dados, mencionando que o uso destas informações podem levar à medidas preventivas de segurança pública.
+
+O Capítulo 2, Mineração de dados e Regras de Associação, explica como os dados devem ser estruturados através de suas transações ou exemplos, juntamente com seus atributos. O capítulo é dedicado à identificação de Regras de Associação também denominadas regras IF-THEN. Os indicadores de suporte e confiança ou acurácia são utilizados na avaliação das melhores regras de associação. É visto o algoritmo apriori utilizado para criar as regras de identificação. É visto um exemplo completo, passo-a-passo de identificação de Regras de Associação utilizando a ferramenta Weka.
+
+O Capítulo 3, Classificação e Árvores de Decisão, utiliza o famoso exemplo de classificação de 3 espécies de Flor Íris utilizando a árvore de decisão, onde cada nó da árvore é uma pergunta a ser testada. O nó raiz é a pergunta inicial e as folhas são as classes resultantes da aplicação da árvore de decisão.
+
+É introduzido o algoritmo ID3, baseado na noção de informação do Shannon e comparado a um algoritmo de escolha aleatória na construção da árvore de decisão, ilustrando a compacticidade da árvore gerada pelo algoritmo ID3. É ilustrado também o processo de extração de regras de decisão a partir da árvore de decisão. Ainda neste capítulo, o conceito de aprendizado supervisionado é introduzido, juntamente com o conceito de dados de treinamento e de testes e o processo de classificação. A avaliação dos resultados é feita com o uso da Matriz de Confusão. O capítulo termina com um exemplo completo utilizando o Weka para gerar o classificador via Árvore de Decisão e avaliar seu resultado com a Matriz de Confusão.
+
+O Capítulo 4, Classificação e Regras de Classificação, trata da Classificação de dados através de Regras de Classificação e o processo de geração automática dessas Regras. O objetivo desse capítulo é passar uma ideia geral do funcionamento dos algoritmo oneR (uma regra), classificadores lineares, redes neurais e Máquinas de Vetores de Suporte (MSVS), cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados. Pela simplicidade, inicialmente é visto o algoritmo oneR e em seguida o algoritmo PRISM, que utiliza o princípio da cobertura para a criação das regras. Os indicadores de resultados especificidade e sensibilidade são também introduzidos neste capítulo que termina com uma visão sobre as melhores formas de utilizar os dados para as fases de treinamento e de teste: Técnica da ressubstituição ou uso do conjunto de treinamento; método da divisão da amostra; método da validação cruzada; e método deixe-um-de-fora.
+
+No Capítulo 5, Máquina de Vetores de Suporte (MVS), são vistos inicialmente os classificadores lineares como o Perceptron e os conceitos de otimização da função custo, conjuntos convexos, mínimo global e mínimo local. Nos Classificadores não lineares, a reta é substituída por uma função polinomial. As Maquinas de Vetores de Suporte são introduzidas através do Princípio da margem máxima que é uma das principais características da MVS que traz mais estabilidade e desempenho deste classificador. O capítulo traz ainda os conceitos de kernel da MVS, o truque do kernel, Parâmetro de Complexidade C e o conceito da Praga da dimensionalidade. O capítulo termina ensinando a utilizar o Weka para visualizar as bordas de decisão do MVS.
+
+O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.
+
+Roberto de Alencar Lotufo, professor titular
+
+Faculdade de Engenharia Elétrica e de Computação
+
+Universidade Estadual de Campinas -- Unicamp
+
+
+## Prefácio da Segunda Edição {.unnumbered}
+
 Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.
 
 Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.
 
-## Motivação {.unnumbered}
+### Motivação {.unnumbered}
 
-A primeira edição deste livro focava principalmente no uso da ferramenta Weka, uma plataforma consolidada e amplamente utilizada no ensino de mineração de dados. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.
+A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.
 
-## Estrutura do Livro {.unnumbered}
+### Estrutura do Livro {.unnumbered}
 
-O livro está organizado em seis capítulos que cobrem desde conceitos fundamentais até técnicas avançadas:
+O livro está organizado em seis capítulos fundamentais:
 
-- **Capítulo 1**: Introdução aos Sistemas Inteligentes
-- **Capítulo 2**: Fundamentos de Mineração de Dados
-- **Capítulo 3**: Aprendizado de Máquina Supervisionado
-- **Capítulo 4**: Aprendizado Não Supervisionado
-- **Capítulo 5**: Avaliação e Validação de Modelos
-- **Capítulo 6**: Aplicações Práticas e Estudos de Caso
+* **Capítulo 1**: Introdução aos Sistemas Inteligentes
+* **Capítulo 2**: Fundamentos de Mineração de Dados
+* **Capítulo 3**: Aprendizado de Máquina Supervisionado
+* **Capítulo 4**: Aprendizado Não Supervisionado
+* **Capítulo 5**: Avaliação e Validação de Modelos
+* **Capítulo 6**: Aplicações Práticas e Estudos de Caso
 
-Cada capítulo inclui exemplos práticos implementados em Python, com notebooks Jupyter que podem ser executados diretamente pelo leitor.
+### Como Usar Este Livro {.unnumbered}
 
-## Público-Alvo {.unnumbered}
+O material está disponível e pode ser consumido em três formatos principais:
 
-Este livro destina-se a:
+1. **Versão Online (HTML)**: Disponível para leitura interativa e navegação rápida em: [https://fzampirolli.github.io/si-md2/]().
+2. **Documento PDF**: Ideal para leitura linear completa e impressão.
+3. **Notebooks Jupyter Práticos**: Para execução interativa dos exemplos. Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados na pasta `notebooks_alunos`, experimentando modificações nos códigos.
 
-- Estudantes de graduação em Ciência da Computação, Engenharia e áreas correlatas
-- Profissionais que desejam atualizar seus conhecimentos em ciência de dados
-- Pesquisadores interessados em técnicas de inteligência artificial
-- Entusiastas de aprendizado de máquina e análise de dados
+#### Formas de Praticar com os Notebooks {.unnumbered}
 
-## Como Usar Este Livro {.unnumbered}
+Para executar os códigos, você tem duas opções:
 
-O material está disponível em dois formatos:
+* **Google Colab (Nuvem)**: Clique no botão **"Open In Colab"** no início de cada capítulo para abrir o ambiente na nuvem sem necessidade de instalação local.
+* **Ambiente Local**: Utilize o **Jupyter Lab** para abrir os arquivos `.ipynb` em sua máquina.
 
-1. **PDF**: Para leitura completa e impressão
-2. **Notebooks Jupyter**: Para execução interativa dos exemplos
-
-Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados, experimentando modificações nos códigos e explorando os datasets fornecidos.
-
-## Agradecimentos {.unnumbered}
+### Agradecimentos {.unnumbered}
 
 Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.
 
 ---
 
-*Os Autores*  
-*Fevereiro de 2026*
+*Os Autores* *Fevereiro de 2026*

@@ -10,6 +10,10 @@ book:
     - index.qmd
     - cap01/cap01.ipynb
     - cap02/cap02.ipynb
+    - cap03/cap03.ipynb
+    - cap04/cap04.ipynb
+    - cap05/cap05.ipynb
+    - cap06/cap06.ipynb
 
 lang: pt-BR
 
