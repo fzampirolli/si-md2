@@ -339,11 +339,11 @@ def convert_callouts(text: str) -> str:
                 # Converte Markdown inline para HTML (links, negrito, italico)
                 # para que o Colab/Jupyter renderize corretamente dentro do bloco HTML
                 inner_html = md_inline_to_html(inner_text)
-                inner_html = inner_html.replace('\n', '<br>\n')
+                inner_html = inner_html.replace('\n', '<br />\n')
                 block = (
                     f'<blockquote style="border-left: 4px solid #aaa; '
                     f'padding: 0.5em 1em; margin: 1em 0; background: #f9f9f9;">\n'
-                    f'<strong>{emoji} {title}</strong><br>\n'
+                    f'<strong>{emoji} {title}</strong><br />\n'
                     f'{inner_html}\n'
                     f'</blockquote>'
                 )
@@ -462,7 +462,7 @@ def render_img_element(alt: str, path: str, elem_id: str, label: str, kind: str 
     Tabelas: legenda acima da imagem. Figuras: legenda abaixo.
     """
     caption = f'  <figcaption><strong>{label}:</strong> {alt}</figcaption>\n'
-    img     = f'  <img src="{path}" alt="{alt}" style="max-width:100%">\n'
+    img     = f'  <img src="{path}" alt="{alt}" style="max-width:100%" />\n'
     if kind == "tbl":
         body = caption + img
     else:
@@ -521,6 +521,9 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
 
     # 0. Converte callouts e divs Quarto (::: {.callout-*} ... :::)
     text = convert_callouts(text)
+
+    # 0b. Remove atributos Quarto de titulos: ### Titulo {.unnumbered} -> ### Titulo
+    text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
 
     # 1. Equacoes
     def replace_eq(m):
@@ -741,6 +744,20 @@ def build_reference_list(citations: list, bib: dict) -> tuple:
 
 
 # ---------------------------------------------------------------------------
+# 12b. Processa um unico notebook para EPUB
+# ---------------------------------------------------------------------------
+
+def process_notebook_epub(nb_path: Path, bib: dict, out_path: Path) -> list:
+    """
+    Gera versao do notebook para EPUB — identico ao modo --batch (alunos),
+    pois ambos resolvem citacoes e refs em texto simples por capitulo.
+    A unica diferenca e o nome do arquivo de saida (_epub.ipynb).
+    """
+    return process_notebook(nb_path, bib, out_path)
+
+
+
+# ---------------------------------------------------------------------------
 # 12. Processa um unico notebook
 # ---------------------------------------------------------------------------
 
@@ -780,7 +797,7 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
     new_cells, ref_injected = [], False
     for cell in notebook.get("cells", []):
         src = source_to_str(cell.get("source", []))
-        if "\\printbibliography" in src:
+        if "\\\\printbibliography" in src:
             cell["source"] = str_to_source(ref_markdown)
             ref_injected = True
         new_cells.append(cell)
@@ -825,7 +842,123 @@ def copy_images(nb_source_dir: Path, out_dir: Path, image_paths: list):
 
 
 # ---------------------------------------------------------------------------
-# 14. Modo batch
+# 14b. Modo batch EPUB
+# ---------------------------------------------------------------------------
+
+QUARTO_EPUB_YML = """\
+# _quarto_epub.yml
+# Gerado automaticamente por gerar_notebooks_alunos.py --epub
+# Use: quarto render --config _quarto_epub.yml --to epub
+
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Sistemas Inteligentes e Mineração de Dados"
+  subtitle: "2ª Edição: Do Weka ao Python"
+  author: "José Artur Quilici-Gonzalez, Francisco de Assis Zampirolli e Fábio Rezende de Souza"
+  date: "today"
+  chapters:
+    - index.qmd
+{chapters}
+
+lang: pt-BR
+
+format:
+  epub:
+    toc: true
+    number-sections: true
+"""
+
+def run_batch_epub(bib_path: str, out_dir: str):
+    """
+    Gera notebooks pre-processados para EPUB em <out_dir>/capXX/capXX_epub.ipynb
+    e cria _quarto_epub.yml apontando para eles.
+    As refs ja estao resolvidas como texto simples por capitulo.
+
+    Uso posterior:
+        quarto render --config _quarto_epub.yml --to epub
+    """
+    bib      = parse_bib(bib_path)
+    out_root = Path(out_dir)
+    EXCLUDE  = ("_dist", "_executado", "_fixed", "_aluno", "_epub")
+    notebooks = sorted([
+        Path(p) for p in glob.glob("cap*/cap*.ipynb")
+        if not any(s in Path(p).stem for s in EXCLUDE)
+    ])
+    if not notebooks:
+        print("Nenhum notebook encontrado com o padrao: cap*/cap*.ipynb")
+        return
+
+    print(f"[EPUB] Encontrados {len(notebooks)} notebooks:\n")
+    chapter_lines = []
+    total_imgs = 0
+
+    for nb_path in notebooks:
+        cap_name   = nb_path.parent.name
+        out_cap    = out_root / cap_name
+        epub_name  = nb_path.stem + "_epub.ipynb"
+        out_nb     = out_cap / epub_name
+        print(f"[{cap_name}] {nb_path}")
+        image_paths = process_notebook_epub(nb_path, bib, out_nb)
+        if image_paths:
+            copy_images(nb_path.parent, out_cap, image_paths)
+            total_imgs += len(image_paths)
+        # Caminho relativo para o _quarto_epub.yml
+        chapter_lines.append(f"    - {out_nb.as_posix()}")
+        print()
+
+    # Gera _quarto_epub.yml
+    yml_path = Path("_quarto_epub.yml")
+    yml_content = QUARTO_EPUB_YML.format(
+        chapters="\n".join(chapter_lines)
+    )
+    yml_path.write_text(yml_content, encoding="utf-8")
+    print(f"_quarto_epub.yml gerado.")
+
+    # Gera render_epub.sh
+    sh_content = (
+        "#!/usr/bin/env bash\n"
+        "# render_epub.sh - Gerado por gerar_notebooks_alunos.py --epub\n"
+        "# Substitui temporariamente _quarto.yml pelo config EPUB, renderiza e restaura.\n"
+        "set -e\n"
+        "ORIGINAL=\"_quarto.yml\"\n"
+        "EPUB_CFG=\"_quarto_epub.yml\"\n"
+        "BACKUP=\"_quarto_backup.yml\"\n"
+        "if [ ! -f \"$EPUB_CFG\" ]; then\n"
+        "  echo \"Erro: $EPUB_CFG nao encontrado. Rode primeiro:\"\n"
+        "  echo \"  python gerar_notebooks_alunos.py --epub references.bib\"\n"
+        "  exit 1\n"
+        "fi\n"
+        "echo \"Salvando $ORIGINAL -> $BACKUP\"\n"
+        "cp \"$ORIGINAL\" \"$BACKUP\"\n"
+        "echo \"Ativando config EPUB...\"\n"
+        "cp \"$EPUB_CFG\" \"$ORIGINAL\"\n"
+        "echo \"Renderizando EPUB...\"\n"
+        "quarto render --to epub\n"
+        "STATUS=$?\n"
+        "echo \"Restaurando $BACKUP -> $ORIGINAL\"\n"
+        "cp \"$BACKUP\" \"$ORIGINAL\"\n"
+        "rm \"$BACKUP\"\n"
+        "if [ $STATUS -eq 0 ]; then\n"
+        "  echo \"\"; echo \"EPUB gerado com sucesso em _book/\"\n"
+        "else\n"
+        "  echo \"\"; echo \"Erro (codigo $STATUS). _quarto.yml restaurado.\"\n"
+        "  exit $STATUS\n"
+        "fi\n"
+    )
+    sh_path = Path("render_epub.sh")
+    sh_path.write_text(sh_content, encoding="utf-8")
+    sh_path.chmod(sh_path.stat().st_mode | 0o755)
+    print(f"render_epub.sh gerado.")
+    print(f"\nPara gerar o EPUB, execute:")
+    print(f"  ./render_epub.sh")
+    print(f"\nConcluido! {len(notebooks)} notebooks e {total_imgs} imagens em '{out_root}/'")
+
+
+# ---------------------------------------------------------------------------
+# 14. Modo batch (alunos)
 # ---------------------------------------------------------------------------
 
 def run_batch(bib_path: str, out_dir: str):
@@ -895,20 +1028,24 @@ def main():
         epilog=__doc__
     )
     parser.add_argument("--batch", action="store_true",
-                        help="Processa todos cap*/cap*.ipynb de uma vez")
+                        help="Processa todos cap*/cap*.ipynb para distribuicao (Jupyter/Colab)")
+    parser.add_argument("--epub", action="store_true",
+                        help="Processa todos cap*/cap*.ipynb para EPUB (refs por capitulo em texto)")
     parser.add_argument("--out-dir", default="notebooks_alunos",
-                        help="Pasta de saida no modo batch (padrao: notebooks_alunos)")
+                        help="Pasta de saida no modo batch/epub (padrao: notebooks_alunos)")
     parser.add_argument("notebook", nargs="?",
                         help="Caminho para o .ipynb (modo unico)")
     parser.add_argument("bib", help="Caminho para o references.bib")
     parser.add_argument("--output", "-o", help="Saida do .ipynb no modo unico")
     args = parser.parse_args()
 
-    if args.batch:
+    if args.epub:
+        run_batch_epub(args.bib, args.out_dir)
+    elif args.batch:
         run_batch(args.bib, args.out_dir)
     else:
         if not args.notebook:
-            parser.error("Informe o notebook ou use --batch")
+            parser.error("Informe o notebook ou use --batch ou --epub")
         nb_path  = Path(args.notebook)
         out_path = Path(args.output) if args.output else \
                    nb_path.parent / (nb_path.stem + "_dist.ipynb")

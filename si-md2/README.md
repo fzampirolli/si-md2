@@ -97,29 +97,50 @@ Transforma todos os notebooks no formato final definido no `_quarto.yml`.
 ```bash
 quarto render --to pdf   # Gera o PDF em _book/
 quarto render --to html  # Gera o site em _book/
-quarto render --to epub  # Gera o ePub em _book/
 quarto publish gh-pages  # Publica em https://fzampirolli.github.io/si-md2/
 ```
 
-### Workflow B: Gerar Versão para Alunos
+---
 
-O script abaixo processa os notebooks de autor, remove células indesejadas (como rascunhos ou soluções de exercícios) e formata as referências bibliográficas para os notebooks que os alunos receberão.
+### Workflow B: Gerar EPUB com Referências por Capítulo
+
+O EPUB requer pré-processamento porque o Quarto não suporta referências por capítulo nesse formato. O script resolve as citações e injeta a lista de referências em cada capítulo antes de renderizar.
+
+**Passo 1:** Pré-processa os notebooks e gera os arquivos de configuração:
 
 ```bash
-# Executar na raiz da pasta si-md2
+python gerar_notebooks_alunos.py --epub references.bib --out-dir _epub_src
+```
+
+Isso cria `_epub_src/capXX/capXX_epub.ipynb` com as referências já resolvidas, além de `_quarto_epub.yml` e `render_epub.sh`.
+
+**Passo 2:** Renderiza o EPUB:
+
+```bash
+./render_epub.sh   # Gera o EPUB em _book/
+```
+
+---
+
+### Workflow C: Gerar Versão para Alunos (Jupyter/Colab)
+
+O script processa os notebooks de autor, resolve citações bibliográficas no formato ABNT e remove metadados do Quarto, gerando notebooks prontos para distribuição.
+
+```bash
 python gerar_notebooks_alunos.py --batch references.bib
+# Gera notebooks_alunos/capXX/capXX_aluno.ipynb
 ```
 
 #### Como utilizar os notebooks gerados:
 
-Para que o aluno possa praticar e executar os códigos, existem duas formas principais:
-
-1. **Google Colab (Nuvem):** Fazer o upload ou uma cópia da pasta `notebooks_alunos` para o seu **Google Drive** e abrir os arquivos utilizando o **Google Colaboratory**.
-2. **Jupyter Lab (Local):** Caso possua um ambiente Python instalado localmente, basta executar o comando abaixo para abrir um capítulo específico:
+1. **Google Colab (Nuvem):** Fazer upload da pasta `notebooks_alunos` para o **Google Drive** e abrir os arquivos com o **Google Colaboratory**.
+2. **Abrir no Colab diretamente:** Clicar no botão ![Open in Colab](images/colab-badge.png) que aparece no canto superior esquerdo de cada capítulo.
+3. **Jupyter Lab (Local):** Com um ambiente Python instalado, executar:
 
 ```bash
 jupyter lab notebooks_alunos/cap01/cap01_aluno.ipynb
 ```
+
 
 ---
 
