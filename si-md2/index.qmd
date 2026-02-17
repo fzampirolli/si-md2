@@ -1,0 +1,49 @@
+# Prefácio {.unnumbered}
+
+Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.
+
+Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.
+
+## Motivação {.unnumbered}
+
+A primeira edição deste livro focava principalmente no uso da ferramenta Weka, uma plataforma consolidada e amplamente utilizada no ensino de mineração de dados. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.
+
+## Estrutura do Livro {.unnumbered}
+
+O livro está organizado em seis capítulos que cobrem desde conceitos fundamentais até técnicas avançadas:
+
+- **Capítulo 1**: Introdução aos Sistemas Inteligentes
+- **Capítulo 2**: Fundamentos de Mineração de Dados
+- **Capítulo 3**: Aprendizado de Máquina Supervisionado
+- **Capítulo 4**: Aprendizado Não Supervisionado
+- **Capítulo 5**: Avaliação e Validação de Modelos
+- **Capítulo 6**: Aplicações Práticas e Estudos de Caso
+
+Cada capítulo inclui exemplos práticos implementados em Python, com notebooks Jupyter que podem ser executados diretamente pelo leitor.
+
+## Público-Alvo {.unnumbered}
+
+Este livro destina-se a:
+
+- Estudantes de graduação em Ciência da Computação, Engenharia e áreas correlatas
+- Profissionais que desejam atualizar seus conhecimentos em ciência de dados
+- Pesquisadores interessados em técnicas de inteligência artificial
+- Entusiastas de aprendizado de máquina e análise de dados
+
+## Como Usar Este Livro {.unnumbered}
+
+O material está disponível em dois formatos:
+
+1. **PDF**: Para leitura completa e impressão
+2. **Notebooks Jupyter**: Para execução interativa dos exemplos
+
+Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados, experimentando modificações nos códigos e explorando os datasets fornecidos.
+
+## Agradecimentos {.unnumbered}
+
+Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.
+
+---
+
+*Os Autores*  
+*Fevereiro de 2026*
