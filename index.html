@@ -202,8 +202,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação">Motivação</a></li>
   <li><a href="#estrutura-do-livro" id="toc-estrutura-do-livro" class="nav-link" data-scroll-target="#estrutura-do-livro">Estrutura do Livro</a></li>
-  <li><a href="#como-usar-este-livro" id="toc-como-usar-este-livro" class="nav-link" data-scroll-target="#como-usar-este-livro">Como Usar Este Livro</a></li>
+  <li><a href="#como-estudar-este-material" id="toc-como-estudar-este-material" class="nav-link" data-scroll-target="#como-estudar-este-material">Como Estudar Este Material</a></li>
   <li><a href="#agradecimentos" id="toc-agradecimentos" class="nav-link" data-scroll-target="#agradecimentos">Agradecimentos</a></li>
+  <li><a href="#nota-para-os-autores-trecho-em-construção" id="toc-nota-para-os-autores-trecho-em-construção" class="nav-link" data-scroll-target="#nota-para-os-autores-trecho-em-construção">Nota para os Autores (Trecho em Construção)</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -259,9 +260,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>O Capítulo 4, Classificação e Regras de Classificação, trata da Classificação de dados através de Regras de Classificação e o processo de geração automática dessas Regras. O objetivo desse capítulo é passar uma ideia geral do funcionamento dos algoritmo oneR (uma regra), classificadores lineares, redes neurais e Máquinas de Vetores de Suporte (MSVS), cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados. Pela simplicidade, inicialmente é visto o algoritmo oneR e em seguida o algoritmo PRISM, que utiliza o princípio da cobertura para a criação das regras. Os indicadores de resultados especificidade e sensibilidade são também introduzidos neste capítulo que termina com uma visão sobre as melhores formas de utilizar os dados para as fases de treinamento e de teste: Técnica da ressubstituição ou uso do conjunto de treinamento; método da divisão da amostra; método da validação cruzada; e método deixe-um-de-fora.</p>
 <p>No Capítulo 5, Máquina de Vetores de Suporte (MVS), são vistos inicialmente os classificadores lineares como o Perceptron e os conceitos de otimização da função custo, conjuntos convexos, mínimo global e mínimo local. Nos Classificadores não lineares, a reta é substituída por uma função polinomial. As Maquinas de Vetores de Suporte são introduzidas através do Princípio da margem máxima que é uma das principais características da MVS que traz mais estabilidade e desempenho deste classificador. O capítulo traz ainda os conceitos de kernel da MVS, o truque do kernel, Parâmetro de Complexidade C e o conceito da Praga da dimensionalidade. O capítulo termina ensinando a utilizar o Weka para visualizar as bordas de decisão do MVS.</p>
 <p>O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.</p>
-<p>Roberto de Alencar Lotufo, professor titular</p>
-<p>Faculdade de Engenharia Elétrica e de Computação</p>
-<p>Universidade Estadual de Campinas – Unicamp</p>
+<p>Roberto de Alencar Lotufo, professor titular<br>
+Faculdade de Engenharia Elétrica e de Computação<br>
+Universidade Estadual de Campinas – Unicamp</p>
 </section>
 <section id="prefácio-da-segunda-edição" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="prefácio-da-segunda-edição">Prefácio da Segunda Edição</h2>
@@ -283,28 +284,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Capítulo 6</strong>: Aplicações Práticas e Estudos de Caso</li>
 </ul>
 </section>
-<section id="como-usar-este-livro" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="como-usar-este-livro">Como Usar Este Livro</h3>
-<p>O material está disponível e pode ser consumido em três formatos principais:</p>
-<ol type="1">
-<li><strong>Versão Online (HTML)</strong>: Disponível para leitura interativa e navegação rápida em: <a href="">https://fzampirolli.github.io/si-md2/</a>.</li>
-<li><strong>Documento PDF</strong>: Ideal para leitura linear completa e impressão.</li>
-<li><strong>Notebooks Jupyter Práticos</strong>: Para execução interativa dos exemplos. Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados na pasta <code>notebooks_alunos</code>, experimentando modificações nos códigos.</li>
-</ol>
-<section id="formas-de-praticar-com-os-notebooks" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="formas-de-praticar-com-os-notebooks">Formas de Praticar com os Notebooks</h4>
-<p>Para executar os códigos, você tem duas opções:</p>
+<section id="como-estudar-este-material" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="como-estudar-este-material">Como Estudar Este Material</h3>
+<p>Para garantir o máximo aproveitamento, este material foi projetado para ser consumido de forma híbrida:</p>
+<section id="prática-interativa-notebooks" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="prática-interativa-notebooks">1. Prática Interativa (Notebooks)</h4>
+<p>Cada capítulo possui uma parte prática que pode ser executada via <strong>Google Colab</strong> (clicando no botão “Open In Colab” no início do capítulo) ou localmente via <strong>Jupyter Lab</strong>. Recomendamos que você execute os códigos, como o exemplo de cálculo de IMC e geração de gráficos, enquanto estuda a teoria.</p>
+</section>
+<section id="tutor-inteligente-notebooklm" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="tutor-inteligente-notebooklm">2. Tutor Inteligente (NotebookLM)</h4>
+<p>Incentivamos o uso do <strong>NotebookLM</strong> como um tutor personalizado. Como a ferramenta ainda não processa arquivos <code>.ipynb</code> nativamente, você deve utilizar a <strong>versão em PDF de cada capítulo</strong> (gerada pelo Quarto) como fonte de dados para a IA.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>🚀 Acesse o Tutor de IA do Livro
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para cada capítulo, utilize o projeto configurado para tirar dúvidas, gerar resumos e ouvir o <em>Audio Overview</em> ou assistir o <em>Resumo em Vídeo</em>:</p>
+<p><strong><a href="https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635">Link do Projeto NotebookLM do Capítulo 1</a></strong></p>
+</div>
+</div>
+</section>
+<section id="dicas-para-o-leitor" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="dicas-para-o-leitor">Dicas para o Leitor</h4>
 <ul>
-<li><strong>Google Colab (Nuvem)</strong>: Clique no botão <strong>“Open In Colab”</strong> no início de cada capítulo para abrir o ambiente na nuvem sem necessidade de instalação local.</li>
-<li><strong>Ambiente Local</strong>: Utilize o <strong>Jupyter Lab</strong> para abrir os arquivos <code>.ipynb</code> em sua máquina.</li>
+<li><strong>Experimente</strong>: Altere os parâmetros das funções e observe como os gráficos de barras e dispersão reagem.</li>
+<li><strong>Questione a IA</strong>: Use o NotebookLM para perguntar, por exemplo: <em>“Neste código de IMC que acabamos de executar, onde o dado bruto se transforma em informação?”</em>.</li>
+<li><strong>Sincronização</strong>: Mantenha as pastas <code>data/</code> e <code>images/</code> sempre junto aos seus notebooks para garantir a execução correta.</li>
 </ul>
 </section>
 </section>
 <section id="agradecimentos" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="agradecimentos">Agradecimentos</h3>
-<p>Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.</p>
+<p>Agradecemos aos alunos e instituições que apoiaram o desenvolvimento deste conteúdo.</p>
 <hr>
 <p><em>Os Autores</em> <em>Fevereiro de 2026</em></p>
+<hr>
+</section>
+<section id="nota-para-os-autores-trecho-em-construção" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="nota-para-os-autores-trecho-em-construção">Nota para os Autores (Trecho em Construção)</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Atenção Autores
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sempre que finalizarem a edição de um capítulo, lembrem-se de gerar o PDF atualizado via Quarto. Este PDF é a fonte que os alunos devem subir no NotebookLM, já que os arquivos <code>.ipynb</code> não são aceitos pela plataforma.</p>
+</div>
+</div>
 
 
 <!-- -->
@@ -800,56 +835,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Roberto de Alencar Lotufo, professor titular</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Faculdade de Engenharia Elétrica e de Computação</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Roberto de Alencar Lotufo, professor titular\</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Faculdade de Engenharia Elétrica e de Computação\</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Universidade Estadual de Campinas -- Unicamp</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Universidade Estadual de Campinas -- Unicamp</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prefácio da Segunda Edição {.unnumbered}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prefácio da Segunda Edição {.unnumbered}</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">### Motivação {.unnumbered}</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### Motivação {.unnumbered}</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estrutura do Livro {.unnumbered}</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>O livro está organizado em seis capítulos fundamentais:</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estrutura do Livro {.unnumbered}</span></span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 1**: Introdução aos Sistemas Inteligentes</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 2**: Fundamentos de Mineração de Dados</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 3**: Aprendizado de Máquina Supervisionado</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 4**: Aprendizado Não Supervisionado</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 5**: Avaliação e Validação de Modelos</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 6**: Aplicações Práticas e Estudos de Caso</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### Como Usar Este Livro {.unnumbered}</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>O livro está organizado em seis capítulos fundamentais:</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 1**: Introdução aos Sistemas Inteligentes</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 2**: Fundamentos de Mineração de Dados</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 3**: Aprendizado de Máquina Supervisionado</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 4**: Aprendizado Não Supervisionado</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 5**: Avaliação e Validação de Modelos</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 6**: Aplicações Práticas e Estudos de Caso</span>
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>O material está disponível e pode ser consumido em três formatos principais:</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Como Estudar Este Material {.unnumbered}</span></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Versão Online (HTML)**: Disponível para leitura interativa e navegação rápida em: <span class="co">[</span><span class="ot">https://fzampirolli.github.io/si-md2/</span><span class="co">]()</span>.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Documento PDF**: Ideal para leitura linear completa e impressão.</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Notebooks Jupyter Práticos**: Para execução interativa dos exemplos. Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados na pasta <span class="in">`notebooks_alunos`</span>, experimentando modificações nos códigos.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>Para garantir o máximo aproveitamento, este material foi projetado para ser consumido de forma híbrida:</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 1. Prática Interativa (Notebooks)  {.unnumbered}</span></span>
 <span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Formas de Praticar com os Notebooks {.unnumbered}</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>Cada capítulo possui uma parte prática que pode ser executada via **Google Colab** (clicando no botão "Open In Colab" no início do capítulo) ou localmente via **Jupyter Lab**. Recomendamos que você execute os códigos, como o exemplo de cálculo de IMC e geração de gráficos, enquanto estuda a teoria.</span>
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>Para executar os códigos, você tem duas opções:</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 2. Tutor Inteligente (NotebookLM)  {.unnumbered}</span></span>
 <span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Google Colab (Nuvem)**: Clique no botão **"Open In Colab"** no início de cada capítulo para abrir o ambiente na nuvem sem necessidade de instalação local.</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Ambiente Local**: Utilize o **Jupyter Lab** para abrir os arquivos <span class="in">`.ipynb`</span> em sua máquina.</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Agradecimentos {.unnumbered}</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>*Os Autores* *Fevereiro de 2026*</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>Incentivamos o uso do **NotebookLM** como um tutor personalizado. Como a ferramenta ainda não processa arquivos `.ipynb` nativamente, você deve utilizar a **versão em PDF de cada capítulo** (gerada pelo Quarto) como fonte de dados para a IA.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="simple"}</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 🚀 Acesse o Tutor de IA do Livro  {.unnumbered}</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>Para cada capítulo, utilize o projeto configurado para tirar dúvidas, gerar resumos e ouvir o *Audio Overview* ou assistir o *Resumo em Vídeo*:</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>**[Link do Projeto NotebookLM do Capítulo 1](https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635)**</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Dicas para o Leitor {.unnumbered}</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Experimente**: Altere os parâmetros das funções e observe como os gráficos de barras e dispersão reagem.</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Questione a IA**: Use o NotebookLM para perguntar, por exemplo: *"Neste código de IMC que acabamos de executar, onde o dado bruto se transforma em informação?"*.</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Sincronização**: Mantenha as pastas <span class="in">`data/`</span> e <span class="in">`images/`</span> sempre junto aos seus notebooks para garantir a execução correta.</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Agradecimentos {.unnumbered}</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>Agradecemos aos alunos e instituições que apoiaram o desenvolvimento deste conteúdo.</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>*Os Autores* *Fevereiro de 2026*</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nota para os Autores (Trecho em Construção)  {.unnumbered}</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Atenção Autores  {.unnumbered}</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>Sempre que finalizarem a edição de um capítulo, lembrem-se de gerar o PDF atualizado via Quarto. Este PDF é a fonte que os alunos devem subir no NotebookLM, já que os arquivos <span class="in">`.ipynb`</span> não são aceitos pela plataforma.</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
