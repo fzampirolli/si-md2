@@ -2,6 +2,8 @@
 
 Este README serve como manual de instrução para os autores que editam os notebooks em `si-md2/cap*/`. Como o projeto utiliza o **Quarto**, seguimos padrões específicos para que as referências (equações, figuras, tabelas e bibliografia) funcionem tanto no PDF quanto no HTML e IPYNB (versão do aluno).
 
+Versão *online* do Livro (em construção): https://fzampirolli.github.io/si-md2
+
 ---
 
 ## 🖋️ Padrões de Escrita nos Notebooks (.ipynb)
