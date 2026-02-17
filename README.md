@@ -15,7 +15,6 @@ Repositório do material didático do curso de Sistemas Inteligentes e Mineraç�
 │
 ├── si-md2/                          # PROJETO ATIVO (Trabalhe aqui!)
 │   ├── _quarto.yml                  # Configuração mestre do livro
-│   ├── _quarto.ok.yml               # Backup da configuração funcional
 │   ├── references.bib               # Base de dados BibTeX global
 │   ├── abnt.csl                     # Estilo de citação ABNT
 │   ├── index.qmd                    # Página inicial/Apresentação
@@ -26,9 +25,7 @@ Repositório do material didático do curso de Sistemas Inteligentes e Mineraç�
 │   │   └── data/                    # Datasets do capítulo
 │   ├── ...                          # Demais capítulos (cap02, cap03...)
 │   │
-│   ├── _book/                       # LIVRO COMPILADO (Gerado)
-│   │   ├── index.html               # Versão Web
-│   │   └── Sistemas-Inteligentes...pdf
+│   ├── _book_*                       # LIVRO COMPILADO (Gerado) 
 │   │
 │   ├── notebooks_alunos/            # NOTEBOOKS PARA DISTRIBUIÇÃO (Gerado)
 │   │   ├── cap01/cap01_aluno.ipynb  # Versão limpa com refs processadas
@@ -43,41 +40,11 @@ Repositório do material didático do curso de Sistemas Inteligentes e Mineraç�
 
 ## 🚀 Quick Start
 
-### 1. Preparação do Ambiente
+### Preparação do Ambiente
 
 ```bash
 git clone https://github.com/fzampirolli/si-md2.git
 cd si-md2
-```
-
-### 2. Ciclo de Trabalho Diário
-
-```bash
-# Sincronize antes de começar
-git pull origin main
-
-# Edite os notebooks em suas respectivas pastas (ex: cap01/cap01.ipynb)
-# Para visualizar o livro em tempo real:
-quarto preview
-```
-
-## 📚 Workflows Principais
-
-### Workflow 1: Gerar Material para Alunos
-
-Após editar os capítulos em `cap*/.ipynb`, execute o script para gerar os arquivos limpos na pasta `notebooks_alunos`:
-
-```bash
-python gerar_notebooks_alunos.py --batch references.bib
-```
-
-### Workflow 2: Compilar o Livro Final
-
-Para gerar o site e o PDF final na pasta `_book/`:
-
-```bash
-quarto render --to html
-quarto render --to pdf
 ```
 
 ## 🔧 Requisitos e Pré-requisitos

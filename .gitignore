@@ -308,10 +308,11 @@ yarn-error.log*
 
 # Manter configurações do projeto
 !_quarto.yml
+!abnt.csl
 !chapter_references.conf
 !references.bib
-!references.qmd
 !index.qmd
+!README.md
 
 # Manter dados de exemplo pequenos
 !*/data/exemplo*.csv
