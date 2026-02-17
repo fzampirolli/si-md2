@@ -5,6 +5,10 @@
 /_book_html/
 /_epub_src/
 
+# Ignora arquivos de configuração específicos do Quarto
+_quarto_epub.yml
+render_epub.sh
+
 # Python
 .venv/
 __pycache__/
