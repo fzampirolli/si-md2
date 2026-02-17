@@ -161,6 +161,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap03/cap03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap04/cap04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap05/cap05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte (SVM)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap06/cap06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aplicações de SVM e Imagens</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -173,11 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#prefácio" id="toc-prefácio" class="nav-link active" data-scroll-target="#prefácio">Prefácio</a>
   <ul class="collapse">
+  <li><a href="#prefácio-da-primeira-edição" id="toc-prefácio-da-primeira-edição" class="nav-link" data-scroll-target="#prefácio-da-primeira-edição">Prefácio da Primeira Edição</a></li>
+  <li><a href="#prefácio-da-segunda-edição" id="toc-prefácio-da-segunda-edição" class="nav-link" data-scroll-target="#prefácio-da-segunda-edição">Prefácio da Segunda Edição</a>
+  <ul class="collapse">
   <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação">Motivação</a></li>
   <li><a href="#estrutura-do-livro" id="toc-estrutura-do-livro" class="nav-link" data-scroll-target="#estrutura-do-livro">Estrutura do Livro</a></li>
-  <li><a href="#público-alvo" id="toc-público-alvo" class="nav-link" data-scroll-target="#público-alvo">Público-Alvo</a></li>
   <li><a href="#como-usar-este-livro" id="toc-como-usar-este-livro" class="nav-link" data-scroll-target="#como-usar-este-livro">Como Usar Este Livro</a></li>
   <li><a href="#agradecimentos" id="toc-agradecimentos" class="nav-link" data-scroll-target="#agradecimentos">Agradecimentos</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -219,15 +246,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="prefácio" class="level1 unnumbered">
 <h1 class="unnumbered">Prefácio</h1>
+<section id="prefácio-da-primeira-edição" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="prefácio-da-primeira-edição">Prefácio da Primeira Edição</h2>
+<p>O início do século XXI é caracterizado pela era da informação e crescimento exponencial de dados gerados em praticamente todas as áreas de atividade humana. Cada vez mais se torna necessário o conhecimento e aperfeiçoamento de ferramentas apropriadas para extrair informações úteis destes dados. A Mineração de Dados combina inteligência artificial, aprendizagem de máquina, estatística, base de dados e técnicas avançadas de programação para tratar grandes volumes de dados.</p>
+<p>Este livro foi escrito com o objetivo de oferecer uma visão pragmática da Mineração de Dados. Ele é apropriado para ser utilizado como livro texto de curso na área, trazendo vários exercícios práticos utilizando o pacote gratuito e aberto Weka de rotinas escritas em Java, incluindo exercícios no final de cada capítulo, juntamente com uma boa lista de referências bibliográficas.</p>
+<p>O livro procura passar uma experiência prática de uso do pacote de software permitindo que o leitor seja introduzido na área vivenciando as várias modalidades de ferramentas disponíveis. Como nenhum algoritmo ou técnica tem um desempenho superior para qualquer base de dados, é importante que o leitor adquira uma sensibilidade para poder explorar e escolher a técnica mais apropriada em cada caso.</p>
+<p>O livro está organizado em seis capítulos que devem ser lidos na sua sequência.</p>
+<p>O Capítulo 1, Sistemas Inteligentes traz as principais definições necessárias, como sistemas, inteligência, dados, informação, conhecimento e desempenho. É feita uma breve descrição das três etapas da Descoberta ou Extração de conhecimento em Base de Dados: pré-processamento, mineração de dados e pós-processamento. A Mineração de Dados, por sua vez é dividida nas tarefas de Associação, Classificação, Agrupamento e Detecção de Anomalias. O capítulo é finalizado fazendo considerações sobre a questão ética da Mineração de Dados, mencionando que o uso destas informações podem levar à medidas preventivas de segurança pública.</p>
+<p>O Capítulo 2, Mineração de dados e Regras de Associação, explica como os dados devem ser estruturados através de suas transações ou exemplos, juntamente com seus atributos. O capítulo é dedicado à identificação de Regras de Associação também denominadas regras IF-THEN. Os indicadores de suporte e confiança ou acurácia são utilizados na avaliação das melhores regras de associação. É visto o algoritmo apriori utilizado para criar as regras de identificação. É visto um exemplo completo, passo-a-passo de identificação de Regras de Associação utilizando a ferramenta Weka.</p>
+<p>O Capítulo 3, Classificação e Árvores de Decisão, utiliza o famoso exemplo de classificação de 3 espécies de Flor Íris utilizando a árvore de decisão, onde cada nó da árvore é uma pergunta a ser testada. O nó raiz é a pergunta inicial e as folhas são as classes resultantes da aplicação da árvore de decisão.</p>
+<p>É introduzido o algoritmo ID3, baseado na noção de informação do Shannon e comparado a um algoritmo de escolha aleatória na construção da árvore de decisão, ilustrando a compacticidade da árvore gerada pelo algoritmo ID3. É ilustrado também o processo de extração de regras de decisão a partir da árvore de decisão. Ainda neste capítulo, o conceito de aprendizado supervisionado é introduzido, juntamente com o conceito de dados de treinamento e de testes e o processo de classificação. A avaliação dos resultados é feita com o uso da Matriz de Confusão. O capítulo termina com um exemplo completo utilizando o Weka para gerar o classificador via Árvore de Decisão e avaliar seu resultado com a Matriz de Confusão.</p>
+<p>O Capítulo 4, Classificação e Regras de Classificação, trata da Classificação de dados através de Regras de Classificação e o processo de geração automática dessas Regras. O objetivo desse capítulo é passar uma ideia geral do funcionamento dos algoritmo oneR (uma regra), classificadores lineares, redes neurais e Máquinas de Vetores de Suporte (MSVS), cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados. Pela simplicidade, inicialmente é visto o algoritmo oneR e em seguida o algoritmo PRISM, que utiliza o princípio da cobertura para a criação das regras. Os indicadores de resultados especificidade e sensibilidade são também introduzidos neste capítulo que termina com uma visão sobre as melhores formas de utilizar os dados para as fases de treinamento e de teste: Técnica da ressubstituição ou uso do conjunto de treinamento; método da divisão da amostra; método da validação cruzada; e método deixe-um-de-fora.</p>
+<p>No Capítulo 5, Máquina de Vetores de Suporte (MVS), são vistos inicialmente os classificadores lineares como o Perceptron e os conceitos de otimização da função custo, conjuntos convexos, mínimo global e mínimo local. Nos Classificadores não lineares, a reta é substituída por uma função polinomial. As Maquinas de Vetores de Suporte são introduzidas através do Princípio da margem máxima que é uma das principais características da MVS que traz mais estabilidade e desempenho deste classificador. O capítulo traz ainda os conceitos de kernel da MVS, o truque do kernel, Parâmetro de Complexidade C e o conceito da Praga da dimensionalidade. O capítulo termina ensinando a utilizar o Weka para visualizar as bordas de decisão do MVS.</p>
+<p>O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.</p>
+<p>Roberto de Alencar Lotufo, professor titular</p>
+<p>Faculdade de Engenharia Elétrica e de Computação</p>
+<p>Universidade Estadual de Campinas – Unicamp</p>
+</section>
+<section id="prefácio-da-segunda-edição" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="prefácio-da-segunda-edição">Prefácio da Segunda Edição</h2>
 <p>Bem-vindo à segunda edição do livro <strong>Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python</strong>.</p>
 <p>Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.</p>
-<section id="motivação" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="motivação">Motivação</h2>
-<p>A primeira edição deste livro focava principalmente no uso da ferramenta Weka, uma plataforma consolidada e amplamente utilizada no ensino de mineração de dados. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</p>
+<section id="motivação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="motivação">Motivação</h3>
+<p>A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</p>
 </section>
-<section id="estrutura-do-livro" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="estrutura-do-livro">Estrutura do Livro</h2>
-<p>O livro está organizado em seis capítulos que cobrem desde conceitos fundamentais até técnicas avançadas:</p>
+<section id="estrutura-do-livro" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="estrutura-do-livro">Estrutura do Livro</h3>
+<p>O livro está organizado em seis capítulos fundamentais:</p>
 <ul>
 <li><strong>Capítulo 1</strong>: Introdução aos Sistemas Inteligentes</li>
 <li><strong>Capítulo 2</strong>: Fundamentos de Mineração de Dados</li>
@@ -236,37 +282,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Capítulo 5</strong>: Avaliação e Validação de Modelos</li>
 <li><strong>Capítulo 6</strong>: Aplicações Práticas e Estudos de Caso</li>
 </ul>
-<p>Cada capítulo inclui exemplos práticos implementados em Python, com notebooks Jupyter que podem ser executados diretamente pelo leitor.</p>
 </section>
-<section id="público-alvo" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="público-alvo">Público-Alvo</h2>
-<p>Este livro destina-se a:</p>
+<section id="como-usar-este-livro" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="como-usar-este-livro">Como Usar Este Livro</h3>
+<p>O material está disponível e pode ser consumido em três formatos principais:</p>
+<ol type="1">
+<li><strong>Versão Online (HTML)</strong>: Disponível para leitura interativa e navegação rápida em: <a href="">https://fzampirolli.github.io/si-md2/</a>.</li>
+<li><strong>Documento PDF</strong>: Ideal para leitura linear completa e impressão.</li>
+<li><strong>Notebooks Jupyter Práticos</strong>: Para execução interativa dos exemplos. Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados na pasta <code>notebooks_alunos</code>, experimentando modificações nos códigos.</li>
+</ol>
+<section id="formas-de-praticar-com-os-notebooks" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="formas-de-praticar-com-os-notebooks">Formas de Praticar com os Notebooks</h4>
+<p>Para executar os códigos, você tem duas opções:</p>
 <ul>
-<li>Estudantes de graduação em Ciência da Computação, Engenharia e áreas correlatas</li>
-<li>Profissionais que desejam atualizar seus conhecimentos em ciência de dados</li>
-<li>Pesquisadores interessados em técnicas de inteligência artificial</li>
-<li>Entusiastas de aprendizado de máquina e análise de dados</li>
+<li><strong>Google Colab (Nuvem)</strong>: Clique no botão <strong>“Open In Colab”</strong> no início de cada capítulo para abrir o ambiente na nuvem sem necessidade de instalação local.</li>
+<li><strong>Ambiente Local</strong>: Utilize o <strong>Jupyter Lab</strong> para abrir os arquivos <code>.ipynb</code> em sua máquina.</li>
 </ul>
 </section>
-<section id="como-usar-este-livro" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="como-usar-este-livro">Como Usar Este Livro</h2>
-<p>O material está disponível em dois formatos:</p>
-<ol type="1">
-<li><strong>PDF</strong>: Para leitura completa e impressão</li>
-<li><strong>Notebooks Jupyter</strong>: Para execução interativa dos exemplos</li>
-</ol>
-<p>Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados, experimentando modificações nos códigos e explorando os datasets fornecidos.</p>
 </section>
-<section id="agradecimentos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="agradecimentos">Agradecimentos</h2>
+<section id="agradecimentos" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="agradecimentos">Agradecimentos</h3>
 <p>Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.</p>
 <hr>
-<p><em>Os Autores</em><br>
-<em>Fevereiro de 2026</em></p>
+<p><em>Os Autores</em> <em>Fevereiro de 2026</em></p>
 
 
 <!-- -->
 
+</section>
 </section>
 </section>
 
@@ -733,53 +776,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prefácio {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prefácio da Primeira Edição {.unnumbered}</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>O início do século XXI é caracterizado pela era da informação e crescimento exponencial de dados gerados em praticamente todas as áreas de atividade humana. Cada vez mais se torna necessário o conhecimento e aperfeiçoamento de ferramentas apropriadas para extrair informações úteis destes dados. A Mineração de Dados combina inteligência artificial, aprendizagem de máquina, estatística, base de dados e técnicas avançadas de programação para tratar grandes volumes de dados.</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Motivação {.unnumbered}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Este livro foi escrito com o objetivo de oferecer uma visão pragmática da Mineração de Dados. Ele é apropriado para ser utilizado como livro texto de curso na área, trazendo vários exercícios práticos utilizando o pacote gratuito e aberto Weka de rotinas escritas em Java, incluindo exercícios no final de cada capítulo, juntamente com uma boa lista de referências bibliográficas.</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>A primeira edição deste livro focava principalmente no uso da ferramenta Weka, uma plataforma consolidada e amplamente utilizada no ensino de mineração de dados. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>O livro procura passar uma experiência prática de uso do pacote de software permitindo que o leitor seja introduzido na área vivenciando as várias modalidades de ferramentas disponíveis. Como nenhum algoritmo ou técnica tem um desempenho superior para qualquer base de dados, é importante que o leitor adquira uma sensibilidade para poder explorar e escolher a técnica mais apropriada em cada caso.</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estrutura do Livro {.unnumbered}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>O livro está organizado em seis capítulos que devem ser lidos na sua sequência.</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>O livro está organizado em seis capítulos que cobrem desde conceitos fundamentais até técnicas avançadas:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>O Capítulo 1, Sistemas Inteligentes traz as principais definições necessárias, como sistemas, inteligência, dados, informação, conhecimento e desempenho. É feita uma breve descrição das três etapas da Descoberta ou Extração de conhecimento em Base de Dados: pré-processamento, mineração de dados e pós-processamento. A Mineração de Dados, por sua vez é dividida nas tarefas de Associação, Classificação, Agrupamento e Detecção de Anomalias. O capítulo é finalizado fazendo considerações sobre a questão ética da Mineração de Dados, mencionando que o uso destas informações podem levar à medidas preventivas de segurança pública.</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 1**: Introdução aos Sistemas Inteligentes</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 2**: Fundamentos de Mineração de Dados</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 3**: Aprendizado de Máquina Supervisionado</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 4**: Aprendizado Não Supervisionado</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 5**: Avaliação e Validação de Modelos</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 6**: Aplicações Práticas e Estudos de Caso</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Cada capítulo inclui exemplos práticos implementados em Python, com notebooks Jupyter que podem ser executados diretamente pelo leitor.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Público-Alvo {.unnumbered}</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Este livro destina-se a:</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Estudantes de graduação em Ciência da Computação, Engenharia e áreas correlatas</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Profissionais que desejam atualizar seus conhecimentos em ciência de dados</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pesquisadores interessados em técnicas de inteligência artificial</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Entusiastas de aprendizado de máquina e análise de dados</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>O Capítulo 2, Mineração de dados e Regras de Associação, explica como os dados devem ser estruturados através de suas transações ou exemplos, juntamente com seus atributos. O capítulo é dedicado à identificação de Regras de Associação também denominadas regras IF-THEN. Os indicadores de suporte e confiança ou acurácia são utilizados na avaliação das melhores regras de associação. É visto o algoritmo apriori utilizado para criar as regras de identificação. É visto um exemplo completo, passo-a-passo de identificação de Regras de Associação utilizando a ferramenta Weka.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>O Capítulo 3, Classificação e Árvores de Decisão, utiliza o famoso exemplo de classificação de 3 espécies de Flor Íris utilizando a árvore de decisão, onde cada nó da árvore é uma pergunta a ser testada. O nó raiz é a pergunta inicial e as folhas são as classes resultantes da aplicação da árvore de decisão.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>É introduzido o algoritmo ID3, baseado na noção de informação do Shannon e comparado a um algoritmo de escolha aleatória na construção da árvore de decisão, ilustrando a compacticidade da árvore gerada pelo algoritmo ID3. É ilustrado também o processo de extração de regras de decisão a partir da árvore de decisão. Ainda neste capítulo, o conceito de aprendizado supervisionado é introduzido, juntamente com o conceito de dados de treinamento e de testes e o processo de classificação. A avaliação dos resultados é feita com o uso da Matriz de Confusão. O capítulo termina com um exemplo completo utilizando o Weka para gerar o classificador via Árvore de Decisão e avaliar seu resultado com a Matriz de Confusão.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>O Capítulo 4, Classificação e Regras de Classificação, trata da Classificação de dados através de Regras de Classificação e o processo de geração automática dessas Regras. O objetivo desse capítulo é passar uma ideia geral do funcionamento dos algoritmo oneR (uma regra), classificadores lineares, redes neurais e Máquinas de Vetores de Suporte (MSVS), cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados. Pela simplicidade, inicialmente é visto o algoritmo oneR e em seguida o algoritmo PRISM, que utiliza o princípio da cobertura para a criação das regras. Os indicadores de resultados especificidade e sensibilidade são também introduzidos neste capítulo que termina com uma visão sobre as melhores formas de utilizar os dados para as fases de treinamento e de teste: Técnica da ressubstituição ou uso do conjunto de treinamento; método da divisão da amostra; método da validação cruzada; e método deixe-um-de-fora.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>No Capítulo 5, Máquina de Vetores de Suporte (MVS), são vistos inicialmente os classificadores lineares como o Perceptron e os conceitos de otimização da função custo, conjuntos convexos, mínimo global e mínimo local. Nos Classificadores não lineares, a reta é substituída por uma função polinomial. As Maquinas de Vetores de Suporte são introduzidas através do Princípio da margem máxima que é uma das principais características da MVS que traz mais estabilidade e desempenho deste classificador. O capítulo traz ainda os conceitos de kernel da MVS, o truque do kernel, Parâmetro de Complexidade C e o conceito da Praga da dimensionalidade. O capítulo termina ensinando a utilizar o Weka para visualizar as bordas de decisão do MVS.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Roberto de Alencar Lotufo, professor titular</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Faculdade de Engenharia Elétrica e de Computação</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Universidade Estadual de Campinas -- Unicamp</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Como Usar Este Livro {.unnumbered}</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>O material está disponível em dois formatos:</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**PDF**: Para leitura completa e impressão</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Notebooks Jupyter**: Para execução interativa dos exemplos</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prefácio da Segunda Edição {.unnumbered}</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados, experimentando modificações nos códigos e explorando os datasets fornecidos.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">### Motivação {.unnumbered}</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Agradecimentos {.unnumbered}</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estrutura do Livro {.unnumbered}</span></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>O livro está organizado em seis capítulos fundamentais:</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>*Os Autores*  </span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>*Fevereiro de 2026*</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 1**: Introdução aos Sistemas Inteligentes</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 2**: Fundamentos de Mineração de Dados</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 3**: Aprendizado de Máquina Supervisionado</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 4**: Aprendizado Não Supervisionado</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 5**: Avaliação e Validação de Modelos</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 6**: Aplicações Práticas e Estudos de Caso</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### Como Usar Este Livro {.unnumbered}</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>O material está disponível e pode ser consumido em três formatos principais:</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Versão Online (HTML)**: Disponível para leitura interativa e navegação rápida em: <span class="co">[</span><span class="ot">https://fzampirolli.github.io/si-md2/</span><span class="co">]()</span>.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Documento PDF**: Ideal para leitura linear completa e impressão.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Notebooks Jupyter Práticos**: Para execução interativa dos exemplos. Recomendamos que os leitores acompanhem a leitura executando os notebooks disponibilizados na pasta <span class="in">`notebooks_alunos`</span>, experimentando modificações nos códigos.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Formas de Praticar com os Notebooks {.unnumbered}</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>Para executar os códigos, você tem duas opções:</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Google Colab (Nuvem)**: Clique no botão **"Open In Colab"** no início de cada capítulo para abrir o ambiente na nuvem sem necessidade de instalação local.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Ambiente Local**: Utilize o **Jupyter Lab** para abrir os arquivos <span class="in">`.ipynb`</span> em sua máquina.</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Agradecimentos {.unnumbered}</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>Agradecemos a todos os alunos que, ao longo dos anos, contribuíram com feedback valioso que ajudou a moldar este material. Agradecemos também às nossas instituições de ensino pelo apoio contínuo à pesquisa e ao desenvolvimento deste conteúdo.</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>*Os Autores* *Fevereiro de 2026*</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

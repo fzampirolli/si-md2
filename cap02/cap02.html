@@ -50,6 +50,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../cap03/cap03.html" rel="next">
 <link href="../cap01/cap01.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -90,6 +91,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -145,6 +175,30 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap03/cap03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap04/cap04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap05/cap05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte (SVM)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap06/cap06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aplicações de SVM e Imagens</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -182,6 +236,56 @@ div.csl-indent {
 
 
 <p><a href="https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/cap02/cap02_aluno.ipynb"><img src="images/colab-badge.png" class="img-fluid"></a></p>
+<p>Exemplo de figura <a href="#fig-2-1" class="quarto-xref">Figura&nbsp;<span>2.1</span></a>.</p>
+<div id="fig-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig1_1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.1: Relação entre Dados, Informação e Conhecimento
+</figcaption>
+</figure>
+</div>
+<p>Exemplo de tabela-imagem <a href="#tbl-2-1" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>.</p>
+<div id="tbl-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.1: Relação entre Dados, Informação e Conhecimento
+</figcaption>
+<div aria-describedby="tbl-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig1_1.png" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
+<p>A tabela <a href="#tbl-1-X" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
+<div id="tbl-1-X" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-1-X-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.2: Legenda da tabela
+</figcaption>
+<div aria-describedby="tbl-1-X-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>x</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>A equação <a href="#eq-1-1" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>.</p>
+<p><span id="eq-1-1"><span class="math display">\[
+x^3
+\tag{2.1}\]</span></span></p>
 <section id="referências-do-capítulo" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">2.1</span> Referências do Capítulo</h2>
 <p>Tem que citar neste capítulo: <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span>, <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="goldschmidt2005">Goldschmidt; Passos (<a href="#ref-goldschmidt2005" role="doc-biblioref">2005</a>)</span></p>
@@ -662,6 +766,9 @@ WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools a
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../cap03/cap03.html" class="pagination-link" aria-label="Classificação e Árvores de Decisão">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
