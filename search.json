@@ -124,7 +124,7 @@
     "href": "cap02/cap02.html",
     "title": "2  Mineração de Dados e Regras de Associação",
     "section": "",
-    "text": "2.1 Referências do Capítulo\nFor a demonstration of a line plot, see Figura 2.1.\nExemplo de figura Figura 2.2.\nExemplo de tabela-imagem Tabela 2.1.\nA tabela Tabela 2.2.\nA equação Equação 2.1.\n\\[\nx^3\n\\tag{2.1}\\]\nTem que citar neste capítulo: Han; Kamber (2008), Tan; Steinbach; Kumar (2009), Witten; Frank (2005), Goldschmidt; Passos (2005)",
+    "text": "2.1 Referências do Capítulo\nFor a demonstration of a line plot, see Figura 6.1.\nExemplo de figura Figura 6.2.\nExemplo de tabela-imagem Tabela 6.1.\nA tabela Tabela 6.2.\nA equação Equação 6.1.\n\\[\nx^3\n\\tag{2.1}\\]\nTem que citar neste capítulo: Han; Kamber (2008), Tan; Steinbach; Kumar (2009), Witten; Frank (2005), Goldschmidt; Passos (2005)",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Mineração de Dados e Regras de Associação</span>"
     ]
@@ -202,21 +202,21 @@
   {
     "objectID": "cap06/cap06.html",
     "href": "cap06/cap06.html",
-    "title": "6  Aplicações de SVM e Imagens",
+    "title": "6  Aplicações Práticas e Estudos de Caso",
     "section": "",
-    "text": "6.1 Referências do Capítulo\nTem que citar neste capítulo: Tan; Steinbach; Kumar (2009), Russell; Norvig (2004), Rezende (2005)",
+    "text": "6.1 Referências do Capítulo\nFor a demonstration of a line plot, see Figura 6.1.\nExemplo de figura Figura 6.2.\nExemplo de tabela-imagem Tabela 6.1.\nA tabela Tabela 6.2.\nA equação Equação 6.1.\n\\[\nx^3\n\\tag{6.1}\\]\nTem que citar neste capítulo: Han; Kamber (2008), Tan; Steinbach; Kumar (2009), Witten; Frank (2005), Goldschmidt; Passos (2005)",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Aplicações de SVM e Imagens</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Aplicações Práticas e Estudos de Caso</span>"
     ]
   },
   {
     "objectID": "cap06/cap06.html#referências-do-capítulo",
     "href": "cap06/cap06.html#referências-do-capítulo",
-    "title": "6  Aplicações de SVM e Imagens",
+    "title": "6  Aplicações Práticas e Estudos de Caso",
     "section": "",
-    "text": "REZENDE, S. O. Sistemas Inteligentes: Fundamentos e Aplicações. [S.l.]: Editora Manole Ltda, 2005.\n\n\nRUSSELL, S.; NORVIG, P. Inteligência Artificial. [S.l.]: Elsevier, 2004.\n\n\nTAN, P. N.; STEINBACH, M.; KUMAR, V. Introdução ao Data Mining Mineração de Dados. [S.l.]: Editora Ciência Moderna Ltda., 2009.",
+    "text": "GOLDSCHMIDT, R.; PASSOS, E. Data Mining: Um Guia Prático. [S.l.]: Elsevier, 2005.\n\n\nHAN, J.; KAMBER, M. Data Mining: Concepts and Techniques. [S.l.]: Morgan Kaufmann Publishers, 2008.\n\n\nTAN, P. N.; STEINBACH, M.; KUMAR, V. Introdução ao Data Mining Mineração de Dados. [S.l.]: Editora Ciência Moderna Ltda., 2009.\n\n\nWITTEN, I. H.; FRANK, E. Data Mining: Practical Machine Learning Tools and Techniques. [S.l.]: Morgan Kaufmann Publishers, 2005.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Aplicações de SVM e Imagens</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Aplicações Práticas e Estudos de Caso</span>"
     ]
   }
 ]
