@@ -39,9 +39,16 @@ format:
     code-tools: true
     toc: true
   pdf:
+    filters:
+      - fix-labels.lua
+    tbl-colwidths: false
+    tables:
+      longtable: true
+      booktabs: false
+    keep-tex: true
     cite-method: biblatex
     biblatexoptions: 
-      - style=abnt          # ← pacote biblatex-abnt (requer instalação)
+      - style=abnt          # pacote biblatex-abnt (requer instalação)
       - refsection=chapter  # Refs separadas por capítulo
       - defernumbers=true   # Numera refs por capítulo
     documentclass: report
@@ -56,60 +63,87 @@ format:
       - right=20mm
     include-in-header:
       text: |
-          % Rodapés personalizados
-          \usepackage{fancyhdr}
-          \pagestyle{fancy}
-          \fancyhf{} % Limpa cabeçalhos e rodapés existentes
-          
-          % Configuração do rodapé
+        \usepackage[table]{xcolor}
+        \usepackage{array}
+        \usepackage{colortbl}
+        \usepackage{longtable}
+        \usepackage{etoolbox}
+
+        % --- Definição das Cores ---
+        \definecolor{headerRed}{HTML}{C0413A} % Cor do cabeçalho [cite: 6]
+        \definecolor{rowPink}{HTML}{F4C2C2}   % Cor da linha alternada
+        \definecolor{lineRed}{HTML}{C0413A}   % Cor das bordas
+
+        % --- Configurações Globais ---
+        \arrayrulecolor{lineRed}              % Define a cor das linhas da grade
+        \setlength{\arrayrulewidth}{0.8pt}    % Espessura da linha
+        \renewcommand{\arraystretch}{1.2}     % Espaçamento interno das células
+
+        % --- Automação das Cores ---
+        % Aplica cores alternadas (zebra) começando na linha 2 
+        \AtBeginEnvironment{longtable}{%
+          \rowcolors{0}{white}{rowPink}%
+        }
+
+        % Novos tipos de coluna: H (Centralizada) e L (Esquerda) para o cabeçalho [cite: 11]
+        % Elas aplicam fundo vermelho, negrito e texto branco automaticamente [cite: 5, 8]
+        \newcolumntype{H}{>{\columncolor{headerRed}\bfseries\color{white}}c}
+        \newcolumntype{L}{>{\columncolor{headerRed}\bfseries\color{white}}l}
+
+
+        % Rodapés personalizados
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \fancyhf{} % Limpa cabeçalhos e rodapés existentes
+        
+        % Configuração do rodapé
+        \fancyfoot[L]{\small © 2026 | Quilici-Gonzalez, Zampirolli e Souza}
+        \fancyfoot[R]{\thepage} % Número da página à direita
+        
+        % Remove a linha horizontal do cabeçalho (opcional)
+        \renewcommand{\headrulewidth}{0pt}
+        % Adiciona linha horizontal no rodapé (opcional)
+        \renewcommand{\footrulewidth}{0.4pt}
+
+        % Garante que páginas de início de capítulo também tenham o rodapé
+        \fancypagestyle{plain}{
+          \fancyhf{}
           \fancyfoot[L]{\small © 2026 | Quilici-Gonzalez, Zampirolli e Souza}
-          \fancyfoot[R]{\thepage} % Número da página à direita
-          
-          % Remove a linha horizontal do cabeçalho (opcional)
-          \renewcommand{\headrulewidth}{0pt}
-          % Adiciona linha horizontal no rodapé (opcional)
+          \fancyfoot[R]{\thepage}
           \renewcommand{\footrulewidth}{0.4pt}
+        }
+  
+        \usepackage{titlesec}
+        \usepackage{xcolor}
+        \usepackage{wallpaper}
 
-          % Garante que páginas de início de capítulo também tenham o rodapé
-          \fancypagestyle{plain}{
-            \fancyhf{}
-            \fancyfoot[L]{\small © 2026 | Quilici-Gonzalez, Zampirolli e Souza}
-            \fancyfoot[R]{\thepage}
-            \renewcommand{\footrulewidth}{0.4pt}
-          }
+        \definecolor{darkblue}{RGB}{0, 51, 102}
 
-          \usepackage{etoolbox}
-          \usepackage{titlesec}
-          \usepackage{xcolor}
-          \usepackage{wallpaper}
+        % Estilo dos Capítulos
+        \titleformat{\chapter}[display]
+          {\normalfont\huge\bfseries\color{darkblue}}
+          {\filleft\Large\chaptertitlename\ \thechapter}
+          {1ex}
+          {\titlerule\vspace{2ex}\Huge\filleft}
+          [\vspace{2ex}]
+        \titlespacing*{\chapter}{0pt}{5pt}{20pt}
 
-          \definecolor{darkblue}{RGB}{0, 51, 102}
+        % REMOVER o capítulo "Bibliography" do final
+        \defbibheading{bibliography}{}
 
-          % Estilo dos Capítulos
-          \titleformat{\chapter}[display]
-            {\normalfont\huge\bfseries\color{darkblue}}
-            {\filleft\Large\chaptertitlename\ \thechapter}
-            {1ex}
-            {\titlerule\vspace{2ex}\Huge\filleft}
-            [\vspace{2ex}]
-          \titlespacing*{\chapter}{0pt}{5pt}{20pt}
-
-          % REMOVER o capítulo "Bibliography" do final
-          \defbibheading{bibliography}{}
-
-          \renewcommand{\maketitle}{%
-            \begin{titlepage}
-              \ThisCenterWallPaper{1.02}{images/capa.png}
-              \vspace*{1cm}
-              \begin{flushright}
-                {\Huge\bfseries\color{white} Sistemas Inteligentes e Mineração de Dados}\\[0.5cm]
-                {\Large\bfseries\color{white} 2ª Edição: Do Weka ao Python}\\[2cm]
-                \vfill
-                {\large\bfseries\color{white} José Artur Quilici-Gonzalez}\\
-                {\large\bfseries\color{white} Francisco de Assis Zampirolli}\\
-                {\large\bfseries\color{white} Fábio Rezende de Souza}\\[1cm]
-                {\large\color{white} \today}
-              \end{flushright}
-            \end{titlepage}
-            \clearpage
-          }
+        \renewcommand{\maketitle}{%
+          \begin{titlepage}
+            \ThisCenterWallPaper{1.02}{images/capa.png}
+            \vspace*{1cm}
+            \begin{flushright}
+              {\Huge\bfseries\color{white} Sistemas Inteligentes e Mineração de Dados}\\[0.5cm]
+              {\Large\bfseries\color{white} 2ª Edição: Do Weka ao Python}\\[2cm]
+              \vfill
+              {\large\bfseries\color{white} José Artur Quilici-Gonzalez}\\
+              {\large\bfseries\color{white} Francisco de Assis Zampirolli}\\
+              {\large\bfseries\color{white} Fábio Rezende de Souza}\\[1cm]
+              {\large\color{white} \today}
+            \end{flushright}
+          \end{titlepage}
+          \clearpage
+        }
