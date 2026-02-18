@@ -130,6 +130,18 @@ book:
     - cap04/cap04.ipynb
     - cap05/cap05.ipynb
     - cap06/cap06.ipynb
+  page-footer: 
+    left: |
+      © 2026 | 
+      [Quilici-Gonzalez](https://www.ufabc.edu.br/ensino/docentes/jose-artur-quilici-gonzalez) , 
+      [Zampirolli](https://www.ufabc.edu.br/ensino/docentes/francisco-de-assis-zampirolli#) e 
+      [Souza](https://www.linkedin.com/in/frezendesouza/)
+    right: 
+      - icon: github
+        href: https://github.com/fzampirolli/si-md2
+      - icon: globe
+        text: " UFABC"
+        href: https://www.ufabc.edu.br/
 
 lang: pt-BR
 

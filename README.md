@@ -2,6 +2,8 @@
 
 Repositório do material didático do curso de Sistemas Inteligentes e Mineração de Dados (2ª Edição). Este projeto utiliza **Quarto** para integrar notebooks Jupyter, textos e bibliografia acadêmica.
 
+Versão *online* do Livro (em construção): https://fzampirolli.github.io/si-md2
+
 ## 📁 Estrutura do Projeto
 
 ```text
