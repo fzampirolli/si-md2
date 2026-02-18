@@ -225,59 +225,44 @@ div.csl-indent {
 <p>Figura .– A Relação da Mineração de Dados com Algumas Disciplinas Correlatas.</p>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> e <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div class="cell" data-execution_count="4">
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="11">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras
 </figcaption>
 <div aria-describedby="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-border="1">
+<table class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">TID</th>
-<th data-quarto-table-cell-role="th">Itens</th>
+<th style="text-align: right;">TID</th>
+<th style="text-align: left;">Itens</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">0</th>
-<td>1</td>
-<td>{Arroz, Feijão, Óleo}</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">{Arroz, Feijão, Óleo}</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>2</td>
-<td>{Queijo, Vinho}</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">{Queijo, Vinho}</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>3</td>
-<td>{Arroz, Feijão, Batata, Óleo}</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">{Arroz, Feijão, Batata, Óleo}</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>4</td>
-<td>{Arroz, Água, Queijo, Vinho}</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">{Arroz, Água, Queijo, Vinho}</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>5</td>
-<td>{Arroz, Feijão, Batata, Óleo}</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">{Arroz, Feijão, Batata, Óleo}</td>
 </tr>
 </tbody>
 </table>
-
-</div>
-</div>
 </div>
 </figure>
-</div>
 </div>
 <div id="tbl-2-cestas2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -319,8 +304,8 @@ Tabela&nbsp;2.2: Cestas de Compras
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>.</p>
-<div class="cell" data-execution_count="5">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<div class="cell" data-quarto-raw="true" data-execution_count="12">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="12">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Representação Booleana de Cestas de Compras
@@ -488,9 +473,9 @@ Tabela&nbsp;2.4: Representação Booleana de Cestas de Compras
 </div>
 </figure>
 </div>
-<p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> (QUINLAN, 1986, <em>apud</em> WITTEN &amp; FRANK, 2005), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-execution_count="6">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+<p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
+<div class="cell" data-quarto-raw="true" data-execution_count="13">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="13">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.5: Tabela do Tempo
@@ -769,6 +754,9 @@ GOLDSCHMIDT, R.; PASSOS, E. <strong>Data Mining: Um Guia Prático</strong>. <em>
 </div>
 <div id="ref-han2008" class="csl-entry" role="listitem">
 HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
+</div>
+<div id="ref-quinlan1986" class="csl-entry" role="listitem">
+QUINLAN, Ross. <strong>Induction of Decision Trees</strong>. <em>[S.l.: S.n.]</em>.
 </div>
 <div id="ref-tan2009" class="csl-entry" role="listitem">
 TAN, P. N.; STEINBACH, M.; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2009.
