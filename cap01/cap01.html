@@ -98,6 +98,9 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -233,13 +236,11 @@ div.csl-indent {
   <li><a href="#células-de-código-python" id="toc-células-de-código-python" class="nav-link" data-scroll-target="#células-de-código-python"><span class="header-section-number">1.6.2</span> 🔹 Células de Código Python</a></li>
   <li><a href="#função-simples" id="toc-função-simples" class="nav-link" data-scroll-target="#função-simples"><span class="header-section-number">1.6.3</span> 🔹 Função Simples</a></li>
   <li><a href="#de-números-a-leis-da-natureza-o-salto-para-o-conhecimento" id="toc-de-números-a-leis-da-natureza-o-salto-para-o-conhecimento" class="nav-link" data-scroll-target="#de-números-a-leis-da-natureza-o-salto-para-o-conhecimento"><span class="header-section-number">1.6.4</span> 🔹 De Números a Leis da Natureza: O Salto para o Conhecimento</a></li>
-  <li><a href="#código-simulando-a-realidade" id="toc-código-simulando-a-realidade" class="nav-link" data-scroll-target="#código-simulando-a-realidade"><span class="header-section-number">1.6.5</span> 🧪 Código: Simulando a Realidade</a></li>
-  <li><a href="#explicação-científica-impessoal" id="toc-explicação-científica-impessoal" class="nav-link" data-scroll-target="#explicação-científica-impessoal"><span class="header-section-number">1.6.6</span> 📘 Explicação Científica Impessoal</a></li>
-  <li><a href="#prática-transformando-dado-em-informação-imc" id="toc-prática-transformando-dado-em-informação-imc" class="nav-link" data-scroll-target="#prática-transformando-dado-em-informação-imc"><span class="header-section-number">1.6.7</span> 🧪 Prática: Transformando Dado em Informação (IMC)</a></li>
+  <li><a href="#prática-transformando-dado-em-informação-imc" id="toc-prática-transformando-dado-em-informação-imc" class="nav-link" data-scroll-target="#prática-transformando-dado-em-informação-imc"><span class="header-section-number">1.6.5</span> 🧪 Prática: Transformando Dado em Informação (IMC)</a></li>
   </ul></li>
   <li><a href="#uso-do-notebooklm-como-tutor-complementar" id="toc-uso-do-notebooklm-como-tutor-complementar" class="nav-link" data-scroll-target="#uso-do-notebooklm-como-tutor-complementar"><span class="header-section-number">1.7</span> 🤖 Uso do NotebookLM como Tutor Complementar</a>
   <ul class="collapse">
-  <li><a href="#o-que-você-pode-explorar-na-plataforma" id="toc-o-que-você-pode-explorar-na-plataforma" class="nav-link" data-scroll-target="#o-que-você-pode-explorar-na-plataforma">O que você pode explorar na plataforma:</a></li>
+  <li><a href="#funcionalidades-disponíveis-na-plataforma" id="toc-funcionalidades-disponíveis-na-plataforma" class="nav-link" data-scroll-target="#funcionalidades-disponíveis-na-plataforma">Funcionalidades Disponíveis na Plataforma</a></li>
   </ul></li>
   <li><a href="#lista-de-exercícios" id="toc-lista-de-exercícios" class="nav-link" data-scroll-target="#lista-de-exercícios"><span class="header-section-number">1.8</span> Lista de Exercícios</a></li>
   <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">1.9</span> Referências do Capítulo</a></li>
@@ -398,7 +399,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="células-de-código-python"><span class="header-section-number">1.6.2</span> 🔹 Células de Código Python</h3>
 <p>Abaixo, você encontrará uma célula de <strong>código</strong>. Diferente do texto, as células de código podem ser executadas para realizar cálculos e gerar gráficos.</p>
 <p><strong>Como executar:</strong> 1. Clique dentro da célula abaixo. 2. Pressione <strong><code>Shift + Enter</code></strong> (ou clique no botão <strong>Play</strong> no Google Colab).</p>
-<div id="cell-16" class="cell" data-quarto-raw="true" data-execution_count="38">
+<div id="cell-16" class="cell" data-quarto-raw="true" data-execution_count="58">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de execução para testar o ambiente</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Se você está lendo esta mensagem, o código foi executado com sucesso!"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -412,7 +413,7 @@ O resultado da soma de 10 + 20.5 é: 30.5</code></pre>
 </div>
 </div>
 <p>O código a seguir mostra a execução de um laço de repetição (<code>for</code>) para iterar sobre uma sequência numérica de 0 a 4, gerada pela função <code>range(5)</code>. Do ponto de vista da Mineração de Dados, esse fluxo representa o processamento sequencial de <strong>Dados</strong> brutos para a geração de <strong>Informação</strong> estruturada, servindo como base para a identificação de padrões em sistemas inteligentes.</p>
-<div id="cell-18" class="cell" data-quarto-raw="true" data-execution_count="39">
+<div id="cell-18" class="cell" data-quarto-raw="true" data-execution_count="59">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esta é uma célula de código Python para testar um laço! 🚀"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>)) <span class="co"># cria uma lista de números de 0 a 4</span></span>
@@ -435,7 +436,7 @@ Valor: 4</code></pre>
 <section id="função-simples" class="level3" data-number="1.6.3">
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="função-simples"><span class="header-section-number">1.6.3</span> 🔹 Função Simples</h3>
 <p>O código a seguir mostra o fluxo técnico de transformação de <strong>Dados</strong> (sequência numérica) em <strong>Informação</strong> (valores ao quadrado). Embora a extração de <strong>Conhecimento</strong> seja simplificada neste cenário, o exemplo ilustra a base necessária para que algoritmos de Mineração de Dados identifiquem padrões de comportamento e tendências em grandes volumes de informação, permitindo que o sistema aprenda a lógica subjacente aos dados para melhorar seu desempenho futuro.</p>
-<div id="cell-21" class="cell" data-quarto-raw="true" data-execution_count="40">
+<div id="cell-21" class="cell" data-quarto-raw="true" data-execution_count="60">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Definição da Função</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadrado(x):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -471,10 +472,7 @@ O último elemento é: 25
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="de-números-a-leis-da-natureza-o-salto-para-o-conhecimento"><span class="header-section-number">1.6.4</span> 🔹 De Números a Leis da Natureza: O Salto para o Conhecimento</h3>
 <p>A <strong><a href="#fig-1-plot" class="quarto-xref">Figura&nbsp;<span>1.4</span></a></strong> ilustra mais do que uma simples função matemática; ela representa a base para a <strong>modelagem preditiva</strong>. Na Mineração de Dados, a extração de conhecimento ocorre quando o sistema identifica que a relação entre os dados segue um padrão constante.</p>
 <p>Se esses dados representassem a posição de um objeto em queda livre ao longo do tempo, o “conhecimento” extraído seria a descoberta da aceleração constante da gravidade. Com essa regra em mãos, o sistema deixa de ser um calculador de trajetórias passadas e torna-se um <strong>agente preditivo</strong>, capaz de antecipar onde o objeto estará em um futuro ainda não registrado nos dados.</p>
-</section>
-<section id="código-simulando-a-realidade" class="level3" data-number="1.6.5">
-<h3 data-number="1.6.5" class="anchored" data-anchor-id="código-simulando-a-realidade"><span class="header-section-number">1.6.5</span> 🧪 Código: Simulando a Realidade</h3>
-<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="41">
+<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="61">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. DADOS (Fatos Brutos): Segundos decorridos</span></span>
@@ -522,14 +520,11 @@ Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir)
 </code></pre>
 </div>
 </div>
-</section>
-<section id="explicação-científica-impessoal" class="level3" data-number="1.6.6">
-<h3 data-number="1.6.6" class="anchored" data-anchor-id="explicação-científica-impessoal"><span class="header-section-number">1.6.6</span> 📘 Explicação Científica Impessoal</h3>
 <p>A transição entre os estágios da hierarquia <strong>DIKW</strong> é evidenciada pela interpretação da curva parabólica. Enquanto o processamento das listas gera <strong>Informação</strong>, o reconhecimento da natureza quadrática do fenômeno caracteriza o <strong>Conhecimento</strong>.</p>
 <p>No processo de <strong>KDD</strong>, essa visualização permite validar se o padrão descoberto pela <strong>Mineração de Dados</strong> é consistente com a realidade física. Para um aluno iniciante, a motivação reside em perceber que a programação é o meio pelo qual se ensina a máquina a “enxergar” as regras invisíveis que controlam os dados.</p>
 </section>
-<section id="prática-transformando-dado-em-informação-imc" class="level3" data-number="1.6.7">
-<h3 data-number="1.6.7" class="anchored" data-anchor-id="prática-transformando-dado-em-informação-imc"><span class="header-section-number">1.6.7</span> 🧪 Prática: Transformando Dado em Informação (IMC)</h3>
+<section id="prática-transformando-dado-em-informação-imc" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="prática-transformando-dado-em-informação-imc"><span class="header-section-number">1.6.5</span> 🧪 Prática: Transformando Dado em Informação (IMC)</h3>
 <p>Na biblioteca <strong>Pandas</strong>, o <strong>DataFrame</strong> constitui a estrutura de dados central. Trata-se de uma tabela bidimensional — análoga a uma planilha de cálculo ou a uma tabela de banco de dados — na qual os dados são organizados em <strong>linhas</strong> e <strong>colunas</strong>.</p>
 <p>No exemplo apresentado na <a href="#fig-1-imc-analise" class="quarto-xref">Figura&nbsp;<span>1.5</span></a>, o código executa as seguintes operações:</p>
 <ul>
@@ -538,7 +533,7 @@ Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir)
 <li><strong>Mapeamento</strong>: As <strong>chaves</strong> do dicionário (<code>'Paciente'</code>, <code>'Peso_kg'</code>, <code>'Altura_m'</code>) são automaticamente convertidas em <strong>cabeçalhos de colunas</strong>, enquanto as <strong>listas de valores</strong> passam a compor as <strong>linhas</strong> da tabela.</li>
 <li><strong><code>df</code></strong>: A tabela resultante é armazenada na variável <code>df</code> (abreviação convencional para <em>DataFrame</em>), permitindo a execução de cálculos complexos e filtragens de alto desempenho.</li>
 </ul>
-<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="42">
+<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="62">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,30 +621,48 @@ RELATÓRIO DE EXECUÇÃO:
 </section>
 <section id="uso-do-notebooklm-como-tutor-complementar" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="uso-do-notebooklm-como-tutor-complementar"><span class="header-section-number">1.7</span> 🤖 Uso do NotebookLM como Tutor Complementar</h2>
-<p>Nesta segunda edição, além dos notebooks interativos no Google Colab, incentivamos o uso do <strong>NotebookLM</strong> para aprofundar seu aprendizado. O NotebookLM é uma ferramenta de IA do Google que utiliza os documentos fornecidos por você como base de conhecimento exclusiva.</p>
-<p>Para cada capítulo deste livro, preparamos um projeto dedicado. Ao acessar o link abaixo e carregar o PDF do capítulo, você terá uma experiência de estudo aumentada:</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<p>Nesta segunda edição, além dos notebooks interativos no Google Colab, incentiva-se o uso do <strong>NotebookLM</strong> para aprofundar o aprendizado. Esta ferramenta de IA utiliza os documentos fornecidos pelos autores como base de conhecimento exclusiva, garantindo respostas alinhadas ao conteúdo do livro.</p>
+<p>Para cada capítulo, foi preparado um projeto dedicado. Para uma experiência de estudo aumentada, utilize o acesso abaixo:</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>🚀 Acesse o Tutor Inteligente deste Capítulo
+<span class="screen-reader-only">Importante</span>🎓 Estude com o Tutor Inteligente
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Clique no <em>link</em> para abrir o projeto configurado e escolhar a opção de Estúdio e Conversa:</p>
-<p><strong><a href="https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635">Projeto NotebookLM - Capítulo 01</a></strong></p>
+<p>Para interagir com o conteúdo deste capítulo, acesse o link abaixo. Recomenda-se carregar a versão em <strong>PDF</strong> do capítulo e, na plataforma, explorar a opção de <strong>Guia de Estudo</strong> e <strong>Conversa</strong>:</p>
+<p align="center">
+</p><p><a href="[https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635](https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635)" style="background-color: #4285F4; color: white; padding: 15px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 1.2em; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 01</a></p>
+<p></p>
 </div>
 </div>
-<section id="o-que-você-pode-explorar-na-plataforma" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="o-que-você-pode-explorar-na-plataforma">O que você pode explorar na plataforma:</h3>
+<p>Para adaptar o texto à notação do <strong>Quarto</strong> (<code>.qmd</code>), utilizei referências cruzadas dinâmicas para a figura e a sintaxe de citações do Pandoc (<code>@lewis2020</code>).</p>
+<p>Certifique-se de que seu arquivo <code>.bib</code> contenha a entrada para Lewis et al.&nbsp;(2020) para que o sistema gere a citação e a bibliografia automaticamente.</p>
+<section id="funcionalidades-disponíveis-na-plataforma" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="funcionalidades-disponíveis-na-plataforma">Funcionalidades Disponíveis na Plataforma</h3>
+<p>O <strong>NotebookLM</strong> oferece uma suíte avançada de ferramentas baseadas em IA para transformar o conteúdo estático do livro em uma experiência de aprendizado dinâmica e multimídia. Conforme ilustrado na <a href="#fig-notebooklm" class="quarto-xref">Figura&nbsp;<span>1.6</span></a>, a plataforma utiliza técnicas de <strong>RAG</strong> (<em>Retrieval-Augmented Generation</em>), fundamentadas no trabalho de <span class="citation" data-cites="lewis2020retrieval">Lewis et al. (<a href="#ref-lewis2020retrieval" role="doc-biblioref">2020</a>)</span>, para basear as respostas estritamente nos documentos fornecidos e minimizar a ocorrência de alucinações.</p>
+<p>As principais funcionalidades incluem:</p>
 <ul>
-<li><strong>Resumos Dinâmicos</strong>: A ferramenta gera guias de estudo com os conceitos-chave, como as etapas do processo KDD ou a pirâmide DIKW.</li>
-<li><strong>Chat Contextualizado</strong>: Faça perguntas como: <em>“Neste código de IMC que executamos, onde o dado bruto se transforma em informação?”</em> ou <em>“Explique a intencionalidade derivada no exemplo do extrato bancário”</em>.</li>
-<li><strong>Criação de FAQs e Notas</strong>: Gere notas personalizadas e perguntas frequentes baseadas estritamente no texto dos autores para facilitar sua revisão.</li>
-<li><strong>Audio Overview</strong>: Ouça uma conversa em estilo podcast entre dois especialistas discutindo os temas centrais do capítulo, ideal para revisar o conteúdo em qualquer lugar.</li>
+<li><strong>Resumos Multimodais (Áudio e Vídeo)</strong>: Geração de conversas naturais entre especialistas no formato de <strong>Resumo em Áudio</strong> (estilo podcast) e <strong>Resumo em Vídeo</strong>, discutindo os temas centrais do capítulo.</li>
+<li><strong>Visualização de Estruturas (Mapa Mental e Infográfico)</strong>: Criação automática de diagramas que conectam visualmente os conceitos, como as etapas do processo KDD ou a pirâmide DIKW.</li>
+<li><strong>Ferramentas de Avaliação (Teste e Cartões Didáticos)</strong>: Geração de <strong>Testes</strong> de múltipla escolha e <strong>Cartões Didáticos</strong> (<em>flashcards</em>) para fixação de conhecimento, baseados no texto autoral.</li>
+<li><strong>Apoio à Apresentação (Slides e Relatórios)</strong>: Auxílio na estruturação de <strong>Apresentações de Slides</strong> e na redação de <strong>Relatórios</strong> técnicos e <strong>Briefings</strong>.</li>
+<li><strong>Análise de Dados (Tabela de Dados)</strong>: Organização de dados extraídos do texto em tabelas estruturadas, auxiliando na compreensão de exemplos práticos como o cálculo do IMC.</li>
+<li><strong>Chat Contextualizado</strong>: Permite o questionamento direto sobre o código e a teoria, como: <em>“Onde o dado bruto se transforma em informação no script do IMC?”</em>.</li>
 </ul>
+<div id="fig-notebooklm" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Estúdo do NotebooLM.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-notebooklm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/fig1_notebooklm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1.6: Estúdo do NotebooLM."><img src="images/fig1_notebooklm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Estúdo do NotebooLM."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-notebooklm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.6: Estúdo do NotebooLM.
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -694,6 +707,9 @@ GOLDSCHMIDT, R.; PASSOS, E. <strong>Data Mining: Um Guia Prático</strong>. <em>
 </div>
 <div id="ref-han2008" class="csl-entry" role="listitem">
 HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
+</div>
+<div id="ref-lewis2020retrieval" class="csl-entry" role="listitem">
+LEWIS, Patrick <em>et al.</em> Retrieval-augmented generation for knowledge-intensive nlp tasks. <strong>Advances in neural information processing systems</strong>, v. 33, p. 9459–9474, 2020.
 </div>
 <div id="ref-padhy2010" class="csl-entry" role="listitem">
 PADHY, N. P. <strong>Artificial Intelligence and Intelligent Systems</strong>. <em>[S.l.]</em>: Oxford University Press, 2010.
@@ -1181,6 +1197,38 @@ WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools a
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
