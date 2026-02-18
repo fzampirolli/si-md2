@@ -126,6 +126,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -396,7 +425,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="célula-de-código-python"><span class="header-section-number">1.6.2</span> 🔹 Célula de Código Python</h3>
 <p>Abaixo, você encontrará uma célula de <strong>código</strong>. Diferente do texto, as células de código podem ser executadas para realizar cálculos e gerar gráficos.</p>
 <p><strong>Como executar:</strong> 1. Clique dentro da célula abaixo. 2. Pressione <strong><code>Shift + Enter</code></strong> (ou clique no botão <strong>Play</strong> no Google Colab).</p>
-<div id="cell-16" class="cell" data-quarto-raw="true" data-execution_count="18">
+<div id="cell-16" class="cell" data-quarto-raw="true" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de execução para testar o ambiente</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Se você está lendo esta mensagem, o código foi executado com sucesso!"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -409,7 +438,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 O resultado da soma de 10 + 20.5 é: 30.5</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell" data-quarto-raw="true">
+<div id="cell-17" class="cell" data-quarto-raw="true" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esta é uma célula de código Python para testar um laço! 🚀"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>)) <span class="co"># cria uma lista de números de 0 a 4</span></span>
@@ -419,7 +448,7 @@ O resultado da soma de 10 + 20.5 é: 30.5</code></pre>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> lista:</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Valor:"</span>, i)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># Esta é uma célula de código Python para testar um laço! 🚀
+<pre><code>Esta é uma célula de código Python para testar um laço! 🚀
 Lista de números de 0 a 4: [0, 1, 2, 3, 4]
 Valor: 0
 Valor: 1
@@ -431,7 +460,7 @@ Valor: 4</code></pre>
 </section>
 <section id="célula-3-função-simples" class="level3" data-number="1.6.3">
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="célula-3-função-simples"><span class="header-section-number">1.6.3</span> 🔹 Célula 3 — Função Simples</h3>
-<div id="cell-19" class="cell" data-quarto-raw="true" data-execution_count="20">
+<div id="cell-19" class="cell" data-quarto-raw="true" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Definição da Função</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadrado(x):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -465,7 +494,9 @@ O último elemento é: 25
 </section>
 <section id="célula-4-gráfico-simples" class="level3" data-number="1.6.4">
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="célula-4-gráfico-simples"><span class="header-section-number">1.6.4</span> 🔹 Célula 4 — Gráfico Simples</h3>
-<div id="cell-21" class="cell" data-quarto-raw="true">
+<p>Como podemos observar na <strong><a href="#fig-1-plot" class="quarto-xref">Figura&nbsp;<span>1.4</span></a></strong>, a representação visual dos dados nos permite identificar rapidamente o comportamento da função quadrática. Enquanto os <strong>dados</strong> brutos contidos nas listas <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> são apenas fatos registrados (dados), a plotagem transforma esses valores em <strong>informação</strong> estruturada ao lhes conferir um contexto visual e significado.</p>
+<p>Este processo de visualização é uma ferramenta poderosa na etapa de <strong>Pós-processamento</strong> do processo de KDD (<em>Knowledge Discovery in Databases</em>), pois facilita a interpretação humana e a validação dos padrões descobertos. Ao analisar a curva gerada, o pesquisador extrai <strong>conhecimento</strong> sobre a aceleração do crescimento de <span class="math inline">\(y\)</span> em relação a <span class="math inline">\(x\)</span>, permitindo uma tomada de decisão mais assertiva ou a criação de modelos preditivos eficazes.</p>
+<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
@@ -494,14 +525,20 @@ O último elemento é: 25
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="ss">Status: Gráfico gerado com sucesso!</span></span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cap01_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+<div id="fig-1-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap01_files/figure-html/fig-1-plot-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.4: Gráfico de linha representando a função quadrática <span class="math inline">\(y = x^2\)</span>.
+</figcaption>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
+✅ Matplotlib carregado!
 RELATÓRIO DE PLOTAGEM:
 ----------------------
 Pontos no eixo X: [0, 1, 2, 3, 4, 5]
@@ -513,14 +550,21 @@ Status: Gráfico gerado com sucesso!
 </section>
 <section id="prática-transformando-dado-em-informação-imc" class="level3" data-number="1.6.5">
 <h3 data-number="1.6.5" class="anchored" data-anchor-id="prática-transformando-dado-em-informação-imc"><span class="header-section-number">1.6.5</span> 🧪 Prática: Transformando Dado em Informação (IMC)</h3>
-<p>Neste exemplo, vamos sair da teoria e ver como o Python e a biblioteca <strong>Pandas</strong> trabalham juntos para subir os degraus da pirâmide do conhecimento.</p>
-<div id="cell-23" class="cell" data-quarto-raw="true" data-execution_count="25">
+<p>Na biblioteca <strong>Pandas</strong>, o <strong>DataFrame</strong> constitui a estrutura de dados central. Trata-se de uma tabela bidimensional — análoga a uma planilha de cálculo ou a uma tabela de banco de dados — na qual os dados são organizados em <strong>linhas</strong> e <strong>colunas</strong>.</p>
+<p>No exemplo apresentado na <a href="#fig-1-imc-analise" class="quarto-xref">Figura&nbsp;<span>1.5</span></a>, o código executa as seguintes operações:</p>
+<ul>
+<li><strong><code>pd.DataFrame(...)</code></strong>: O construtor da biblioteca Pandas é invocado para a criação de uma nova tabela.</li>
+<li><strong><code>dados_pacientes</code></strong>: O dicionário contendo nomes, pesos e alturas é utilizado como a fonte de dados primária.</li>
+<li><strong>Mapeamento</strong>: As <strong>chaves</strong> do dicionário (<code>'Paciente'</code>, <code>'Peso_kg'</code>, <code>'Altura_m'</code>) são automaticamente convertidas em <strong>cabeçalhos de colunas</strong>, enquanto as <strong>listas de valores</strong> passam a compor as <strong>linhas</strong> da tabela.</li>
+<li><strong><code>df</code></strong>: A tabela resultante é armazenada na variável <code>df</code> (abreviação convencional para <em>DataFrame</em>), permitindo a execução de cálculos complexos e filtragens de alto desempenho.</li>
+</ul>
+<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">1. DADOS BRUTOS (Data):</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">Abaixo, temos apenas números e nomes. Isolados, eles não nos dizem muito.</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">Fatos registrados sem contexto. Isolados, não permitem tomada de decisão.</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>dados_pacientes <span class="op">=</span> {</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Paciente'</span>: [<span class="st">'Ana'</span>, <span class="st">'Bruno'</span>, <span class="st">'Carla'</span>, <span class="st">'David'</span>],</span>
@@ -532,41 +576,74 @@ Status: Gráfico gerado com sucesso!
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">2. TRANSFORMAÇÃO EM INFORMAÇÃO (Information):</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">Ao calcular o IMC, contextualizamos o peso com a altura. </span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">Agora os dados têm significado.</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'IMC'</span>] <span class="op">=</span> df[<span class="st">'Peso_kg'</span>] <span class="op">/</span> (df[<span class="st">'Altura_m'</span>] <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. RUMO AO CONHECIMENTO (Knowledge):</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Criamos uma regra simples (Classificação) baseada na OMS</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_saude(imc):</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> imc <span class="op">&lt;</span> <span class="fl">18.5</span>: <span class="cf">return</span> <span class="st">'Abaixo do peso'</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">25</span>: <span class="cf">return</span> <span class="st">'Normal'</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">'Sobrepeso'</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Status'</span>] <span class="op">=</span> df[<span class="st">'IMC'</span>].<span class="bu">apply</span>(classificar_saude)</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Tabela Processada (Informação) ==="</span>)</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.<span class="bu">round</span>(<span class="dv">2</span>))</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. VISUALIZAÇÃO PARA TOMADA DE DECISÃO</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">'skyblue'</span> <span class="cf">if</span> s <span class="op">==</span> <span class="st">'Normal'</span> <span class="cf">else</span> <span class="st">'salmon'</span> <span class="cf">for</span> s <span class="kw">in</span> df[<span class="st">'Status'</span>]]</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">'Paciente'</span>], df[<span class="st">'IMC'</span>], color<span class="op">=</span>cores)</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">25</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Limite Normalidade'</span>)</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Análise de Saúde dos Pacientes'</span>)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'IMC'</span>)</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="ss">RELATÓRIO DE EXECUÇÃO:</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="ss">======================</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- Média de IMC: </span><span class="sc">{</span>df[<span class="st">'IMC'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- Casos de Atenção: </span><span class="sc">{</span><span class="bu">len</span>(df[df[<span class="st">'Status'</span>] <span class="op">!=</span> <span class="st">'Normal'</span>])<span class="sc">}</span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- Status do ambiente: PRONTO.</span></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">O cálculo do IMC contextualiza peso e altura, conferindo significado aos dados.</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'IMC'</span>] <span class="op">=</span> df[<span class="st">'Peso_kg'</span>] <span class="op">/</span> (df[<span class="st">'Altura_m'</span>] <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. RUMO AO CONHECIMENTO (Knowledge):</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicamos uma regra de negócio (Classificação) para extrair padrões.</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_saude(imc):</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> imc <span class="op">&lt;</span> <span class="fl">18.5</span>: <span class="cf">return</span> <span class="st">'Abaixo do peso'</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">25</span>: <span class="cf">return</span> <span class="st">'Normal'</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">'Sobrepeso'</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Status'</span>] <span class="op">=</span> df[<span class="st">'IMC'</span>].<span class="bu">apply</span>(classificar_saude)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Tabela Processada (Informação) ==="</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. VISUALIZAÇÃO PARA TOMADA DE DECISÃO (Inteligência/Ação)</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">'skyblue'</span> <span class="cf">if</span> s <span class="op">==</span> <span class="st">'Normal'</span> <span class="cf">else</span> <span class="st">'salmon'</span> <span class="cf">for</span> s <span class="kw">in</span> df[<span class="st">'Status'</span>]]</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">'Paciente'</span>], df[<span class="st">'IMC'</span>], color<span class="op">=</span>cores)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">25</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Limite Normalidade (OMS)'</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Análise de Saúde dos Pacientes'</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Índice de Massa Corporal (IMC)'</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="ss">RELATÓRIO DE EXECUÇÃO:</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="ss">======================</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- Média de IMC: </span><span class="sc">{</span>df[<span class="st">'IMC'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- Casos de Atenção: </span><span class="sc">{</span><span class="bu">len</span>(df[df[<span class="st">'Status'</span>] <span class="op">!=</span> <span class="st">'Normal'</span>])<span class="sc">}</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- Status do ambiente: PRONTO.</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Tabela Processada (Informação) ===
+  Paciente  Peso_kg  Altura_m    IMC     Status
+0      Ana       55      1.65  20.20     Normal
+1    Bruno       95      1.80  29.32  Sobrepeso
+2    Carla       68      1.70  23.53     Normal
+3    David       82      1.75  26.78  Sobrepeso</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-1-imc-analise" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-imc-analise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap01_files/figure-html/fig-1-imc-analise-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-imc-analise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.5: Análise de IMC e classificação de saúde dos pacientes.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+RELATÓRIO DE EXECUÇÃO:
+======================
+- Média de IMC: 24.96
+- Casos de Atenção: 2
+- Status do ambiente: PRONTO.
+</code></pre>
+</div>
+</div>
+<p>A utilização do comando <code>pd.DataFrame(dados_pacientes)</code> representa o estágio inicial do processamento de dados. Este procedimento converte estruturas estáticas em objetos dinâmicos aptos à manipulação computacional.</p>
+<p>O exemplo ilustra a transição na hierarquia <strong>DIKW</strong> (Dado, Informação, Conhecimento e Sabedoria). Os <strong>Dados</strong> brutos são estruturados e processados para a geração de <strong>Informação</strong> (IMC). Subsequentemente, emprega-se a tarefa de <strong>Classificação</strong> — pilar da Mineração de Dados — para a rotulagem do estado de saúde, transformando a informação em <strong>Conhecimento</strong> passível de aplicação em processos de <strong>Tomada de Decisão</strong>.</p>
+<div id="cell-27" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Tabela Processada (Informação) ===
   Paciente  Peso_kg  Altura_m    IMC     Status
@@ -578,7 +655,7 @@ Status: Gráfico gerado com sucesso!
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="cap01_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="cap01_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
