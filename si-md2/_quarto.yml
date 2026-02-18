@@ -35,12 +35,11 @@ csl: abnt.csl
 format:
   html:
     theme: cosmo
+    css: styles.css        
     cite-method: citeproc
     code-tools: true
     toc: true
   pdf:
-    filters:
-      - fix-labels.lua
     tbl-colwidths: false
     tables:
       longtable: true
