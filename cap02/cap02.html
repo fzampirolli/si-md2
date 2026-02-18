@@ -221,12 +221,21 @@ div.csl-indent {
 <section id="mineração-de-dados" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="mineração-de-dados"><span class="header-section-number">2.2</span> Mineração de Dados</h2>
 <p>Durante o processo de <strong>Descoberta de Conhecimento em Bases de Dados</strong>, <strong>KDD</strong>, é na etapa de <strong>Mineração de Dados</strong> que efetivamente são encontrados os padrões de associação implícitos nos dados. A análise automatizada dessa massa de dados visa detectar regularidades, ou quebra de regularidade, que constitui informação implícita, porém supostamente desconhecida, e útil para determinado fim.</p>
-<p>A Mineração de Dados pode ser vista como a sistematização de teorias, técnicas e algoritmos desenvolvidos em outras disciplinas já consagradas, como a Estatística, a Inteligência Artificial, o Aprendizado de Máquina, a Base de Dados etc. (Figura 2.1). O propósito da Mineração de Dados é detectar automaticamente padrões de associação úteis e não óbvios em grandes quantidades de dados.</p>
+<p>A Mineração de Dados pode ser vista como a sistematização de teorias, técnicas e algoritmos desenvolvidos em outras disciplinas já consagradas, como a Estatística, a Inteligência Artificial, o Aprendizado de Máquina, a Base de Dados etc. (<a href="../cap06/cap06.html#fig-2-1" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>). O propósito da Mineração de Dados é detectar automaticamente padrões de associação úteis e não óbvios em grandes quantidades de dados.</p>
 <p>No dia a dia, uma quantidade incalculável de dados é gerada na forma de registros de vendas, textos brutos, imagens, sons, gráficos etc., tanto por sistemas computacionais como por seres humanos, constituindo uma espécie de informação não estruturada. Embora esta forma de registro de dados seja adequada para o ser humano, quando se trata de analisar grandes quantidades de dados de forma automatizada, é comum e conveniente que se introduza alguma <strong>estrutura</strong> que facilite o acesso e o processamento sistemático.</p>
-<p>Figura .– A Relação da Mineração de Dados com Algumas Disciplinas Correlatas.</p>
+<div id="fig-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig2_1.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Correlatas.
+</figcaption>
+</figure>
+</div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
-<p>As <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> e <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<p>As <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="16">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras
@@ -265,51 +274,12 @@ Tabela&nbsp;2.1: Cestas de Compras
 </div>
 </figure>
 </div>
-<div id="tbl-2-cestas2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.2: Cestas de Compras
-</figcaption>
-<div aria-describedby="tbl-2-cestas2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">TID</th>
-<th>Itens</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td>{Arroz, Feijão, Óleo}</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td>{Queijo, Vinho}</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td>{Arroz, Feijão, Batata, Óleo}</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td>{Arroz, Água, Queijo, Vinho}</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td>{Arroz, Feijão, Batata, Óleo}</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>.</p>
-<div class="cell" data-quarto-raw="true">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
+<div class="cell" data-quarto-raw="true" data-execution_count="17">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="17">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.3: Representação Booleana de Cestas de Compras
+Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras
 </figcaption>
 <div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
@@ -399,87 +369,12 @@ Tabela&nbsp;2.3: Representação Booleana de Cestas de Compras
 </figure>
 </div>
 </div>
-<div id="tbl-2-booleana2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.4: Representação Booleana de Cestas de Compras
-</figcaption>
-<div aria-describedby="tbl-2-booleana2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">TID</th>
-<th style="text-align: center;">Arroz</th>
-<th style="text-align: center;">Feijão</th>
-<th style="text-align: center;">Batata</th>
-<th style="text-align: center;">Óleo</th>
-<th style="text-align: center;">Água</th>
-<th style="text-align: center;">Queijo</th>
-<th style="text-align: center;">Vinho</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-<td style="text-align: center;">n</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
+<div class="cell" data-quarto-raw="true" data-execution_count="18">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="18">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.5: Tabela do Tempo
+Tabela&nbsp;2.3: Tabela do Tempo
 </figcaption>
 <div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
@@ -619,127 +514,7 @@ Tabela&nbsp;2.5: Tabela do Tempo
 </figure>
 </div>
 </div>
-<div id="tbl-2-tempo2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.6: Tabela do Tempo
-</figcaption>
-<div aria-describedby="tbl-2-tempo2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Dia</th>
-<th style="text-align: left;">Temperatura</th>
-<th style="text-align: left;">Umidade</th>
-<th style="text-align: left;">Vento</th>
-<th style="text-align: center;">Partida</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Ensolarado</td>
-<td style="text-align: left;">Elevada</td>
-<td style="text-align: left;">Alta</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Não</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ensolarado</td>
-<td style="text-align: left;">Elevada</td>
-<td style="text-align: left;">Alta</td>
-<td style="text-align: left;">Verdadeiro</td>
-<td style="text-align: center;">Não</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Nublado</td>
-<td style="text-align: left;">Elevada</td>
-<td style="text-align: left;">Alta</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Chuvoso</td>
-<td style="text-align: left;">Amena</td>
-<td style="text-align: left;">Alta</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Chuvoso</td>
-<td style="text-align: left;">Baixa</td>
-<td style="text-align: left;">Normal</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Chuvoso</td>
-<td style="text-align: left;">Baixa</td>
-<td style="text-align: left;">Normal</td>
-<td style="text-align: left;">Verdadeiro</td>
-<td style="text-align: center;">Não</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Nublado</td>
-<td style="text-align: left;">Baixa</td>
-<td style="text-align: left;">Normal</td>
-<td style="text-align: left;">Verdadeiro</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ensolarado</td>
-<td style="text-align: left;">Amena</td>
-<td style="text-align: left;">Alta</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Não</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ensolarado</td>
-<td style="text-align: left;">Baixa</td>
-<td style="text-align: left;">Normal</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Chuvoso</td>
-<td style="text-align: left;">Amena</td>
-<td style="text-align: left;">Normal</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ensolarado</td>
-<td style="text-align: left;">Amena</td>
-<td style="text-align: left;">Normal</td>
-<td style="text-align: left;">Verdadeiro</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Nublado</td>
-<td style="text-align: left;">Amena</td>
-<td style="text-align: left;">Alta</td>
-<td style="text-align: left;">Verdadeiro</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Nublado</td>
-<td style="text-align: left;">Elevada</td>
-<td style="text-align: left;">Normal</td>
-<td style="text-align: left;">Falso</td>
-<td style="text-align: center;">Sim</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Chuvoso</td>
-<td style="text-align: left;">Amena</td>
-<td style="text-align: left;">Alta</td>
-<td style="text-align: left;">Verdadeiro</td>
-<td style="text-align: center;">Não</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Uma análise mais atenta dos exemplos das <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> mostra que alguns desses atributos sempre aparecem juntos e que, portanto, várias <strong>Regras de Associação</strong> podem ser extraídas dessas tabelas.</p>
+<p>Uma análise mais atenta dos exemplos das <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> mostra que alguns desses atributos sempre aparecem juntos e que, portanto, várias <strong>Regras de Associação</strong> podem ser extraídas dessas tabelas.</p>
 </section>
 <section id="regras-de-associação" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="regras-de-associação"><span class="header-section-number">2.3</span> Regras de Associação</h2>
