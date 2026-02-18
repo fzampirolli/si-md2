@@ -855,6 +855,16 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
     # Limpeza antes de processar
     notebook = clean_notebook(notebook)
 
+    # Remove atributo 'scoped' inválido no EPUB gerado pelo pandas
+    for cell in notebook.get("cells", []):
+        for output in cell.get("outputs", []):
+            if "text/html" in output.get("data", {}):
+                html = output["data"]["text/html"]
+                if isinstance(html, list):
+                    html = "".join(html)
+                html = html.replace("<style scoped>", "<style>")
+                output["data"]["text/html"] = str_to_source(html)
+
     # Processa celulas
     for cell in notebook.get("cells", []):
         if cell.get("cell_type") == "markdown":
