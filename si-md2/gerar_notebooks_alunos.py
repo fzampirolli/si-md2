@@ -805,6 +805,28 @@ def process_notebook_epub(nb_path: Path, bib: dict, out_path: Path) -> list:
 
 def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
     notebook    = json.loads(nb_path.read_text(encoding="utf-8"))
+
+
+    css_style = """
+<style>
+  .rendered_html table { border-collapse: collapse; border-top: 2px solid #C0413A; border-bottom: 2px solid #C0413A; }
+  .rendered_html thead tr { background-color: #C0413A; color: white; }
+  .rendered_html td, .rendered_html th { padding: 8px 14px; border-bottom: 1px solid #C0413A; }
+  .rendered_html tbody tr:nth-child(even) { background-color: #F4C2C2; }
+  .rendered_html td:first-child, .rendered_html th:first-child { border-left: 2px solid #C0413A; }
+  .rendered_html td:last-child, .rendered_html th:last-child { border-right: 2px solid #C0413A; }
+</style>
+<p align="right"><small><i>Estilo visual da disciplina aplicado</i></small></p>
+"""
+    style_cell = {
+        "cell_type": "markdown",
+        "metadata": {"hide_input": True},
+        "source": [css_style]
+    }
+    # Insere o estilo como primeira célula
+    notebook["cells"].insert(0, style_cell)
+    # ---------------------------------------------------
+
     elem_map    = build_element_map(notebook)
     citations   = extract_citations(notebook)
     image_paths = extract_image_paths(notebook)
