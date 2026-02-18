@@ -1,0 +1,51 @@
+/* styles.css */
+table {
+  border-collapse: collapse;
+  font-family: sans-serif;
+  font-size: 14px;
+  width: 100%;
+  margin: 1.5em 0;
+  /* Borda superior e inferior da caixa principal */
+  border-top: 2px solid #C0413A;
+  border-bottom: 2px solid #C0413A;
+}
+
+thead tr {
+  background-color: #C0413A;
+  color: white;
+  font-weight: bold;
+}
+
+/* Linhas horizontais em todas as células */
+td, th {
+  padding: 8px 14px;
+  text-align: left;
+  border-bottom: 1px solid #C0413A;
+}
+
+/* --- O SEGREDO PARA AS LINHAS VERTICAIS EXTERNAS --- */
+
+/* Borda Esquerda de todas as linhas */
+td:first-child, th:first-child {
+  border-left: 2px solid #C0413A;
+}
+
+/* Borda Direita de todas as linhas */
+td:last-child, th:last-child {
+  border-right: 2px solid #C0413A;
+}
+
+/* -------------------------------------------------- */
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #F4C2C2;
+}
+
+/* Opcional: Linhas verticais internas bem suaves (0.1 de opacidade) */
+td:not(:last-child) {
+  border-right: 1px solid rgba(192, 65, 58, 0.1);
+}
