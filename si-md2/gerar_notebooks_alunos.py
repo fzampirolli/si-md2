@@ -712,20 +712,33 @@ def clean_notebook(notebook: dict) -> dict:
         if kind == "code":
             lines = src.splitlines(keepends=True)
             
-            # Verifica se o usuário queria esconder o código (echo: false)
+            # 1. Verifica se deve esconder (echo: false)
             should_hide = any("echo: false" in l for l in lines)
             
-            # Filtra os parâmetros #|
-            new_lines = [l for l in lines if not l.strip().startswith("#|")]
+            # 2. Filtra: remove linhas #| E remove qualquer # @title que já exista
+            # para evitar a duplicação que você observou
+            new_lines = [
+                l for l in lines 
+                if not l.strip().startswith("#|") and 
+                not l.strip().startswith("# @title")
+            ]
             
+            # 3. Se houve limpeza de parâmetros Quarto
             if len(new_lines) != len(lines):
                 removed["quarto_params"] += 1
+                
+                # Une as linhas e remove linhas em branco do topo
                 src = "".join(new_lines).lstrip('\n').lstrip('\r')
+                
+                # 4. Injeta a tag apenas UMA vez se for echo: false
+                if should_hide:
+                    src = "# @title { display-mode: \"form\" }\n" + src
                 
                 cell["source"] = str_to_source(src)
                 
-                # Adiciona metadados de visualização que o Colab/Jupyter respeitam
+                # 5. Ajusta metadados para garantir que o Colab oculte
                 if should_hide:
+                    if "metadata" not in cell: cell["metadata"] = {}
                     cell["metadata"]["cellView"] = "form"
                     cell["metadata"]["jupyter"] = {"source_hidden": True}
 
