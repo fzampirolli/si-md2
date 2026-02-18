@@ -1,5 +1,7 @@
 project:
   type: book
+  resources: 
+    - styles.css
 
 book:
   title: "Sistemas Inteligentes e Mineração de Dados"

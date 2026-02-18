@@ -566,8 +566,11 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     def replace_crossref(m):
         elem_id = m.group(1)
         info = elem_map.get(elem_id)
+        
+        # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
+        # Verifique se esta lógica de fallback também está como você deseja:
         label = info["label"] if info else \
-            f"{elem_id.split('-')[0].capitalize()} {_chapter_from_id(elem_id) or elem_id}"
+            f"{elem_id.split('-')[0].replace('fig', 'Figura').replace('tbl', 'Tabela').capitalize()} {_chapter_from_id(elem_id) or elem_id}"
         return f"[{label}](#{elem_id})"
 
     text = re.sub(r'@((fig|tbl|eq)-[\w-]+)', replace_crossref, text)
@@ -694,11 +697,37 @@ def clean_notebook(notebook: dict) -> dict:
         meta.pop(key, None)
 
     cleaned = []
-    removed = {"yaml": 0, "empty_code": 0, "ref_section": 0}
+    removed = {
+        "yaml": 0, 
+        "empty_code": 0, 
+        "ref_section": 0, 
+        "quarto_params": 0  # <--- Esta linha resolve o KeyError
+    }
 
     for cell in notebook.get("cells", []):
         src = source_to_str(cell.get("source", []))
         kind = cell.get("cell_type", "")
+
+        # Limpa parâmetros Quarto e injeta tag de ocultar no Colab
+        if kind == "code":
+            lines = src.splitlines(keepends=True)
+            
+            # Verifica se o usuário queria esconder o código (echo: false)
+            should_hide = any("echo: false" in l for l in lines)
+            
+            # Filtra os parâmetros #|
+            new_lines = [l for l in lines if not l.strip().startswith("#|")]
+            
+            if len(new_lines) != len(lines):
+                removed["quarto_params"] += 1
+                src = "".join(new_lines).lstrip('\n').lstrip('\r')
+                
+                cell["source"] = str_to_source(src)
+                
+                # Adiciona metadados de visualização que o Colab/Jupyter respeitam
+                if should_hide:
+                    cell["metadata"]["cellView"] = "form"
+                    cell["metadata"]["jupyter"] = {"source_hidden": True}
 
         # Celulas raw YAML (--- ... ---)
         if kind == "raw" and src.strip().startswith("---"):
@@ -725,7 +754,7 @@ def clean_notebook(notebook: dict) -> dict:
         if removed["empty_code"]:  parts.append(f"{removed['empty_code']} cod.vazias")
         if removed["ref_section"]: parts.append(f"{removed['ref_section']} secoes-ref antigas")
         print(f"  Limpeza: removidas {', '.join(parts)}")
-
+        
     return notebook
 
 # ---------------------------------------------------------------------------
