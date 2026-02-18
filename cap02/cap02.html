@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -78,7 +43,7 @@ div.csl-indent {
 }</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -98,9 +63,6 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,36 +90,10 @@ div.csl-indent {
     "search-label": "Procurar"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -247,7 +183,10 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link active" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">2.1</span> Referências do Capítulo</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">2.1</span> Introdução</a></li>
+  <li><a href="#mineração-de-dados" id="toc-mineração-de-dados" class="nav-link" data-scroll-target="#mineração-de-dados"><span class="header-section-number">2.2</span> Mineração de Dados</a></li>
+  <li><a href="#regras-de-associação" id="toc-regras-de-associação" class="nav-link" data-scroll-target="#regras-de-associação"><span class="header-section-number">2.3</span> Regras de Associação</a></li>
+  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">2.4</span> Referências do Capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -274,71 +213,553 @@ window.Quarto = {
 
 
 <p><a href="https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/cap02/cap02_aluno.ipynb"><img src="images/colab-badge.png" class="img-fluid"></a></p>
-<p>For a demonstration of a line plot, see <a href="../cap06/cap06.html#fig-line-plot" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
-<div id="fig-line-plot" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>,<span class="dv">23</span>,<span class="dv">2</span>,<span class="dv">4</span>])</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.1
-</figcaption>
-</figure>
-</div>
-<p>Exemplo de figura <a href="../cap06/cap06.html#fig-2-1" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
-<div id="fig-2-1" class="lightbox quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="A drawing of an elephant.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/fig1_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;2.2: Relação entre Dados, Informação e Conhecimento"><img src="images/fig1_1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:20.0%" alt="A drawing of an elephant."></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.2: Relação entre Dados, Informação e Conhecimento
-</figcaption>
-</figure>
-</div>
-<p>Exemplo de tabela-imagem <a href="../cap06/cap06.html#tbl-2-1" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a>.</p>
-<div id="tbl-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="introdução" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">2.1</span> Introdução</h2>
+<p>A Mineração de Dados é uma disciplina tão vasta que qualquer publicação sobre o tema obriga o autor a selecionar alguns tópicos em detrimento de outros não menos importantes. A atividade de <strong>Regras de Associação</strong> foi o tópico escolhido para iniciarmos a apresentação das principais tarefas da Mineração de Dados por envolver ideias bem intuitivas. A analogia entre Regras de Associação e Cesta de Compras facilita o entendimento de como descobrir padrões de associação entre itens de um conjunto qualquer.</p>
+</section>
+<section id="mineração-de-dados" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="mineração-de-dados"><span class="header-section-number">2.2</span> Mineração de Dados</h2>
+<p>Durante o processo de <strong>Descoberta de Conhecimento em Bases de Dados</strong>, <strong>KDD</strong>, é na etapa de <strong>Mineração de Dados</strong> que efetivamente são encontrados os padrões de associação implícitos nos dados. A análise automatizada dessa massa de dados visa detectar regularidades, ou quebra de regularidade, que constitui informação implícita, porém supostamente desconhecida, e útil para determinado fim.</p>
+<p>A Mineração de Dados pode ser vista como a sistematização de teorias, técnicas e algoritmos desenvolvidos em outras disciplinas já consagradas, como a Estatística, a Inteligência Artificial, o Aprendizado de Máquina, a Base de Dados etc. (Figura 2.1). O propósito da Mineração de Dados é detectar automaticamente padrões de associação úteis e não óbvios em grandes quantidades de dados.</p>
+<p>No dia a dia, uma quantidade incalculável de dados é gerada na forma de registros de vendas, textos brutos, imagens, sons, gráficos etc., tanto por sistemas computacionais como por seres humanos, constituindo uma espécie de informação não estruturada. Embora esta forma de registro de dados seja adequada para o ser humano, quando se trata de analisar grandes quantidades de dados de forma automatizada, é comum e conveniente que se introduza alguma <strong>estrutura</strong> que facilite o acesso e o processamento sistemático.</p>
+<p>Figura .– A Relação da Mineração de Dados com Algumas Disciplinas Correlatas.</p>
+<p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
+<p>As <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> e <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
+<div class="cell" data-execution_count="4">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.1: Relação entre Dados, Informação e Conhecimento
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.1: Cestas de Compras
 </figcaption>
-<div aria-describedby="tbl-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig1_1.png" class="img-fluid figure-img">
-</div>
-</figure>
-</div>
-<p>A tabela <a href="../cap06/cap06.html#tbl-1-X" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>.</p>
-<div id="tbl-1-X" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-1-X-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;2.2: Legenda da tabela
-</figcaption>
-<div aria-describedby="tbl-1-X-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<div aria-describedby="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
-<th>x</th>
-<th>y</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">TID</th>
+<th data-quarto-table-cell-role="th">Itens</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
 <td>1</td>
+<td>{Arroz, Feijão, Óleo}</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
 <td>2</td>
+<td>{Queijo, Vinho}</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>{Arroz, Feijão, Batata, Óleo}</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>{Arroz, Água, Queijo, Vinho}</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>{Arroz, Feijão, Batata, Óleo}</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="tbl-2-cestas2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.2: Cestas de Compras
+</figcaption>
+<div aria-describedby="tbl-2-cestas2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">TID</th>
+<th>Itens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td>{Arroz, Feijão, Óleo}</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td>{Queijo, Vinho}</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td>{Arroz, Feijão, Batata, Óleo}</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td>{Arroz, Água, Queijo, Vinho}</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td>{Arroz, Feijão, Batata, Óleo}</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>A equação <a href="../cap06/cap06.html#eq-1-1" class="quarto-xref">Equação&nbsp;<span>6.1</span></a>.</p>
-<p><span id="eq-1-1"><span class="math display">\[
-x^3
-\tag{2.1}\]</span></span></p>
-<section id="referências-do-capítulo" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">2.1</span> Referências do Capítulo</h2>
+<p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>.</p>
+<div class="cell" data-execution_count="5">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.3: Representação Booleana de Cestas de Compras
+</figcaption>
+<div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Arroz</th>
+<th data-quarto-table-cell-role="th">Feijão</th>
+<th data-quarto-table-cell-role="th">Batata</th>
+<th data-quarto-table-cell-role="th">Óleo</th>
+<th data-quarto-table-cell-role="th">Água</th>
+<th data-quarto-table-cell-role="th">Queijo</th>
+<th data-quarto-table-cell-role="th">Vinho</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TID</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1</th>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+<td>y</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3</th>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>y</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5</th>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+<td>n</td>
+<td>n</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="tbl-2-booleana2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.4: Representação Booleana de Cestas de Compras
+</figcaption>
+<div aria-describedby="tbl-2-booleana2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">TID</th>
+<th style="text-align: center;">Arroz</th>
+<th style="text-align: center;">Feijão</th>
+<th style="text-align: center;">Batata</th>
+<th style="text-align: center;">Óleo</th>
+<th style="text-align: center;">Água</th>
+<th style="text-align: center;">Queijo</th>
+<th style="text-align: center;">Vinho</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">n</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> (QUINLAN, 1986, <em>apud</em> WITTEN &amp; FRANK, 2005), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
+<div class="cell" data-execution_count="6">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.5: Tabela do Tempo
+</figcaption>
+<div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Dia</th>
+<th data-quarto-table-cell-role="th">Temperatura</th>
+<th data-quarto-table-cell-role="th">Umidade</th>
+<th data-quarto-table-cell-role="th">Vento</th>
+<th data-quarto-table-cell-role="th">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Ensolarado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Falso</td>
+<td>Não</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Ensolarado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td>Não</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Nublado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Falso</td>
+<td>Sim</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Falso</td>
+<td>Sim</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Chuvoso</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Falso</td>
+<td>Sim</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Chuvoso</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td>Não</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Nublado</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td>Sim</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Ensolarado</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Falso</td>
+<td>Não</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>Ensolarado</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Falso</td>
+<td>Sim</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Normal</td>
+<td>Falso</td>
+<td>Sim</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>Ensolarado</td>
+<td>Amena</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td>Sim</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>Nublado</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td>Sim</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>Nublado</td>
+<td>Elevada</td>
+<td>Normal</td>
+<td>Falso</td>
+<td>Sim</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td>Não</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="tbl-2-tempo2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.6: Tabela do Tempo
+</figcaption>
+<div aria-describedby="tbl-2-tempo2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Temperatura</th>
+<th style="text-align: left;">Umidade</th>
+<th style="text-align: left;">Vento</th>
+<th style="text-align: center;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Não</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: center;">Não</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: center;">Não</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Não</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: center;">Sim</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: center;">Não</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Uma análise mais atenta dos exemplos das <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> mostra que alguns desses atributos sempre aparecem juntos e que, portanto, várias <strong>Regras de Associação</strong> podem ser extraídas dessas tabelas.</p>
+</section>
+<section id="regras-de-associação" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="regras-de-associação"><span class="header-section-number">2.3</span> Regras de Associação</h2>
+</section>
+<section id="referências-do-capítulo" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">2.4</span> Referências do Capítulo</h2>
 <p>Tem que citar neste capítulo: <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span>, <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="goldschmidt2005">Goldschmidt; Passos (<a href="#ref-goldschmidt2005" role="doc-biblioref">2005</a>)</span></p>
 
 
@@ -848,38 +1269,6 @@ WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools a
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
