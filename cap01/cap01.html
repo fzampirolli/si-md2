@@ -425,7 +425,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="célula-de-código-python"><span class="header-section-number">1.6.2</span> 🔹 Célula de Código Python</h3>
 <p>Abaixo, você encontrará uma célula de <strong>código</strong>. Diferente do texto, as células de código podem ser executadas para realizar cálculos e gerar gráficos.</p>
 <p><strong>Como executar:</strong> 1. Clique dentro da célula abaixo. 2. Pressione <strong><code>Shift + Enter</code></strong> (ou clique no botão <strong>Play</strong> no Google Colab).</p>
-<div id="cell-16" class="cell" data-quarto-raw="true" data-execution_count="1">
+<div id="cell-16" class="cell" data-quarto-raw="true" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de execução para testar o ambiente</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Se você está lendo esta mensagem, o código foi executado com sucesso!"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -438,7 +438,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 O resultado da soma de 10 + 20.5 é: 30.5</code></pre>
 </div>
 </div>
-<div id="cell-17" class="cell" data-quarto-raw="true" data-execution_count="2">
+<div id="cell-17" class="cell" data-quarto-raw="true" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esta é uma célula de código Python para testar um laço! 🚀"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>)) <span class="co"># cria uma lista de números de 0 a 4</span></span>
@@ -460,7 +460,7 @@ Valor: 4</code></pre>
 </section>
 <section id="célula-3-função-simples" class="level3" data-number="1.6.3">
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="célula-3-função-simples"><span class="header-section-number">1.6.3</span> 🔹 Célula 3 — Função Simples</h3>
-<div id="cell-19" class="cell" data-quarto-raw="true" data-execution_count="3">
+<div id="cell-19" class="cell" data-quarto-raw="true" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Definição da Função</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadrado(x):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -496,7 +496,7 @@ O último elemento é: 25
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="célula-4-gráfico-simples"><span class="header-section-number">1.6.4</span> 🔹 Célula 4 — Gráfico Simples</h3>
 <p>Como podemos observar na <strong><a href="#fig-1-plot" class="quarto-xref">Figura&nbsp;<span>1.4</span></a></strong>, a representação visual dos dados nos permite identificar rapidamente o comportamento da função quadrática. Enquanto os <strong>dados</strong> brutos contidos nas listas <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> são apenas fatos registrados (dados), a plotagem transforma esses valores em <strong>informação</strong> estruturada ao lhes conferir um contexto visual e significado.</p>
 <p>Este processo de visualização é uma ferramenta poderosa na etapa de <strong>Pós-processamento</strong> do processo de KDD (<em>Knowledge Discovery in Databases</em>), pois facilita a interpretação humana e a validação dos padrões descobertos. Ao analisar a curva gerada, o pesquisador extrai <strong>conhecimento</strong> sobre a aceleração do crescimento de <span class="math inline">\(y\)</span> em relação a <span class="math inline">\(x\)</span>, permitindo uma tomada de decisão mais assertiva ou a criação de modelos preditivos eficazes.</p>
-<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true">
+<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
@@ -558,7 +558,7 @@ Status: Gráfico gerado com sucesso!
 <li><strong>Mapeamento</strong>: As <strong>chaves</strong> do dicionário (<code>'Paciente'</code>, <code>'Peso_kg'</code>, <code>'Altura_m'</code>) são automaticamente convertidas em <strong>cabeçalhos de colunas</strong>, enquanto as <strong>listas de valores</strong> passam a compor as <strong>linhas</strong> da tabela.</li>
 <li><strong><code>df</code></strong>: A tabela resultante é armazenada na variável <code>df</code> (abreviação convencional para <em>DataFrame</em>), permitindo a execução de cálculos complexos e filtragens de alto desempenho.</li>
 </ul>
-<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true">
+<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -642,33 +642,6 @@ RELATÓRIO DE EXECUÇÃO:
 </div>
 <p>A utilização do comando <code>pd.DataFrame(dados_pacientes)</code> representa o estágio inicial do processamento de dados. Este procedimento converte estruturas estáticas em objetos dinâmicos aptos à manipulação computacional.</p>
 <p>O exemplo ilustra a transição na hierarquia <strong>DIKW</strong> (Dado, Informação, Conhecimento e Sabedoria). Os <strong>Dados</strong> brutos são estruturados e processados para a geração de <strong>Informação</strong> (IMC). Subsequentemente, emprega-se a tarefa de <strong>Classificação</strong> — pilar da Mineração de Dados — para a rotulagem do estado de saúde, transformando a informação em <strong>Conhecimento</strong> passível de aplicação em processos de <strong>Tomada de Decisão</strong>.</p>
-<div id="cell-27" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>=== Tabela Processada (Informação) ===
-  Paciente  Peso_kg  Altura_m    IMC     Status
-0      Ana       55      1.65  20.20     Normal
-1    Bruno       95      1.80  29.32  Sobrepeso
-2    Carla       68      1.70  23.53     Normal
-3    David       82      1.75  26.78  Sobrepeso</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="cap01_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-RELATÓRIO DE EXECUÇÃO:
-======================
-- Média de IMC: 24.96
-- Casos de Atenção: 2
-- Status do ambiente: PRONTO.
-</code></pre>
-</div>
-</div>
 </section>
 </section>
 <section id="uso-do-notebooklm-como-tutor-complementar" class="level2" data-number="1.7">
