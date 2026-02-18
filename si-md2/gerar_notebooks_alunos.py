@@ -396,6 +396,27 @@ def build_element_map(notebook: dict) -> dict:
 
     for cell in notebook.get("cells", []):
         if cell.get("cell_type") != "markdown":
+            if cell.get("cell_type") == "code":
+                src = source_to_str(cell.get("source", []))
+                label_m   = re.search(r'#\|\s*label:\s*((fig|tbl)-[\w-]+)', src)
+                caption_m = re.search(r'#\|\s*(?:tbl-cap|fig-cap):\s*["\']([^"\']+)["\']', src)
+                if label_m:
+                    elem_id = label_m.group(1)
+                    kind    = label_m.group(2)   # "fig" ou "tbl"
+                    caption = caption_m.group(1) if caption_m else ""
+                    prefix  = "Figura" if kind == "fig" else "Tabela"
+                    if elem_id not in elem_map:
+                        num_str = make_num_str(kind, elem_id)
+                        #label = f"{prefix} {num_str}: {caption}" if caption \
+                        #    else f"{prefix} {num_str}"
+                        elem_map[elem_id] = {
+                            "kind":    kind,
+                            "num_str": num_str,
+                            "label":   f"{prefix} {num_str}",
+                            "alt":     None,
+                            "path":    None,
+                            "content": None,
+                        }
             continue
         source = source_to_str(cell.get("source", []))
 
@@ -421,6 +442,9 @@ def build_element_map(notebook: dict) -> dict:
             tbl_body    = m.group(1)
             tbl_caption = (m.group(2) or "").strip()  # legenda do : ... (pode ser vazio)
             elem_id     = m.group(3) or m.group(4)    # id Quarto ou id antigo
+            
+            print(f"DEBUG tbl: id='{elem_id}', g3={m.group(3)!r}, g4={m.group(4)!r}")  # <-- AQUI
+
             if elem_id not in elem_map:
                 num_str = make_num_str("tbl", elem_id)
                 # Legenda: usa o : caption se existir, senão 'Tabela X.Y'
@@ -566,6 +590,9 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     def replace_crossref(m):
         elem_id = m.group(1)
         info = elem_map.get(elem_id)
+                
+        print(f"DEBUG crossref: id='{elem_id}', achou={info is not None}")  # <-- AQUI
+
         
         # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
         # Verifique se esta lógica de fallback também está como você deseja:
@@ -805,28 +832,6 @@ def process_notebook_epub(nb_path: Path, bib: dict, out_path: Path) -> list:
 
 def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
     notebook    = json.loads(nb_path.read_text(encoding="utf-8"))
-
-
-    css_style = """
-<style>
-  .rendered_html table { border-collapse: collapse; border-top: 2px solid #C0413A; border-bottom: 2px solid #C0413A; }
-  .rendered_html thead tr { background-color: #C0413A; color: white; }
-  .rendered_html td, .rendered_html th { padding: 8px 14px; border-bottom: 1px solid #C0413A; }
-  .rendered_html tbody tr:nth-child(even) { background-color: #F4C2C2; }
-  .rendered_html td:first-child, .rendered_html th:first-child { border-left: 2px solid #C0413A; }
-  .rendered_html td:last-child, .rendered_html th:last-child { border-right: 2px solid #C0413A; }
-</style>
-<p align="right"><small><i>Estilo visual da disciplina aplicado</i></small></p>
-"""
-    style_cell = {
-        "cell_type": "markdown",
-        "metadata": {"hide_input": True},
-        "source": [css_style]
-    }
-    # Insere o estilo como primeira célula
-    notebook["cells"].insert(0, style_cell)
-    # ---------------------------------------------------
-
     elem_map    = build_element_map(notebook)
     citations   = extract_citations(notebook)
     image_paths = extract_image_paths(notebook)
@@ -933,6 +938,7 @@ format:
   epub:
     toc: true
     number-sections: true
+    css: styles.css 
 """
 
 def run_batch_epub(bib_path: str, out_dir: str):
