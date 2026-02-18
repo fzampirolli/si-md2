@@ -92,6 +92,17 @@ As citações dependem das chaves existentes no seu arquivo `references.bib`.
 
 ## 🚀 Fluxos de Trabalho em `si-md2`
 
+### Publicação Completa (todos os workflows de uma vez)
+
+Para executar todos os workflows em sequência — PDF, HTML, EPUB, notebooks para alunos e push para o GitHub — use o script principal:
+
+```bash
+./publish_all.sh
+```
+
+O script detecta automaticamente a pasta de edição e a raiz do repositório git, rodando cada ferramenta no diretório correto.
+
+
 ### Workflow A: Renderizar o Livro Completo
 
 Transforma todos os notebooks no formato final definido no `_quarto.yml`.

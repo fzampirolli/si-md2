@@ -32,6 +32,7 @@ Repositório do material didático do curso de Sistemas Inteligentes e Mineraç�
 │   │   └── README.md
 │   │
 │   ├── gerar_notebooks_alunos.py    # Script de processamento de refs
+│   ├── publish_all.sh               # Script de publicação completa
 │   └── limpar.sh                    # Script para limpar builds e cache
 │
 ├── create_book.sh                   # Script de criação da estrutura
