@@ -90,6 +90,7 @@ As citações dependem das chaves existentes no seu arquivo `references.bib`.
 
 ---
 
+
 ## 🚀 Fluxos de Trabalho em `si-md2`
 
 ### Publicação Completa (todos os workflows de uma vez)
@@ -97,11 +98,13 @@ As citações dependem das chaves existentes no seu arquivo `references.bib`.
 Para executar todos os workflows em sequência — PDF, HTML, EPUB, notebooks para alunos e push para o GitHub — use o script principal:
 
 ```bash
+chmod +x publish_all.sh   # apenas na primeira vez
 ./publish_all.sh
 ```
 
 O script detecta automaticamente a pasta de edição e a raiz do repositório git, rodando cada ferramenta no diretório correto.
 
+---
 
 ### Workflow A: Renderizar o Livro Completo
 
@@ -154,12 +157,31 @@ python gerar_notebooks_alunos.py --batch references.bib
 jupyter lab notebooks_alunos/cap01/cap01_aluno.ipynb
 ```
 
+---
+
+## 🛠️ O que o script `gerar_notebooks_alunos.py` faz
+
+O script pós-processa os notebooks Quarto (`.ipynb`) para distribuição, resolvendo elementos que só funcionam dentro do ecossistema Quarto:
+
+| Elemento Quarto | Resultado no notebook gerado |
+|---|---|
+| `@chave` | `Autor (ano)` — citação direta ABNT |
+| `[@chave]` | `(AUTOR, ano)` — citação indireta ABNT |
+| `\printbibliography` | Lista de referências formatada por capítulo |
+| `![alt](img){#fig-X-Y}` | `<figure>` HTML com legenda numerada |
+| `@fig-X-Y` | `[Figura X.Y](#fig-X-Y)` — link interno |
+| `::: {.callout-tip}` | `<blockquote>` HTML com emoji e título |
+| `### Título {.unnumbered}` | `### Título` — atributos removidos |
+| Células YAML `---` | Removidas |
 
 ---
 
-**Dica para Autores:** Sempre que você alterar uma citação no arquivo `references.bib` ou editar o conteúdo de um capítulo, lembre-se de rodar este workflow novamente para garantir que a versão do aluno esteja sincronizada com a versão do livro.
+## 📦 Dependências
 
-**Deseja que eu verifique se o caminho das imagens nos notebooks dos alunos está configurado corretamente para funcionar no Google Colab?**
+- [Quarto](https://quarto.org/) ≥ 1.4
+- Python ≥ 3.9 (sem dependências externas — só biblioteca padrão)
+- LaTeX com pacote `biblatex-abnt` (para geração de PDF)
+- Git
 
 ---
 
@@ -180,4 +202,6 @@ jupyter lab notebooks_alunos/cap01/cap01_aluno.ipynb
 
 ---
 
-**Suporte:** Caso alguma referência não renderize, verifique se não há espaços extras entre o fechamento da chave `}` e o final da linha.
+## 📄 Licença
+
+© 2026 José Artur Quilici-Gonzalez, Francisco de Assis Zampirolli e Fábio Rezende de Souza. Todos os direitos reservados.
