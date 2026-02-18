@@ -172,6 +172,28 @@ format:
       - right=20mm
     include-in-header:
       text: |
+          % Rodapés personalizados
+          \usepackage{fancyhdr}
+          \pagestyle{fancy}
+          \fancyhf{} % Limpa cabeçalhos e rodapés existentes
+          
+          % Configuração do rodapé
+          \fancyfoot[L]{\small © 2026 | Quilici-Gonzalez, Zampirolli e Souza}
+          \fancyfoot[R]{\thepage} % Número da página à direita
+          
+          % Remove a linha horizontal do cabeçalho (opcional)
+          \renewcommand{\headrulewidth}{0pt}
+          % Adiciona linha horizontal no rodapé (opcional)
+          \renewcommand{\footrulewidth}{0.4pt}
+
+          % Garante que páginas de início de capítulo também tenham o rodapé
+          \fancypagestyle{plain}{
+            \fancyhf{}
+            \fancyfoot[L]{\small © 2026 | Quilici-Gonzalez, Zampirolli e Souza}
+            \fancyfoot[R]{\thepage}
+            \renewcommand{\footrulewidth}{0.4pt}
+          }
+    
           \usepackage{etoolbox}
           \usepackage{titlesec}
           \usepackage{xcolor}
