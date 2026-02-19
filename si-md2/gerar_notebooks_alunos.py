@@ -550,7 +550,12 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     text = convert_callouts(text)
 
     # 0b. Remove atributos Quarto de titulos: ### Titulo {.unnumbered} -> ### Titulo
-    text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
+    # text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
+
+
+    # 0b. Remove APENAS atributos Quarto ({.class} ou {#id}), ignorando comandos LaTeX como \mathbf{...}
+    text = re.sub(r'(#{1,6}[^\n]+?)\s*\{([.#][^}]*)\}', r'\1', text)
+
 
     # 1. Equacoes
     def replace_eq(m):
