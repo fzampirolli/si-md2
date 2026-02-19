@@ -438,22 +438,39 @@ def build_element_map(notebook: dict) -> dict:
                 }
 
         # Tabelas Markdown: | col | ... {#tbl-*}  (sintaxe antiga ou Quarto)
+        # for m in TBL_MD_RE.finditer(source):
+        #     tbl_body    = m.group(1)
+        #     tbl_caption = (m.group(2) or "").strip()  # legenda do : ... (pode ser vazio)
+        #     elem_id     = m.group(3) or m.group(4)    # id Quarto ou id antigo
+            
+        #     if elem_id not in elem_map:
+        #         num_str = make_num_str("tbl", elem_id)
+        #         # Legenda: usa o : caption se existir, senão 'Tabela X.Y'
+        #         label = f"Tabela {num_str}: {tbl_caption}" if tbl_caption \
+        #             else f"Tabela {num_str}"
+        #         elem_map[elem_id] = {
+        #             "kind":    "tbl",
+        #             "num_str": num_str,
+        #             "label":   label,
+        #             "alt":     None,
+        #             "path":    None,
+        #             "content": tbl_body.rstrip(),
+        #         }
+
+        # Tabelas Markdown: | col | ... {#tbl-*}
         for m in TBL_MD_RE.finditer(source):
             tbl_body    = m.group(1)
-            tbl_caption = (m.group(2) or "").strip()  # legenda do : ... (pode ser vazio)
-            elem_id     = m.group(3) or m.group(4)    # id Quarto ou id antigo
+            tbl_caption = (m.group(2) or "").strip() 
+            elem_id     = m.group(3) or m.group(4)
             
             if elem_id not in elem_map:
                 num_str = make_num_str("tbl", elem_id)
-                # Legenda: usa o : caption se existir, senão 'Tabela X.Y'
-                label = f"Tabela {num_str}: {tbl_caption}" if tbl_caption \
-                    else f"Tabela {num_str}"
+                # Guardamos o prefixo e a legenda separadamente
                 elem_map[elem_id] = {
                     "kind":    "tbl",
                     "num_str": num_str,
-                    "label":   label,
-                    "alt":     None,
-                    "path":    None,
+                    "label_prefix": f"Tabela {num_str}:", # Apenas a parte que será negrito
+                    "caption": tbl_caption,               # O texto da legenda
                     "content": tbl_body.rstrip(),
                 }
 
@@ -501,15 +518,16 @@ def render_img_element(alt: str, path: str, elem_id: str, label: str, kind: str 
 #         f'<p id="{elem_id}"><strong>{label}</strong></p>\n\n'
 #         f'{tbl_body}'
 #     )
-def render_tbl_markdown(tbl_body: str, elem_id: str, label: str) -> str:
+def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption: str) -> str:
     """
-    Tabela Markdown -> legenda acima em Markdown puro (para aceitar links),
-    ID em âncora HTML para permitir referências cruzadas.
+    Renderiza a tabela com o prefixo em negrito e a legenda em texto normal.
     """
-    # Usamos uma âncora <a> para o ID e Markdown (**) para a legenda
+    # Se houver legenda, adiciona um espaço após o prefixo negritado
+    full_caption = f"**{label_prefix}** {caption}" if caption else f"**{label_prefix}**"
+    
     return (
         f'<a id="{elem_id}"></a>\n\n'
-        f'**{label}**\n\n'
+        f'{full_caption}\n\n'
         f'{tbl_body}'
     )
 
@@ -581,13 +599,21 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     text = EQ_DEF_RE.sub(replace_eq, text)
 
     # 2. Tabelas Markdown (sintaxe antiga ou Quarto)
+    # def replace_tbl_md(m):
+    #     tbl_body = m.group(1).rstrip()
+    #     elem_id  = m.group(3) or m.group(4)
+    #     info = elem_map.get(elem_id)
+    #     label = info["label"] if info else f"Tabela {_chapter_from_id(elem_id) or elem_id}"
+    #     return render_tbl_markdown(tbl_body, elem_id, label)
+    # 2. Tabelas Markdown
     def replace_tbl_md(m):
         tbl_body = m.group(1).rstrip()
         elem_id  = m.group(3) or m.group(4)
         info = elem_map.get(elem_id)
-        label = info["label"] if info else f"Tabela {_chapter_from_id(elem_id) or elem_id}"
-        return render_tbl_markdown(tbl_body, elem_id, label)
-
+        if info:
+            return render_tbl_markdown(tbl_body, elem_id, info["label_prefix"], info["caption"])
+        else:
+            return render_tbl_markdown(tbl_body, elem_id, f"Tabela {_chapter_from_id(elem_id)}:", "")
     text = TBL_MD_RE.sub(replace_tbl_md, text)
 
     # 3. Imagens (fig e tbl-imagem)
