@@ -505,34 +505,23 @@ def render_tbl_markdown(tbl_body: str, elem_id: str, label: str) -> str:
 
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
-    Equacao LaTeX -> bloco $$ com \tag{} para numeracao, compativel com Colab/Jupyter.
-
-    O Colab/Jupyter so processa MathJax em blocos $$ no nivel top do Markdown,
-    nao dentro de tags HTML. Por isso usamos \tag{num_str} dentro do proprio LaTeX
-    e uma ancora <span> invisivel antes para permitir links @eq-*.
+    Equacao LaTeX -> HTML com numero (X.Y) alinhado a direita.
+    Usa display math do MathJax que o Jupyter/Colab ja carrega.
     """
-    # Remove os $$ externos
+    # Remove os $$ externos para reinserir dentro do HTML estruturado
     inner = eq_body.strip()
     if inner.startswith("$$") and inner.endswith("$$"):
         inner = inner[2:-2].strip()
 
-    # Converte \textcolor{cor}{texto} -> {\color{cor} texto}
-    # MathJax 2 (usado no Colab) nao suporta \textcolor, mas suporta \color
-    inner = re.sub(
-        r'\\textcolor\{([^}]+)\}\{([^}]+)\}',
-        r'{\\color{\1} \2}',
-        inner
+    return (
+        f'<div id="{elem_id}" style="display:flex; align-items:center; '
+        f'justify-content:space-between; margin:1em 0;">\n'
+        f'  <div style="flex:1; text-align:center;">\n\n'
+        f'$$\n{inner}\n$$\n\n'
+        f'  </div>\n'
+        f'  <div style="min-width:4em; text-align:right; color:#555;">({num_str})</div>\n'
+        f'</div>'
     )
-
-    # Adiciona \tag{num_str} ao final do conteudo LaTeX
-    # para que o MathJax mostre o numero alinhado a direita nativamente
-    if r'\tag{' not in inner:
-        inner = inner + rf'\tag{{{num_str}}}'
-
-    # Ancora HTML invisivel para os links de referencia cruzada (@eq-*)
-    anchor = f'<a id="{elem_id}"></a>'
-
-    return f'{anchor}\n\n$$\n{inner}\n$$'
 
 
 # ---------------------------------------------------------------------------
@@ -557,14 +546,6 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
 
     # 0b. Remove atributos Quarto de titulos: ### Titulo {.unnumbered} -> ### Titulo
     text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
-
-    # 0c. Converte \textcolor{cor}{texto} -> {\color{cor} texto} globalmente.
-    # MathJax 2 (Colab) nao suporta \textcolor; \color e equivalente e suportado.
-    text = re.sub(
-        r'\\textcolor\{([^}]+)\}\{([^}]+)\}',
-        r'{\\color{\1} \2}',
-        text
-    )
 
     # 1. Equacoes
     def replace_eq(m):
