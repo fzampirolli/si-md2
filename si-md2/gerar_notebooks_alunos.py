@@ -865,28 +865,6 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
                 html = html.replace("<style scoped>", "<style>")
                 output["data"]["text/html"] = str_to_source(html)
 
-    # Injeta célula markdown de legenda antes de células tbl-* de código
-    new_cells_with_captions = []
-    for cell in notebook.get("cells", []):
-        if cell.get("cell_type") == "code":
-            src = source_to_str(cell.get("source", []))
-            label_m   = re.search(r'#\|\s*label:\s*(tbl-[\w-]+)', src)
-            caption_m = re.search(r'#\|\s*tbl-cap:\s*["\']([^"\']+)["\']', src)
-            if label_m:
-                elem_id = label_m.group(1)
-                info    = elem_map.get(elem_id)
-                if info:
-                    caption = caption_m.group(1) if caption_m else ""
-                    legenda = f"**{info['label']}:** {caption}" if caption \
-                        else f"**{info['label']}**"
-                    new_cells_with_captions.append({
-                        "cell_type": "markdown",
-                        "metadata":  {},
-                        "source":    str_to_source(legenda)
-                    })
-        new_cells_with_captions.append(cell)
-    notebook["cells"] = new_cells_with_captions
-
     # Processa celulas
     for cell in notebook.get("cells", []):
         if cell.get("cell_type") == "markdown":
