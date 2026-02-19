@@ -513,6 +513,11 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     if inner.startswith("$$") and inner.endswith("$$"):
         inner = inner[2:-2].strip()
 
+    # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
+    # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
+    inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
+    # --------------------------------------------------------------
+
     return (
         f'<div id="{elem_id}" style="display:flex; align-items:center; '
         f'justify-content:space-between; margin:1em 0;">\n'
