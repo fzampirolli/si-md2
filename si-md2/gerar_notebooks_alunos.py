@@ -444,34 +444,28 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                 out.append(block)
 
             elif group_id_m and has_layout:
-                # Renderiza como Grupo de Imagens (Subfiguras)
+                
+                # Dentro da lógica do 'elif group_id_m and has_layout:'
                 elem_id = group_id_m.group(1)
-                # Buscamos as imagens e larguras dentro do bloco
+                info = elem_map.get(elem_id)
+                
+                # Extrai as imagens internas
                 img_find = re.findall(r'!\[.*?\]\((.*?)\)\{.*?width=([\d.]+)%?\}', inner_text)
                 
-                # A legenda do grupo costuma ser a última linha do bloco
-                caption_parts = inner_text.split('\n')
+                # A legenda costuma ser a última linha de texto puro no bloco
+                caption_parts = [line for line in inner_text.split('\n') if not line.strip().startswith('!')]
                 main_caption = caption_parts[-1].strip() if caption_parts else ""
-                
-                if img_find:
+
+                if img_find and info:
                     cols_html = ""
                     for path, width in img_find:
-                        cols_html += (
-                            f'<td style="text-align:center; border:none; padding:5px;">'
-                            f'<img src="{path}" style="width:100%; max-width:none;" />'
-                            f'</td>'
-                        )
-                    
-                    # Reconstrói a numeração usando o elem_map
-                    info = elem_map.get(elem_id, {"label_prefix": "Figura:", "caption": main_caption})
+                        cols_html += (f'<td style="text-align:center; border:none;">'
+                                    f'<img src="{path}" style="width:100%;" /></td>')
                     
                     block = (
-                        f'<figure id="{elem_id}" style="margin: 1em 0; text-align:center;">\n'
-                        f'  <table style="width:100%; border:none; border-collapse:collapse; margin:0 auto;">'
-                        f'<tr style="border:none;">{cols_html}</tr></table>\n'
-                        f'  <figcaption style="margin-top:8px;">'
-                        f'<strong>{info["label_prefix"]}</strong> {info["caption"]}'
-                        f'</figcaption>\n'
+                        f'<figure id="{elem_id}" style="text-align:center; margin:1em 0;">\n'
+                        f'  <table style="width:100%; border:none;"><tr style="border:none;">{cols_html}</tr></table>\n'
+                        f'  <figcaption><strong>{info["label_prefix"]}</strong> {main_caption}</figcaption>\n'
                         f'</figure>'
                     )
                     out.append(block)
@@ -615,6 +609,21 @@ def build_element_map(notebook: dict) -> dict:
                     "alt":     None,
                     "path":    None,
                     "content": eq_body,
+                }
+
+        # Detecção de blocos de figuras agrupadas ::: {#fig-ID ...}
+        for m in re.finditer(r'^:::+\s*\{#((fig|tbl)-[\w-]+)[^}]*\}', source, re.MULTILINE):
+            elem_id = m.group(1)
+            kind = m.group(2)
+            if elem_id not in elem_map:
+                num_str = make_num_str(kind, elem_id)
+                prefix = "Figura" if kind == "fig" else "Tabela"
+                elem_map[elem_id] = {
+                    "kind": kind,
+                    "num_str": num_str,
+                    "label_prefix": f"{prefix} {num_str}:",
+                    "caption": "", # Será preenchido na renderização
+                    "from_group": True
                 }
 
     return elem_map
