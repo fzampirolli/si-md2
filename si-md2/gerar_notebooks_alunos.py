@@ -284,7 +284,7 @@ def md_inline_to_html(text: str) -> str:
     return text
 
 
-def convert_callouts(text: str) -> str:
+def convert_callouts_old(text: str) -> str:
     """
     Converte blocos ::: {.callout-*} ... ::: e ::: {.classe} ... :::
     para Markdown/HTML compativel com Jupyter/Colab.
@@ -305,6 +305,8 @@ def convert_callouts(text: str) -> str:
         if m:
             fence_len = len(m.group(1))   # numero de : (3, 4, ...)
             attrs     = m.group(2).strip()
+            # Verifica se é um bloco de figura agrupada: {#fig-X layout-ncol=2}
+            fig_group_m = re.search(r'#(fig-[\w-]+)', attrs)
 
             # Determina tipo de callout e titulo customizado (### Titulo)
             callout_type = None
@@ -368,6 +370,122 @@ def convert_callouts(text: str) -> str:
 
     return '\n'.join(out)
 
+def convert_callouts(text: str, elem_map: dict) -> str:
+    """
+    Converte blocos ::: {.callout-*} ... ::: e blocos de figuras/tabelas agrupadas
+    ::: {#fig-ID layout-ncol=2} ... ::: para HTML/Markdown compatível com Colab.
+    """
+    lines = text.split('\n')
+    out   = []
+    i     = 0
+
+    while i < len(lines):
+        line = lines[i]
+        # Detecta abertura de ::: {atributos}
+        m = re.match(r'^(:::+)\s*\{([^}]*)\}\s*$', line)
+
+        if m:
+            fence_len = len(m.group(1))
+            attrs     = m.group(2).strip()
+
+            # 1. Verifica se é um Callout conhecido
+            callout_type = None
+            for ct in CALLOUT_STYLE:
+                if ct in attrs:
+                    callout_type = ct
+                    break
+
+            # 2. Verifica se é um grupo de figuras/tabelas com ID e Layout
+            # Ex: ::: {#fig-2-2 layout-ncol=2}
+            group_id_m = re.search(r'#((?:fig|tbl)-[\w-]+)', attrs)
+            has_layout = "layout-ncol" in attrs
+
+            # Coleta o conteúdo interno do bloco ::: até o fechamento
+            i += 1
+            depth = 1
+            inner = []
+            title_override = None
+
+            while i < len(lines) and depth > 0:
+                l = lines[i]
+                if re.match(r'^:{' + str(fence_len) + r',}\s*$', l):
+                    depth -= 1
+                    if depth == 0:
+                        i += 1
+                        break
+                elif re.match(r'^:::+\s*\{', l):
+                    depth += 1
+                    inner.append(l)
+                else:
+                    # Captura heading como título de callout se existir
+                    hm = re.match(r'^#{1,4}\s+(.+)$', l)
+                    if hm and title_override is None and callout_type:
+                        title_override = hm.group(1).strip()
+                    else:
+                        inner.append(l)
+                i += 1
+
+            inner_text = '\n'.join(inner).strip()
+
+            # Lógica de Renderização:
+            if callout_type:
+                # Renderiza como Blockquote (Callout)
+                emoji, default_title = CALLOUT_STYLE[callout_type]
+                title = title_override or default_title
+                inner_html = md_inline_to_html(inner_text)
+                inner_html = inner_html.replace('\n', '<br />\n')
+                block = (
+                    f'<blockquote style="border-left: 4px solid #aaa; '
+                    f'padding: 0.5em 1em; margin: 1em 0; background: #f9f9f9;">\n'
+                    f'<strong>{emoji} {title}</strong><br />\n'
+                    f'{inner_html}\n'
+                    f'</blockquote>'
+                )
+                out.append(block)
+
+            elif group_id_m and has_layout:
+                # Renderiza como Grupo de Imagens (Subfiguras)
+                elem_id = group_id_m.group(1)
+                # Buscamos as imagens e larguras dentro do bloco
+                img_find = re.findall(r'!\[.*?\]\((.*?)\)\{.*?width=([\d.]+)%?\}', inner_text)
+                
+                # A legenda do grupo costuma ser a última linha do bloco
+                caption_parts = inner_text.split('\n')
+                main_caption = caption_parts[-1].strip() if caption_parts else ""
+                
+                if img_find:
+                    cols_html = ""
+                    for path, width in img_find:
+                        cols_html += (
+                            f'<td style="text-align:center; border:none; padding:5px;">'
+                            f'<img src="{path}" style="width:100%; max-width:none;" />'
+                            f'</td>'
+                        )
+                    
+                    # Reconstrói a numeração usando o elem_map
+                    info = elem_map.get(elem_id, {"label_prefix": "Figura:", "caption": main_caption})
+                    
+                    block = (
+                        f'<figure id="{elem_id}" style="margin: 1em 0; text-align:center;">\n'
+                        f'  <table style="width:100%; border:none; border-collapse:collapse; margin:0 auto;">'
+                        f'<tr style="border:none;">{cols_html}</tr></table>\n'
+                        f'  <figcaption style="margin-top:8px;">'
+                        f'<strong>{info["label_prefix"]}</strong> {info["caption"]}'
+                        f'</figcaption>\n'
+                        f'</figure>'
+                    )
+                    out.append(block)
+                else:
+                    out.append(inner_text)
+            else:
+                # Div genérico: apenas mantém o conteúdo
+                if inner_text:
+                    out.append(inner_text)
+        else:
+            out.append(line)
+            i += 1
+
+    return '\n'.join(out)
 
 # ---------------------------------------------------------------------------
 # 6. Extrai label -> numero de todos os elementos do notebook
@@ -518,6 +636,28 @@ def render_img_element(alt: str, path: str, elem_id: str, label: str, kind: str 
         body = img + caption
     return f'<figure id="{elem_id}">\n' + body + '</figure>'
 
+def render_figure_group(content: str, elem_id: str, label_prefix: str, caption: str) -> str:
+    """
+    Renderiza um grupo de imagens em colunas (layout-ncol=2) com uma única legenda.
+    """
+    # Tenta extrair as imagens do conteúdo original para colocá-las em uma tabela HTML
+    img_find = re.findall(r'!\[.*?\]\((.*?)\)\{.*?width=(.*?)\%?\}', content)
+    
+    if img_find:
+        cols_html = ""
+        for path, width in img_find:
+            cols_html += f'<td style="text-align:center;"><img src="{path}" style="width:{width}%" /></td>'
+        
+        table_html = f'<table style="width:100%; border:none;"><tr style="border:none;">{cols_html}</tr></table>'
+        
+        return (
+            f'<figure id="{elem_id}" style="text-align:center;">\n'
+            f'  {table_html}\n'
+            f'  <figcaption style="margin-top:10px;"><strong>{label_prefix}</strong> {caption}</figcaption>\n'
+            f'</figure>'
+        )
+    return content # Caso não consiga processar, retorna o original
+
 
 # def render_tbl_markdown(tbl_body: str, elem_id: str, label: str) -> str:
 #     """
@@ -587,7 +727,8 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     text = source_to_str(source)
 
     # 0. Converte callouts e divs Quarto (::: {.callout-*} ... :::)
-    text = convert_callouts(text)
+    #text = convert_callouts(text)
+    text = convert_callouts(text, elem_map)
 
     # 0b. Remove atributos Quarto de titulos: ### Titulo {.unnumbered} -> ### Titulo
     # text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
