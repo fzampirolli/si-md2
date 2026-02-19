@@ -872,10 +872,46 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
                 cell.get("source", []), key_to_num, elem_map, bib
             )
 
-    # Injeta lista de referencias
+    # Injeta legendas de fig/tbl definidas via #| e lista de referencias
     new_cells, ref_injected = [], False
     for cell in notebook.get("cells", []):
         src = source_to_str(cell.get("source", []))
+
+        # Injeta célula markdown de legenda antes de células fig-*/tbl-* de código
+        if cell.get("cell_type") == "code":
+            # Recupera label e caption dos metadados Quarto ANTES da limpeza,
+            # que já ocorreu — usa elem_map (populado antes da limpeza)
+            label_m   = re.search(r'#\|\s*label:\s*((fig|tbl)-[\w-]+)', src)
+            caption_m = re.search(r'#\|\s*(?:fig-cap|tbl-cap):\s*["\']([^"\']+)["\']', src)
+            if not label_m:
+                # Tenta recuperar do metadata da célula (Quarto às vezes move para lá)
+                cell_meta = cell.get("metadata", {})
+                quarto_meta = cell_meta.get("quarto", {})
+                label_id = quarto_meta.get("label", "")
+                caption  = quarto_meta.get("fig-cap", quarto_meta.get("tbl-cap", ""))
+                if label_id and re.match(r'(fig|tbl)-', label_id):
+                    info = elem_map.get(label_id)
+                    if info:
+                        prefix = info["label"]
+                        legenda = f"**{prefix}:** {caption}" if caption else f"**{prefix}**"
+                        new_cells.append({
+                            "cell_type": "markdown",
+                            "metadata":  {},
+                            "source":    str_to_source(legenda)
+                        })
+            else:
+                elem_id = label_m.group(1)
+                info    = elem_map.get(elem_id)
+                if info:
+                    caption = caption_m.group(1) if caption_m else ""
+                    legenda = f"**{info['label']}:** {caption}" if caption \
+                        else f"**{info['label']}**"
+                    new_cells.append({
+                        "cell_type": "markdown",
+                        "metadata":  {},
+                        "source":    str_to_source(legenda)
+                    })
+
         if "\\\\printbibliography" in src:
             cell["source"] = str_to_source(ref_markdown)
             ref_injected = True
