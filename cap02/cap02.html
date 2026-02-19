@@ -241,7 +241,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4" data-quarto-raw="true">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="4">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras
@@ -282,7 +282,7 @@ Tabela&nbsp;2.1: Cestas de Compras
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
 <div class="cell" data-quarto-raw="true" data-execution_count="5">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5" data-quarto-raw="true">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="5">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras
@@ -545,9 +545,14 @@ Tabela&nbsp;2.3: Tabela do Tempo
 \tag{2.4}\]</span></span></p>
 <p>Estas são apenas algumas das muitas Regras de Associação que podem ser formuladas com base na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>. Para selecionar as Regras de Associação mais representativas, i.e., aquelas que se apliquem a um grande número de exemplos com alta probabilidade de acerto, precisaremos de métricas para avaliar o alcance ou a força de cada regra. Dois dos mais conhecidos indicadores são <strong>Suporte</strong> e <strong>Confiança</strong>.</p>
 <p><strong>Suporte</strong> — para cada regra do tipo <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{Y}\)</span>, este parâmetro indica a quantos exemplos da tabela esta regra satisfaz (i.e., contém) tanto ao conjunto de itens de <span class="math inline">\(\mathbf{X}\)</span> quanto ao de <span class="math inline">\(\mathbf{Y}\)</span>, ou seja, indica sua <strong>cobertura</strong> com relação ao número total <span class="math inline">\(N\)</span> de exemplos da tabela. Portanto,</p>
-<p><span class="math display">\[\mathbf{\text{Sup}}\left( \mathbf{X \rightarrow Y} \right)\mathbf{=}\frac{\mathbf{|X\  \cup \ Y|}}{\mathbf{N}}\]</span></p>
+<p><span class="math display">\[\mathbf{\text{Sup}}\left( \mathbf{X \rightarrow Y} \right)\mathbf{=}\frac{\mathbf{|X \cup Y|}}{\mathbf{N}}\]</span></p>
 <p>Por ex., com relação à primeira regra (<a href="#eq-2-1" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>), há quatro exemplos na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> em que <span class="math inline">\(\mathbf{X} \cup \mathbf{Y} = \{\text{Temperatura} = \text{Baixa},\; \text{Umidade} = \text{Normal}\}\)</span>. Portanto,</p>
-<p><span class="math display">\[\text{Sup}\left( Regra\ 2.1 \right) = \frac{\left| \text{X\ U\ Y} \right|}{N} = \frac{\left| \left\{ Temperatura = Baixa,\ Umidade = Normal \right\} \right|}{N} = \frac{4}{14} = 0,29\]</span></p>
+<p><span class="math display">\[
+\text{Sup}\left( \text{Regra 2.1} \right)
+= \frac{\left| X \cup Y \right|}{N}
+= \frac{\left| \left\{ \text{Temperatura = Baixa, Umidade = Normal} \right\} \right|}{N}
+= \frac{4}{14} = 0{,}29
+\]</span></p>
 <p>A <a href="#eq-2-2" class="quarto-xref">Equação&nbsp;<span>2.2</span></a> (Regra) também possui <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.2}) = \frac{4}{14}\)</span>; a terceira regra apresenta <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.3}) = \frac{3}{14}\)</span>, enquanto a quarta regra possui <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.4}) = \frac{1}{14}\)</span>.</p>
 <p><strong>Confiança</strong> — a confiança de uma regra reflete o número de exemplos que contêm <span class="math inline">\(\mathbf{Y}\)</span> dentre todos aqueles que contêm <span class="math inline">\(\mathbf{X}\)</span> (observe que, além de <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{Y}\)</span>, podem existir regras do tipo <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{Z}\)</span>, <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{W}\)</span> etc.). Em outras palavras, o parâmetro Confiança determina quantos são os exemplos em que <span class="math inline">\(\mathbf{X}\)</span> implica <span class="math inline">\(\mathbf{Y}\)</span>, em comparação com aqueles em que <span class="math inline">\(\mathbf{X}\)</span> pode ou não implicar <span class="math inline">\(\mathbf{Y}\)</span>. A esse parâmetro costuma-se também atribuir o nome de .</p>
 <p><span class="math display">\[
@@ -583,7 +588,7 @@ Tabela&nbsp;2.3: Tabela do Tempo
 </section>
 <section id="etapa-1-geração-de-conjuntos-frequentes-com-suporte-geq-mathbfsupmin" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="etapa-1-geração-de-conjuntos-frequentes-com-suporte-geq-mathbfsupmin"><span class="header-section-number">2.4</span> Etapa 1: Geração de Conjuntos Frequentes com Suporte <span class="math inline">\(\geq \mathbf{SupMin}\)</span></h2>
-<p>As <a href="#tbl-2-simplificada" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> e <a href="#tbl-2-alternativa" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> mostram versões simplificadas da Tabela 2.2, aqui adaptada para que cada item possa ser representado por apenas uma letra.</p>
+<p>As <a href="#tbl-2-simplificada" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> e <a href="#tbl-2-alternativa" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> mostram versões simplificadas da <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>, aqui adaptada para que cada item possa ser representado por apenas uma letra.</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -1099,14 +1104,14 @@ Tabela&nbsp;2.12: Possíveis Conjuntos Frequentes com 4 Itens.
 \frac{\mathrm{Sup}\!\left( \mathbf{CF} \right)}
      {\mathrm{Sup}\!\left( \mathbf{S} \right)}
 \]</span></p>
-<p>Voltando ao exemplo inicial da Tabela~2.5, como o Suporte de <span class="math inline">\(\mathbf{CF} = \{A, B, C\}\)</span> é <span class="math inline">\(\frac{2}{5}\)</span> (veja Tabela~2.11), e considerando os Suportes de seus subconjuntos,</p>
+<p>Voltando ao exemplo inicial da <a href="#tbl-2-alternativa" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a>, como o Suporte de <span class="math inline">\(\mathbf{CF} = \{A, B, C\}\)</span> é <span class="math inline">\(\frac{2}{5}\)</span> (veja <a href="#tbl-2-frequentes-3-supmin" class="quarto-xref">Tabela&nbsp;<span>2.11</span></a>), e considerando os Suportes de seus subconjuntos,</p>
 <div class="text-center">
-<p><span class="math inline">\(\mathbf{Sup}(\{A\}) = \frac{4}{5}\)</span> (veja <a href="#tbl-2-frequentes-1" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a>)</p>
-<p><span class="math inline">\(\mathbf{Sup}(\{B\}) = \frac{3}{5}\)</span> (veja <a href="#tbl-2-frequentes-1" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a>)</p>
-<p><span class="math inline">\(\mathbf{Sup}(\{C\}) = \frac{2}{5}\)</span> (veja <a href="#tbl-2-frequentes-1" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a>)</p>
-<p><span class="math inline">\(\mathbf{Sup}(\{A, B\}) = \frac{3}{5}\)</span> (veja <a href="#tbl-2-frequentes-2" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>)</p>
-<p><span class="math inline">\(\mathbf{Sup}(\{A, C\}) = \frac{2}{5}\)</span> (veja <a href="#tbl-2-frequentes-2" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>)</p>
-<p><span class="math inline">\(\mathbf{Sup}(\{B, C\}) = \frac{2}{5}\)</span> (veja <a href="#tbl-2-frequentes-2" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>)</p>
+<p><span class="math inline">\(\mathbf{Sup}(\{A\}) = \frac{4}{5} \quad\)</span> (veja <a href="#tbl-2-frequentes-1" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a>)</p>
+<p><span class="math inline">\(\mathbf{Sup}(\{B\}) = \frac{3}{5} \quad\)</span> (veja <a href="#tbl-2-frequentes-1" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a>)</p>
+<p><span class="math inline">\(\mathbf{Sup}(\{C\}) = \frac{2}{5} \quad\)</span> (veja <a href="#tbl-2-frequentes-1" class="quarto-xref">Tabela&nbsp;<span>2.6</span></a>)</p>
+<p><span class="math inline">\(\mathbf{Sup}(\{A, B\}) = \frac{3}{5} \quad\)</span> (veja <a href="#tbl-2-frequentes-2" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>)</p>
+<p><span class="math inline">\(\mathbf{Sup}(\{A, C\}) = \frac{2}{5} \quad\)</span> (veja <a href="#tbl-2-frequentes-2" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>)</p>
+<p><span class="math inline">\(\mathbf{Sup}(\{B, C\}) = \frac{2}{5} \quad\)</span> (veja <a href="#tbl-2-frequentes-2" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a>)</p>
 </div>
 <br>
 <p>
