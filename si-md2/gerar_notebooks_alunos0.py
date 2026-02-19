@@ -407,14 +407,12 @@ def build_element_map(notebook: dict) -> dict:
                     prefix  = "Figura" if kind == "fig" else "Tabela"
                     if elem_id not in elem_map:
                         num_str = make_num_str(kind, elem_id)
-                        #label = f"{prefix} {num_str}: {caption}" if caption \
-                        #    else f"{prefix} {num_str}"
                         elem_map[elem_id] = {
                             "kind":    kind,
                             "num_str": num_str,
                             "label":   f"{prefix} {num_str}",
-                            "cell_source_label": elem_id,  # <-- identificador
-                            "caption": caption,                 # <-- adicionar isto
+                            "caption": caption,   # guardado para injetar legenda
+                            "from_code": True,    # sinaliza origem em célula de código
                             "alt":     None,
                             "path":    None,
                             "content": None,
@@ -445,8 +443,6 @@ def build_element_map(notebook: dict) -> dict:
             tbl_caption = (m.group(2) or "").strip()  # legenda do : ... (pode ser vazio)
             elem_id     = m.group(3) or m.group(4)    # id Quarto ou id antigo
             
-            print(f"DEBUG tbl: id='{elem_id}', g3={m.group(3)!r}, g4={m.group(4)!r}")  # <-- AQUI
-
             if elem_id not in elem_map:
                 num_str = make_num_str("tbl", elem_id)
                 # Legenda: usa o : caption se existir, senão 'Tabela X.Y'
@@ -593,9 +589,6 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
         elem_id = m.group(1)
         info = elem_map.get(elem_id)
                 
-        print(f"DEBUG crossref: id='{elem_id}', achou={info is not None}")  # <-- AQUI
-
-        
         # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
         # Verifique se esta lógica de fallback também está como você deseja:
         label = info["label"] if info else \
@@ -874,46 +867,80 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
                 cell.get("source", []), key_to_num, elem_map, bib
             )
 
-    # Injeta legendas de fig/tbl definidas via #| e lista de referencias
+    # Mapa fingerprint -> elem_id para células de código com #| label: fig-*/tbl-*
+    # Feito ANTES do clean_notebook apagar as linhas #|
+    # O fingerprint é o conteúdo sem linhas #| (que sobrevive ao clean_notebook)
+    notebook_orig = json.loads(nb_path.read_text(encoding="utf-8"))
+    fingerprint_to_label = {}
+    for cell in notebook_orig.get("cells", []):
+        if cell.get("cell_type") != "code":
+            continue
+        src_orig = source_to_str(cell.get("source", []))
+        m = re.search(r'#\|\s*label:\s*((fig|tbl)-[\w-]+)', src_orig)
+        if m:
+            # Fingerprint: linhas sem #| e sem # @title, stripped
+            fp_lines = [l for l in src_orig.splitlines()
+                        if not l.strip().startswith("#|")]
+            fp = "\n".join(fp_lines).strip()
+            fingerprint_to_label[fp] = m.group(1)
+
     # Injeta legendas e lista de referencias
     new_cells, ref_injected = [], False
     for cell in notebook.get("cells", []):
         src = source_to_str(cell.get("source", []))
 
-        # Injeta célula markdown de legenda ANTES de células fig-*/tbl-* de código
+        # Injeta legenda para células fig-*/tbl-* de código:
+        #   tbl (echo:false): legenda ANTES (código oculto, tabela aparece logo)
+        #   fig (echo:true):  legenda DEPOIS (código visível, figura aparece após)
+        legend_cell = None
         if cell.get("cell_type") == "code":
-            for elem_id, info in elem_map.items():
-                if info.get("content") is not None:
-                    continue  # tabela markdown, não código
-                if info.get("path") is not None:
-                    continue  # imagem markdown, não código
-                # Verifica se esta célula é a dona deste elem_id
-                # usando o source ANTES da limpeza — guardado no elem_map
-                cell_label_key = info.get("cell_source_label", "")
-                if cell_label_key == elem_id:
+            fp_lines = [l for l in src.splitlines()
+                        if not l.strip().startswith("# @title")]
+            fp = "\n".join(fp_lines).strip()
+            elem_id = fingerprint_to_label.get(fp)
+            if elem_id:
+                info = elem_map.get(elem_id)
+                if info and info.get("from_code"):
                     caption = info.get("caption", "")
                     legenda = f"**{info['label']}:** {caption}" if caption \
                         else f"**{info['label']}**"
-                    new_cells.append({
+                    legend_cell = {
                         "cell_type": "markdown",
                         "metadata":  {},
                         "source":    str_to_source(legenda)
-                    })
-                    break
+                    }
+                    if info.get("kind") == "tbl":
+                        new_cells.append(legend_cell)
+                        legend_cell = None  # já inserida antes
+                    else:
+                        # fig: injeta legenda como output logo após o output de imagem
+                        outputs = cell.get("outputs", [])
+                        img_idx = next(
+                            (i for i, o in enumerate(outputs)
+                             if "image/png" in o.get("data", {})
+                             or o.get("output_type") == "display_data"),
+                            None
+                        )
+                        legend_output = {
+                            "output_type": "display_data",
+                            "metadata": {},
+                            "data": {
+                                "text/markdown": [legenda + "\n"],
+                                "text/plain":    [legenda]
+                            }
+                        }
+                        if img_idx is not None:
+                            outputs.insert(img_idx + 1, legend_output)
+                        else:
+                            outputs.append(legend_output)
+                        cell["outputs"] = outputs
+                        legend_cell = None  # já inserida nos outputs
 
         if "\\\\printbibliography" in src:
             cell["source"] = str_to_source(ref_markdown)
             ref_injected = True
         new_cells.append(cell)
 
-    if not ref_injected and citations:
-        new_cells.append({
-            "cell_type": "markdown",
-            "metadata":  {},
-            "source":    str_to_source(ref_markdown)
-        })
-
-    notebook["cells"] = new_cells
 
     if not ref_injected and citations:
         new_cells.append({
