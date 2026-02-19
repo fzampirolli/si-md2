@@ -198,14 +198,24 @@ IMG_DEF_RE = re.compile(
 #   Sintaxe antiga:  | col |...\n{#tbl-X-Y}
 #   Sintaxe Quarto:  | col |...\n\n: Legenda {#tbl-X-Y}
 # Grupos: (1) bloco tabela  (2) legenda Quarto  (3) id Quarto  (4) id antiga
+# TBL_MD_RE = re.compile(
+#     r'((?:[ \t]*\|[^\n]+\n)+)'           # bloco de linhas | col |
+#     r'(?:'
+#         r'\n?[ \t]*: ([^\n{]*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
+#         r'|'
+#         r'[ \t]*\{#(tbl-[\w-]+)[^}]*\}'  # antiga: {#tbl-X} direto
+#     r')',
+#     re.MULTILINE
+# )
+# Tabela Markdown: busca o ID {#tbl- explicitamente para não confundir com LaTeX \frac{}{}
 TBL_MD_RE = re.compile(
     r'((?:[ \t]*\|[^\n]+\n)+)'           # bloco de linhas | col |
     r'(?:'
-        r'\n?[ \t]*: ([^\n{]*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
+        r'\n?[ \t]*: (.*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
         r'|'
         r'[ \t]*\{#(tbl-[\w-]+)[^}]*\}'  # antiga: {#tbl-X} direto
     r')',
-    re.MULTILINE
+    re.MULTILINE | re.DOTALL
 )
 
 # Equacao: $$ ... $$ (possivelmente multiline) seguida de {#eq-X-Y}
@@ -465,12 +475,12 @@ def build_element_map(notebook: dict) -> dict:
             
             if elem_id not in elem_map:
                 num_str = make_num_str("tbl", elem_id)
-                # Guardamos o prefixo e a legenda separadamente
+                # Separamos o prefixo da legenda (caption)
                 elem_map[elem_id] = {
                     "kind":    "tbl",
                     "num_str": num_str,
-                    "label_prefix": f"Tabela {num_str}:", # Apenas a parte que será negrito
-                    "caption": tbl_caption,               # O texto da legenda
+                    "label_prefix": f"Tabela {num_str}:",
+                    "caption": tbl_caption, 
                     "content": tbl_body.rstrip(),
                 }
 
@@ -520,15 +530,17 @@ def render_img_element(alt: str, path: str, elem_id: str, label: str, kind: str 
 #     )
 def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption: str) -> str:
     """
-    Renderiza a tabela com o prefixo em negrito e a legenda em texto normal.
+    Renderiza a tabela no Colab com prefixo em negrito e 
+    permite LaTeX/Links na legenda.
     """
-    # Se houver legenda, adiciona um espaço após o prefixo negritado
+    # Monta a legenda: apenas o prefixo em negrito
     full_caption = f"**{label_prefix}** {caption}" if caption else f"**{label_prefix}**"
     
+    # <a> invisível para o link de referência, legenda em Markdown e a tabela
     return (
         f'<a id="{elem_id}"></a>\n\n'
         f'{full_caption}\n\n'
-        f'{tbl_body}'
+        f'{tbl_body}\n'
     )
 
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
@@ -614,6 +626,7 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
             return render_tbl_markdown(tbl_body, elem_id, info["label_prefix"], info["caption"])
         else:
             return render_tbl_markdown(tbl_body, elem_id, f"Tabela {_chapter_from_id(elem_id)}:", "")
+        
     text = TBL_MD_RE.sub(replace_tbl_md, text)
 
     # 3. Imagens (fig e tbl-imagem)
