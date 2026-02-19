@@ -82,9 +82,9 @@ format:
 
         % --- Automação das Cores ---
         % Aplica cores alternadas (zebra) começando na linha 2 
-        \AtBeginEnvironment{longtable}{%
-          \rowcolors{0}{white}{rowPink}%
-        }
+        %\AtBeginEnvironment{longtable}{%
+        %  \rowcolors{0}{white}{rowPink}%
+        %}
 
         % Novos tipos de coluna: H (Centralizada) e L (Esquerda) para o cabeçalho [cite: 11]
         % Elas aplicam fundo vermelho, negrito e texto branco automaticamente [cite: 5, 8]
