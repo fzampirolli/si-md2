@@ -492,16 +492,26 @@ def render_img_element(alt: str, path: str, elem_id: str, label: str, kind: str 
     return f'<figure id="{elem_id}">\n' + body + '</figure>'
 
 
+# def render_tbl_markdown(tbl_body: str, elem_id: str, label: str) -> str:
+#     """
+#     Tabela Markdown -> legenda acima, ancora no id do div, tabela abaixo.
+#     A tabela Markdown em si e mantida (o Jupyter renderiza normalmente).
+#     """
+#     return (
+#         f'<p id="{elem_id}"><strong>{label}</strong></p>\n\n'
+#         f'{tbl_body}'
+#     )
 def render_tbl_markdown(tbl_body: str, elem_id: str, label: str) -> str:
     """
-    Tabela Markdown -> legenda acima, ancora no id do div, tabela abaixo.
-    A tabela Markdown em si e mantida (o Jupyter renderiza normalmente).
+    Tabela Markdown -> legenda acima em Markdown puro (para aceitar links),
+    ID em âncora HTML para permitir referências cruzadas.
     """
+    # Usamos uma âncora <a> para o ID e Markdown (**) para a legenda
     return (
-        f'<p id="{elem_id}"><strong>{label}</strong></p>\n\n'
+        f'<a id="{elem_id}"></a>\n\n'
+        f'**{label}**\n\n'
         f'{tbl_body}'
     )
-
 
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
@@ -606,21 +616,41 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     #     return f"[{label}](#{elem_id})"
     
     # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
+    # def replace_crossref(m):
+    #     elem_id = m.group(1)
+    #     info = elem_map.get(elem_id)
+        
+    #     if info:
+    #         # Se for tabela ou figura, usa apenas o prefixo (Figura/Tabela) + numero
+    #         # ignorando a legenda (caption) que possa estar no 'label'
+    #         kind_prefix = "Tabela" if info["kind"] == "tbl" else \
+    #                       "Figura" if info["kind"] == "fig" else \
+    #                       "Equação"
+    #         label_curto = f"{kind_prefix} {info['num_str']}"
+    #     else:
+    #         # Fallback caso não encontre no mapa
+    #         kind_raw = elem_id.split('-')[0]
+    #         prefix = "Tabela" if kind_raw == "tbl" else "Figura" if kind_raw == "fig" else "Equação"
+    #         label_curto = f"{prefix} {_chapter_from_id(elem_id) or elem_id}"
+            
+    #     return f"[{label_curto}](#{elem_id})"
+    
+    # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
     def replace_crossref(m):
         elem_id = m.group(1)
         info = elem_map.get(elem_id)
         
         if info:
-            # Se for tabela ou figura, usa apenas o prefixo (Figura/Tabela) + numero
-            # ignorando a legenda (caption) que possa estar no 'label'
-            kind_prefix = "Tabela" if info["kind"] == "tbl" else \
-                          "Figura" if info["kind"] == "fig" else \
-                          "Equação"
-            label_curto = f"{kind_prefix} {info['num_str']}"
+            # Reconstrói o nome amigável: Figura/Tabela + Número
+            # Ignora o 'label' longo que contém a legenda
+            prefix = "Tabela" if info["kind"] == "tbl" else \
+                     "Figura" if info["kind"] == "fig" else "Equação"
+            label_curto = f"{prefix} {info['num_str']}"
         else:
-            # Fallback caso não encontre no mapa
+            # Fallback caso o elemento não tenha sido mapeado
             kind_raw = elem_id.split('-')[0]
-            prefix = "Tabela" if kind_raw == "tbl" else "Figura" if kind_raw == "fig" else "Equação"
+            prefix = "Tabela" if kind_raw == "tbl" else \
+                     "Figura" if kind_raw == "fig" else "Equação"
             label_curto = f"{prefix} {_chapter_from_id(elem_id) or elem_id}"
             
         return f"[{label_curto}](#{elem_id})"
