@@ -413,6 +413,8 @@ def build_element_map(notebook: dict) -> dict:
                             "kind":    kind,
                             "num_str": num_str,
                             "label":   f"{prefix} {num_str}",
+                            "cell_source_label": elem_id,  # <-- identificador
+                            "caption": caption,                 # <-- adicionar isto
                             "alt":     None,
                             "path":    None,
                             "content": None,
@@ -873,37 +875,23 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
             )
 
     # Injeta legendas de fig/tbl definidas via #| e lista de referencias
+    # Injeta legendas e lista de referencias
     new_cells, ref_injected = [], False
     for cell in notebook.get("cells", []):
         src = source_to_str(cell.get("source", []))
 
-        # Injeta célula markdown de legenda antes de células fig-*/tbl-* de código
+        # Injeta célula markdown de legenda ANTES de células fig-*/tbl-* de código
         if cell.get("cell_type") == "code":
-            # Recupera label e caption dos metadados Quarto ANTES da limpeza,
-            # que já ocorreu — usa elem_map (populado antes da limpeza)
-            label_m   = re.search(r'#\|\s*label:\s*((fig|tbl)-[\w-]+)', src)
-            caption_m = re.search(r'#\|\s*(?:fig-cap|tbl-cap):\s*["\']([^"\']+)["\']', src)
-            if not label_m:
-                # Tenta recuperar do metadata da célula (Quarto às vezes move para lá)
-                cell_meta = cell.get("metadata", {})
-                quarto_meta = cell_meta.get("quarto", {})
-                label_id = quarto_meta.get("label", "")
-                caption  = quarto_meta.get("fig-cap", quarto_meta.get("tbl-cap", ""))
-                if label_id and re.match(r'(fig|tbl)-', label_id):
-                    info = elem_map.get(label_id)
-                    if info:
-                        prefix = info["label"]
-                        legenda = f"**{prefix}:** {caption}" if caption else f"**{prefix}**"
-                        new_cells.append({
-                            "cell_type": "markdown",
-                            "metadata":  {},
-                            "source":    str_to_source(legenda)
-                        })
-            else:
-                elem_id = label_m.group(1)
-                info    = elem_map.get(elem_id)
-                if info:
-                    caption = caption_m.group(1) if caption_m else ""
+            for elem_id, info in elem_map.items():
+                if info.get("content") is not None:
+                    continue  # tabela markdown, não código
+                if info.get("path") is not None:
+                    continue  # imagem markdown, não código
+                # Verifica se esta célula é a dona deste elem_id
+                # usando o source ANTES da limpeza — guardado no elem_map
+                cell_label_key = info.get("cell_source_label", "")
+                if cell_label_key == elem_id:
+                    caption = info.get("caption", "")
                     legenda = f"**{info['label']}:** {caption}" if caption \
                         else f"**{info['label']}**"
                     new_cells.append({
@@ -911,11 +899,21 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
                         "metadata":  {},
                         "source":    str_to_source(legenda)
                     })
+                    break
 
         if "\\\\printbibliography" in src:
             cell["source"] = str_to_source(ref_markdown)
             ref_injected = True
         new_cells.append(cell)
+
+    if not ref_injected and citations:
+        new_cells.append({
+            "cell_type": "markdown",
+            "metadata":  {},
+            "source":    str_to_source(ref_markdown)
+        })
+
+    notebook["cells"] = new_cells
 
     if not ref_injected and citations:
         new_cells.append({
