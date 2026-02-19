@@ -471,6 +471,11 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                     out.append(block)
                 else:
                     out.append(inner_text)
+            
+            elif ".text-center" in attrs:
+                # NOVO: Suporte para centralização
+                block = f'<div style="text-align:center;">\n\n{inner_text}\n\n</div>'
+                out.append(block)
             else:
                 # Div genérico: apenas mantém o conteúdo
                 if inner_text:
