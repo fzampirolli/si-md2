@@ -595,16 +595,36 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     text = IMG_DEF_RE.sub(replace_img, text)
 
     # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
+    # def replace_crossref(m):
+    #     elem_id = m.group(1)
+    #     info = elem_map.get(elem_id)
+                
+    #     # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
+    #     # Verifique se esta lógica de fallback também está como você deseja:
+    #     label = info["label"] if info else \
+    #         f"{elem_id.split('-')[0].replace('fig', 'Figura').replace('tbl', 'Tabela').capitalize()} {_chapter_from_id(elem_id) or elem_id}"
+    #     return f"[{label}](#{elem_id})"
+    
+    # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
     def replace_crossref(m):
         elem_id = m.group(1)
         info = elem_map.get(elem_id)
-                
-        # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
-        # Verifique se esta lógica de fallback também está como você deseja:
-        label = info["label"] if info else \
-            f"{elem_id.split('-')[0].replace('fig', 'Figura').replace('tbl', 'Tabela').capitalize()} {_chapter_from_id(elem_id) or elem_id}"
-        return f"[{label}](#{elem_id})"
-
+        
+        if info:
+            # Se for tabela ou figura, usa apenas o prefixo (Figura/Tabela) + numero
+            # ignorando a legenda (caption) que possa estar no 'label'
+            kind_prefix = "Tabela" if info["kind"] == "tbl" else \
+                          "Figura" if info["kind"] == "fig" else \
+                          "Equação"
+            label_curto = f"{kind_prefix} {info['num_str']}"
+        else:
+            # Fallback caso não encontre no mapa
+            kind_raw = elem_id.split('-')[0]
+            prefix = "Tabela" if kind_raw == "tbl" else "Figura" if kind_raw == "fig" else "Equação"
+            label_curto = f"{prefix} {_chapter_from_id(elem_id) or elem_id}"
+            
+        return f"[{label_curto}](#{elem_id})"
+    
     text = re.sub(r'@((fig|tbl|eq)-[\w-]+)', replace_crossref, text)
 
     # 5. Citacoes bibliograficas
