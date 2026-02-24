@@ -747,7 +747,6 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
 # 8. Processa uma celula: substitui definicoes e referencias
 # ---------------------------------------------------------------------------
 
-# 0c. Converte \textcolor{cor}{texto} em HTML fora de blocos $$
 def fix_textcolor_inline(text: str) -> str:
     placeholders = {}
     def hide_block(m):
@@ -757,9 +756,17 @@ def fix_textcolor_inline(text: str) -> str:
     text = re.sub(r'\$\$[\s\S]*?\$\$', hide_block, text)
     text = re.sub(r'\$[^\$\n]+\$', hide_block, text)
 
+    # \textcolor{cor}{texto} -> <font color="cor">texto</font>
     text = re.sub(
         r'\\textcolor\{([^}]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}',
         r'<font color="\1">\2</font>',
+        text
+    )
+
+    # [texto]{style="color: X;"} -> <font color="X">texto</font>  (sintaxe Pandoc/Quarto)
+    text = re.sub(
+        r'\[([^\]]+)\]\{style="color:\s*([^;}"]+);?"\}',
+        r'<font color="\2">\1</font>',
         text
     )
 
