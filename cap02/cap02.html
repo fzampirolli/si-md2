@@ -240,7 +240,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </figure>
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
-<p>As <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
+<p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
 <div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="4">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -371,8 +371,8 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div class="cell" data-quarto-raw="true" data-execution_count="6">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="6">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo
@@ -495,7 +495,7 @@ Tabela&nbsp;2.3: Tabela do Tempo
 </figure>
 </div>
 </div>
-<p>Uma análise mais atenta dos exemplos das <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> e <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a> que alguns desses atributos sempre aparecem juntos e que, portanto, várias <strong>Regras de Associação</strong> podem ser extraídas dessas tabelas.</p>
+<p>Uma análise mais atenta dos exemplos das Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a> e <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> que alguns desses atributos sempre aparecem juntos e que, portanto, várias <strong>Regras de Associação</strong> podem ser extraídas dessas tabelas.</p>
 </section>
 <section id="regras-de-associação" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="regras-de-associação"><span class="header-section-number">2.3</span> Regras de Associação</h2>
@@ -510,7 +510,7 @@ Tabela&nbsp;2.3: Tabela do Tempo
 (\text{Conjunto } \mathbf{Y} \text{ de Itens}),
 \quad \text{sendo } \mathbf{X} \cap \mathbf{Y} = \varnothing
 \]</span></p>
-<p>Com base na Figura 2.3, várias Regras de Associação podem ser formuladas:</p>
+<p>Com base na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>, várias Regras de Associação podem ser formuladas:</p>
 <p><span id="eq-2-1"><span class="math display">\[
 \textcolor{red}{\textbf{If }}
 (\text{Temperatura} = \text{Baixa})
@@ -546,14 +546,14 @@ Tabela&nbsp;2.3: Tabela do Tempo
 <p>Estas são apenas algumas das muitas Regras de Associação que podem ser formuladas com base na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a>. Para selecionar as Regras de Associação mais representativas, i.e., aquelas que se apliquem a um grande número de exemplos com alta probabilidade de acerto, precisaremos de métricas para avaliar o alcance ou a força de cada regra. Dois dos mais conhecidos indicadores são <strong>Suporte</strong> e <strong>Confiança</strong>.</p>
 <p><strong>Suporte</strong> — para cada regra do tipo <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{Y}\)</span>, este parâmetro indica a quantos exemplos da tabela esta regra satisfaz (i.e., contém) tanto ao conjunto de itens de <span class="math inline">\(\mathbf{X}\)</span> quanto ao de <span class="math inline">\(\mathbf{Y}\)</span>, ou seja, indica sua <strong>cobertura</strong> com relação ao número total <span class="math inline">\(N\)</span> de exemplos da tabela. Portanto,</p>
 <p><span class="math display">\[\mathbf{\text{Sup}}\left( \mathbf{X \rightarrow Y} \right)\mathbf{=}\frac{\mathbf{|X \cup Y|}}{\mathbf{N}}\]</span></p>
-<p>Por ex., com relação à primeira regra (<a href="#eq-2-1" class="quarto-xref">Equação&nbsp;<span>2.1</span></a>), há quatro exemplos na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> em que <span class="math inline">\(\mathbf{X} \cup \mathbf{Y} = \{\text{Temperatura} = \text{Baixa},\; \text{Umidade} = \text{Normal}\}\)</span>. Portanto,</p>
+<p>Por ex., com relação à primeira <a href="#eq-2-1" class="quarto-xref">Regra&nbsp;<span>2.1</span></a>, há quatro exemplos na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> em que <span class="math inline">\(\mathbf{X} \cup \mathbf{Y} = \{\text{Temperatura} = \text{Baixa},\; \text{Umidade} = \text{Normal}\}\)</span>. Portanto,</p>
 <p><span class="math display">\[
 \text{Sup}\left( \text{Regra 2.1} \right)
 = \frac{\left| X \cup Y \right|}{N}
 = \frac{\left| \left\{ \text{Temperatura = Baixa, Umidade = Normal} \right\} \right|}{N}
 = \frac{4}{14} = 0{,}29
 \]</span></p>
-<p>A <a href="#eq-2-2" class="quarto-xref">Equação&nbsp;<span>2.2</span></a> (Regra) também possui <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.2}) = \frac{4}{14}\)</span>; a terceira regra apresenta <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.3}) = \frac{3}{14}\)</span>, enquanto a quarta regra possui <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.4}) = \frac{1}{14}\)</span>.</p>
+<p>A <a href="#eq-2-2" class="quarto-xref">Regra&nbsp;<span>2.2</span></a> também possui <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.2}) = \frac{4}{14}\)</span>; a terceira regra apresenta <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.3}) = \frac{3}{14}\)</span>, enquanto a quarta regra possui <span class="math inline">\(\mathbf{Sup}(\text{Regra 2.4}) = \frac{1}{14}\)</span>.</p>
 <p><strong>Confiança</strong> — a confiança de uma regra reflete o número de exemplos que contêm <span class="math inline">\(\mathbf{Y}\)</span> dentre todos aqueles que contêm <span class="math inline">\(\mathbf{X}\)</span> (observe que, além de <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{Y}\)</span>, podem existir regras do tipo <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{Z}\)</span>, <span class="math inline">\(\mathbf{X} \Rightarrow \mathbf{W}\)</span> etc.). Em outras palavras, o parâmetro Confiança determina quantos são os exemplos em que <span class="math inline">\(\mathbf{X}\)</span> implica <span class="math inline">\(\mathbf{Y}\)</span>, em comparação com aqueles em que <span class="math inline">\(\mathbf{X}\)</span> pode ou não implicar <span class="math inline">\(\mathbf{Y}\)</span>. A esse parâmetro costuma-se também atribuir o nome de .</p>
 <p><span class="math display">\[
 \mathbf{Conf}\!\left(\mathbf{X} \Rightarrow \mathbf{Y}\right)
@@ -564,7 +564,7 @@ Tabela&nbsp;2.3: Tabela do Tempo
 \frac{\mathbf{Sup}\!\left(\mathbf{X} \Rightarrow \mathbf{Y}\right)}
      {\mathbf{Sup}\!\left(\mathbf{X}\right)}
 \]</span></p>
-<p>Por ex., com relação à primeira Regra (2.1), há quatro exemplos na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> em que <span class="math inline">\(\mathbf{X} \cup \mathbf{Y} = \{\text{Temperatura} = \text{Baixa},\; \text{Umidade} = \text{Normal}\}\)</span> e, coincidentemente, quatro exemplos em que <span class="math inline">\(\mathbf{X} = \{\text{Temperatura} = \text{Baixa}\}\)</span>. Portanto,</p>
+<p>Por ex., com relação à primeira <a href="#eq-2-1" class="quarto-xref">Regra&nbsp;<span>2.1</span></a>, há quatro exemplos na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> em que <span class="math inline">\(\mathbf{X} \cup \mathbf{Y} = \{\text{Temperatura} = \text{Baixa},\; \text{Umidade} = \text{Normal}\}\)</span> e, coincidentemente, quatro exemplos em que <span class="math inline">\(\mathbf{X} = \{\text{Temperatura} = \text{Baixa}\}\)</span>. Portanto,</p>
 <p><span class="math display">\[
 \mathbf{Conf}\!\left(\text{Regra 2.1}\right)
 =
@@ -588,7 +588,7 @@ Tabela&nbsp;2.3: Tabela do Tempo
 </section>
 <section id="etapa-1-geração-de-conjuntos-frequentes-com-suporte-geq-mathbfsupmin" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="etapa-1-geração-de-conjuntos-frequentes-com-suporte-geq-mathbfsupmin"><span class="header-section-number">2.4</span> Etapa 1: Geração de Conjuntos Frequentes com Suporte <span class="math inline">\(\geq \mathbf{SupMin}\)</span></h2>
-<p>As <a href="#tbl-2-simplificada" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> e <a href="#tbl-2-alternativa" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a> mostram versões simplificadas da <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>, aqui adaptada para que cada item possa ser representado por apenas uma letra.</p>
+<p>As Tabelas <a href="#tbl-2-simplificada" class="quarto-xref"><span>2.4</span></a> e <a href="#tbl-2-alternativa" class="quarto-xref"><span>2.5</span></a> mostram versões simplificadas da <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>, aqui adaptada para que cada item possa ser representado por apenas uma letra.</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -807,7 +807,7 @@ Tabela&nbsp;2.7: Conjuntos Frequentes com 1 Item e <span class="math inline">\(\
 </div>
 <p>A seguir devem ser formados novos Conjuntos Frequentes com 2 Itens, partindo-se dos Conjuntos Frequentes com 1 Item. Note que o Suporte de um Conjunto Frequente com 2 Itens pode ter no máximo o menor valor de Suporte de cada um de seus subconjuntos, i. e., dos respectivos Conjuntos Frequentes com 1 Item. De acordo com esta mesma propriedade, conhecida como <strong>Princípio Apriori</strong> ou antimonotônico, qualquer subconjunto de um Conjunto Frequente também será um Conjunto Frequente. Por exemplo, se <span class="math inline">\(\{A, B\}\)</span> for um Conjunto Frequente, então <span class="math inline">\(\{A\}\)</span> e <span class="math inline">\(\{B\}\)</span> também são Conjuntos Frequentes e têm <span class="math inline">\(\mathbf{Suporte} \geq \mathbf{SupMin}\)</span>.</p>
 <p>A <a href="#tbl-2-frequentes-2" class="quarto-xref">Tabela&nbsp;<span>2.8</span></a> mostra os possíveis Conjuntos Frequentes com 2 Itens e os respectivos valores de Suporte.</p>
-<p>Os conjuntos de 2 itens foram obtidos por combinação dos conjuntos de 1 item, enquanto que os valores de Suporte foram obtidos inspecionando-se as <a href="#tbl-2-simplificada" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a> e <a href="#tbl-2-alternativa" class="quarto-xref">Tabela&nbsp;<span>2.5</span></a>.</p>
+<p>Os conjuntos de 2 itens foram obtidos por combinação dos conjuntos de 1 item, enquanto que os valores de Suporte foram obtidos inspecionando-se as Tabelas <a href="#tbl-2-simplificada" class="quarto-xref"><span>2.4</span></a> e <a href="#tbl-2-alternativa" class="quarto-xref"><span>2.5</span></a>.</p>
 <p>Note que os detalhes de como os conjuntos de itens são efetivamente gerados dependem da forma como o algoritmo Apriori foi implementado, e diferem um pouco da exposição simplificada que se adotou aqui por razões didáticas.</p>
 <p>Para calcular o Suporte dos Conjuntos Frequentes foi necessário ler a Base de Dados, que em nosso caso é pequena e está representada pela <a href="#tbl-2-simplificada" class="quarto-xref">Tabela&nbsp;<span>2.4</span></a>. Em uma implementação computacional é altamente desejável que toda a Base de Dados possa ser lida na memória principal do computador. Porém, se a Base de Dados for muito grande ela provavelmente terá de ser lida no disco rígido. Para minimizar o número de vezes que a Base de Dados é consultada, muitos candidatos a Conjuntos Frequentes podem ser inicialmente criados e depois eliminados, obtendo-se assim significativos ganhos de tempo.</p>
 <div id="tbl-2-frequentes-2" class="quarto-float quarto-figure quarto-figure-center anchored">
