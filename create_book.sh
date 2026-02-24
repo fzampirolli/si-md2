@@ -121,6 +121,7 @@ book:
   title: "Sistemas Inteligentes e Mineração de Dados"
   subtitle: "2ª Edição: Do Weka ao Python"
   author: "José Artur Quilici-Gonzalez, Francisco de Assis Zampirolli e Fábio Rezende de Souza"
+  cover-image: images/capa.png 
   date: "today"
   chapters:
     - index.qmd

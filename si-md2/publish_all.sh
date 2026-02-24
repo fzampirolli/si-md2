@@ -77,16 +77,18 @@ ok "Publicado em https://fzampirolli.github.io/si-md2/"
 # ---------------------------------------------------------------------------
 # Workflow C: EPUB -> _book_epub/
 # ---------------------------------------------------------------------------
-log "=== Workflow C: Pré-processando notebooks para EPUB ==="
-python3 gerar_notebooks_alunos.py --epub "$BIB" --out-dir "$EPUB_DIR"
-ok "Notebooks EPUB gerados em $EPUB_DIR/"
+# FORMATAÇÃO DE TEXTO - NÃO FUNCIONA NO EPUB
+# ---------------------------------------------------------------------------
+# log "=== Workflow C: Pré-processando notebooks para EPUB ==="
+# python3 gerar_notebooks_alunos.py --epub "$BIB" --out-dir "$EPUB_DIR"
+# ok "Notebooks EPUB gerados em $EPUB_DIR/"
 
-log "=== Workflow C: Renderizando EPUB ==="
-./render_epub.sh
-rm -rf "$BOOK_EPUB"
-mkdir -p "$BOOK_EPUB"
-mv "$BOOK_HTML"/*.epub "$BOOK_EPUB/" 2>/dev/null || true
-ok "EPUB movido para $BOOK_EPUB/"
+# log "=== Workflow C: Renderizando EPUB ==="
+# ./render_epub.sh
+# rm -rf "$BOOK_EPUB"
+# mkdir -p "$BOOK_EPUB"
+# mv "$BOOK_HTML"/*.epub "$BOOK_EPUB/" 2>/dev/null || true
+# ok "EPUB movido para $BOOK_EPUB/"
 
 # ---------------------------------------------------------------------------
 # Workflow D: Notebooks para alunos (Jupyter/Colab)

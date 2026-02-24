@@ -1,5 +1,7 @@
 # Prefácio {.unnumbered}
 
+![](images/capa.png){.quarto-cover-image fig-align="center" width="300"}
+
 ## Prefácio da Primeira Edição {.unnumbered}
 
 O início do século XXI é caracterizado pela era da informação e crescimento exponencial de dados gerados em praticamente todas as áreas de atividade humana. Cada vez mais se torna necessário o conhecimento e aperfeiçoamento de ferramentas apropriadas para extrair informações úteis destes dados. A Mineração de Dados combina inteligência artificial, aprendizagem de máquina, estatística, base de dados e técnicas avançadas de programação para tratar grandes volumes de dados.
