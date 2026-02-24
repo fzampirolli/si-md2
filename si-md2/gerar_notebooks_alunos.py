@@ -697,6 +697,7 @@ def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption:
         f'{tbl_body}\n'
     )
 
+
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
     Equacao LaTeX -> HTML com numero (X.Y) alinhado a direita.
