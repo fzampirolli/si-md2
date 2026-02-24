@@ -749,23 +749,20 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
 
 # 0c. Converte \textcolor{cor}{texto} em HTML fora de blocos $$
 def fix_textcolor_inline(text: str) -> str:
-    # Primeiro protege blocos $$ para não mexer no LaTeX matemático
     placeholders = {}
     def hide_block(m):
         key = f"\x00MATH{len(placeholders)}\x00"
         placeholders[key] = m.group(0)
         return key
     text = re.sub(r'\$\$[\s\S]*?\$\$', hide_block, text)
-    text = re.sub(r'\$[^\$\n]+\$', hide_block, text)   # inline $ também
+    text = re.sub(r'\$[^\$\n]+\$', hide_block, text)
 
-    # Aplica conversão apenas fora dos blocos matemáticos
     text = re.sub(
         r'\\textcolor\{([^}]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}',
-        r'<span style="color:\1">\2</span>',
+        r'<font color="\1">\2</font>',
         text
-        )
+    )
 
-    # Restaura os blocos protegidos
     for key, val in placeholders.items():
         text = text.replace(key, val)
     return text
