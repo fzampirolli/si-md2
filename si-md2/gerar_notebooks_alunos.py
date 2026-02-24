@@ -724,26 +724,25 @@ def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption:
 
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
-    Versão final: Resolve alinhamento com \tag, corrige \textcolor e 
-    previne ParseErrors no KaTeX do Colab.
+    Versão ultra-robusta para evitar ParseError e garantir alinhamento.
     """
-    # 1. Extração limpa do conteúdo entre os $$
-    # O regex busca tudo que está entre os primeiros e últimos $$ da string
-    match = re.search(r'\$\$(.*?)\$\$', eq_body, re.DOTALL)
-    if match:
-        inner = match.group(1).strip()
-    else:
-        inner = eq_body.replace('$', '').strip()
+    # 1. Extrai apenas o conteúdo interno dos $$...$$
+    # O regex busca o que está entre os primeiros e os últimos cifrões.
+    content_match = re.search(r'\$\$(.*?)\$\$', eq_body, re.DOTALL)
+    inner = content_match.group(1).strip() if content_match else eq_body.strip()
 
-    # 2. Correção de \textcolor para {\color{...}{...}}
-    # Esta versão captura: \textcolor{red}{texto} -> {\color{red}{texto}}
+    # 2. Correção de \textcolor: 
+    # O Colab prefere {\color{red}{...}} em vez de \textcolor{red}{...}
+    # Esta regex captura \textcolor{cor}{texto} e transforma no formato seguro.
     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
-    
-    # 3. Segunda camada de correção para casos sem chaves na cor (ex: \textcolor red {texto})
-    inner = re.sub(r'\\textcolor\s+(\w+)\s*\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
 
-    # 4. Retorno estruturado
-    # Usamos \displaystyle para garantir que a equação não "encolha"
+    # 3. Limpeza de possíveis quebras de linha que quebram o \tag
+    inner = inner.replace('\n', ' ')
+
+    # 4. Saída Final:
+    # A âncora <a> permite que os links @eq-... funcionem.
+    # O \displaystyle garante a formatação correta.
+    # O \tag deve ser o último elemento antes do fechamento $$.
     return (
         f'<a id="{elem_id}"></a>\n'
         f'$$\n\\displaystyle {inner} \\tag{{{num_str}}}\n$$\n'
