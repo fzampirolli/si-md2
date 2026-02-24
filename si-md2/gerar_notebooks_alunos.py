@@ -697,31 +697,52 @@ def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption:
         f'{tbl_body}\n'
     )
 
+# def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
+#     """
+#     Equacao LaTeX -> HTML com numero (X.Y) alinhado a direita.
+#     Usa display math do MathJax que o Jupyter/Colab ja carrega.
+#     """
+#     # Remove os $$ externos para reinserir dentro do HTML estruturado
+#     inner = eq_body.strip()
+#     if inner.startswith("$$") and inner.endswith("$$"):
+#         inner = inner[2:-2].strip()
+
+#     # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
+#     # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
+#     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
+#     # --------------------------------------------------------------
+
+#     return (
+#         f'<div id="{elem_id}" style="display:flex; align-items:center; '
+#         f'justify-content:space-between; margin:1em 0;">\n'
+#         f'  <div style="flex:1; text-align:center;">\n\n'
+#         f'$$\n{inner}\n$$\n\n'
+#         f'  </div>\n'
+#         f'  <div style="min-width:4em; text-align:right; color:#555;">({num_str})</div>\n'
+#         f'</div>'
+#     )
+
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
     Equacao LaTeX -> HTML com numero (X.Y) alinhado a direita.
-    Usa display math do MathJax que o Jupyter/Colab ja carrega.
+    Corrigido para evitar quebras de linha no Colab.
     """
     # Remove os $$ externos para reinserir dentro do HTML estruturado
     inner = eq_body.strip()
     if inner.startswith("$$") and inner.endswith("$$"):
         inner = inner[2:-2].strip()
 
-    # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
-    # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
+    # Mantém a lógica de conversão de cores que já existe no seu script
     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
-    # --------------------------------------------------------------
 
+    # NOVO RETORNO: Usa position relative/absolute para garantir mesma linha
     return (
-        f'<div id="{elem_id}" style="display:flex; align-items:center; '
-        f'justify-content:space-between; margin:1em 0;">\n'
-        f'  <div style="flex:1; text-align:center;">\n\n'
+        f'<div style="position: relative; text-align: center; margin: 1em 0;">\n'
+        f'  <span id="{elem_id}" style="position: absolute; right: 0; top: 50%; '
+        f'transform: translateY(-50%); color: #555;">({num_str})</span>\n\n'
         f'$$\n{inner}\n$$\n\n'
-        f'  </div>\n'
-        f'  <div style="min-width:4em; text-align:right; color:#555;">({num_str})</div>\n'
         f'</div>'
     )
-
 
 # ---------------------------------------------------------------------------
 # 8. Processa uma celula: substitui definicoes e referencias
