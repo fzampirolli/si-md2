@@ -9,9 +9,9 @@ Versão *online* do Livro (em construção): https://fzampirolli.github.io/si-md
 ```text
 .
 ├── si-md1/                          # ARQUIVOS ORIGINAIS (Legado)
-│   ├── Sist_Intel_final_f.pdf       # Livro completo original
-│   ├── Sist_Intel_final_f.docx      # Versão editável original
-│   ├── Sist_Intel_final_f.md        # Conversão para Markdown
+│   ├── Sist_Intel_j.pdf             # Livro completo original
+│   ├── Sist_Intel_j.docx            # Versão editável original
+│   ├── Sist_Intel_j.md              # Conversão para Markdown
 │   ├── cap01.pdf ... cap06.pdf      # PDFs das fontes originais
 │   └── media/                       # Imagens extraídas do material original
 │

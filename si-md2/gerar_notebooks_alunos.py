@@ -798,58 +798,83 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
 
     text = IMG_DEF_RE.sub(replace_img, text)
 
-    # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
-    # def replace_crossref(m):
-    #     elem_id = m.group(1)
-    #     info = elem_map.get(elem_id)
-                
-    #     # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
-    #     # Verifique se esta lógica de fallback também está como você deseja:
-    #     label = info["label"] if info else \
-    #         f"{elem_id.split('-')[0].replace('fig', 'Figura').replace('tbl', 'Tabela').capitalize()} {_chapter_from_id(elem_id) or elem_id}"
-    #     return f"[{label}](#{elem_id})"
     
-    # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
+    # # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
     # def replace_crossref(m):
     #     elem_id = m.group(1)
     #     info = elem_map.get(elem_id)
         
     #     if info:
-    #         # Se for tabela ou figura, usa apenas o prefixo (Figura/Tabela) + numero
-    #         # ignorando a legenda (caption) que possa estar no 'label'
-    #         kind_prefix = "Tabela" if info["kind"] == "tbl" else \
-    #                       "Figura" if info["kind"] == "fig" else \
-    #                       "Equação"
-    #         label_curto = f"{kind_prefix} {info['num_str']}"
+    #         # Reconstrói o nome amigável: Figura/Tabela + Número
+    #         # Ignora o 'label' longo que contém a legenda
+    #         prefix = "Tabela" if info["kind"] == "tbl" else \
+    #                  "Figura" if info["kind"] == "fig" else "Equação"
+    #         label_curto = f"{prefix} {info['num_str']}"
     #     else:
-    #         # Fallback caso não encontre no mapa
+    #         # Fallback caso o elemento não tenha sido mapeado
     #         kind_raw = elem_id.split('-')[0]
-    #         prefix = "Tabela" if kind_raw == "tbl" else "Figura" if kind_raw == "fig" else "Equação"
+    #         prefix = "Tabela" if kind_raw == "tbl" else \
+    #                  "Figura" if kind_raw == "fig" else "Equação"
     #         label_curto = f"{prefix} {_chapter_from_id(elem_id) or elem_id}"
             
     #     return f"[{label_curto}](#{elem_id})"
     
+    # text = re.sub(r'@((fig|tbl|eq)-[\w-]+)', replace_crossref, text)
+
+
     # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
-    def replace_crossref(m):
-        elem_id = m.group(1)
+    # Suporta tres sintaxes:
+    #   @fig-3-X            -> [Figura 3.1](#fig-3-X)
+    #   [-@fig-3-X]         -> [3.1](#fig-3-X)          (apenas numero)
+    #   [Texto @fig-3-X]    -> [Texto 3.1](#fig-3-X)    (prefixo customizado)
+
+    def _num_str_for(elem_id: str) -> str:
+        """Retorna o num_str do elemento ou fallback."""
         info = elem_map.get(elem_id)
-        
         if info:
-            # Reconstrói o nome amigável: Figura/Tabela + Número
-            # Ignora o 'label' longo que contém a legenda
-            prefix = "Tabela" if info["kind"] == "tbl" else \
-                     "Figura" if info["kind"] == "fig" else "Equação"
-            label_curto = f"{prefix} {info['num_str']}"
+            return info["num_str"]
+        return _chapter_from_id(elem_id) or elem_id
+
+    def _prefix_for(elem_id: str) -> str:
+        """Retorna o prefixo textual (Figura/Tabela/Equação)."""
+        info = elem_map.get(elem_id)
+        kind_raw = info["kind"] if info else elem_id.split('-')[0]
+        return "Tabela" if kind_raw == "tbl" else \
+            "Figura" if kind_raw == "fig" else "Equação"
+
+    def replace_crossref_bracket(m):
+        """[-@id] -> numero so;  [Texto @id] -> Texto numero."""
+        inner   = m.group(1)           # conteudo dentro de [...]
+        # Extrai o id (fig|tbl|eq)-...
+        id_m = re.search(r'@((fig|tbl|eq)-[\w-]+)', inner)
+        if not id_m:
+            return m.group(0)          # nao e cross-ref, nao mexe
+        elem_id = id_m.group(1)
+        num     = _num_str_for(elem_id)
+        # Parte antes do @  (ex: "Graf. " ou "-" ou vazio)
+        prefix_text = inner[:id_m.start()].strip().lstrip('-').strip()
+        if prefix_text:
+            label_curto = f"{prefix_text} {num}"
         else:
-            # Fallback caso o elemento não tenha sido mapeado
-            kind_raw = elem_id.split('-')[0]
-            prefix = "Tabela" if kind_raw == "tbl" else \
-                     "Figura" if kind_raw == "fig" else "Equação"
-            label_curto = f"{prefix} {_chapter_from_id(elem_id) or elem_id}"
-            
+            label_curto = num           # [-@id] -> apenas o numero
         return f"[{label_curto}](#{elem_id})"
-    
-    text = re.sub(r'@((fig|tbl|eq)-[\w-]+)', replace_crossref, text)
+
+    def replace_crossref_bare(m):
+        """@id isolado (fora de []) -> [Figura/Tabela/Equação X.Y](#id)."""
+        elem_id = m.group(1)
+        if CROSSREF_RE.match(elem_id):
+            # confirma que é cross-ref (fig|tbl|eq|sec...)
+            num = _num_str_for(elem_id)
+            prefix = _prefix_for(elem_id)
+            return f"[{prefix} {num}](#{elem_id})"
+        return m.group(0)
+
+    # Primeiro: colchetes com @  [texto @id]  ou  [-@id]
+    text = re.sub(r'\[([^\]]*@(?:fig|tbl|eq)-[\w-]+[^\]]*)\]',
+                replace_crossref_bracket, text)
+    # Depois: @id isolado, nao precedido de [
+    text = re.sub(r'(?<!\[)@((fig|tbl|eq)-[\w-]+)', replace_crossref_bare, text)
+
 
     # 5. Citacoes bibliograficas
     #    [@key]  -> indireta: (AUTOR, ano)

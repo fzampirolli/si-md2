@@ -1,92 +1,115 @@
 # Projeto Sistemas Inteligentes - Guia do Autor (Fontes)
 
-Este README serve como manual de instrução para os autores que editam os notebooks em `si-md2/cap*/`. Como o projeto utiliza o **Quarto**, seguimos padrões específicos para que as referências (equações, figuras, tabelas e bibliografia) funcionem tanto no PDF quanto no HTML e IPYNB (versão do aluno).
+Este README serve como manual de instruções para os autores que editam os notebooks em `si-md2/cap*/`. Como o projeto utiliza o **[Quarto](https://quarto.org/)**, seguimos padrões específicos para que as referências (equações, figuras, tabelas e bibliografia) funcionem corretamente no PDF, no HTML e no IPYNB (versão do aluno).
 
-Versão *online* do Livro (em construção): https://fzampirolli.github.io/si-md2
+Versão *online* do livro (em construção):  
+https://fzampirolli.github.io/si-md2
 
 ---
 
-## 🖋️ Padrões de Escrita nos Notebooks (.ipynb)
+## 📐 Padronização de Referências no Quarto
 
-Para que o Quarto consiga numerar e referenciar seus elementos automaticamente tanto no PDF quanto no HTML, siga os exemplos abaixo exatamente como mostrados.
+**Regra fundamental:** Todo label **deve** conter o número do capítulo. Isso garante referências únicas e organizadas em documentos longos.
 
-### 1. Figuras (`@fig-`)
+---
 
-Sempre adicione um identificador que comece com `{#fig-CAP-NUM}` ao final da legenda.
+### 🖋️ Prefixos Obrigatórios
+Para numeração automática em PDF/HTML, use:
+- `fig-` → Figuras
+- `tbl-` → Tabelas  
+- `eq-` → Equações
 
-* **Como escrever:**
+**Formato do label:** `{#prefixo-capítulo-identificador}`  
+*Exemplos:* `{#fig-3-grafico}`, `{#tbl-2-resultados}`, `{#eq-1-calor}`
+
+---
+
+### 📊 Figuras e Tabelas (como imagem)
+Sintaxe única para qualquer imagem. O label **sempre** inclui o capítulo:
+
 ```markdown
-![Legenda da imagem aqui](images/fig1_1.png){#fig-1-1}
+![Legenda descritiva](caminho/arquivo.png){#fig-3-nome-significativo}
 ```
 
-
-* **Como citar no texto:**
-"Como podemos observar na @fig-1-1, o fluxo de dados..."
-
-### 2. Tabelas (`@tbl-`) - Opção 1: Tabela como Imagem
-
-Se a tabela for uma imagem capturada, use o prefixo `{#tbl-}` para que o Quarto a trate como tabela na lista de tabelas (LOT).
-
-* **Como escrever:**
+**Exemplo prático:**
 ```markdown
-![Legenda da tabela aqui](images/tbl1_1.png){#tbl-1-1}
+![Gráfico de dispersão dos dados coletados](imagens/dispersao.png){#fig-3-dispersao}
 ```
 
+---
 
-* **Como citar no texto:**
-"Conforme os dados apresentados na @tbl-1-1..."
+### 📋 Tabelas em Markdown
+Legenda e label **após** a tabela, iniciados com `:`:
 
-### 3. Tabelas (`@tbl-`) - Opção 2: Tabela em Markdown
-
-Tabelas escritas em Markdown precisam de uma legenda iniciada por dois pontos `:` e o identificador ao final.
-
-* **Como escrever:**
 ```markdown
 | Algoritmo | Precisão |
 |-----------|----------|
 | J48       | 85%      |
-| Naive     | 82%      |
+| RandomForest | 92%  |
 
-: Resultados dos testes {#tbl-1-resultados}
+: Comparação de algoritmos {#tbl-3-algoritmos}
 ```
-
-
-* **Como citar no texto:**
-"Os dados apresentados na @tbl-1-resultados indicam..."
-
-### 4. Equações Matemáticas (`@eq-`)
-
-Para equações numeradas, utilize blocos de cifrão duplo e adicione `{#eq-CAP-NUM}` logo após o fechamento.
-
-* **Como escrever:**
-```markdown
-$$
-E = mc^2
-$$ {#eq-1-energia}
-```
-
-
-* **Como citar no texto:**
-"A famosa @eq-1-energia define a relação de massa..."
 
 ---
 
-### ⚠️ Regra de Ouro: Identificadores (ID)
+### ➗ Equações
+Bloco `$$` com label **imediatamente após**:
 
-Nos quatro casos (`fig`, `tbl`, `eq`), o padrão do identificador deve seguir obrigatoriamente a lógica:
-**`{tipo-Capitulo-Numero/Texto}`**
+```markdown
+$$ \hat{y} = \beta_0 + \beta_1x $$ {#eq-3-regressao}
+```
 
-* **Exemplos para o Capítulo 1:** `{#fig-1-1}`, `{#tbl-1-2}`, `{#eq-1-energia}`.
-* **Exemplos para o Capítulo 2:** `{#fig-2-1}`, `{#tbl-2-2}`, `{#eq-2-1}`.
+---
 
-Isso garante que, ao compilar o livro completo, a numeração seja reiniciada e organizada por capítulos (ex: Figura 1.1, Figura 2.1).
+### 🔗 Como Citar (Referências Cruzadas)
 
-### 5. Citações Bibliográficas (`@`)
+O padrão **sempre** referencia o label completo, mas a formatação final varia conforme a sintaxe:
 
-As citações dependem das chaves existentes no seu arquivo `references.bib`.
+| Objetivo | Sintaxe | Resultado Esperado |
+|----------|---------|-------------------|
+| **Referência completa** | `@fig-3-dispersao` | "Figura 3.1" (numeração automática) |
+| **Apenas o número** | `[-@fig-3-dispersao]` | "3.1" |
+| **Rótulo customizado** | `[Gráfico @fig-3-dispersao]` | "Gráfico 3.1" |
+| **Múltiplas referências** | `[@fig-3-1; @fig-3-2]` | "(Figura 3.1; Figura 3.2)" |
 
-* **Citação direta (entre parênteses):** "A inteligência artificial evoluiu muito [@russell2004]."
-* **Citação no fluxo do texto:** "Segundo @russell2004, os agentes inteligentes..."
+**Observação:** O número após o capítulo (ex: "1" em `fig-3-1`) é gerado automaticamente pelo Quarto. Você só define o identificador único dentro do capítulo.
+
+---
+
+### 📚 Citações Bibliográficas
+Baseadas no arquivo `.bib`:
+
+| Tipo | Sintaxe | Resultado |
+|------|---------|-----------|
+| Indireta (parênteses) | `[@russell2004]` | (Russell, 2004) |
+| Direta (no texto) | `@russell2004` | Russell (2004) |
+
+---
+
+### ⚠️ Regras de Ouro para Labels
+
+| Requisito | Correto | Incorreto |
+|-----------|---------|-----------|
+| **Incluir capítulo** | `#fig-3-dispersao` | `#fig-dispersao` |
+| **Minúsculas** | `#tbl-2-resultados` | `#tbl-2-Resultados` |
+| **Sem acentos** | `#eq-3-calor` | `#eq-3-calor` ✅ *(já está correto)* |
+| **Hífens como separadores** | `#fig-3-analise-final` | `#fig_3_analise_final` |
+| **Espaçamento** | Uma linha em branco antes/depois | Bloco colado ao texto |
+
+---
+
+### 🎯 Resumo Visual
+
+```markdown
+# Inserção (sempre com capítulo)
+![Legenda](img.png){#fig-3-dispersao}
+
+# Citação (variações)
+@fig-3-dispersao          → Figura 3.1
+[-@fig-3-dispersao]       → 3.1
+[Graf. @fig-3-dispersao]  → Graf. 3.1
+```
+
 
 ---
 

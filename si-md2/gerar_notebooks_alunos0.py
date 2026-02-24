@@ -198,14 +198,24 @@ IMG_DEF_RE = re.compile(
 #   Sintaxe antiga:  | col |...\n{#tbl-X-Y}
 #   Sintaxe Quarto:  | col |...\n\n: Legenda {#tbl-X-Y}
 # Grupos: (1) bloco tabela  (2) legenda Quarto  (3) id Quarto  (4) id antiga
+# TBL_MD_RE = re.compile(
+#     r'((?:[ \t]*\|[^\n]+\n)+)'           # bloco de linhas | col |
+#     r'(?:'
+#         r'\n?[ \t]*: ([^\n{]*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
+#         r'|'
+#         r'[ \t]*\{#(tbl-[\w-]+)[^}]*\}'  # antiga: {#tbl-X} direto
+#     r')',
+#     re.MULTILINE
+# )
+# Tabela Markdown: busca o ID {#tbl- explicitamente para não confundir com LaTeX \frac{}{}
 TBL_MD_RE = re.compile(
     r'((?:[ \t]*\|[^\n]+\n)+)'           # bloco de linhas | col |
     r'(?:'
-        r'\n?[ \t]*: ([^\n{]*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
+        r'\n?[ \t]*: (.*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
         r'|'
         r'[ \t]*\{#(tbl-[\w-]+)[^}]*\}'  # antiga: {#tbl-X} direto
     r')',
-    re.MULTILINE
+    re.MULTILINE | re.DOTALL
 )
 
 # Equacao: $$ ... $$ (possivelmente multiline) seguida de {#eq-X-Y}
@@ -274,7 +284,7 @@ def md_inline_to_html(text: str) -> str:
     return text
 
 
-def convert_callouts(text: str) -> str:
+def convert_callouts_old(text: str) -> str:
     """
     Converte blocos ::: {.callout-*} ... ::: e ::: {.classe} ... :::
     para Markdown/HTML compativel com Jupyter/Colab.
@@ -295,6 +305,8 @@ def convert_callouts(text: str) -> str:
         if m:
             fence_len = len(m.group(1))   # numero de : (3, 4, ...)
             attrs     = m.group(2).strip()
+            # Verifica se é um bloco de figura agrupada: {#fig-X layout-ncol=2}
+            fig_group_m = re.search(r'#(fig-[\w-]+)', attrs)
 
             # Determina tipo de callout e titulo customizado (### Titulo)
             callout_type = None
@@ -358,6 +370,121 @@ def convert_callouts(text: str) -> str:
 
     return '\n'.join(out)
 
+def convert_callouts(text: str, elem_map: dict) -> str:
+    """
+    Converte blocos ::: {.callout-*} ... ::: e blocos de figuras/tabelas agrupadas
+    ::: {#fig-ID layout-ncol=2} ... ::: para HTML/Markdown compatível com Colab.
+    """
+    lines = text.split('\n')
+    out   = []
+    i     = 0
+
+    while i < len(lines):
+        line = lines[i]
+        # Detecta abertura de ::: {atributos}
+        m = re.match(r'^(:::+)\s*\{([^}]*)\}\s*$', line)
+
+        if m:
+            fence_len = len(m.group(1))
+            attrs     = m.group(2).strip()
+
+            # 1. Verifica se é um Callout conhecido
+            callout_type = None
+            for ct in CALLOUT_STYLE:
+                if ct in attrs:
+                    callout_type = ct
+                    break
+
+            # 2. Verifica se é um grupo de figuras/tabelas com ID e Layout
+            # Ex: ::: {#fig-2-2 layout-ncol=2}
+            group_id_m = re.search(r'#((?:fig|tbl)-[\w-]+)', attrs)
+            has_layout = "layout-ncol" in attrs
+
+            # Coleta o conteúdo interno do bloco ::: até o fechamento
+            i += 1
+            depth = 1
+            inner = []
+            title_override = None
+
+            while i < len(lines) and depth > 0:
+                l = lines[i]
+                if re.match(r'^:{' + str(fence_len) + r',}\s*$', l):
+                    depth -= 1
+                    if depth == 0:
+                        i += 1
+                        break
+                elif re.match(r'^:::+\s*\{', l):
+                    depth += 1
+                    inner.append(l)
+                else:
+                    # Captura heading como título de callout se existir
+                    hm = re.match(r'^#{1,4}\s+(.+)$', l)
+                    if hm and title_override is None and callout_type:
+                        title_override = hm.group(1).strip()
+                    else:
+                        inner.append(l)
+                i += 1
+
+            inner_text = '\n'.join(inner).strip()
+
+            # Lógica de Renderização:
+            if callout_type:
+                # Renderiza como Blockquote (Callout)
+                emoji, default_title = CALLOUT_STYLE[callout_type]
+                title = title_override or default_title
+                inner_html = md_inline_to_html(inner_text)
+                inner_html = inner_html.replace('\n', '<br />\n')
+                block = (
+                    f'<blockquote style="border-left: 4px solid #aaa; '
+                    f'padding: 0.5em 1em; margin: 1em 0; background: #f9f9f9;">\n'
+                    f'<strong>{emoji} {title}</strong><br />\n'
+                    f'{inner_html}\n'
+                    f'</blockquote>'
+                )
+                out.append(block)
+
+            elif group_id_m and has_layout:
+                
+                # Dentro da lógica do 'elif group_id_m and has_layout:'
+                elem_id = group_id_m.group(1)
+                info = elem_map.get(elem_id)
+                
+                # Extrai as imagens internas
+                img_find = re.findall(r'!\[.*?\]\((.*?)\)\{.*?width=([\d.]+)%?\}', inner_text)
+                
+                # A legenda costuma ser a última linha de texto puro no bloco
+                caption_parts = [line for line in inner_text.split('\n') if not line.strip().startswith('!')]
+                main_caption = caption_parts[-1].strip() if caption_parts else ""
+
+                if img_find and info:
+                    cols_html = ""
+                    for path, width in img_find:
+                        cols_html += (f'<td style="text-align:center; border:none;">'
+                                    f'<img src="{path}" style="width:100%;" /></td>')
+                    
+                    block = (
+                        f'<figure id="{elem_id}" style="text-align:center; margin:1em 0;">\n'
+                        f'  <table style="width:100%; border:none;"><tr style="border:none;">{cols_html}</tr></table>\n'
+                        f'  <figcaption><strong>{info["label_prefix"]}</strong> {main_caption}</figcaption>\n'
+                        f'</figure>'
+                    )
+                    out.append(block)
+                else:
+                    out.append(inner_text)
+            
+            elif ".text-center" in attrs:
+                # NOVO: Suporte para centralização
+                block = f'<div style="text-align:center;">\n\n{inner_text}\n\n</div>'
+                out.append(block)
+            else:
+                # Div genérico: apenas mantém o conteúdo
+                if inner_text:
+                    out.append(inner_text)
+        else:
+            out.append(line)
+            i += 1
+
+    return '\n'.join(out)
 
 # ---------------------------------------------------------------------------
 # 6. Extrai label -> numero de todos os elementos do notebook
@@ -438,22 +565,39 @@ def build_element_map(notebook: dict) -> dict:
                 }
 
         # Tabelas Markdown: | col | ... {#tbl-*}  (sintaxe antiga ou Quarto)
+        # for m in TBL_MD_RE.finditer(source):
+        #     tbl_body    = m.group(1)
+        #     tbl_caption = (m.group(2) or "").strip()  # legenda do : ... (pode ser vazio)
+        #     elem_id     = m.group(3) or m.group(4)    # id Quarto ou id antigo
+            
+        #     if elem_id not in elem_map:
+        #         num_str = make_num_str("tbl", elem_id)
+        #         # Legenda: usa o : caption se existir, senão 'Tabela X.Y'
+        #         label = f"Tabela {num_str}: {tbl_caption}" if tbl_caption \
+        #             else f"Tabela {num_str}"
+        #         elem_map[elem_id] = {
+        #             "kind":    "tbl",
+        #             "num_str": num_str,
+        #             "label":   label,
+        #             "alt":     None,
+        #             "path":    None,
+        #             "content": tbl_body.rstrip(),
+        #         }
+
+        # Tabelas Markdown: | col | ... {#tbl-*}
         for m in TBL_MD_RE.finditer(source):
             tbl_body    = m.group(1)
-            tbl_caption = (m.group(2) or "").strip()  # legenda do : ... (pode ser vazio)
-            elem_id     = m.group(3) or m.group(4)    # id Quarto ou id antigo
+            tbl_caption = (m.group(2) or "").strip() 
+            elem_id     = m.group(3) or m.group(4)
             
             if elem_id not in elem_map:
                 num_str = make_num_str("tbl", elem_id)
-                # Legenda: usa o : caption se existir, senão 'Tabela X.Y'
-                label = f"Tabela {num_str}: {tbl_caption}" if tbl_caption \
-                    else f"Tabela {num_str}"
+                # Separamos o prefixo da legenda (caption)
                 elem_map[elem_id] = {
                     "kind":    "tbl",
                     "num_str": num_str,
-                    "label":   label,
-                    "alt":     None,
-                    "path":    None,
+                    "label_prefix": f"Tabela {num_str}:",
+                    "caption": tbl_caption, 
                     "content": tbl_body.rstrip(),
                 }
 
@@ -470,6 +614,21 @@ def build_element_map(notebook: dict) -> dict:
                     "alt":     None,
                     "path":    None,
                     "content": eq_body,
+                }
+
+        # Detecção de blocos de figuras agrupadas ::: {#fig-ID ...}
+        for m in re.finditer(r'^:::+\s*\{#((fig|tbl)-[\w-]+)[^}]*\}', source, re.MULTILINE):
+            elem_id = m.group(1)
+            kind = m.group(2)
+            if elem_id not in elem_map:
+                num_str = make_num_str(kind, elem_id)
+                prefix = "Figura" if kind == "fig" else "Tabela"
+                elem_map[elem_id] = {
+                    "kind": kind,
+                    "num_str": num_str,
+                    "label_prefix": f"{prefix} {num_str}:",
+                    "caption": "", # Será preenchido na renderização
+                    "from_group": True
                 }
 
     return elem_map
@@ -491,17 +650,52 @@ def render_img_element(alt: str, path: str, elem_id: str, label: str, kind: str 
         body = img + caption
     return f'<figure id="{elem_id}">\n' + body + '</figure>'
 
+def render_figure_group(content: str, elem_id: str, label_prefix: str, caption: str) -> str:
+    """
+    Renderiza um grupo de imagens em colunas (layout-ncol=2) com uma única legenda.
+    """
+    # Tenta extrair as imagens do conteúdo original para colocá-las em uma tabela HTML
+    img_find = re.findall(r'!\[.*?\]\((.*?)\)\{.*?width=(.*?)\%?\}', content)
+    
+    if img_find:
+        cols_html = ""
+        for path, width in img_find:
+            cols_html += f'<td style="text-align:center;"><img src="{path}" style="width:{width}%" /></td>'
+        
+        table_html = f'<table style="width:100%; border:none;"><tr style="border:none;">{cols_html}</tr></table>'
+        
+        return (
+            f'<figure id="{elem_id}" style="text-align:center;">\n'
+            f'  {table_html}\n'
+            f'  <figcaption style="margin-top:10px;"><strong>{label_prefix}</strong> {caption}</figcaption>\n'
+            f'</figure>'
+        )
+    return content # Caso não consiga processar, retorna o original
 
-def render_tbl_markdown(tbl_body: str, elem_id: str, label: str) -> str:
+
+# def render_tbl_markdown(tbl_body: str, elem_id: str, label: str) -> str:
+#     """
+#     Tabela Markdown -> legenda acima, ancora no id do div, tabela abaixo.
+#     A tabela Markdown em si e mantida (o Jupyter renderiza normalmente).
+#     """
+#     return (
+#         f'<p id="{elem_id}"><strong>{label}</strong></p>\n\n'
+#         f'{tbl_body}'
+#     )
+def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption: str) -> str:
     """
-    Tabela Markdown -> legenda acima, ancora no id do div, tabela abaixo.
-    A tabela Markdown em si e mantida (o Jupyter renderiza normalmente).
+    Renderiza a tabela no Colab com prefixo em negrito e 
+    permite LaTeX/Links na legenda.
     """
+    # Monta a legenda: apenas o prefixo em negrito
+    full_caption = f"**{label_prefix}** {caption}" if caption else f"**{label_prefix}**"
+    
+    # <a> invisível para o link de referência, legenda em Markdown e a tabela
     return (
-        f'<p id="{elem_id}"><strong>{label}</strong></p>\n\n'
-        f'{tbl_body}'
+        f'<a id="{elem_id}"></a>\n\n'
+        f'{full_caption}\n\n'
+        f'{tbl_body}\n'
     )
-
 
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
@@ -512,6 +706,11 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     inner = eq_body.strip()
     if inner.startswith("$$") and inner.endswith("$$"):
         inner = inner[2:-2].strip()
+
+    # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
+    # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
+    inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
+    # --------------------------------------------------------------
 
     return (
         f'<div id="{elem_id}" style="display:flex; align-items:center; '
@@ -542,10 +741,16 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     text = source_to_str(source)
 
     # 0. Converte callouts e divs Quarto (::: {.callout-*} ... :::)
-    text = convert_callouts(text)
+    #text = convert_callouts(text)
+    text = convert_callouts(text, elem_map)
 
     # 0b. Remove atributos Quarto de titulos: ### Titulo {.unnumbered} -> ### Titulo
-    text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
+    # text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
+
+
+    # 0b. Remove APENAS atributos Quarto ({.class} ou {#id}), ignorando comandos LaTeX como \mathbf{...}
+    text = re.sub(r'(#{1,6}[^\n]+?)\s*\{([.#][^}]*)\}', r'\1', text)
+
 
     # 1. Equacoes
     def replace_eq(m):
@@ -561,13 +766,22 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     text = EQ_DEF_RE.sub(replace_eq, text)
 
     # 2. Tabelas Markdown (sintaxe antiga ou Quarto)
+    # def replace_tbl_md(m):
+    #     tbl_body = m.group(1).rstrip()
+    #     elem_id  = m.group(3) or m.group(4)
+    #     info = elem_map.get(elem_id)
+    #     label = info["label"] if info else f"Tabela {_chapter_from_id(elem_id) or elem_id}"
+    #     return render_tbl_markdown(tbl_body, elem_id, label)
+    # 2. Tabelas Markdown
     def replace_tbl_md(m):
         tbl_body = m.group(1).rstrip()
         elem_id  = m.group(3) or m.group(4)
         info = elem_map.get(elem_id)
-        label = info["label"] if info else f"Tabela {_chapter_from_id(elem_id) or elem_id}"
-        return render_tbl_markdown(tbl_body, elem_id, label)
-
+        if info:
+            return render_tbl_markdown(tbl_body, elem_id, info["label_prefix"], info["caption"])
+        else:
+            return render_tbl_markdown(tbl_body, elem_id, f"Tabela {_chapter_from_id(elem_id)}:", "")
+        
     text = TBL_MD_RE.sub(replace_tbl_md, text)
 
     # 3. Imagens (fig e tbl-imagem)
@@ -585,16 +799,56 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     text = IMG_DEF_RE.sub(replace_img, text)
 
     # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
+    # def replace_crossref(m):
+    #     elem_id = m.group(1)
+    #     info = elem_map.get(elem_id)
+                
+    #     # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
+    #     # Verifique se esta lógica de fallback também está como você deseja:
+    #     label = info["label"] if info else \
+    #         f"{elem_id.split('-')[0].replace('fig', 'Figura').replace('tbl', 'Tabela').capitalize()} {_chapter_from_id(elem_id) or elem_id}"
+    #     return f"[{label}](#{elem_id})"
+    
+    # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
+    # def replace_crossref(m):
+    #     elem_id = m.group(1)
+    #     info = elem_map.get(elem_id)
+        
+    #     if info:
+    #         # Se for tabela ou figura, usa apenas o prefixo (Figura/Tabela) + numero
+    #         # ignorando a legenda (caption) que possa estar no 'label'
+    #         kind_prefix = "Tabela" if info["kind"] == "tbl" else \
+    #                       "Figura" if info["kind"] == "fig" else \
+    #                       "Equação"
+    #         label_curto = f"{kind_prefix} {info['num_str']}"
+    #     else:
+    #         # Fallback caso não encontre no mapa
+    #         kind_raw = elem_id.split('-')[0]
+    #         prefix = "Tabela" if kind_raw == "tbl" else "Figura" if kind_raw == "fig" else "Equação"
+    #         label_curto = f"{prefix} {_chapter_from_id(elem_id) or elem_id}"
+            
+    #     return f"[{label_curto}](#{elem_id})"
+    
+    # 4. Referencias cruzadas @fig-*, @tbl-*, @eq-*
     def replace_crossref(m):
         elem_id = m.group(1)
         info = elem_map.get(elem_id)
-                
-        # O script tenta pegar do info["label"], se não achar, ele usa capitalize()
-        # Verifique se esta lógica de fallback também está como você deseja:
-        label = info["label"] if info else \
-            f"{elem_id.split('-')[0].replace('fig', 'Figura').replace('tbl', 'Tabela').capitalize()} {_chapter_from_id(elem_id) or elem_id}"
-        return f"[{label}](#{elem_id})"
-
+        
+        if info:
+            # Reconstrói o nome amigável: Figura/Tabela + Número
+            # Ignora o 'label' longo que contém a legenda
+            prefix = "Tabela" if info["kind"] == "tbl" else \
+                     "Figura" if info["kind"] == "fig" else "Equação"
+            label_curto = f"{prefix} {info['num_str']}"
+        else:
+            # Fallback caso o elemento não tenha sido mapeado
+            kind_raw = elem_id.split('-')[0]
+            prefix = "Tabela" if kind_raw == "tbl" else \
+                     "Figura" if kind_raw == "fig" else "Equação"
+            label_curto = f"{prefix} {_chapter_from_id(elem_id) or elem_id}"
+            
+        return f"[{label_curto}](#{elem_id})"
+    
     text = re.sub(r'@((fig|tbl|eq)-[\w-]+)', replace_crossref, text)
 
     # 5. Citacoes bibliograficas
