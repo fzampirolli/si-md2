@@ -1369,7 +1369,7 @@ format:
   epub:
     toc: true
     number-sections: true
-    css: styles.css 
+    #css: styles.css 
 """
 
 def run_batch_epub(bib_path: str, out_dir: str):
