@@ -110,6 +110,29 @@ Baseadas no arquivo `.bib`:
 [Graf. @fig-3-dispersao]  → Graf. 3.1
 ```
 
+---
+
+### 🎨 Estilização de Texto e Cores
+
+Para destacar termos técnicos ou estruturas lógicas mantendo a compatibilidade entre PDF, HTML e o Google Colab (via MathJax), utilize preferencialmente a sintaxe LaTeX dentro de delimitadores matemáticos:
+
+**Destaque Inline (Ex: Regras de Associação em azul):**
+
+```markdown
+$\textcolor{blue}{\textbf{Regra de Associação}}$
+```
+
+**Estruturas Lógicas em Bloco:**
+
+```markdown
+$$
+\textcolor{red}{\textbf{If }} 
+(\text{Conjunto } \mathbf{X} \text{ de Itens})
+\;\textcolor{red}{\textbf{ then }}\;
+(\text{Conjunto } \mathbf{Y} \text{ de Itens}),
+\quad \text{sendo } \mathbf{X} \cap \mathbf{Y} = \varnothing
+$$
+```
 
 ---
 
