@@ -747,6 +747,29 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
 # 8. Processa uma celula: substitui definicoes e referencias
 # ---------------------------------------------------------------------------
 
+# 0c. Converte \textcolor{cor}{texto} em HTML fora de blocos $$
+def fix_textcolor_inline(text: str) -> str:
+    # Primeiro protege blocos $$ para não mexer no LaTeX matemático
+    placeholders = {}
+    def hide_block(m):
+        key = f"\x00MATH{len(placeholders)}\x00"
+        placeholders[key] = m.group(0)
+        return key
+    text = re.sub(r'\$\$[\s\S]*?\$\$', hide_block, text)
+    text = re.sub(r'\$[^\$\n]+\$', hide_block, text)   # inline $ também
+
+    # Aplica conversão apenas fora dos blocos matemáticos
+    text = re.sub(
+        r'\\textcolor\{([^}]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}',
+        r'<span style="color:\1">\2</span>',
+        text
+        )
+
+    # Restaura os blocos protegidos
+    for key, val in placeholders.items():
+        text = text.replace(key, val)
+    return text
+
 def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     """
     Aplica em ordem:
@@ -767,6 +790,8 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     # 0b. Remove atributos Quarto de titulos: ### Titulo {.unnumbered} -> ### Titulo
     # text = re.sub(r'(#{1,6}[^\n{]+?)\s*\{[^}]*\}', r'\1', text)
 
+    # 0c. textcolor inline (fora de $$)
+    text = fix_textcolor_inline(text)
 
     # 0b. Remove APENAS atributos Quarto ({.class} ou {#id}), ignorando comandos LaTeX como \mathbf{...}
     text = re.sub(r'(#{1,6}[^\n]+?)\s*\{([.#][^}]*)\}', r'\1', text)
