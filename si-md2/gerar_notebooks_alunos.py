@@ -727,13 +727,15 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     Equacao LaTeX -> Renderiza com numero (X.Y) alinhado a direita usando \tag.
     Esta abordagem e a mais estável para Google Colab e Jupyter.
     """
-    # Remove os $$ externos para limpar o conteúdo
+    # Remove os $$ externos para reinserir dentro do HTML estruturado
     inner = eq_body.strip()
     if inner.startswith("$$") and inner.endswith("$$"):
         inner = inner[2:-2].strip()
 
-    # Mantém a sua lógica de conversão de cores
+    # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
+    # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
+    # --------------------------------------------------------------
 
     # Usa \tag para a numeração e \label para permitir links internos
     # O <a> invisível serve como âncora para referências cruzadas @eq-*
