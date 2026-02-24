@@ -724,24 +724,22 @@ def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption:
 
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
-    Equacao LaTeX -> HTML com numero (X.Y) alinhado a direita.
-    Corrigido para evitar quebras de linha no Colab.
+    Equacao LaTeX -> Renderiza com numero (X.Y) alinhado a direita usando \tag.
+    Esta abordagem e a mais estável para Google Colab e Jupyter.
     """
-    # Remove os $$ externos para reinserir dentro do HTML estruturado
+    # Remove os $$ externos para limpar o conteúdo
     inner = eq_body.strip()
     if inner.startswith("$$") and inner.endswith("$$"):
         inner = inner[2:-2].strip()
 
-    # Mantém a lógica de conversão de cores que já existe no seu script
+    # Mantém a sua lógica de conversão de cores
     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
 
-    # NOVO RETORNO: Usa position relative/absolute para garantir mesma linha
+    # Usa \tag para a numeração e \label para permitir links internos
+    # O <a> invisível serve como âncora para referências cruzadas @eq-*
     return (
-        f'<div style="position: relative; text-align: center; margin: 1em 0;">\n'
-        f'  <span id="{elem_id}" style="position: absolute; right: 0; top: 50%; '
-        f'transform: translateY(-50%); color: #555;">({num_str})</span>\n\n'
-        f'$$\n{inner}\n$$\n\n'
-        f'</div>'
+        f'<a id="{elem_id}"></a>\n'
+        f'$$\n{inner} \\tag{{{num_str}}}\n$$\n'
     )
 
 # ---------------------------------------------------------------------------
