@@ -697,56 +697,56 @@ def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption:
         f'{tbl_body}\n'
     )
 
-# def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
-#     """
-#     Equacao LaTeX -> HTML com numero (X.Y) alinhado a direita.
-#     Usa display math do MathJax que o Jupyter/Colab ja carrega.
-#     """
-#     # Remove os $$ externos para reinserir dentro do HTML estruturado
-#     inner = eq_body.strip()
-#     if inner.startswith("$$") and inner.endswith("$$"):
-#         inner = inner[2:-2].strip()
-
-#     # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
-#     # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
-#     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
-#     # --------------------------------------------------------------
-
-#     return (
-#         f'<div id="{elem_id}" style="display:flex; align-items:center; '
-#         f'justify-content:space-between; margin:1em 0;">\n'
-#         f'  <div style="flex:1; text-align:center;">\n\n'
-#         f'$$\n{inner}\n$$\n\n'
-#         f'  </div>\n'
-#         f'  <div style="min-width:4em; text-align:right; color:#555;">({num_str})</div>\n'
-#         f'</div>'
-#     )
-
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
-    Versão ultra-robusta para evitar ParseError e garantir alinhamento.
+    Equacao LaTeX -> HTML com numero (X.Y) alinhado a direita.
+    Usa display math do MathJax que o Jupyter/Colab ja carrega.
     """
-    # 1. Extrai apenas o conteúdo interno dos $$...$$
-    # O regex busca o que está entre os primeiros e os últimos cifrões.
-    content_match = re.search(r'\$\$(.*?)\$\$', eq_body, re.DOTALL)
-    inner = content_match.group(1).strip() if content_match else eq_body.strip()
+    # Remove os $$ externos para reinserir dentro do HTML estruturado
+    inner = eq_body.strip()
+    if inner.startswith("$$") and inner.endswith("$$"):
+        inner = inner[2:-2].strip()
 
-    # 2. Correção de \textcolor: 
-    # O Colab prefere {\color{red}{...}} em vez de \textcolor{red}{...}
-    # Esta regex captura \textcolor{cor}{texto} e transforma no formato seguro.
+    # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
+    # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
+    # --------------------------------------------------------------
 
-    # 3. Limpeza de possíveis quebras de linha que quebram o \tag
-    inner = inner.replace('\n', ' ')
-
-    # 4. Saída Final:
-    # A âncora <a> permite que os links @eq-... funcionem.
-    # O \displaystyle garante a formatação correta.
-    # O \tag deve ser o último elemento antes do fechamento $$.
     return (
-        f'<a id="{elem_id}"></a>\n'
-        f'$$\n\\displaystyle {inner} \\tag{{{num_str}}}\n$$\n'
+        f'<div id="{elem_id}" style="display:flex; align-items:center; '
+        f'justify-content:space-between; margin:1em 0;">\n'
+        f'  <div style="flex:1; text-align:center;">\n\n'
+        f'$$\n{inner}\n$$\n\n'
+        f'  </div>\n'
+        f'  <div style="min-width:4em; text-align:right; color:#555;">({num_str})</div>\n'
+        f'</div>'
     )
+
+# def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
+#     """
+#     Versão ultra-robusta para evitar ParseError e garantir alinhamento.
+#     """
+#     # 1. Extrai apenas o conteúdo interno dos $$...$$
+#     # O regex busca o que está entre os primeiros e os últimos cifrões.
+#     content_match = re.search(r'\$\$(.*?)\$\$', eq_body, re.DOTALL)
+#     inner = content_match.group(1).strip() if content_match else eq_body.strip()
+
+#     # 2. Correção de \textcolor: 
+#     # O Colab prefere {\color{red}{...}} em vez de \textcolor{red}{...}
+#     # Esta regex captura \textcolor{cor}{texto} e transforma no formato seguro.
+#     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
+
+#     # 3. Limpeza de possíveis quebras de linha que quebram o \tag
+#     inner = inner.replace('\n', ' ')
+
+#     # 4. Saída Final:
+#     # A âncora <a> permite que os links @eq-... funcionem.
+#     # O \displaystyle garante a formatação correta.
+#     # O \tag deve ser o último elemento antes do fechamento $$.
+#     return (
+#         f'<a id="{elem_id}"></a>\n'
+#         f'$$\n\\displaystyle {inner} \\tag{{{num_str}}}\n$$\n'
+#     )
 
 # ---------------------------------------------------------------------------
 # 8. Processa uma celula: substitui definicoes e referencias
