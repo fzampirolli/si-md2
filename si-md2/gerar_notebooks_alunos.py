@@ -753,8 +753,24 @@ def fix_textcolor_inline(text: str) -> str:
         key = f"\x00MATH{len(placeholders)}\x00"
         placeholders[key] = m.group(0)
         return key
-    text = re.sub(r'\$\$[\s\S]*?\$\$', hide_block, text)
-    text = re.sub(r'\$[^\$\n]+\$', hide_block, text)
+    
+    # --- MODIFICAÇÃO AQUI ---
+    # Em vez de esconder os blocos $, vamos processar o que está dentro deles
+    # para converter \textcolor em \color, que é o padrão MathJax/Colab
+    
+    # Altera para manter a cor original \1
+    def replace_latex_color(m):
+        body = m.group(0)
+        return re.sub(
+            r'\\textcolor\{([^}]+)\}\{([^}]+)\}',
+            r'{\\color{\1}{\2}}', # \1 mantém a cor original (ex: blue)
+            body
+        )
+
+    # Aplica a substituição em equações inline $...$ e blocos $$...$$
+    text = re.sub(r'\$\$[\s\S]*?\$\$', replace_latex_color, text)
+    text = re.sub(r'\$[^\$\n]+\$', replace_latex_color, text)
+    # -------------------------
 
     # \textcolor{cor}{texto} -> <font color="cor">texto</font>
     text = re.sub(
