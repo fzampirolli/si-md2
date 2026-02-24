@@ -724,24 +724,29 @@ def render_tbl_markdown(tbl_body: str, elem_id: str, label_prefix: str, caption:
 
 def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
     """
-    Equacao LaTeX -> Renderiza com numero (X.Y) alinhado a direita usando \tag.
-    Esta abordagem e a mais estável para Google Colab e Jupyter.
+    Versão final: Resolve alinhamento com \tag, corrige \textcolor e 
+    previne ParseErrors no KaTeX do Colab.
     """
-    # Remove os $$ externos para reinserir dentro do HTML estruturado
-    inner = eq_body.strip()
-    if inner.startswith("$$") and inner.endswith("$$"):
-        inner = inner[2:-2].strip()
+    # 1. Extração limpa do conteúdo entre os $$
+    # O regex busca tudo que está entre os primeiros e últimos $$ da string
+    match = re.search(r'\$\$(.*?)\$\$', eq_body, re.DOTALL)
+    if match:
+        inner = match.group(1).strip()
+    else:
+        inner = eq_body.replace('$', '').strip()
 
-    # --- ADICIONE A LINHA ABAIXO PARA MUDAR A FORMA DE COLOREAR ---
-    # Transforma \textcolor{cor}{texto} em {\color{cor}{texto}}
+    # 2. Correção de \textcolor para {\color{...}{...}}
+    # Esta versão captura: \textcolor{red}{texto} -> {\color{red}{texto}}
     inner = re.sub(r'\\textcolor\{([^}]+)\}\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
-    # --------------------------------------------------------------
+    
+    # 3. Segunda camada de correção para casos sem chaves na cor (ex: \textcolor red {texto})
+    inner = re.sub(r'\\textcolor\s+(\w+)\s*\{([^}]+)\}', r'{\\color{\1}{\2}}', inner)
 
-    # Usa \tag para a numeração e \label para permitir links internos
-    # O <a> invisível serve como âncora para referências cruzadas @eq-*
+    # 4. Retorno estruturado
+    # Usamos \displaystyle para garantir que a equação não "encolha"
     return (
         f'<a id="{elem_id}"></a>\n'
-        f'$$\n{inner} \\tag{{{num_str}}}\n$$\n'
+        f'$$\n\\displaystyle {inner} \\tag{{{num_str}}}\n$$\n'
     )
 
 # ---------------------------------------------------------------------------
