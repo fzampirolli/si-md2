@@ -87,7 +87,7 @@ def format_authors(raw: str) -> str:
                 return f"{tokens[-1].upper()}, {iniciais}".strip(", ")
             return author_str
 
-    if len(authors) >= 3:
+    if len(authors) > 3:
         # Retorna o primeiro autor e o et al. em itálico
         res = f"{format_single_name(authors[0])} *et al*"
     else:
