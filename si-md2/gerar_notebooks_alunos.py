@@ -58,22 +58,44 @@ def parse_bib(bib_path: str) -> dict:
 # 2. Formatador ABNT
 # ---------------------------------------------------------------------------
 
+# def format_authors(raw: str) -> str:
+#     authors = [a.strip() for a in raw.split(" and ")]
+#     out = []
+#     for author in authors:
+#         parts = author.split(",")
+#         if len(parts) == 2:
+#             out.append(f"{parts[0].strip().upper()}, {parts[1].strip()}")
+#         else:
+#             tokens = author.split()
+#             if tokens:
+#                 iniciais = ". ".join(t[0] for t in tokens[:-1]) + "."
+#                 out.append(f"{tokens[-1].upper()}, {iniciais}")
+#             else:
+#                 out.append(author)
+#     return "; ".join(out)
 def format_authors(raw: str) -> str:
     authors = [a.strip() for a in raw.split(" and ")]
-    out = []
-    for author in authors:
-        parts = author.split(",")
+    
+    def format_single_name(author_str):
+        parts = author_str.split(",")
         if len(parts) == 2:
-            out.append(f"{parts[0].strip().upper()}, {parts[1].strip()}")
+            return f"{parts[0].strip().upper()}, {parts[1].strip()}"
         else:
-            tokens = author.split()
+            tokens = author_str.split()
             if tokens:
-                iniciais = ". ".join(t[0] for t in tokens[:-1]) + "."
-                out.append(f"{tokens[-1].upper()}, {iniciais}")
-            else:
-                out.append(author)
-    return "; ".join(out)
+                iniciais = ". ".join(t[0] for t in tokens[:-1]) + "." if len(tokens) > 1 else ""
+                return f"{tokens[-1].upper()}, {iniciais}".strip(", ")
+            return author_str
 
+    if len(authors) >= 3:
+        # Retorna o primeiro autor e o et al. em itálico
+        res = f"{format_single_name(authors[0])} *et al*"
+    else:
+        # Retorna 1 ou 2 autores separados por ponto e vírgula
+        res = "; ".join(format_single_name(a) for a in authors)
+    
+    # Remove ponto final residual para evitar o ".." na função format_entry
+    return res.rstrip('.')
 
 def format_entry(key: str, fields: dict) -> str:
     parts = []
@@ -1156,16 +1178,54 @@ def clean_notebook(notebook: dict) -> dict:
 # 11. Lista de referencias bibliograficas
 # ---------------------------------------------------------------------------
 
+# def build_reference_list(citations: list, bib: dict) -> tuple:
+#     key_to_num = {}
+#     lines = ["## Referências\n"]
+#     for i, key in enumerate(citations, start=1):
+#         key_to_num[key] = i
+#         ref_text = format_entry(key, bib[key]) if key in bib \
+#             else f"*Referencia nao encontrada para: {key}*"
+#         lines.append(ref_text)
+#     return "\n\n".join(lines), key_to_num
 def build_reference_list(citations: list, bib: dict) -> tuple:
-    key_to_num = {}
-    lines = ["## Referencias\n"]
-    for i, key in enumerate(citations, start=1):
-        key_to_num[key] = i
-        ref_text = format_entry(key, bib[key]) if key in bib \
-            else f"*Referencia nao encontrada para: {key}*"
-        lines.append(ref_text)
-    return "\n\n".join(lines), key_to_num
+    """
+    Constrói a lista de referências ordenada alfabeticamente pelo 
+    sobrenome do primeiro autor ou pelo título.
+    """
+    # 1. Filtra as chaves que realmente existem no arquivo .bib
+    valid_keys = [k for k in citations if k in bib]
+    missing_keys = [k for k in citations if k not in bib]
 
+    # 2. Define uma função auxiliar para criar a chave de ordenação
+    def get_sort_key(key):
+        fields = bib[key]
+        # Tenta pegar o autor; se não houver, usa o título
+        author_raw = fields.get("author", "").strip()
+        if author_raw:
+            # Extrai o primeiro sobrenome para ordenar
+            # Ex: "ZAMPIROLLI, Francisco" -> "ZAMPIROLLI"
+            first_author = author_raw.split(" and ")[0]
+            surname = first_author.split(",")[0] if "," in first_author else first_author.split()[-1]
+            return surname.upper()
+        return fields.get("title", "").upper()
+
+    # 3. Ordena as chaves alfabeticamente
+    sorted_keys = sorted(valid_keys, key=get_sort_key)
+
+    key_to_num = {}
+    lines = ["## Referências\n"]
+
+    # 4. Gera o texto das referências ordenadas
+    for i, key in enumerate(sorted_keys, start=1):
+        key_to_num[key] = i
+        ref_text = format_entry(key, bib[key])
+        lines.append(ref_text)
+    
+    # Adiciona avisos para chaves não encontradas ao final (opcional)
+    for key in missing_keys:
+        lines.append(f"*Referência não encontrada para: {key}*")
+
+    return "\n\n".join(lines), key_to_num
 
 # ---------------------------------------------------------------------------
 # 12b. Processa um unico notebook para EPUB
