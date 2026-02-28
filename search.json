@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Sistemas Inteligentes e Mineração de Dados",
     "section": "",
-    "text": "Prefácio",
+    "text": "Prefácio\nEsta obra é a evolução natural da primeira edição (2014), expandindo o foco do software Weka para o ecossistema Python. O livro mantém sua visão pragmática da Mineração de Dados, unindo a teoria clássica à prática interativa via Google Colab e tutoria por IA. Através de seis capítulos sequenciais, o leitor desenvolve a sensibilidade necessária para explorar algoritmos e selecionar a técnica mais apropriada para cada base de dados.",
     "crumbs": [
       "Prefácio"
     ]
