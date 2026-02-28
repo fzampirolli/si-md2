@@ -32,6 +32,9 @@ lang: pt-BR
 bibliography: references.bib
 csl: abnt.csl         
 
+filters:
+  - emoji-filter.lua
+
 format:
   html:
     theme: cosmo
@@ -40,12 +43,13 @@ format:
     code-tools: true
     toc: true
   pdf:
+    pdf-engine: lualatex
+    cite-method: biblatex
     tbl-colwidths: false
     tables:
       longtable: true
       booktabs: false
     keep-tex: true
-    cite-method: biblatex
     biblatexoptions: 
       - style=abnt          # pacote biblatex-abnt (requer instalação)
       - refsection=chapter  # Refs separadas por capítulo
@@ -62,6 +66,7 @@ format:
       - right=20mm
     include-in-header:
       text: |
+        \usepackage{emoji}
         \usepackage[table]{xcolor}
         \usepackage{array}
         \usepackage{colortbl}
