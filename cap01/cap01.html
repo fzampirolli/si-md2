@@ -333,10 +333,6 @@ Figura&nbsp;1.2: Processo de Descoberta de Conhecimento ou KDD.
 <p>Em linhas gerais, as tarefas da Mineração de Dados são de natureza <strong><em>descritiva</em></strong> ou <strong><em>preditiva</em></strong>. Numa rede de supermercados pode ser extremamente valioso descobrir quais produtos são comprados juntos. Por exemplo, ao se descobrir que os produtos A, G e M são quase sempre comprados juntos, a simples alteração da posição das gôndolas desses produtos pode aumentar as vendas. Em situações desse tipo, em que o conhecimento extraído auxilia na interpretação da massa de dados, os padrões de associação descobertos nos produtos oferecidos têm um caráter <strong>essencialmente descritivo</strong>.</p>
 <p>Já em certos ramos empresariais, pode ser muito importante descobrir qual o comportamento típico de clientes que estão prestes a mudar de fornecedor, e, com base em suas características, construir um <em>modelo</em> que auxilie na previsão de comportamentos futuros. Geralmente vale mais a pena usar técnicas de fidelização para reter um cliente bom e antigo do que investir na busca de novos clientes, cuja fidelidade ainda é incerta. Usando o modelo de comportamento previamente desenvolvido, juntamente com o histórico de compras de um cliente, é possível fazer algumas inferências e prever qual será o possível desfecho. Tarefas que procuram predizer se um item pertence a uma classe ou não, são <strong>essencialmente preditivas</strong>.</p>
 <p>A <a href="#fig-1-3" class="quarto-xref">Figura&nbsp;<span>1.3</span></a> ilustra a classificação das principais tarefas de Mineração de Dados em Atividades Descritivas ou Preditivas. Vale ressaltar que, dependendo de como for implementada a “Detecção de Anomalia”, esta tarefa poderá ser mais bem caracterizada como de natureza descritiva.</p>
-</section>
-<section id="mineração-de-dados-e-suas-implicações-éticas" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="mineração-de-dados-e-suas-implicações-éticas"><span class="header-section-number">1.5</span> Mineração de Dados e suas Implicações Éticas</h2>
-<p>Como o uso de dados pessoais na Mineração de Dados pode afetar a privacidade de pessoas ou discriminar grupos socialmente fragilizados, suas implicações éticas têm sido amplamente discutidas na imprensa, na academia, nos meios jurídicos e no mundo corporativo. Quando se pensa na política das companhias de seguro, por ex., argumenta-se que um cliente é geralmente julgado mais pelos atributos do grupo ao qual ele se enquadra e nem tanto pelas suas próprias características.</p>
 <div id="fig-1-3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -347,6 +343,10 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 </figcaption>
 </figure>
 </div>
+</section>
+<section id="mineração-de-dados-e-suas-implicações-éticas" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="mineração-de-dados-e-suas-implicações-éticas"><span class="header-section-number">1.5</span> Mineração de Dados e suas Implicações Éticas</h2>
+<p>Como o uso de dados pessoais na Mineração de Dados pode afetar a privacidade de pessoas ou discriminar grupos socialmente fragilizados, suas implicações éticas têm sido amplamente discutidas na imprensa, na academia, nos meios jurídicos e no mundo corporativo. Quando se pensa na política das companhias de seguro, por ex., argumenta-se que um cliente é geralmente julgado mais pelos atributos do grupo ao qual ele se enquadra e nem tanto pelas suas próprias características.</p>
 <p>Os dados sobre pagamentos feitos com cartão de crédito podem expor as preferências religiosas de seu dono, assim como seus hábitos de compras de livros podem revelar suas preferências políticas, ou gastos elevados podem colocá-lo inadvertidamente no grupo de clientes de alto risco para empréstimo bancário. O CEP de um candidato pode apontar que ele vive em uma região considerada problemática ou num bairro nobre, seus dados médicos podem lhe custar uma vaga numa grande empresa.</p>
 <p>Por outro lado, as estatísticas sobre determinada modalidade de crime podem ajudar as autoridades policiais a adotar medidas preventivas. O levantamento estatístico de regiões carentes frequentemente serve de orientação aos formuladores de políticas públicas na hora de conceber ações compensatórias localizadas. A análise dos dados de gasto do governo pode ajudar a corrigir distorções ou denunciar mazelas. O conhecimento prévio de que algumas doenças e problemas de saúde parecem estar mais fortemente associados a uma etnia que a outra auxilia o médico na hora de solicitar exames médicos, mesmo que o paciente não apresente nenhum sintoma.</p>
 <p>Como se vê, não é nada simples traçar uma linha divisória que condene ou justifique o uso ético ou legal de dados armazenados. E se os dados tiverem sido coletados sem o conhecimento do usuário, a questão torna-se ainda mais controversa. Por esta razão, e por se tratar de uma tecnologia relativamente jovem, recomenda-se que a Mineração de Dados seja empregada com cautela e, se possível, com a anuência prévia das pessoas cujos dados foram coletados.</p>
@@ -376,7 +376,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="células-de-código-python"><span class="header-section-number">1.6.2</span> 🔹 Células de Código Python</h3>
 <p>Abaixo, você encontrará uma célula de <strong>código</strong>. Diferente do texto, as células de código podem ser executadas para realizar cálculos e gerar gráficos.</p>
 <p><strong>Como executar:</strong> 1. Clique dentro da célula abaixo. 2. Pressione <strong><code>Shift + Enter</code></strong> (ou clique no botão <strong>Play</strong> no Google Colab).</p>
-<div id="cell-16" class="cell" data-quarto-raw="true" data-execution_count="6">
+<div id="cell-17" class="cell" data-quarto-raw="true" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de execução para testar o ambiente</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Se você está lendo esta mensagem, o código foi executado com sucesso!"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -390,7 +390,7 @@ O resultado da soma de 10 + 20.5 é: 30.5</code></pre>
 </div>
 </div>
 <p>O código a seguir mostra a execução de um laço de repetição (<code>for</code>) para iterar sobre uma sequência numérica de 0 a 4, gerada pela função <code>range(5)</code>. Do ponto de vista da Mineração de Dados, esse fluxo representa o processamento sequencial de <strong>Dados</strong> brutos para a geração de <strong>Informação</strong> estruturada, servindo como base para a identificação de padrões em sistemas inteligentes.</p>
-<div id="cell-18" class="cell" data-quarto-raw="true" data-execution_count="7">
+<div id="cell-19" class="cell" data-quarto-raw="true" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esta é uma célula de código Python para testar um laço! 🚀"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>)) <span class="co"># cria uma lista de números de 0 a 4</span></span>
@@ -413,7 +413,7 @@ Valor: 4</code></pre>
 <section id="função-simples" class="level3" data-number="1.6.3">
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="função-simples"><span class="header-section-number">1.6.3</span> 🔹 Função Simples</h3>
 <p>O código a seguir mostra o fluxo técnico de transformação de <strong>Dados</strong> (sequência numérica) em <strong>Informação</strong> (valores ao quadrado). Embora a extração de <strong>Conhecimento</strong> seja simplificada neste cenário, o exemplo ilustra a base necessária para que algoritmos de Mineração de Dados identifiquem padrões de comportamento e tendências em grandes volumes de informação, permitindo que o sistema aprenda a lógica subjacente aos dados para melhorar seu desempenho futuro.</p>
-<div id="cell-21" class="cell" data-quarto-raw="true" data-execution_count="8">
+<div id="cell-22" class="cell" data-quarto-raw="true" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Definição da Função</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadrado(x):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -449,7 +449,7 @@ O último elemento é: 25
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="de-números-a-leis-da-natureza-o-salto-para-o-conhecimento"><span class="header-section-number">1.6.4</span> 🔹 De Números a Leis da Natureza: O Salto para o Conhecimento</h3>
 <p>A <strong><a href="#fig-1-plot" class="quarto-xref">Figura&nbsp;<span>1.4</span></a></strong> ilustra mais do que uma simples função matemática; ela representa a base para a <strong>modelagem preditiva</strong>. Na Mineração de Dados, a extração de conhecimento ocorre quando o sistema identifica que a relação entre os dados segue um padrão constante.</p>
 <p>Se esses dados representassem a posição de um objeto em queda livre ao longo do tempo, o “conhecimento” extraído seria a descoberta da aceleração constante da gravidade. Com essa regra em mãos, o sistema deixa de ser um calculador de trajetórias passadas e torna-se um <strong>agente preditivo</strong>, capaz de antecipar onde o objeto estará em um futuro ainda não registrado nos dados.</p>
-<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="9">
+<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. DADOS (Fatos Brutos): Segundos decorridos</span></span>
@@ -510,7 +510,7 @@ Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir)
 <li><strong>Mapeamento</strong>: As <strong>chaves</strong> do dicionário (<code>'Paciente'</code>, <code>'Peso_kg'</code>, <code>'Altura_m'</code>) são automaticamente convertidas em <strong>cabeçalhos de colunas</strong>, enquanto as <strong>listas de valores</strong> passam a compor as <strong>linhas</strong> da tabela.</li>
 <li><strong><code>df</code></strong>: A tabela resultante é armazenada na variável <code>df</code> (abreviação convencional para <em>DataFrame</em>), permitindo a execução de cálculos complexos e filtragens de alto desempenho.</li>
 </ul>
-<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="10">
+<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
