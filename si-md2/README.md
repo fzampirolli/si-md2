@@ -145,12 +145,71 @@ $$ {#eq-2-1}
 
 ---
 
+### 📥 Botões de Download de Arquivos
+
+Células que geram botões de download (arquivos `.arff`, `.csv`, etc.) **não devem aparecer no PDF**. Para isso, siga o padrão abaixo em toda célula com botão de download:
+
+**Cabeçalho obrigatório da célula** (sem `output: false`, sem `quarto-raw: true`):
+
+```python
+#| label: download-nome-descritivo
+#| code-fold: true
+#| code-summary: "Exibir Código Python"
+#| echo: false
+```
+
+**Estrutura obrigatória do código:**
+
+```python
+import os
+import base64
+from IPython.display import display, HTML
+
+quarto_format = os.environ.get('QUARTO_FORMAT', '')
+
+# Processamento que deve aparecer em todos os formatos
+# (ex: exibir tabela via Markdown) fica FORA do if
+
+# Botão de download: apenas HTML e Jupyter/VS Code
+if quarto_format in ('html', ''):
+    conteudo = "..."   # conteúdo do arquivo
+    b64 = base64.b64encode(conteudo.encode()).decode()
+    display(HTML(f"""
+    <div style="margin-top:20px; margin-bottom:20px;">
+        <a href="data:application/octet-stream;base64,{b64}" download="arquivo.ext"
+           style="background-color:#1b5e20; color:white; padding:10px 18px;
+                  text-decoration:none; border-radius:8px; font-family:sans-serif;
+                  font-size:14px; font-weight:bold; display:inline-block;
+                  box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            📥 Baixar Arquivo arquivo.ext
+        </a>
+    </div>
+    """))
+```
+
+**Por que funciona:**
+
+| Contexto | `QUARTO_FORMAT` | Comportamento |
+|---|---|---|
+| VS Code / Jupyter interativo | `None` → `''` | Exibe botão ✅ |
+| `quarto render --to html` | `'html'` | Exibe botão ✅ |
+| `quarto render --to pdf` | `'latex'` | Não exibe ✅ |
+
+> ⚠️ **Nunca use `#| output: false`** em células de botão — isso suprime o output em **todos** os formatos, inclusive HTML.
+
+> ⚠️ **Nunca use `#| quarto-raw: true`** — essa diretiva não existe no Quarto e causa comportamento imprevisível.
+
+#### Problema com outputs cacheados no PDF
+
+O Quarto para PDF pode usar outputs salvos no `.ipynb` em vez de re-executar o notebook. Se o botão aparecer no PDF mesmo com o código correto, é porque o output HTML está cacheado na célula. O script `clean_download_cells.py` resolve isso automaticamente durante o `publish_all.sh` (veja a seção de workflows).
+
+---
 
 ## 🚀 Fluxos de Trabalho em `si-md2`
 
 ### Publicação Completa (todos os workflows de uma vez)
 
-Para executar todos os workflows em sequência — PDF, HTML, EPUB, notebooks para alunos e push para o GitHub — use o script principal:
+Para executar todos os workflows em sequência — HTML, notebooks para alunos, PDF e push para o GitHub — use o script principal:
 
 ```bash
 chmod +x publish_all.sh   # apenas na primeira vez
@@ -159,41 +218,22 @@ chmod +x publish_all.sh   # apenas na primeira vez
 
 O script detecta automaticamente a pasta de edição e a raiz do repositório git, rodando cada ferramenta no diretório correto.
 
+> ℹ️ **O PDF é gerado por último** de forma intencional: o script limpa os outputs de células de download antes do render PDF e os restaura em seguida, garantindo que o HTML e os notebooks dos alunos sejam gerados com os botões intactos.
+
 ---
 
-### Workflow A: Renderizar o Livro Completo
+### Workflow A: Renderizar HTML + Publicar
 
-Transforma todos os notebooks no formato final definido no `_quarto.yml`.
+Gera o site e publica no GitHub Pages:
 
 ```bash
-quarto render --to pdf   # Gera o PDF em _book/
-quarto render --to html  # Gera o site em _book/
-quarto publish gh-pages  # Publica em https://fzampirolli.github.io/si-md2/
+quarto render --to html          # Gera o site em _book/
+quarto publish gh-pages          # Publica em https://fzampirolli.github.io/si-md2/
 ```
 
 ---
 
-### Workflow B: Gerar EPUB com Referências por Capítulo
-
-O EPUB requer pré-processamento porque o Quarto não suporta referências por capítulo nesse formato. O script resolve as citações e injeta a lista de referências em cada capítulo antes de renderizar.
-
-**Passo 1:** Pré-processa os notebooks e gera os arquivos de configuração:
-
-```bash
-python gerar_notebooks_alunos.py --epub references.bib --out-dir _epub_src
-```
-
-Isso cria `_epub_src/capXX/capXX_epub.ipynb` com as referências já resolvidas, além de `_quarto_epub.yml` e `render_epub.sh`.
-
-**Passo 2:** Renderiza o EPUB:
-
-```bash
-./render_epub.sh   # Gera o EPUB em _book/
-```
-
----
-
-### Workflow C: Gerar Versão para Alunos (Jupyter/Colab)
+### Workflow B: Gerar Versão para Alunos (Jupyter/Colab)
 
 O script processa os notebooks de autor, resolve citações bibliográficas no formato ABNT e remove metadados do Quarto, gerando notebooks prontos para distribuição.
 
@@ -210,6 +250,51 @@ python gerar_notebooks_alunos.py --batch references.bib
 
 ```bash
 jupyter lab notebooks_alunos/cap01/cap01_aluno.ipynb
+```
+
+---
+
+### Workflow C: Renderizar PDF (sempre por último)
+
+O PDF é gerado por último porque requer a limpeza prévia dos outputs de células de download cacheados nos notebooks. O script `clean_download_cells.py` faz isso automaticamente:
+
+```bash
+# Passo 1: limpa outputs de células de download em todos os notebooks
+python3 clean_download_cells.py limpar
+
+# Passo 2: renderiza o PDF
+quarto render --to pdf
+
+# Passo 3: restaura os outputs para não quebrar o HTML
+python3 clean_download_cells.py restaurar
+```
+
+Ou simplesmente execute `./publish_all.sh`, que cuida de tudo na ordem correta.
+
+#### Como funciona o `clean_download_cells.py`
+
+O script varre todos os `.ipynb` do projeto e identifica células cujos outputs contenham marcadores de botão de download (`IPython.core.display.HTML`, `download=`, `Baixar Arquivo`). No modo `limpar`, salva um backup em `*_download_backup.json` e esvazia esses outputs. No modo `restaurar`, relê o backup e reinsere os outputs originais, apagando o arquivo de backup em seguida.
+
+Notebooks vazios ou corrompidos são ignorados com aviso, sem interromper o processo.
+
+---
+
+### Workflow D: Gerar EPUB com Referências por Capítulo
+
+O EPUB requer pré-processamento porque o Quarto não suporta referências por capítulo nesse formato. O script resolve as citações e injeta a lista de referências em cada capítulo antes de renderizar.
+
+**Passo 1:** Pré-processa os notebooks e gera os arquivos de configuração:
+
+```bash
+python gerar_notebooks_alunos.py --epub references.bib --out-dir _epub_src
+```
+
+Isso cria `_epub_src/capXX/capXX_epub.ipynb` com as referências já resolvidas, além de `_quarto_epub.yml` e `render_epub.sh`.
+
+**Passo 2:** Renderiza o EPUB:
+
+```bash
+./render_epub.sh   # Gera o EPUB em _book/
 ```
 
 ---
@@ -234,7 +319,7 @@ O script pós-processa os notebooks Quarto (`.ipynb`) para distribuição, resol
 ## 📦 Dependências
 
 - [Quarto](https://quarto.org/) ≥ 1.4
-- Python ≥ 3.9 (sem dependências externas — só biblioteca padrão)
+- Python ≥ 3.9 com `nbformat` (`pip install nbformat`)
 - LaTeX com pacote `biblatex-abnt` (para geração de PDF)
 - Git
 
@@ -245,6 +330,7 @@ O script pós-processa os notebooks Quarto (`.ipynb`) para distribuição, resol
 * `_quarto.yml`: O cérebro do projeto. Se adicionar um capítulo novo, registre-o aqui.
 * `references.bib`: Onde você deve colar o BibTeX de novas referências.
 * `capXX/`: Cada capítulo é uma pasta. Mantenha os dados em `capXX/data/` e imagens em `capXX/images/`.
+* `clean_download_cells.py`: Limpa/restaura outputs de células de download para geração correta do PDF.
 * `limpar.sh`: Use sempre que notar erros de cache ou arquivos fantasmas.
 
 ## 📋 Checklist antes do Push
@@ -252,6 +338,7 @@ O script pós-processa os notebooks Quarto (`.ipynb`) para distribuição, resol
 * [ ] Verificou se as imagens estão na pasta `images/` interna do capítulo?
 * [ ] O identificador da figura começa com `{#fig-}`?
 * [ ] O identificador da tabela começa com `{#tbl-}`?
+* [ ] Células de botão de download seguem o padrão com `if quarto_format in ('html', '')`?
 * [ ] Rodou o script de notebooks dos alunos?
 * [ ] Deu `git pull` antes de começar?
 

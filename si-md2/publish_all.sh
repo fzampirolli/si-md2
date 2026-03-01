@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # publish_all.sh
 # Executa todos os workflows do livro si-md2:
-#   A. Renderiza PDF -> move para _book_pdf/
-#   B. Renderiza HTML -> publica no GitHub Pages
-#   C. Gera EPUB com referências por capítulo -> move para _book_epub/
-#   D. Gera notebooks para alunos (Jupyter/Colab)
-#   E. Commit e push para o GitHub
+#   A. Renderiza HTML -> publica no GitHub Pages
+#   B. Gera EPUB com referências por capítulo -> move para _book_epub/
+#   C. Gera notebooks para alunos (Jupyter/Colab)
+#   D. Commit e push para o GitHub
+#   E. Renderiza PDF -> move para _book_pdf/  ← SEMPRE POR ÚLTIMO
+#
+# O PDF é gerado por último porque requer limpar os outputs de células de
+# download cacheados nos notebooks. O script clean_download_cells.py faz
+# isso automaticamente, restaurando tudo após o render.
 #
 # Estrutura esperada:
 #   si-md2/           ← raiz do repositório git (.git/ está aqui)
@@ -50,48 +54,32 @@ log "Verificando dependências..."
 command -v quarto  >/dev/null || fail "quarto não encontrado"
 command -v python3 >/dev/null || fail "python3 não encontrado"
 command -v git     >/dev/null || fail "git não encontrado"
-[ -f "$BIB" ]        || fail "$BIB não encontrado"
-[ -f "_quarto.yml" ] || fail "_quarto.yml não encontrado"
+[ -f "$BIB" ]                   || fail "$BIB não encontrado"
+[ -f "_quarto.yml" ]            || fail "_quarto.yml não encontrado"
+[ -f "clean_download_cells.py" ] || fail "clean_download_cells.py não encontrado"
 ok "Dependências OK"
 
 # ---------------------------------------------------------------------------
-# Workflow A: PDF -> _book_pdf/
+# Workflow A: HTML + GitHub Pages (fica em _book/)
 # ---------------------------------------------------------------------------
-log "=== Workflow A: Limpando células de download para PDF ==="
-python3 clean_download_cells.py limpar
-ok "Células de download limpas"
-
-log "=== Workflow A: Renderizando PDF ==="
-quarto render --to pdf
-rm -rf "$BOOK_PDF"
-mv "$BOOK_HTML" "$BOOK_PDF"
-ok "PDF movido para $BOOK_PDF/"
-
-log "=== Workflow A: Restaurando células de download ==="
-python3 clean_download_cells.py restaurar
-ok "Células de download restauradas"
-
-# ---------------------------------------------------------------------------
-# Workflow B: HTML + GitHub Pages (fica em _book/)
-# ---------------------------------------------------------------------------
-log "=== Workflow B: Renderizando HTML ==="
+log "=== Workflow A: Renderizando HTML ==="
 quarto render --to html
 ok "HTML gerado em $BOOK_HTML/"
 
-log "=== Workflow B: Publicando no GitHub Pages ==="
+log "=== Workflow A: Publicando no GitHub Pages ==="
 quarto publish gh-pages --no-prompt --no-browser
 ok "Publicado em https://fzampirolli.github.io/si-md2/"
 
 # ---------------------------------------------------------------------------
-# Workflow C: EPUB -> _book_epub/
+# Workflow B: EPUB -> _book_epub/
 # ---------------------------------------------------------------------------
 # FORMATAÇÃO DE TEXTO - NÃO FUNCIONA NO EPUB
 # ---------------------------------------------------------------------------
-# log "=== Workflow C: Pré-processando notebooks para EPUB ==="
+# log "=== Workflow B: Pré-processando notebooks para EPUB ==="
 # python3 gerar_notebooks_alunos.py --epub "$BIB" --out-dir "$EPUB_DIR"
 # ok "Notebooks EPUB gerados em $EPUB_DIR/"
 
-# log "=== Workflow C: Renderizando EPUB ==="
+# log "=== Workflow B: Renderizando EPUB ==="
 # ./render_epub.sh
 # rm -rf "$BOOK_EPUB"
 # mkdir -p "$BOOK_EPUB"
@@ -99,16 +87,16 @@ ok "Publicado em https://fzampirolli.github.io/si-md2/"
 # ok "EPUB movido para $BOOK_EPUB/"
 
 # ---------------------------------------------------------------------------
-# Workflow D: Notebooks para alunos (Jupyter/Colab)
+# Workflow C: Notebooks para alunos (Jupyter/Colab)
 # ---------------------------------------------------------------------------
-log "=== Workflow D: Gerando notebooks para alunos ==="
+log "=== Workflow C: Gerando notebooks para alunos ==="
 python3 gerar_notebooks_alunos.py --batch "$BIB"
 ok "Notebooks gerados em $ALUNOS_DIR/"
 
 # ---------------------------------------------------------------------------
-# Workflow E: Commit e push para o GitHub (na raiz do repositório)
+# Workflow D: Commit e push para o GitHub (na raiz do repositório)
 # ---------------------------------------------------------------------------
-log "=== Workflow E: Enviando para o GitHub ==="
+log "=== Workflow D: Enviando para o GitHub ==="
 cd "$GIT_DIR"
 
 git remote get-url origin &>/dev/null || git remote add origin "$REPO"
@@ -121,14 +109,38 @@ git commit -m "$MSG" || { ok "Nada a commitar."; }
 git push origin HEAD
 ok "Push para $REPO concluído"
 
+cd "$EDIT_DIR"
+
+# ---------------------------------------------------------------------------
+# Workflow E: PDF -> _book_pdf/  ← SEMPRE POR ÚLTIMO
+# ---------------------------------------------------------------------------
+# O PDF é gerado por último porque células de download cacheadas nos
+# notebooks causariam a exibição de "<IPython.core.display.HTML object>"
+# no documento. O script clean_download_cells.py limpa esses outputs
+# antes do render e os restaura automaticamente em seguida.
+# ---------------------------------------------------------------------------
+log "=== Workflow E: Limpando células de download para PDF ==="
+python3 clean_download_cells.py limpar
+ok "Células de download limpas"
+
+log "=== Workflow E: Renderizando PDF ==="
+quarto render --to pdf
+rm -rf "$BOOK_PDF"
+mv "$BOOK_HTML" "$BOOK_PDF"
+ok "PDF movido para $BOOK_PDF/"
+
+log "=== Workflow E: Restaurando células de download ==="
+python3 clean_download_cells.py restaurar
+ok "Células de download restauradas"
+
 # ---------------------------------------------------------------------------
 echo ""
 echo -e "${GREEN}============================================${NC}"
 echo -e "${GREEN}  Todos os workflows concluídos com sucesso!${NC}"
 echo -e "${GREEN}============================================${NC}"
 echo ""
-echo "  PDF      : $EDIT_DIR/$BOOK_PDF/"
 echo "  HTML     : $EDIT_DIR/$BOOK_HTML/"
+echo "  PDF      : $EDIT_DIR/$BOOK_PDF/"
 echo "  EPUB     : $EDIT_DIR/$BOOK_EPUB/"
 echo "  Alunos   : $EDIT_DIR/$ALUNOS_DIR/"
 echo "  Site     : https://fzampirolli.github.io/si-md2/"
