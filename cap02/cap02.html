@@ -234,6 +234,7 @@ window.Quarto = {
   <li><a href="#prática-2-representação-de-transações" id="toc-prática-2-representação-de-transações" class="nav-link" data-scroll-target="#prática-2-representação-de-transações"><span class="header-section-number">2.8.3</span> 🔹 Prática 2 — Representação de Transações</a></li>
   <li><a href="#prática-3-implementando-suporte-e-confiança" id="toc-prática-3-implementando-suporte-e-confiança" class="nav-link" data-scroll-target="#prática-3-implementando-suporte-e-confiança"><span class="header-section-number">2.8.4</span> 🔹 Prática 3 — Implementando Suporte e Confiança</a></li>
   <li><a href="#prática-4-algoritmo-apriori-simplificado" id="toc-prática-4-algoritmo-apriori-simplificado" class="nav-link" data-scroll-target="#prática-4-algoritmo-apriori-simplificado"><span class="header-section-number">2.8.5</span> 🔹 Prática 4 — Algoritmo Apriori Simplificado</a></li>
+  <li><a href="#prática-5-simulação-do-apriori-clássico-join-prune" id="toc-prática-5-simulação-do-apriori-clássico-join-prune" class="nav-link" data-scroll-target="#prática-5-simulação-do-apriori-clássico-join-prune"><span class="header-section-number">2.8.6</span> 🔹 Prática 5 — Simulação do Apriori Clássico (Join &amp; Prune)</a></li>
   </ul></li>
   <li><a href="#uso-do-notebooklm-como-tutor-complementar" id="toc-uso-do-notebooklm-como-tutor-complementar" class="nav-link" data-scroll-target="#uso-do-notebooklm-como-tutor-complementar"><span class="header-section-number">2.9</span> 🤖 Uso do NotebookLM como Tutor Complementar</a></li>
   <li><a href="#lista-de-exercícios-1" id="toc-lista-de-exercícios-1" class="nav-link" data-scroll-target="#lista-de-exercícios-1"><span class="header-section-number">2.10</span> Lista de Exercícios</a>
@@ -288,7 +289,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="31">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="39" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -328,14 +329,14 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="32">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="32">
+<div class="cell" data-quarto-raw="true" data-execution_count="40">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="40" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </figcaption>
 <div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="32">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="40">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 9%">
@@ -418,14 +419,14 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="33">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="33">
+<div class="cell" data-quarto-raw="true" data-execution_count="41">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="41" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
 </figcaption>
 <div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="33">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="41">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -542,7 +543,7 @@ Tabela&nbsp;2.3: Tabela do Tempo.
 </figure>
 </div>
 </div>
-<p>Uma análise mais atenta dos exemplos das Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> que alguns desses atributos sempre aparecem juntos e que, portanto, várias <strong>Regras de Associação</strong> podem ser extraídas dessas tabelas.</p>
+<p>Uma análise mais atenta dos exemplos das Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> revela que alguns desses atributos sempre aparecem juntos e que, portanto, várias <strong>Regras de Associação</strong> podem ser extraídas dessas tabelas.</p>
 </section>
 <section id="regras-de-associação" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="regras-de-associação"><span class="header-section-number">2.3</span> Regras de Associação</h2>
@@ -1435,7 +1436,7 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <section id="prática-1-configuração-e-dados-estruturados" class="level3" data-number="2.8.2">
 <h3 data-number="2.8.2" class="anchored" data-anchor-id="prática-1-configuração-e-dados-estruturados"><span class="header-section-number">2.8.2</span> 🔹 Prática 1 — Configuração e Dados Estruturados</h3>
 <p>Retomamos o padrão do capítulo anterior, todos os <code>import</code> no topo, verificação de versões e uso de <strong>dicionários</strong> para estruturar os dados antes de convertê-los em <code>DataFrames</code>.</p>
-<div id="cell-48" class="cell" data-execution_count="34">
+<div id="cell-48" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -1471,7 +1472,7 @@ NumPy     : 2.0.2
 <blockquote class="blockquote">
 <p>💡 <strong>Novo conceito Python:</strong> <code>set</code> — coleção <strong>sem ordem</strong> e <strong>sem duplicatas</strong>, ideal para operações de conjuntos (∪, ∩, −). Perfeitamente alinhado com a notação matemática de Regras de Associação.</p>
 </blockquote>
-<div id="cell-50" class="cell" data-execution_count="35">
+<div id="cell-50" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Transações: cada elemento é um frozenset (set imutável)</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos frozenset pois sets não são hasheáveis (não podem</span></span>
@@ -1565,7 +1566,7 @@ Vinho     2
 </ul>
 </div>
 </div>
-<div id="cell-52" class="cell" data-execution_count="36">
+<div id="cell-52" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset: <span class="bu">frozenset</span>, transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula o suporte de um itemset nas transações.</span></span>
@@ -1653,7 +1654,7 @@ Queijo → Vinho                0.40       1.00</code></pre>
 </ul>
 </div>
 </div>
-<div id="cell-54" class="cell" data-execution_count="37">
+<div id="cell-54" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1820,6 +1821,95 @@ Regras encontradas (48):
 </div>
 </div>
 </section>
+<section id="prática-5-simulação-do-apriori-clássico-join-prune" class="level3" data-number="2.8.6">
+<h3 data-number="2.8.6" class="anchored" data-anchor-id="prática-5-simulação-do-apriori-clássico-join-prune"><span class="header-section-number">2.8.6</span> 🔹 Prática 5 — Simulação do Apriori Clássico (Join &amp; Prune)</h3>
+<p>Nesta etapa, vamos focar na <strong>Geração de Candidatos</strong> de forma eficiente, como descrito nas obras de <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> e <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>.</p>
+<div id="cell-56" class="cell" data-execution_count="48">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prática 5: Implementação da Lógica de "Join" do Apriori</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori_gen(freq_k_minus_1: <span class="bu">list</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Gera candidatos de tamanho k seguindo a regra do Apriori clássico:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Une conjuntos que possuem os mesmos (k-2) primeiros itens.</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    candidatos <span class="op">=</span> []</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    lista_ordenada <span class="op">=</span> [<span class="bu">sorted</span>(<span class="bu">list</span>(i)) <span class="cf">for</span> i <span class="kw">in</span> freq_k_minus_1]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(lista_ordenada)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, n):</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Passo de Join: verifica se os primeiros k-2 itens são iguais</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Para k=2 (itens individuais), o prefixo é vazio [], então todos se unem.</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> k <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                candidatos <span class="op">=</span> [<span class="bu">frozenset</span>(a) <span class="op">|</span> <span class="bu">frozenset</span>(b)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">for</span> a, b <span class="kw">in</span> combinations(freq_k_minus_1, <span class="dv">2</span>)]</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> lista_ordenada[i][:k<span class="op">-</span><span class="dv">2</span>] <span class="op">==</span> lista_ordenada[j][:k<span class="op">-</span><span class="dv">2</span>]:</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                novo_candidato <span class="op">=</span> <span class="bu">frozenset</span>(lista_ordenada[i]) <span class="op">|</span> <span class="bu">frozenset</span>(lista_ordenada[j])</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Passo de Prune: Propriedade Anti-monotônica</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Verifica se todos os subconjuntos de tamanho k-1 são frequentes</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> todos_subconjuntos_frequentes(novo_candidato, freq_k_minus_1, k):</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                    candidatos.append(novo_candidato)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">set</span>(candidatos))</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> todos_subconjuntos_frequentes(candidato: <span class="bu">frozenset</span>, freq_k_minus_1: <span class="bu">list</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Valida se todos os subconjuntos imediatos do candidato são frequentes."""</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    subconjuntos <span class="op">=</span> [<span class="bu">frozenset</span>(c) <span class="cf">for</span> c <span class="kw">in</span> combinations(candidato, k<span class="op">-</span><span class="dv">1</span>)]</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> subconjuntos:</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">not</span> <span class="kw">in</span> freq_k_minus_1:</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Simulação Passo a Passo ---</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Gerando Candidatos L2 (tamanho 2) a partir de L1 ---"</span>)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="bu">frozenset</span>([i]) <span class="cf">for</span> i <span class="kw">in</span> todos_itens <span class="cf">if</span> calcular_suporte(<span class="bu">frozenset</span>([i]), transacoes) <span class="op">&gt;=</span> <span class="fl">0.4</span>]</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> apriori_gen(L1, <span class="dv">2</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Candidatos C2 gerados: </span><span class="sc">{</span><span class="bu">len</span>(C2)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>([<span class="bu">sorted</span>(<span class="bu">list</span>(x)) <span class="cf">for</span> x <span class="kw">in</span> C2]): <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Gerando Candidatos L3 (tamanho 3) a partir de L2 ---"</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> C2 <span class="cf">if</span> calcular_suporte(c, transacoes) <span class="op">&gt;=</span> <span class="fl">0.4</span>]</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>C3 <span class="op">=</span> apriori_gen(L2, <span class="dv">3</span>)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Candidatos C3 gerados (após poda): </span><span class="sc">{</span><span class="bu">len</span>(C3)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>([<span class="bu">sorted</span>(<span class="bu">list</span>(x)) <span class="cf">for</span> x <span class="kw">in</span> C3]): <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- Gerando Candidatos L2 (tamanho 2) a partir de L1 ---
+Candidatos C2 gerados: 15
+  ['Arroz', 'Batata']
+  ['Arroz', 'Feijão']
+  ['Arroz', 'Queijo']
+  ['Arroz', 'Vinho']
+  ['Arroz', 'Óleo']
+  ['Batata', 'Feijão']
+  ['Batata', 'Queijo']
+  ['Batata', 'Vinho']
+  ['Batata', 'Óleo']
+  ['Feijão', 'Queijo']
+  ['Feijão', 'Vinho']
+  ['Feijão', 'Óleo']
+  ['Queijo', 'Vinho']
+  ['Queijo', 'Óleo']
+  ['Vinho', 'Óleo']
+
+--- Gerando Candidatos L3 (tamanho 3) a partir de L2 ---
+Candidatos C3 gerados (após poda): 4
+  ['Arroz', 'Batata', 'Feijão']
+  ['Arroz', 'Batata', 'Óleo']
+  ['Arroz', 'Feijão', 'Óleo']
+  ['Batata', 'Feijão', 'Óleo']</code></pre>
+</div>
+</div>
+<section id="explicação-conceitual-do-fluxo-clássico" class="level4" data-number="2.8.6.1">
+<h4 data-number="2.8.6.1" class="anchored" data-anchor-id="explicação-conceitual-do-fluxo-clássico"><span class="header-section-number">2.8.6.1</span> Explicação Conceitual do Fluxo Clássico:</h4>
+<ul>
+<li><strong>Geração de Candidatos (<span class="math inline">\(C_k\)</span>):</strong> Em vez de usar <code>combinations(todos_itens, k)</code>, o que seria proibitivo em bases grandes, o Apriori usa apenas os conjuntos que já provaram ser frequentes no nível anterior (<span class="math inline">\(L_{k-1}\)</span>).</li>
+<li><strong>Poda (Pruning):</strong> Se um candidato a conjunto de 3 itens (ex: <code>{Arroz, Feijão, Batata}</code>) for gerado, mas o subconjunto <code>{Feijão, Batata}</code> não estiver na lista de frequentes anterior, o candidato é descartado imediatamente, antes mesmo de olharmos para a base de dados. Isso economiza processamento computacional massivo.</li>
+<li><strong>Eficiência:</strong> Essa abordagem reduz drasticamente o número de acessos ao disco/memória para contar o suporte, focando apenas no que é estatisticamente promissor.</li>
+</ul>
+</section>
+</section>
 </section>
 <section id="uso-do-notebooklm-como-tutor-complementar" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="uso-do-notebooklm-como-tutor-complementar"><span class="header-section-number">2.9</span> 🤖 Uso do NotebookLM como Tutor Complementar</h2>
@@ -1858,7 +1948,7 @@ Regras encontradas (48):
 </section>
 <section id="referências-do-capítulo" class="level2" data-number="2.11">
 <h2 data-number="2.11" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">2.11</span> Referências do Capítulo</h2>
-<p>Este capítulo baseou-se nas obras fundamentais que consolidaram as bases da mineração de dados: <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> para a introdução histórica e formal das regras de associação; <span class="citation" data-cites="frank2016weka">Frank; Hall; Witten (<a href="#ref-frank2016weka" role="doc-biblioref">2016</a>)</span> como documentação técnica e apêndice online do sistema WEKA; <span class="citation" data-cites="goldschmidt2005">Goldschmidt; Passos (<a href="#ref-goldschmidt2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span> e <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span> para os conceitos estruturais de descoberta de conhecimento e algoritmos de mineração; <span class="citation" data-cites="padhy2010">Padhy (<a href="#ref-padhy2010" role="doc-biblioref">2010</a>)</span> para a integração com sistemas inteligentes; e o trabalho clássico de <span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> sobre a indução de árvores de decisão.</p>
+<p>Este capítulo baseou-se nas obras fundamentais que consolidaram as bases da mineração de dados: <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span>, para a introdução histórica e formal das regras de associação; <span class="citation" data-cites="frank2016weka">Frank; Hall; Witten (<a href="#ref-frank2016weka" role="doc-biblioref">2016</a>)</span>, como documentação técnica e referência do sistema WEKA; <span class="citation" data-cites="rocha2008analise">Rocha; Cortez; Neves (<a href="#ref-rocha2008analise" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span> e <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, para os conceitos estruturais do processo de descoberta de conhecimento (KDD) e algoritmos de mineração; <span class="citation" data-cites="padhy2010">Padhy (<a href="#ref-padhy2010" role="doc-biblioref">2010</a>)</span>, para a integração com sistemas inteligentes; e o trabalho clássico de <span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span>, sobre a indução de árvores de decisão.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
@@ -1868,9 +1958,6 @@ AGRAWAL, Rakesh; IMIELIŃSKI, Tomasz; SWAMI, Arun. Mining association rules betw
 <div id="ref-frank2016weka" class="csl-entry" role="listitem">
 FRANK, Eibe; HALL, Mark A.; WITTEN, Ian H. <strong>The <span>WEKA</span> Workbench. Online Appendix for "Data Mining: Practical Machine Learning Tools and Techniques"</strong>. Online; Morgan Kaufmann, 2016. Disponível em: &lt;<a href="https://ml.cms.waikato.ac.nz/weka/book.html">https://ml.cms.waikato.ac.nz/weka/book.html</a>&gt;
 </div>
-<div id="ref-goldschmidt2005" class="csl-entry" role="listitem">
-GOLDSCHMIDT, R.; PASSOS, E. <strong>Data Mining: Um Guia Prático</strong>. <em>[S.l.]</em>: Elsevier, 2005.
-</div>
 <div id="ref-han2008" class="csl-entry" role="listitem">
 HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
 </div>
@@ -1879,6 +1966,9 @@ PADHY, N. P. <strong>Artificial Intelligence and Intelligent Systems</strong>. <
 </div>
 <div id="ref-quinlan1986" class="csl-entry" role="listitem">
 QUINLAN, Ross. <strong>Induction of Decision Trees</strong>. <em>[S.l.: S.n.]</em>.
+</div>
+<div id="ref-rocha2008analise" class="csl-entry" role="listitem">
+ROCHA, Miguel; CORTEZ, Paulo; NEVES, José Maia. <strong>An<span>á</span>lise inteligente de dados: algoritmos e implementa<span>ç</span><span>ã</span>o em Java</strong>. <em>[S.l.: S.n.]</em>.
 </div>
 <div id="ref-tan2009" class="csl-entry" role="listitem">
 TAN, P. N.; STEINBACH, M.; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2009.
