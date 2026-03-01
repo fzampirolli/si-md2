@@ -57,11 +57,19 @@ ok "Dependências OK"
 # ---------------------------------------------------------------------------
 # Workflow A: PDF -> _book_pdf/
 # ---------------------------------------------------------------------------
+log "=== Workflow A: Limpando células de download para PDF ==="
+python3 clean_download_cells.py limpar
+ok "Células de download limpas"
+
 log "=== Workflow A: Renderizando PDF ==="
 quarto render --to pdf
 rm -rf "$BOOK_PDF"
 mv "$BOOK_HTML" "$BOOK_PDF"
 ok "PDF movido para $BOOK_PDF/"
+
+log "=== Workflow A: Restaurando células de download ==="
+python3 clean_download_cells.py restaurar
+ok "Células de download restauradas"
 
 # ---------------------------------------------------------------------------
 # Workflow B: HTML + GitHub Pages (fica em _book/)
