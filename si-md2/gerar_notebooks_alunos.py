@@ -1090,7 +1090,10 @@ def extract_citations(notebook: dict) -> list:
 
 def extract_image_paths(notebook: dict) -> list:
     found = set()
-    md_img_re   = re.compile(r'!\[.*?\]\(([^)\s"\']+)')
+    # md_img_re = re.compile(r'!\[.*?\]\(([^)\s"\']+)')
+    # DEPOIS — funciona com qualquer alt-text multilinha
+    md_img_re = re.compile(r'!\[.*?\]\(([^)\s"\']+)', re.DOTALL)
+
     html_img_re = re.compile(r'<img[^>]+src=["\']([^"\']+)["\']')
     for cell in notebook.get("cells", []):
         if cell.get("cell_type") != "markdown":
