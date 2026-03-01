@@ -4,8 +4,8 @@
 #   A. Renderiza HTML -> publica no GitHub Pages
 #   B. Gera EPUB com referências por capítulo -> move para _book_epub/
 #   C. Gera notebooks para alunos (Jupyter/Colab)
-#   D. Commit e push para o GitHub
-#   E. Renderiza PDF -> move para _book_pdf/  ← SEMPRE POR ÚLTIMO
+#   D. Renderiza PDF -> move para _book_pdf/  
+#   E. Commit e push para o GitHub
 #
 # O PDF é gerado por último porque requer limpar os outputs de células de
 # download cacheados nos notebooks. O script clean_download_cells.py faz
@@ -94,9 +94,31 @@ python3 gerar_notebooks_alunos.py --batch "$BIB"
 ok "Notebooks gerados em $ALUNOS_DIR/"
 
 # ---------------------------------------------------------------------------
-# Workflow D: Commit e push para o GitHub (na raiz do repositório)
+# Workflow D: PDF -> _book_pdf/  ← SEMPRE POR ÚLTIMO
 # ---------------------------------------------------------------------------
-log "=== Workflow D: Enviando para o GitHub ==="
+# O PDF é gerado por último porque células de download cacheadas nos
+# notebooks causariam a exibição de "<IPython.core.display.HTML object>"
+# no documento. O script clean_download_cells.py limpa esses outputs
+# antes do render e os restaura automaticamente em seguida.
+# ---------------------------------------------------------------------------
+log "=== Workflow D: Limpando células de download para PDF ==="
+python3 clean_download_cells.py limpar
+ok "Células de download limpas"
+
+log "=== Workflow D: Renderizando PDF ==="
+quarto render --to pdf
+rm -rf "$BOOK_PDF"
+mv "$BOOK_HTML" "$BOOK_PDF"
+ok "PDF movido para $BOOK_PDF/"
+
+log "=== Workflow D: Restaurando células de download ==="
+python3 clean_download_cells.py restaurar
+ok "Células de download restauradas"
+
+# ---------------------------------------------------------------------------
+# Workflow E: Commit e push para o GitHub (na raiz do repositório)
+# ---------------------------------------------------------------------------
+log "=== Workflow E: Enviando para o GitHub ==="
 cd "$GIT_DIR"
 
 git remote get-url origin &>/dev/null || git remote add origin "$REPO"
@@ -111,27 +133,6 @@ ok "Push para $REPO concluído"
 
 cd "$EDIT_DIR"
 
-# ---------------------------------------------------------------------------
-# Workflow E: PDF -> _book_pdf/  ← SEMPRE POR ÚLTIMO
-# ---------------------------------------------------------------------------
-# O PDF é gerado por último porque células de download cacheadas nos
-# notebooks causariam a exibição de "<IPython.core.display.HTML object>"
-# no documento. O script clean_download_cells.py limpa esses outputs
-# antes do render e os restaura automaticamente em seguida.
-# ---------------------------------------------------------------------------
-log "=== Workflow E: Limpando células de download para PDF ==="
-python3 clean_download_cells.py limpar
-ok "Células de download limpas"
-
-log "=== Workflow E: Renderizando PDF ==="
-quarto render --to pdf
-rm -rf "$BOOK_PDF"
-mv "$BOOK_HTML" "$BOOK_PDF"
-ok "PDF movido para $BOOK_PDF/"
-
-log "=== Workflow E: Restaurando células de download ==="
-python3 clean_download_cells.py restaurar
-ok "Células de download restauradas"
 
 # ---------------------------------------------------------------------------
 echo ""
