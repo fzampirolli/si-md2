@@ -1021,18 +1021,29 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
                 parts.append(f"{upper[0]} et al., {year}")
         return "(" + "; ".join(parts) + ")"
 
+    # def replace_direct(m):
+    #     """@key isolado (fora de colchetes) -> Autor (ano)"""
+    #     key = m.group(1)
+    #     if CROSSREF_RE.match(key):
+    #         return m.group(0)   # deixa para o passo 4 tratar
+    #     return _fmt_key(key, "direct")
     def replace_direct(m):
         """@key isolado (fora de colchetes) -> Autor (ano)"""
         key = m.group(1)
         if CROSSREF_RE.match(key):
             return m.group(0)   # deixa para o passo 4 tratar
         return _fmt_key(key, "direct")
+    
+    # Protege \@palavra (escape Quarto para @ literal) com placeholder
+    ESCAPED_AT = "\x00ESCAPED_AT\x00"
+    text = re.sub(r'\\@([\w:-]+)', lambda m: f'{ESCAPED_AT}{m.group(1)}', text)
 
     # Indireta primeiro (evita que @key dentro de [] seja consumido pelo direto)
     text = re.sub(r'\[@([\w:;@\s,-]+)\]', replace_indirect, text)
     # Direta: @key isolado, nao precedido de [
     text = re.sub(r'(?<!\[)@([\w:-]+)', replace_direct, text)
 
+    text = text.replace(ESCAPED_AT, '@')
     return str_to_source(text)
 
 
@@ -1040,14 +1051,35 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
 # 9. Extrai citacoes bibliograficas (exclui cross-refs)
 # ---------------------------------------------------------------------------
 
+# def extract_citations(notebook: dict) -> list:
+#     seen, ordered = set(), []
+#     cite_re = re.compile(r'@([\w:-]+)')
+#     for cell in notebook.get("cells", []):
+#         if cell.get("cell_type") != "markdown":
+#             continue
+#         source = source_to_str(cell.get("source", []))
+#         for m in cite_re.finditer(source):
+#             key = m.group(1)
+#             if CROSSREF_RE.match(key):
+#                 continue
+#             if key not in seen:
+#                 seen.add(key)
+#                 ordered.append(key)
+#     return ordered
 def extract_citations(notebook: dict) -> list:
     seen, ordered = set(), []
-    cite_re = re.compile(r'@([\w:-]+)')
+    # Captura @key mas NÃO precedido de \ (ex: \@relation é escape Quarto, não citação)
+    cite_re = re.compile(r'(?<!\\)@([\w:-]+)')
+    escaped_re = re.compile(r'\\@[\w:-]+')    # \@palavra — escape Quarto, nao e citacao
+
     for cell in notebook.get("cells", []):
         if cell.get("cell_type") != "markdown":
             continue
         source = source_to_str(cell.get("source", []))
-        for m in cite_re.finditer(source):
+        # Remove ocorrencias escapadas antes de buscar citacoes
+        source_clean = escaped_re.sub('', source)
+        
+        for m in cite_re.finditer(source_clean):
             key = m.group(1)
             if CROSSREF_RE.match(key):
                 continue
@@ -1055,7 +1087,6 @@ def extract_citations(notebook: dict) -> list:
                 seen.add(key)
                 ordered.append(key)
     return ordered
-
 
 def extract_image_paths(notebook: dict) -> list:
     found = set()
@@ -1159,6 +1190,15 @@ def clean_notebook(notebook: dict) -> dict:
         # Secao de referencias antiga (sera substituida pela injetada)
         if kind == "markdown" and REF_SECTION_RE.search(src):
             removed["ref_section"] += 1
+            # Guarda o parágrafo introdutório (linhas que não são ## título nem \printbibliography)
+            intro_lines = [
+                l for l in src.splitlines()
+                if l.strip()
+                and not REF_SECTION_RE.match(l.strip())
+                and not l.strip().startswith("\\printbibliography")
+                and not l.strip().startswith("\\")
+            ]
+            notebook["_ref_intro"] = "\n".join(intro_lines)
             continue
 
         cleaned.append(cell)
@@ -1187,7 +1227,7 @@ def clean_notebook(notebook: dict) -> dict:
 #             else f"*Referencia nao encontrada para: {key}*"
 #         lines.append(ref_text)
 #     return "\n\n".join(lines), key_to_num
-def build_reference_list(citations: list, bib: dict) -> tuple:
+def build_reference_list(citations: list, bib: dict, intro_paragraph: str = "") -> tuple:
     """
     Constrói a lista de referências ordenada alfabeticamente pelo 
     sobrenome do primeiro autor ou pelo título.
@@ -1213,8 +1253,11 @@ def build_reference_list(citations: list, bib: dict) -> tuple:
     sorted_keys = sorted(valid_keys, key=get_sort_key)
 
     key_to_num = {}
-    lines = ["## Referências\n"]
+    lines = ["## Referências do Capítulo\n"]
 
+    if intro_paragraph.strip():
+        lines.append(intro_paragraph.strip())
+        
     # 4. Gera o texto das referências ordenadas
     for i, key in enumerate(sorted_keys, start=1):
         key_to_num[key] = i
@@ -1265,10 +1308,15 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
     if image_paths:
         print(f"  Imagens  ({len(image_paths)}): {image_paths}")
 
-    ref_markdown, key_to_num = build_reference_list(citations, bib)
-
-    # Limpeza antes de processar
+    # Limpeza antes de processar (extrai _ref_intro da célula de referências)
     notebook = clean_notebook(notebook)
+
+    intro_raw = notebook.pop("_ref_intro", "")
+    intro_resolved = source_to_str(
+        process_cell(str_to_source(intro_raw), {}, elem_map, bib)
+    )
+    ref_markdown, key_to_num = build_reference_list(citations, bib,
+                                                    intro_paragraph=intro_resolved)
 
     # Remove atributo 'scoped' inválido no EPUB gerado pelo pandas
     for cell in notebook.get("cells", []):

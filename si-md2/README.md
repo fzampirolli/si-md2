@@ -134,6 +134,15 @@ $$
 $$
 ```
 
+Ou, para numerar equações, use "[Regra @eq-2-1]" ou "@eq-2-1", com:
+
+$$
+\textcolor{red}{\textbf{If }} 
+(\text{Temperatura} = \text{Baixa})
+\;\textcolor{red}{\textbf{ then }}\;
+(\text{Umidade} = \text{Normal})
+$$ {#eq-2-1}
+
 ---
 
 
