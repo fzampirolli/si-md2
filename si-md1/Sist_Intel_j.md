@@ -2819,7 +2819,15 @@ Publishers, 2005.
 Weka. The Waikato University. In <http://www.cs.waikato.ac.nz/ml/weka/>
 . Acessado em 03.03.13.
 
- Classificação e Regras de Classificação
+
+
+
+
+
+
+
+
+Classificação e Regras de Classificação
 =======================================
 
 Introdução

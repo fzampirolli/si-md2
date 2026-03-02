@@ -10,7 +10,7 @@ book:
   cover-image: images/capa.png  # <--- ADICIONE ESTA LINHA
   date: "today"
   chapters:
-    - index.qmd
+    - prefacio.qmd
     - cap01/cap01.ipynb
     - cap02/cap02.ipynb
   
