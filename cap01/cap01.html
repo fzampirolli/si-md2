@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.28">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>1&nbsp; Sistemas Inteligentes – Sistemas Inteligentes e Mineração de Dados</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -89,15 +92,14 @@ div.csl-indent {
 <link href="../prefacio.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-49e51e44f424ea8c7044b429bdbbbfe2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-59cb2755e9fdc26506ad51b1a5643527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -130,7 +132,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -673,7 +675,7 @@ RELATÓRIO DE EXECUÇÃO:
 </div>
 <section id="funcionalidades-disponíveis-na-plataforma" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="funcionalidades-disponíveis-na-plataforma">Funcionalidades Disponíveis na Plataforma</h3>
-<p>O <strong>NotebookLM</strong> oferece uma suíte avançada de ferramentas baseadas em IA para transformar o conteúdo estático do livro em uma experiência de aprendizado dinâmica e multimídia. Conforme ilustrado na <a href="#fig-notebooklm" class="quarto-xref">Figura&nbsp;<span>1.6</span></a>, a plataforma utiliza técnicas de <strong>RAG</strong> (<em>Retrieval-Augmented Generation</em>), fundamentadas no trabalho de <span class="citation" data-cites="lewis2020retrieval">Lewis et al. (<a href="#ref-lewis2020retrieval" role="doc-biblioref">2020</a>)</span>, para basear as respostas estritamente nos documentos fornecidos e minimizar a ocorrência de alucinações.</p>
+<p>O <strong>NotebookLM</strong> oferece uma suíte avançada de ferramentas baseadas em IA para transformar o conteúdo estático do livro em uma experiência de aprendizado dinâmica e multimídia. Conforme ilustrado na <a href="#fig-notebooklm" class="quarto-xref">Figura&nbsp;<span>1.6</span></a>, a plataforma utiliza técnicas de <strong>RAG</strong> (<em>Retrieval-Augmented Generation</em>), fundamentadas no trabalho de <span class="citation" data-cites="lewis2020retrieval"><span class="nocase">Lewis et al.</span> (<a href="#ref-lewis2020retrieval" role="doc-biblioref">2020</a>)</span>, para basear as respostas estritamente nos documentos fornecidos e minimizar a ocorrência de alucinações.</p>
 <p>As principais funcionalidades incluem:</p>
 <ul>
 <li><strong>Resumos Multimodais (Áudio e Vídeo)</strong>: Geração de conversas naturais entre especialistas no formato de <strong>Resumo em Áudio</strong> (estilo podcast) e <strong>Resumo em Vídeo</strong>, discutindo os temas centrais do capítulo.</li>
@@ -683,7 +685,7 @@ RELATÓRIO DE EXECUÇÃO:
 <li><strong>Análise de Dados (Tabela de Dados)</strong>: Organização de dados extraídos do texto em tabelas estruturadas, auxiliando na compreensão de exemplos práticos como o cálculo do IMC.</li>
 <li><strong>Chat Contextualizado</strong>: Permite o questionamento direto sobre o código e a teoria, como: <em>“Onde o dado bruto se transforma em informação no script do IMC?”</em>.</li>
 </ul>
-<div id="fig-notebooklm" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" alt="Estúdo do NotebooLM." data-fig-align="center">
+<div id="fig-notebooklm" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Estúdo do NotebooLM.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-notebooklm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/fig1_notebooklm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1.6: Estúdo do NotebooLM."><img src="images/fig1_notebooklm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Estúdo do NotebooLM."></a>
@@ -726,7 +728,7 @@ Figura&nbsp;1.6: Estúdo do NotebooLM.
 </section>
 <section id="referências-do-capítulo" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">1.9</span> Referências do Capítulo</h2>
-<p>Este capítulo baseou-se principalmente em obras de referência clássicas da área: <span class="citation" data-cites="forouzan2011">Forouzan; Mosharraf (<a href="#ref-forouzan2011" role="doc-biblioref">2011</a>)</span> para fundamentos de computação; <span class="citation" data-cites="goldschmidt2005">Goldschmidt; Passos (<a href="#ref-goldschmidt2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span> e <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span> para mineração de dados; <span class="citation" data-cites="padhy2010">Padhy (<a href="#ref-padhy2010" role="doc-biblioref">2010</a>)</span> e <span class="citation" data-cites="rezende2005">Rezende (<a href="#ref-rezende2005" role="doc-biblioref">2005</a>)</span> para sistemas inteligentes; <span class="citation" data-cites="russell2004">Russell; Norvig (<a href="#ref-russell2004" role="doc-biblioref">2004</a>)</span> para inteligência artificial; <span class="citation" data-cites="pinheiro2008">Pinheiro (<a href="#ref-pinheiro2008" role="doc-biblioref">2008</a>)</span> para inteligência analítica e descoberta de conhecimento; e <span class="citation" data-cites="lewis2020retrieval">Lewis et al. (<a href="#ref-lewis2020retrieval" role="doc-biblioref">2020</a>)</span> para geração aumentada por recuperação (RAG).</p>
+<p>Este capítulo baseou-se principalmente em obras de referência clássicas da área: <span class="citation" data-cites="forouzan2011">Forouzan; Mosharraf (<a href="#ref-forouzan2011" role="doc-biblioref">2011</a>)</span> para fundamentos de computação; <span class="citation" data-cites="goldschmidt2005">Goldschmidt; Passos (<a href="#ref-goldschmidt2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span> e <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span> para mineração de dados; <span class="citation" data-cites="padhy2010">Padhy (<a href="#ref-padhy2010" role="doc-biblioref">2010</a>)</span> e <span class="citation" data-cites="rezende2005">Rezende (<a href="#ref-rezende2005" role="doc-biblioref">2005</a>)</span> para sistemas inteligentes; <span class="citation" data-cites="russell2004">Russell; Norvig (<a href="#ref-russell2004" role="doc-biblioref">2004</a>)</span> para inteligência artificial; <span class="citation" data-cites="pinheiro2008">Pinheiro (<a href="#ref-pinheiro2008" role="doc-biblioref">2008</a>)</span> para inteligência analítica e descoberta de conhecimento; e <span class="citation" data-cites="lewis2020retrieval"><span class="nocase">Lewis et al.</span> (<a href="#ref-lewis2020retrieval" role="doc-biblioref">2020</a>)</span> para geração aumentada por recuperação (RAG).</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
@@ -740,7 +742,7 @@ GOLDSCHMIDT, R.; PASSOS, E. <strong>Data Mining: Um Guia Prático</strong>. <em>
 HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
 </div>
 <div id="ref-lewis2020retrieval" class="csl-entry" role="listitem">
-LEWIS, Patrick <em>et al.</em> Retrieval-augmented generation for knowledge-intensive nlp tasks. <strong>Advances in neural information processing systems</strong>, v. 33, p. 9459–9474, 2020.
+<span class="nocase">LEWIS, Patrick <em>et al.</em></span> Retrieval-augmented generation for knowledge-intensive nlp tasks. <strong>Advances in neural information processing systems</strong>, v. 33, p. 9459–9474, 2020.
 </div>
 <div id="ref-padhy2010" class="csl-entry" role="listitem">
 PADHY, N. P. <strong>Artificial Intelligence and Intelligent Systems</strong>. <em>[S.l.]</em>: Oxford University Press, 2010.
