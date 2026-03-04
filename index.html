@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./cap01/cap01.html" rel="next">
+<link href="./prefacio.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -105,7 +105,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Procurar"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -119,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prefácio</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -147,6 +179,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prefacio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefácio</span></a>
   </div>
 </li>
@@ -162,6 +200,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap03/cap03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap04/cap04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cap05/cap05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -172,17 +228,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#prefácio" id="toc-prefácio" class="nav-link active" data-scroll-target="#prefácio">Prefácio</a>
+  <li><a href="#projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição" id="toc-projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição" class="nav-link active" data-scroll-target="#projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</a>
   <ul class="collapse">
-  <li><a href="#prefácio-da-primeira-edição" id="toc-prefácio-da-primeira-edição" class="nav-link" data-scroll-target="#prefácio-da-primeira-edição">Prefácio da Primeira Edição</a></li>
-  <li><a href="#prefácio-da-segunda-edição" id="toc-prefácio-da-segunda-edição" class="nav-link" data-scroll-target="#prefácio-da-segunda-edição">Prefácio da Segunda Edição</a>
-  <ul class="collapse">
-  <li><a href="#motivação" id="toc-motivação" class="nav-link" data-scroll-target="#motivação">Motivação</a></li>
-  <li><a href="#estrutura-do-livro" id="toc-estrutura-do-livro" class="nav-link" data-scroll-target="#estrutura-do-livro">Estrutura do Livro</a></li>
-  <li><a href="#como-estudar-este-material" id="toc-como-estudar-este-material" class="nav-link" data-scroll-target="#como-estudar-este-material">Como Estudar Este Material</a></li>
-  <li><a href="#agradecimentos" id="toc-agradecimentos" class="nav-link" data-scroll-target="#agradecimentos">Agradecimentos</a></li>
-  <li><a href="#nota-para-os-autores-trecho-em-construção" id="toc-nota-para-os-autores-trecho-em-construção" class="nav-link" data-scroll-target="#nota-para-os-autores-trecho-em-construção">Nota para os Autores (Trecho em Construção)</a></li>
-  </ul></li>
+  <li><a href="#status-do-projeto" id="toc-status-do-projeto" class="nav-link" data-scroll-target="#status-do-projeto">🚧 Status do Projeto</a></li>
+  <li><a href="#estrutura-simplificada" id="toc-estrutura-simplificada" class="nav-link" data-scroll-target="#estrutura-simplificada">📂 Estrutura Simplificada</a></li>
+  <li><a href="#regras-de-ouro-para-autores-padrão-quarto" id="toc-regras-de-ouro-para-autores-padrão-quarto" class="nav-link" data-scroll-target="#regras-de-ouro-para-autores-padrão-quarto">🛠️ Regras de Ouro para Autores (Padrão Quarto)</a></li>
+  <li><a href="#workflow-rápido-terminal" id="toc-workflow-rápido-terminal" class="nav-link" data-scroll-target="#workflow-rápido-terminal">🔄 Workflow Rápido (Terminal)</a></li>
+  <li><a href="#checklist-de-qualidade" id="toc-checklist-de-qualidade" class="nav-link" data-scroll-target="#checklist-de-qualidade">📋 Checklist de Qualidade</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -210,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">1 de março de 2026</p>
+      <p class="date">3 de março de 2026</p>
     </div>
   </div>
   
@@ -223,107 +275,111 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="prefácio" class="level1 unnumbered">
-<h1 class="unnumbered">Prefácio</h1><p><img src="images/capa.png" title="Sistemas Inteligentes e Mineração de Dados" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>Esta obra é a evolução natural da <strong><a href="https://books.google.com.br/books?id=X76VBgAAQBAJ">primeira edição (2014)</a></strong>, expandindo o foco do software Weka para o ecossistema Python. O livro mantém sua visão pragmática da Mineração de Dados, unindo a teoria clássica à prática interativa via Google Colab e tutoria por IA. Através de seis capítulos sequenciais, o leitor desenvolve a sensibilidade necessária para explorar algoritmos e selecionar a técnica mais apropriada para cada base de dados.</p>
-<section id="prefácio-da-primeira-edição" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="prefácio-da-primeira-edição">Prefácio da Primeira Edição</h2>
-<p>O início do século XXI é caracterizado pela era da informação e crescimento exponencial de dados gerados em praticamente todas as áreas de atividade humana. Cada vez mais se torna necessário o conhecimento e aperfeiçoamento de ferramentas apropriadas para extrair informações úteis destes dados. A Mineração de Dados combina inteligência artificial, aprendizagem de máquina, estatística, base de dados e técnicas avançadas de programação para tratar grandes volumes de dados.</p>
-<p>Este livro foi escrito com o objetivo de oferecer uma visão pragmática da Mineração de Dados. Ele é apropriado para ser utilizado como livro texto de curso na área, trazendo vários exercícios práticos utilizando o pacote gratuito e aberto Weka de rotinas escritas em Java, incluindo exercícios no final de cada capítulo, juntamente com uma boa lista de referências bibliográficas.</p>
-<p>O livro procura passar uma experiência prática de uso do pacote de software permitindo que o leitor seja introduzido na área vivenciando as várias modalidades de ferramentas disponíveis. Como nenhum algoritmo ou técnica tem um desempenho superior para qualquer base de dados, é importante que o leitor adquira uma sensibilidade para poder explorar e escolher a técnica mais apropriada em cada caso.</p>
-<p>O livro está organizado em seis capítulos que devem ser lidos na sua sequência.</p>
-<p>O Capítulo 1, Sistemas Inteligentes traz as principais definições necessárias, como sistemas, inteligência, dados, informação, conhecimento e desempenho. É feita uma breve descrição das três etapas da Descoberta ou Extração de conhecimento em Base de Dados: pré-processamento, mineração de dados e pós-processamento. A Mineração de Dados, por sua vez é dividida nas tarefas de Associação, Classificação, Agrupamento e Detecção de Anomalias. O capítulo é finalizado fazendo considerações sobre a questão ética da Mineração de Dados, mencionando que o uso destas informações podem levar à medidas preventivas de segurança pública.</p>
-<p>O Capítulo 2, Mineração de dados e Regras de Associação, explica como os dados devem ser estruturados através de suas transações ou exemplos, juntamente com seus atributos. O capítulo é dedicado à identificação de Regras de Associação também denominadas regras IF-THEN. Os indicadores de suporte e confiança ou acurácia são utilizados na avaliação das melhores regras de associação. É visto o algoritmo apriori utilizado para criar as regras de identificação. É visto um exemplo completo, passo-a-passo de identificação de Regras de Associação utilizando a ferramenta Weka.</p>
-<p>O Capítulo 3, Classificação e Árvores de Decisão, utiliza o famoso exemplo de classificação de 3 espécies de Flor Íris utilizando a árvore de decisão, onde cada nó da árvore é uma pergunta a ser testada. O nó raiz é a pergunta inicial e as folhas são as classes resultantes da aplicação da árvore de decisão.</p>
-<p>É introduzido o algoritmo ID3, baseado na noção de informação do Shannon e comparado a um algoritmo de escolha aleatória na construção da árvore de decisão, ilustrando a compacticidade da árvore gerada pelo algoritmo ID3. É ilustrado também o processo de extração de regras de decisão a partir da árvore de decisão. Ainda neste capítulo, o conceito de aprendizado supervisionado é introduzido, juntamente com o conceito de dados de treinamento e de testes e o processo de classificação. A avaliação dos resultados é feita com o uso da Matriz de Confusão. O capítulo termina com um exemplo completo utilizando o Weka para gerar o classificador via Árvore de Decisão e avaliar seu resultado com a Matriz de Confusão.</p>
-<p>O Capítulo 4, Classificação e Regras de Classificação, trata da Classificação de dados através de Regras de Classificação e o processo de geração automática dessas Regras. O objetivo desse capítulo é passar uma ideia geral do funcionamento dos algoritmo oneR (uma regra), classificadores lineares, redes neurais e Máquinas de Vetores de Suporte (MSVS), cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados. Pela simplicidade, inicialmente é visto o algoritmo oneR e em seguida o algoritmo PRISM, que utiliza o princípio da cobertura para a criação das regras. Os indicadores de resultados especificidade e sensibilidade são também introduzidos neste capítulo que termina com uma visão sobre as melhores formas de utilizar os dados para as fases de treinamento e de teste: Técnica da ressubstituição ou uso do conjunto de treinamento; método da divisão da amostra; método da validação cruzada; e método deixe-um-de-fora.</p>
-<p>No Capítulo 5, Máquina de Vetores de Suporte (MVS), são vistos inicialmente os classificadores lineares como o Perceptron e os conceitos de otimização da função custo, conjuntos convexos, mínimo global e mínimo local. Nos Classificadores não lineares, a reta é substituída por uma função polinomial. As Maquinas de Vetores de Suporte são introduzidas através do Princípio da margem máxima que é uma das principais características da MVS que traz mais estabilidade e desempenho deste classificador. O capítulo traz ainda os conceitos de kernel da MVS, o truque do kernel, Parâmetro de Complexidade C e o conceito da Praga da dimensionalidade. O capítulo termina ensinando a utilizar o Weka para visualizar as bordas de decisão do MVS.</p>
-<p>O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.</p>
-<p>Roberto de Alencar Lotufo, professor titular<br>
-Faculdade de Engenharia Elétrica e de Computação<br>
-Universidade Estadual de Campinas – Unicamp</p>
-</section>
-<section id="prefácio-da-segunda-edição" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="prefácio-da-segunda-edição">Prefácio da Segunda Edição</h2>
-<p>Bem-vindo à segunda edição do livro <strong>Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python</strong>.</p>
-<p>Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.</p>
-<section id="motivação" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="motivação">Motivação</h3>
-<p>A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</p>
-</section>
-<section id="estrutura-do-livro" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="estrutura-do-livro">Estrutura do Livro</h3>
-<p>O livro está organizado em seis capítulos fundamentais:</p>
+<section id="projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</h2><p><img src="images/capa.png" title="Sistemas Inteligentes e Mineração de Dados" class="quarto-cover-image nolightbox img-fluid"></p>
+<p>Bem-vindo ao material didático em construção! Este livro utiliza o <strong>Quarto</strong> para integrar teoria e prática.</p>
+<section id="status-do-projeto" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="status-do-projeto">🚧 Status do Projeto</h3>
 <ul>
-<li><strong>Capítulo 1</strong>: Introdução aos Sistemas Inteligentes</li>
-<li><strong>Capítulo 2</strong>: Fundamentos de Mineração de Dados</li>
-<li><strong>Capítulo 3</strong>: Aprendizado de Máquina Supervisionado</li>
-<li><strong>Capítulo 4</strong>: Aprendizado Não Supervisionado</li>
-<li><strong>Capítulo 5</strong>: Avaliação e Validação de Modelos</li>
-<li><strong>Capítulo 6</strong>: Aplicações Práticas e Estudos de Caso</li>
+<li><strong>Capítulos 1 e 2:</strong> Em fase de revisão final e melhorias nos exemplos em Python.</li>
+<li><strong>Capítulo 3:</strong> Falta incluir exemplos em Python.</li>
+<li><strong>Capítulos 4 e 5:</strong> Parser inicial.</li>
+<li><strong>Foco:</strong> Simplificar os laboratórios em Python para criar exemplos curtos, práticos e <strong>extremamente motivacionais</strong>.</li>
 </ul>
 </section>
-<section id="como-estudar-este-material" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="como-estudar-este-material">Como Estudar Este Material</h3>
-<p>Para garantir o máximo aproveitamento, este material foi projetado para ser consumido de forma híbrida:</p>
-<section id="prática-interativa-notebooks" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="prática-interativa-notebooks">1. Prática Interativa (Notebooks)</h4>
-<p>Cada capítulo possui uma parte prática que pode ser executada via <strong>Google Colab</strong> (clicando no botão “Open In Colab” no início do capítulo) ou localmente via <strong>Jupyter Lab</strong>. Recomendamos que você execute os códigos, como o exemplo de cálculo de IMC e geração de gráficos, enquanto estuda a teoria.</p>
-</section>
-<section id="tutor-inteligente-notebooklm" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="tutor-inteligente-notebooklm">2. Tutor Inteligente (NotebookLM)</h4>
-<p>Incentivamos o uso do <strong>NotebookLM</strong> como um tutor personalizado. Como a ferramenta ainda não processa arquivos <code>.ipynb</code> nativamente, você deve utilizar a <strong>versão em PDF de cada capítulo</strong> (gerada pelo Quarto) como fonte de dados para a IA.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>🚀 Acesse o Tutor de IA do Livro
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Para cada capítulo, utilize o projeto configurado para tirar dúvidas, gerar resumos e ouvir o <em>Audio Overview</em> ou assistir o <em>Resumo em Vídeo</em>:</p>
-<p><strong><a href="https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635">Link do Projeto NotebookLM do Capítulo 1</a></strong></p>
-</div>
-</div>
-</section>
-<section id="dicas-para-o-leitor" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="dicas-para-o-leitor">Dicas para o Leitor</h4>
+<section id="estrutura-simplificada" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="estrutura-simplificada">📂 Estrutura Simplificada</h3>
 <ul>
-<li><strong>Experimente</strong>: Altere os parâmetros das funções e observe como os gráficos de barras e dispersão reagem.</li>
-<li><strong>Questione a IA</strong>: Use o NotebookLM para perguntar, por exemplo: <em>“Neste código de IMC que acabamos de executar, onde o dado bruto se transforma em informação?”</em>.</li>
-<li><strong>Sincronização</strong>: Mantenha as pastas <code>data/</code> e <code>images/</code> sempre junto aos seus notebooks para garantir a execução correta.</li>
+<li><strong><code>si-md1/</code></strong>: Material legado (PDF/Docx). <strong>Não editar.</strong></li>
+<li><strong><code>si-md2/</code></strong>: <strong>Pasta de trabalho ativa.</strong>
+<ul>
+<li><code>_quarto.yml</code>: Configuração mestre (sumário e temas).</li>
+<li><code>capXX/</code>: Pasta de cada capítulo (<strong>Editar</strong> – contém o <code>.ipynb</code>, <code>/images</code> e <code>/data</code>).</li>
+<li><code>references.bib</code>: Base de dados bibliográfica global.</li>
+<li><strong><code>notebooks_alunos/</code></strong>: Versão processada para distribuição (gerada via script).</li>
+</ul></li>
 </ul>
-</section>
-</section>
-<section id="agradecimentos" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="agradecimentos">Agradecimentos</h3>
-<p>Agradecemos aos alunos e instituições que apoiaram o desenvolvimento deste conteúdo.</p>
+<p><strong>Processo:</strong></p>
+<ol type="1">
+<li>Gerado <code>si-md1/Sist_Intel_j.md</code> de <code>si-md1/Sist_Intel_j.docx</code> com pandoc.</li>
+<li>Copiado <code>si-md1/Sist_Intel_j.md</code> para <code>si-md2/capXX/capXX.ipynb</code> (e ajustes manuais).</li>
+<li>Gerado <code>si-md1/sistemas_inteligentes_impresso.md</code> de <code>si-md1/sistemas_inteligentes_impresso.pdf</code> com tesseract.</li>
+<li>Pequenas correções em <code>si-md2/capXX/capXX.ipynb</code> usando <code>si-md1/sistemas_inteligentes_impresso.md</code>.</li>
+<li>Ajustes manuais para funcionar <code>quarto render</code> em html, ipynb e pdf.</li>
+</ol>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+
+    A["`**si-md1/Sist_Intel.docx**`"] --&gt;|pandoc| B["`**si-md1/Sist_Intel.md**`"]
+    C["`**si-md1/sistemas_inteligentes_impresso.pdf**`"] --&gt;|tesseract| D["`**si-md1/sistemas_inteligentes_impresso.md**`"]
+
+    B --&gt;|"cópia + ajustes manuais"| E["`**si-md2/capXX/capXX.ipynb**`"]
+    D --&gt;|"referência para correções"| E
+
+    E --&gt;|"ajustes manuais"| F["`**quarto render**`"]
+
+    F --&gt; G[HTML]
+    F --&gt; H[IPYNB]
+    F --&gt; I[PDF]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <hr>
-<p><em>Os Autores</em> <em>Fevereiro de 2026</em></p>
+</section>
+<section id="regras-de-ouro-para-autores-padrão-quarto" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="regras-de-ouro-para-autores-padrão-quarto">🛠️ Regras de Ouro para Autores (Padrão Quarto)</h3>
+<p><strong>1. Referências Cruzadas (Obrigatório incluir o número do capítulo):</strong></p>
+<ul>
+<li><strong>Figuras:</strong> <code>![Legenda](images/fig.png){#fig-3-nome width=50%}</code></li>
+<li><strong>Tabelas:</strong> <code>: Legenda {#tbl-3-nome}</code> (após a tabela).</li>
+<li><strong>Equações:</strong> <code>$$E = mc^2$$ {#eq-3-nome}</code></li>
+<li><strong>Citar no texto:</strong> Use <code>@fig-3-nome</code>, <code>@tbl-3-nome</code> ou <code>@eq-3-nome</code>.</li>
+</ul>
+<p><strong>2. Bibliografia:</strong></p>
+<ul>
+<li>Citação indireta: <code>[@chave]</code> <span class="math inline">\(\rightarrow\)</span> (Autor, Ano).</li>
+<li>Citação direta: <code>@chave</code> <span class="math inline">\(\rightarrow\)</span> Autor (Ano).</li>
+</ul>
+<p><strong>3. Células de Download (Python):</strong> {.unnumbered}</p>
+<ul>
+<li>Devem usar o check <code>if quarto_format in ('html', ''):</code> para não quebrarem a geração do PDF.</li>
+</ul>
 <hr>
 </section>
-<section id="nota-para-os-autores-trecho-em-construção" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="nota-para-os-autores-trecho-em-construção">Nota para os Autores (Trecho em Construção)</h3>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Aviso</span>Atenção Autores
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Sempre que finalizarem a edição de um capítulo, lembrem-se de gerar o PDF atualizado via Quarto. Este PDF é a fonte que os alunos devem subir no NotebookLM, já que os arquivos <code>.ipynb</code> não são aceitos pela plataforma.</p>
-</div>
-</div>
+<section id="workflow-rápido-terminal" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-rápido-terminal">🔄 Workflow Rápido (Terminal)</h3>
+<ol type="1">
+<li><strong>Atualizar:</strong> <code>git pull origin main</code></li>
+<li><strong>Limpar caches:</strong> <code>./limpar.sh</code></li>
+<li><strong>Gerar Versão Aluno:</strong> <code>python gerar_notebooks_alunos.py --batch references.bib</code></li>
+<li><strong>Publicar Tudo (HTML+PDF+Git):</strong> <code>./publish_all.sh</code></li>
+<li><strong>Manual (Git):</strong></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Explique sua alteração"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="checklist-de-qualidade" class="level3">
+<h3 class="anchored" data-anchor-id="checklist-de-qualidade">📋 Checklist de Qualidade</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Imagens estão na pasta <code>images/</code> interna do capítulo?</label></li>
+<li><label><input type="checkbox">Labels começam com o prefixo correto (<code>fig-</code>, <code>tbl-</code>, <code>eq-</code>) e o número do capítulo?</label></li>
+<li><label><input type="checkbox">O arquivo <code>references.bib</code> foi atualizado com as novas obras?</label></li>
+<li><label><input type="checkbox">O código do notebook executa do início ao fim sem erros?</label></li>
+</ul>
+<hr>
 
 
 <!-- -->
 
-</section>
 </section>
 </section>
 
@@ -783,120 +839,106 @@ Universidade Estadual de Campinas – Unicamp</p>
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./cap01/cap01.html" class="pagination-link" aria-label="Sistemas Inteligentes">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sistemas Inteligentes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./prefacio.html" class="pagination-link" aria-label="Prefácio">
+        <span class="nav-page-text">Prefácio</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prefácio {.unnumbered}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Esta obra é a evolução natural da **[primeira edição (2014)](https://books.google.com.br/books?id=X76VBgAAQBAJ)**, expandindo o foco do software Weka para o ecossistema Python. O livro mantém sua visão pragmática da Mineração de Dados, unindo a teoria clássica à prática interativa via Google Colab e tutoria por IA. Através de seis capítulos sequenciais, o leitor desenvolve a sensibilidade necessária para explorar algoritmos e selecionar a técnica mais apropriada para cada base de dados.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prefácio da Primeira Edição {.unnumbered}</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>O início do século XXI é caracterizado pela era da informação e crescimento exponencial de dados gerados em praticamente todas as áreas de atividade humana. Cada vez mais se torna necessário o conhecimento e aperfeiçoamento de ferramentas apropriadas para extrair informações úteis destes dados. A Mineração de Dados combina inteligência artificial, aprendizagem de máquina, estatística, base de dados e técnicas avançadas de programação para tratar grandes volumes de dados.</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Este livro foi escrito com o objetivo de oferecer uma visão pragmática da Mineração de Dados. Ele é apropriado para ser utilizado como livro texto de curso na área, trazendo vários exercícios práticos utilizando o pacote gratuito e aberto Weka de rotinas escritas em Java, incluindo exercícios no final de cada capítulo, juntamente com uma boa lista de referências bibliográficas.</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>O livro procura passar uma experiência prática de uso do pacote de software permitindo que o leitor seja introduzido na área vivenciando as várias modalidades de ferramentas disponíveis. Como nenhum algoritmo ou técnica tem um desempenho superior para qualquer base de dados, é importante que o leitor adquira uma sensibilidade para poder explorar e escolher a técnica mais apropriada em cada caso.</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>O livro está organizado em seis capítulos que devem ser lidos na sua sequência.</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>O Capítulo 1, Sistemas Inteligentes traz as principais definições necessárias, como sistemas, inteligência, dados, informação, conhecimento e desempenho. É feita uma breve descrição das três etapas da Descoberta ou Extração de conhecimento em Base de Dados: pré-processamento, mineração de dados e pós-processamento. A Mineração de Dados, por sua vez é dividida nas tarefas de Associação, Classificação, Agrupamento e Detecção de Anomalias. O capítulo é finalizado fazendo considerações sobre a questão ética da Mineração de Dados, mencionando que o uso destas informações podem levar à medidas preventivas de segurança pública.</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>O Capítulo 2, Mineração de dados e Regras de Associação, explica como os dados devem ser estruturados através de suas transações ou exemplos, juntamente com seus atributos. O capítulo é dedicado à identificação de Regras de Associação também denominadas regras IF-THEN. Os indicadores de suporte e confiança ou acurácia são utilizados na avaliação das melhores regras de associação. É visto o algoritmo apriori utilizado para criar as regras de identificação. É visto um exemplo completo, passo-a-passo de identificação de Regras de Associação utilizando a ferramenta Weka.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>O Capítulo 3, Classificação e Árvores de Decisão, utiliza o famoso exemplo de classificação de 3 espécies de Flor Íris utilizando a árvore de decisão, onde cada nó da árvore é uma pergunta a ser testada. O nó raiz é a pergunta inicial e as folhas são as classes resultantes da aplicação da árvore de decisão.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>É introduzido o algoritmo ID3, baseado na noção de informação do Shannon e comparado a um algoritmo de escolha aleatória na construção da árvore de decisão, ilustrando a compacticidade da árvore gerada pelo algoritmo ID3. É ilustrado também o processo de extração de regras de decisão a partir da árvore de decisão. Ainda neste capítulo, o conceito de aprendizado supervisionado é introduzido, juntamente com o conceito de dados de treinamento e de testes e o processo de classificação. A avaliação dos resultados é feita com o uso da Matriz de Confusão. O capítulo termina com um exemplo completo utilizando o Weka para gerar o classificador via Árvore de Decisão e avaliar seu resultado com a Matriz de Confusão.</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>O Capítulo 4, Classificação e Regras de Classificação, trata da Classificação de dados através de Regras de Classificação e o processo de geração automática dessas Regras. O objetivo desse capítulo é passar uma ideia geral do funcionamento dos algoritmo oneR (uma regra), classificadores lineares, redes neurais e Máquinas de Vetores de Suporte (MSVS), cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados. Pela simplicidade, inicialmente é visto o algoritmo oneR e em seguida o algoritmo PRISM, que utiliza o princípio da cobertura para a criação das regras. Os indicadores de resultados especificidade e sensibilidade são também introduzidos neste capítulo que termina com uma visão sobre as melhores formas de utilizar os dados para as fases de treinamento e de teste: Técnica da ressubstituição ou uso do conjunto de treinamento; método da divisão da amostra; método da validação cruzada; e método deixe-um-de-fora.</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>No Capítulo 5, Máquina de Vetores de Suporte (MVS), são vistos inicialmente os classificadores lineares como o Perceptron e os conceitos de otimização da função custo, conjuntos convexos, mínimo global e mínimo local. Nos Classificadores não lineares, a reta é substituída por uma função polinomial. As Maquinas de Vetores de Suporte são introduzidas através do Princípio da margem máxima que é uma das principais características da MVS que traz mais estabilidade e desempenho deste classificador. O capítulo traz ainda os conceitos de kernel da MVS, o truque do kernel, Parâmetro de Complexidade C e o conceito da Praga da dimensionalidade. O capítulo termina ensinando a utilizar o Weka para visualizar as bordas de decisão do MVS.</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>O Capítulo 6, Aplicações de SVM Usando Imagens traz uma introdução à classificação de imagens digitais utilizando SVM. Uma série de ilustrações utilizando o SVM para reconhecimento de expressões faciais com imagens de apenas 49 pixels ajuda o leitor a entender problemas mais complexos de classificação que utilizam imagens de vários megapixels. Além do uso dos próprios pixels da imagem como atributos, são utilizados o seu histograma e atributos topológicos tais como perímetro, área, excentricidade, orientação, razão de aspecto, entre outros. O capítulo traz ainda exemplos de classificação dos tecidos adiposo e epitelial.</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Roberto de Alencar Lotufo, professor titular\</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Faculdade de Engenharia Elétrica e de Computação\</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Universidade Estadual de Campinas -- Unicamp</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prefácio da Segunda Edição {.unnumbered}</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Motivação {.unnumbered}</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estrutura do Livro {.unnumbered}</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>O livro está organizado em seis capítulos fundamentais:</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 1**: Introdução aos Sistemas Inteligentes</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 2**: Fundamentos de Mineração de Dados</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 3**: Aprendizado de Máquina Supervisionado</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 4**: Aprendizado Não Supervisionado</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 5**: Avaliação e Validação de Modelos</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Capítulo 6**: Aplicações Práticas e Estudos de Caso</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### Como Estudar Este Material {.unnumbered}</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>Para garantir o máximo aproveitamento, este material foi projetado para ser consumido de forma híbrida:</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 1. Prática Interativa (Notebooks)  {.unnumbered}</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>Cada capítulo possui uma parte prática que pode ser executada via **Google Colab** (clicando no botão "Open In Colab" no início do capítulo) ou localmente via **Jupyter Lab**. Recomendamos que você execute os códigos, como o exemplo de cálculo de IMC e geração de gráficos, enquanto estuda a teoria.</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 2. Tutor Inteligente (NotebookLM)  {.unnumbered}</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>Incentivamos o uso do **NotebookLM** como um tutor personalizado. Como a ferramenta ainda não processa arquivos `.ipynb` nativamente, você deve utilizar a **versão em PDF de cada capítulo** (gerada pelo Quarto) como fonte de dados para a IA.</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip appearance="simple"}</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 🚀 Acesse o Tutor de IA do Livro  {.unnumbered}</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>Para cada capítulo, utilize o projeto configurado para tirar dúvidas, gerar resumos e ouvir o *Audio Overview* ou assistir o *Resumo em Vídeo*:</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>**[Link do Projeto NotebookLM do Capítulo 1](https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635)**</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Dicas para o Leitor {.unnumbered}</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Experimente**: Altere os parâmetros das funções e observe como os gráficos de barras e dispersão reagem.</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Questione a IA**: Use o NotebookLM para perguntar, por exemplo: *"Neste código de IMC que acabamos de executar, onde o dado bruto se transforma em informação?"*.</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Sincronização**: Mantenha as pastas <span class="in">`data/`</span> e <span class="in">`images/`</span> sempre junto aos seus notebooks para garantir a execução correta.</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="fu">### Agradecimentos {.unnumbered}</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>Agradecemos aos alunos e instituições que apoiaram o desenvolvimento deste conteúdo.</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>*Os Autores* *Fevereiro de 2026*</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nota para os Autores (Trecho em Construção)  {.unnumbered}</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Atenção Autores  {.unnumbered}</span></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>Sempre que finalizarem a edição de um capítulo, lembrem-se de gerar o PDF atualizado via Quarto. Este PDF é a fonte que os alunos devem subir no NotebookLM, já que os arquivos <span class="in">`.ipynb`</span> não são aceitos pela plataforma.</span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição) {.unnumbered}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto** para integrar teoria e prática.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🚧 Status do Projeto {.unnumbered}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 1 e 2:** Em fase de revisão final e melhorias nos exemplos em Python.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 3:** Falta incluir exemplos em Python.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 4 e 5:** Parser inicial.</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Foco:** Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📂 Estrutura Simplificada {.unnumbered}</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md1/`**: Material legado (PDF/Docx). **Não editar.**</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md2/`**: **Pasta de trabalho ativa.**</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`_quarto.yml`</span>: Configuração mestre (sumário e temas).</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`capXX/`</span>: Pasta de cada capítulo (**Editar** -- contém o <span class="in">`.ipynb`</span>, <span class="in">`/images`</span> e <span class="in">`/data`</span>).</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`references.bib`</span>: Base de dados bibliográfica global.</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**`notebooks_alunos/`**: Versão processada para distribuição (gerada via script).</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>**Processo:**</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Gerado <span class="in">`si-md1/Sist_Intel_j.md`</span> de <span class="in">`si-md1/Sist_Intel_j.docx`</span> com pandoc.</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Copiado <span class="in">`si-md1/Sist_Intel_j.md`</span> para <span class="in">`si-md2/capXX/capXX.ipynb`</span> (e ajustes manuais).</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Gerado <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span> de <span class="in">`si-md1/sistemas_inteligentes_impresso.pdf`</span> com tesseract.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Pequenas correções em <span class="in">`si-md2/capXX/capXX.ipynb`</span> usando <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span>.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Ajustes manuais para funcionar <span class="in">`quarto render`</span> em html, ipynb e pdf.</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.docx**`</span><span class="ot">"</span>] --&gt;|pandoc| B[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.md**`</span><span class="ot">"</span>]</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    C[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.pdf**`</span><span class="ot">"</span>] --&gt;|tesseract| D[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.md**`</span><span class="ot">"</span>]</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    B --&gt;|<span class="ot">"</span><span class="st">cópia + ajustes manuais</span><span class="ot">"</span>| E[<span class="ot">"</span><span class="st">`**si-md2/capXX/capXX.ipynb**`</span><span class="ot">"</span>]</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    D --&gt;|<span class="ot">"</span><span class="st">referência para correções</span><span class="ot">"</span>| E</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    E --&gt;|<span class="ot">"</span><span class="st">ajustes manuais</span><span class="ot">"</span>| F[<span class="ot">"</span><span class="st">`**quarto render**`</span><span class="ot">"</span>]</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[HTML]</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    F --&gt; H[IPYNB]</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    F --&gt; I[PDF]</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🛠️ Regras de Ouro para Autores (Padrão Quarto) {.unnumbered}</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>**1. Referências Cruzadas (Obrigatório incluir o número do capítulo):**</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Figuras:** <span class="in">`![Legenda](images/fig.png){#fig-3-nome width=50%}`</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Tabelas:** <span class="in">`: Legenda {#tbl-3-nome}`</span> (após a tabela).</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Equações:** <span class="in">`$$E = mc^2$$ {#eq-3-nome}`</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Citar no texto:** Use <span class="in">`@fig-3-nome`</span>, <span class="in">`@tbl-3-nome`</span> ou <span class="in">`@eq-3-nome`</span>.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>**2. Bibliografia:** </span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Citação indireta: <span class="in">`[@chave]`</span> $\rightarrow$ (Autor, Ano).</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Citação direta: <span class="in">`@chave`</span> $\rightarrow$ Autor (Ano).</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>**3. Células de Download (Python):** {.unnumbered}</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Devem usar o check <span class="in">`if quarto_format in ('html', ''):`</span> para não quebrarem a geração do PDF.</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔄 Workflow Rápido (Terminal)</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Atualizar:** <span class="in">`git pull origin main`</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Limpar caches:** <span class="in">`./limpar.sh`</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Gerar Versão Aluno:** <span class="in">`python gerar_notebooks_alunos.py --batch references.bib`</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Publicar Tudo (HTML+PDF+Git):** <span class="in">`./publish_all.sh`</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Manual (Git):**</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Explique sua alteração"</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📋 Checklist de Qualidade</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Imagens estão na pasta <span class="in">`images/`</span> interna do capítulo?</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Labels começam com o prefixo correto (<span class="in">`fig-`</span>, <span class="in">`tbl-`</span>, <span class="in">`eq-`</span>) e o número do capítulo?</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O arquivo <span class="in">`references.bib`</span> foi atualizado com as novas obras?</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O código do notebook executa do início ao fim sem erros?</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>---</span>
+</code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

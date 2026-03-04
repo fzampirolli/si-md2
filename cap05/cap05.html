@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Máquina de Vetores de Suporte ou Support Vector Machine – Sistemas Inteligentes e Mineração de Dados</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../cap04/cap04.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cap05/cap05.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Sistemas Inteligentes e Mineração de Dados</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap01/cap01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sistemas Inteligentes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap02/cap02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap03/cap03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap04/cap04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap05/cap05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">5.1</span> Introdução</a></li>
+  <li><a href="#representação-dos-exemplos-como-vetores" id="toc-representação-dos-exemplos-como-vetores" class="nav-link" data-scroll-target="#representação-dos-exemplos-como-vetores"><span class="header-section-number">5.2</span> Representação dos Exemplos como Vetores</a></li>
+  <li><a href="#classificadores-lineares" id="toc-classificadores-lineares" class="nav-link" data-scroll-target="#classificadores-lineares"><span class="header-section-number">5.3</span> Classificadores Lineares</a></li>
+  <li><a href="#conjunto-convexo" id="toc-conjunto-convexo" class="nav-link" data-scroll-target="#conjunto-convexo"><span class="header-section-number">5.4</span> Conjunto Convexo</a></li>
+  <li><a href="#classificadores-não-lineares" id="toc-classificadores-não-lineares" class="nav-link" data-scroll-target="#classificadores-não-lineares"><span class="header-section-number">5.5</span> Classificadores Não Lineares</a></li>
+  <li><a href="#margem-suave-máxima" id="toc-margem-suave-máxima" class="nav-link" data-scroll-target="#margem-suave-máxima"><span class="header-section-number">5.6</span> Margem Suave Máxima</a></li>
+  <li><a href="#ferramental-matemático-básico" id="toc-ferramental-matemático-básico" class="nav-link" data-scroll-target="#ferramental-matemático-básico"><span class="header-section-number">5.7</span> Ferramental Matemático Básico</a></li>
+  <li><a href="#como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka" id="toc-como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka" class="nav-link" data-scroll-target="#como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka"><span class="header-section-number">5.8</span> Como Visualizar as Bordas Decisão de uma MVS Usando o Weka</a></li>
+  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">5.9</span> Considerações Finais</a></li>
+  <li><a href="#lista-de-exercícios" id="toc-lista-de-exercícios" class="nav-link" data-scroll-target="#lista-de-exercícios"><span class="header-section-number">5.10</span> Lista de Exercícios</a></li>
+  <li><a href="#referência-bibliográfica" id="toc-referência-bibliográfica" class="nav-link" data-scroll-target="#referência-bibliográfica"><span class="header-section-number">5.11</span> Referência Bibliográfica</a></li>
+  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">5.12</span> Referências do Capítulo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/cap05/cap05_aluno.ipynb"><img src="images/colab-badge.png" class="img-fluid"></a></p>
+<section id="introdução" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">5.1</span> Introdução</h2>
+<p>Nas unidades anteriores, foi usado o recurso de representar um <strong>Exemplo de Treinamento</strong> por um ponto num plano cartesiano, como no caso da flor Íris (Figura 5.1). As Regras de Classificação, por sua vez, eram representadas por retas tracejadas e ilustravam como o <strong>Modelo Aprendido</strong> classificava os Exemplos.</p>
+<p>Figura . – Representação de Exemplos de Treinamento no Plano Cartesiano. <img src="images/image22.png" style="width:5.625in;height:3.72639in">[^4]</p>
+<p>Tanto as <strong>Regras de Associação</strong> e <strong>Classificação</strong> quanto as <strong>Árvores de Decisão</strong> podem ser vistas como representantes de um paradigma de aprendizado supervisionado denominado <strong>Aprendizado Orientado a Conhecimento</strong>, porque são de fácil compreensão e utilização pelos seres humanos. Outro nome que se dá a este tipo de aprendizado é <strong>Paradigma de Aprendizado Simbólico</strong>, porque ele cria <strong>Representações Simbólicas do Modelo</strong> gerado, tais como Árvores de Decisão, Regras etc.</p>
+<p>Vamos agora estudar um novo paradigma de aprendizado supervisionado, conhecido como <strong>Paradigma de Modelos Funcionais</strong>, que em geral apresenta resultados com melhor precisão que os representantes do paradigma Orientado a Conhecimento, mas que para entender como se chegou a determinado resultado há que ter um certo preparo em matemática. Este tipo de aprendizado também é conhecido como <strong>Paradigma do Aprendizado Estatístico</strong>, porque ele utiliza <strong>Modelos Estatísticos</strong> para guiar a geração do Modelo induzido durante o treinamento.</p>
+<p>Como o escopo desta unidade não é a apresentação da teoria matemática dessa classe de algoritmos, vamos reduzir a um mínimo as deduções matemáticas e nos valer de ilustrações gráficas e interpretações geométricas das ideias fundamentais deste interessante tópico.</p>
+<p>Dois dos algoritmos de aprendizado supervisionado mais populares dos Modelos Funcionais, são as <strong>Redes Neurais</strong>[^5] ou <em>Neural Networks</em>, e as <strong>Máquinas de Vetores</strong> <strong>de Suporte</strong> ou <em>Support Vector Machine</em>. A teoria matemática sobre as Máquinas de Vetores de Suporte foi apresentada à comunidade científica por (Cortes e Vapnik, 1995), em meados da década de 1990, e desde então suas implementações algorítmicas têm produzido resultados animadores para o problema do <strong>reconhecimento de padrões</strong> em Bases de Dados.</p>
+</section>
+<section id="representação-dos-exemplos-como-vetores" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="representação-dos-exemplos-como-vetores"><span class="header-section-number">5.2</span> Representação dos Exemplos como Vetores</h2>
+<p>Nesta introdução a <strong>Máquinas de Vetores de Suporte</strong> (<strong>MVS</strong>), vamos passar a representar um <strong>Exemplo de Treinamento</strong> por um vetor, e o <strong>Modelo Aprendido</strong>, por outro vetor, chamado de <strong>Vetor Peso</strong> <strong>w</strong>. Qual a vantagem dessa forma de representação? A vantagem é que para classificar um Exemplo, bastará fazer o produto de dois vetores, algo computacionalmente simples. No contexto de classificação com MVS, mostraremos que o resultado dessa multiplicação será sempre ou “+1” ou “-1”. Dessa forma, por meio da operação de <strong>produto interno</strong> entre dois vetores, os <strong>Exemplos de Teste</strong> serão classificados como pertencentes ou à classe “y = +1” ou à “y = -1”.</p>
+<p>Embora o algoritmo de aprendizado de um Modelo Funcional seja bem diferente daqueles algoritmos de aprendizado Orientado a Conhecimento, a formalização do problema da classificação continua a mesma. Em termos práticos, estamos simplesmente substituindo um módulo de classificação por outro, que desempenha a mesma função, possivelmente de forma mais complexa, porém com melhores resultados para muitos casos.</p>
+<p>Um classificador binário é equivalente a uma função que faz o mapeamento de um conjunto de <strong>atributos de entrada</strong>, agora representados por um vetor <strong>X</strong>, em uma das classes “y = +1” ou à “y = -1”. Em termos matemáticos,</p>
+<p><span class="math inline">\(y = f\left( \mathbf{x} \right),\ \ \ \ \ \ \ \ \ y \in \left\{ - 1,\  + 1 \right\}\text{\ \ \ \ \ \ \ e\ \ \ \ \ }\mathbf{x} \in \mathbb{R}^{N}\)</span> (5.1)</p>
+<p>Por exemplo, num plano cartesiano, um ponto <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{2}\)</span> pode ser descrito tanto por suas coordenadas (x<sub>1</sub>, x<sub>2</sub>), quanto por um vetor. Por esta razão, daqui para frente, em vez de utilizarmos o termo Exemplos de Treinamento, vamos falar em Vetores de Treinamento (cuja ilustração aparece na Figura 5.2. Da mesma forma, falaremos em <strong>Vetores de Teste</strong> em vez de Exemplos de Teste.</p>
+<p>Para efeito didático, consideraremos um ponto no plano ou um vetor como representações equivalentes, e usaremos sempre a representação mais conveniente para o argumento em questão.</p>
+<p>Por opção metodológica, vamos comparar as MVS com as Redes Neurais, com o propósito de mostrar como algumas das dificuldades mais sérias apresentadas pelas Redes Neurais têm sido superadas com as MVS. Mas, aproveitamos para reafirmar uma constatação empírica mencionada em outra unidade de que em Mineração de Dados não existe um algoritmo que sempre mostre desempenho superior aos demais para qualquer Base de Dados. Muitos autores consideram a Mineração de Dados mais uma arte que uma ciência, porque via de regra é preciso certo traquejo do operador e uma boa dose de experimentos empíricos para melhorar os resultados práticos.</p>
+<p>Aliás, um dos objetivos deste livro de <strong>Sistemas Inteligentes</strong>, e especialmente desta unidade, é propiciar experiências que favoreçam o desenvolvimento da sensibilidade indispensável a um usuário competente da <strong>Mineração de Dados</strong>.</p>
+<p>Figura . – Representação de Vetores de Treinamento no Plano Cartesiano.</p>
+</section>
+<section id="classificadores-lineares" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="classificadores-lineares"><span class="header-section-number">5.3</span> Classificadores Lineares</h2>
+<p>Vamos voltar ao conjunto de dados da flor Íris, porque este exemplo clássico apresenta situações típicas de um problema de classificação real. Olhando a Figura 5.1, nota-se que não há qualquer dificuldade para distinguir a Íris Setosa das Íris Versicolor e Virgínica. Mas a situação é bem diferente quando consideramos a Íris Versicolor com a Virgínica, porque há uma região comum a ambas. Encontrar um classificador que separe linearmente estes dois tipos de Íris constitui uma tarefa nada simples.</p>
+<p>Vamos então dividir o problema em duas partes e considerar inicialmente apenas os tipos Setosa e Versicolor, já que a separação entre ambas parece ser bem mais simples. Com os resultados obtidos para os casos linearmente separáveis, vamos estendê-los aos casos não separáveis linearmente, com algumas adaptações.</p>
+<p>A Figura 5.3 apresenta os dados apenas da Íris Setosa e Versicolor, com vários <strong>classificadores</strong> possíveis. Qual deles devemos escolher?</p>
+<p>Figura . – Qual Classificador Escolher?</p>
+<p>Talvez antes de dar uma resposta a esta pergunta, seria oportuno colocar outra questão ainda mais básica. Por que tentar fazer a separação entre as classes usando uma reta e não uma curva que se adapte aos dados? Porque usar uma reta, ou uma função linear para separar classes é matematicamente menos custoso do que outras formas de curvas, ou funções polinomiais, além de tornar o problema do <em>overfitting</em> menos provável. A equação de uma reta exige um tratamento matemático simples, resultando num custo computacional mais baixo do que o custo dos polinômios de grau maior ou igual a dois.</p>
+<p>Dentre todas as possibilidades, o classificador azul parece ser o menos indicado porque ele comete vários erros de classificação durante o treinamento. Seu poder de generalização já se mostra antecipadamente comprometido. Mas dentre os restantes, qual deles vai apresentar o melhor desempenho na fase de teste? Ou seja, qual deles tem a melhor capacidade de generalização? Será este o melhor critério a utilizar para escolher um classificador?</p>
+<p>Em outros algoritmos de Aprendizado Supervisionado de Classificadores Lineares, como o Perceptron[^6] (Rosenblatt, 1957), os três classificadores da Figura 5.3 que não cometem erros de classificação durante o treinamento seriam considerados igualmente bons. Aliás, como na resposta do Perceptron, e das <strong>Redes Neurais</strong> em geral, há um <strong>componente probabilístico</strong>, em cada simulação com o mesmo conjunto de Vetores de Treinamento, qualquer uma das três retas poderia ser escolhida alternadamente como o classificador linear. Para o Perceptron, desde que um classificador linear faça a separação das classes sem cometer erros durante o treinamento, ele é tão bom quanto seus pares que mostrarem o mesmo resultado.</p>
+<p>Para as <strong>MVS</strong>, no entanto, que utilizam um <strong>algoritmo determinístico</strong>, existe um classificador considerado melhor que todos os demais, porque ele possivelmente vai minimizar os erros de classificação na fase de teste. E este classificador é o que maximiza suas margens, tornando-as as mais largas possíveis antes de tocar os primeiros pontos do plano, que representam os <strong>Vetores de Suporte</strong> (Figura 5.4). Note que o <strong>vetor peso</strong> <strong>w</strong>, também conhecido como <strong>vetor normal w</strong>, é perpendicular à reta que representa o classificador. Portanto, conhecendo-se o vetor <strong>w</strong>, a inclinação do classificador estará determinada.</p>
+<p>Note que o classificador vermelho da Figura 5.3, por exemplo, também separaria sem erros as duas classes, mas suas margens não seriam tão largas quanto as mostradas na Figura 5.4. E como encontrar este classificador que maximiza as margens? Primeiramente considerando o conjunto de pontos como um <strong>Conjunto Convexo</strong>, e depois encontrando a menor distância entre eles. A reta de separação, i.e., o classificador, é perpendicular ao menor segmento que une os dois conjuntos.</p>
+<p>Figura . - Nas MVS, o Melhor Classificador Possui Margem Máxima.</p>
+</section>
+<section id="conjunto-convexo" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="conjunto-convexo"><span class="header-section-number">5.4</span> Conjunto Convexo</h2>
+<p>Se conectarmos cada ponto de um conjunto aos demais pontos restantes, o polígono externo que resulta será um polígono convexo, e o conjunto de pontos delimitados por este polígono será chamado de <strong>conjunto convexo</strong>.</p>
+<p>A Figura 5.5 mostra como as duas classes de Vetores de Treinamento podem ser representadas por dois conjuntos convexos (com as conexões dos pontos internos omitidas para tornar mais clara a apresentação).</p>
+<p>Figura . – Representação das Classes como Conjuntos Convexos.</p>
+<p>A vantagem de se considerar as classes como se fossem dois conjuntos convexos é que na busca pelo menor segmento que une estes dois conjuntos, não ocorre o problema do <strong>mínimo local</strong>. Enquanto a distância entre ambos estiver diminuindo, a direção seguida estará correta.</p>
+<p>A analogia para este procedimento é que o <strong>Algoritmo de Aprendizado</strong> pode ser visto como um método de otimização[^7] de uma <strong>Função Custo</strong>. A cada iteração do processo de aprendizado a Função Custo é avaliada e, se seu valor decrescer, os pesos do vetor peso <strong>w</strong> são atualizados. O processo continua até encontrar o valor mínimo.</p>
+<p>Esta forma de otimização produz bons resultados quando a Função Custo não apresenta mínimos locais, i.e., quando há apenas um <strong>mínimo global</strong>. No caso das Redes Neurais, geralmente a Função Custo apresenta mínimos locais, o que obriga a adoção de mecanismos mais complexos de otimização, como manter alguns registros do que se acredita ser o mínimo global atual, e continuar atualizando os pesos do vetor <strong>w</strong> mesmo que a Função Custo esteja aumentando (Figura 5.5).</p>
+<p>Se um novo mínimo for encontrado, os registros antigos são apagados e novos valores de peso são adotados. Embora este procedimento heurístico aumente as possibilidades de detectar o mínimo global, não há nenhuma garantia de que ele será encontrado, a menos que se pague um alto custo computacional com uma busca exaustiva.</p>
+<p>(a) (b)</p>
+<p>Figura . – Função Custo (a) Com e (b) Sem Mínimo Local.</p>
+</section>
+<section id="classificadores-não-lineares" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="classificadores-não-lineares"><span class="header-section-number">5.5</span> Classificadores Não Lineares</h2>
+<p>Se as duas classes não forem linearmente separáveis, a teoria de MVS prevê o mapeamento dos pontos do <strong>Espaço de Entrada</strong> para outro espaço de maior dimensão, conhecido como <strong>Espaço de Característica</strong>. A Figura 5.7 mostra uma situação em que os dados não podem ser linearmente separados. Para fazer a separação entre ambas podemos usar não uma reta, mas uma curva descrita por uma função polinomial, ou tentar um recurso matemático conhecido como “<strong>Truque do Núcleo</strong>” ou <em>“<strong>Kernel Trick</strong>”</em>.</p>
+<p>O uso de funções polinomiais, além de apresentar risco de alto custo computacional, pode favorecer o ajuste excessivo da curva polinomial aos Vetores de Treinamento, podendo então ocorrer problemas de <strong><em>overfitting</em></strong> decorrente da <strong>instabilidade</strong> causada pela enorme influência que um ou outro vetor pode ter sobre a curva polinomial. Já o princípio de <strong>margem máxima</strong> das MVS traz mais <strong>estabilidade</strong> na classificação, diminuindo as chances de <em>overfitting</em>. Para entender melhor este comportamento, vamos primeiramente ver o que significa usar um <em>kernel</em>[^8].</p>
+<p>Figura . – Exemplo de Classes Não Separáveis Linearmente.</p>
+<p>A ideia por trás dos <em>kernels</em> é mapear os Vetores num espaço de dimensão mais elevada que a original. Por exemplo, se o espaço original dos Vetores de Entrada for bidimensional, podemos introduzir algumas redundâncias em suas coordenadas e mapear estes mesmos vetores num espaço tridimensional. Qual o propósito disso? É que duas classes não separáveis linearmente num espaço bidimensional podem se tornar linearmente separáveis num espaço tridimensional, como ilustra a Figura 5.8.</p>
+<p>Figura . – Exemplo de Transformação Não Linear do Espaço de Entrada para o Espaço de Características.</p>
+<p>Essa transformação em que os vetores são representados num espaço de dimensão mais elevada, geralmente é uma transformação não linear ϕ(<strong>x</strong>). O espaço de partida dessa transformação não linear é conhecido como <strong>Espaço de Entrada</strong> e o espaço com dimensão mais alta é conhecido como <strong>Espaço de Características</strong>.</p>
+<p>O que se busca com esta transformação é linearizar o Espaço de Características, e com isso tornar os dados linearmente separáveis. Pode parecer paradoxal, mas através de uma transformação não linear é possível linearizar o Espaço de Características.</p>
+<p>Vamos reproduzir um exemplo, apresentado por (Schölkopt &amp; Smola, 2001), ilustrando como esta transformação não linear pode ser feita. Suponha um <strong>Espaço de Entrada</strong> <strong>bidimensional</strong>, composto por duas classes não separáveis linearmente. Aplicando-se o truque do <em>kernel</em>, vamos mapear esses dados num <strong>Espaço de Características tridimensional</strong>, como ilustrado na Figura 5.9.</p>
+<p>Observando-se o resultado da operação mostrada na Figura 5.9, verifica-se que a <strong>transformação não linear</strong> ϕ(<strong>x</strong>) não criou novas variáveis; ainda estamos trabalhando com x<sub>1</sub> e x<sub>2</sub> no início e no fim da transformação. As variáveis z<sub>1</sub>, z<sub>2</sub> e z<sub>3</sub> são apenas elementos intermediários que ajudam no entendimento da transformação operada nos dados. Isso significa que não será necessário computar explicitamente a transformação ϕ(<strong>x</strong>) para obtermos no Espaço de Entrada resultados semelhantes àqueles que obteríamos se as operações tivessem sido feitas no Espaço de Características.</p>
+<p>Figura . – Exemplo de Transformação Não Linear do Espaço de Entrada para o Espaço de Características.</p>
+<p>O <strong>truque do <em>kernel</em></strong> permite que as operações de <strong>produto interno</strong> entre dois vetores no Espaço de Características sejam computadas como se ainda estivéssemos no Espaço de Entrada. Como, para efeitos práticos, não houve efetivamente aumento da dimensão do espaço onde ocorrem as operações de produto interno, o truque do <em>kernel</em> oferece a possibilidade de escapar das complicações que as operações no Espaço de Características poderiam trazer. Por isso, os matemáticos dizem que <em>kernels</em> podem ajudar fugir da <strong>Praga da Dimensionalidade</strong>.</p>
+<p>Existem vários <em>kernels</em> conhecidos (<em>Polynomial</em>, RBF etc.), alguns desenvolvidos para aplicações específicas, como <em>kernels</em> para bioinformática, para classificação de imagens ou caracteres etc. Como as MVS se enquadram no paradigma do aprendizado supervisionado, isso significa que existe um Conjunto de Vetores de Treinamento, cujos rótulos de classe são previamente conhecidos. Portanto, com um pouco de teoria e uma dose de experimentação é possível desenvolver <em>kernels</em> que aumentem a taxa de sucesso durante o treinamento.</p>
+<p>Se o Conjunto de Treinamento for uma amostra representativa dos Vetores de Teste, então uma alta taxa de sucesso no treinamento possivelmente significará boa capacidade de generalização para o teste. Caso contrário, não será possível fazer previsões confiáveis com relação à taxa de sucesso nos testes.</p>
+</section>
+<section id="margem-suave-máxima" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="margem-suave-máxima"><span class="header-section-number">5.6</span> Margem Suave Máxima</h2>
+<p>Há casos porém em que mesmo com a linearização do Espaço de Características, obtida com o truque do <em>kernel</em>, as classes continuarão não separáveis linearmente. O que fazer nessa situação?</p>
+<p>A solução adotada pelas MVS foi criar uma “<strong>margem suave</strong>” que admite ruídos, mas estabelece uma penalidade para cada caso de classificação equivocada. Considere um parâmetro <strong><em>C</em></strong>, chamado de <strong>Parâmetro de Complexidade <em>C</em></strong>, que aplica uma pena a cada vetor classificado erroneamente. A Figura 5.10 ilustra diversas situações envolvendo violações das bordas de classificação.</p>
+<p>Se considerarmos primeiramente as margens verdes tracejadas do Classificador da Figura 5.10, notamos que embora os vetores 1 e 2 tenham violado os limites das margens verdes, eles estão classificados do lado correto do plano. Os vetores 3, 4 e 5, por sua vez, estão do lado oposto ao que deveriam estar. Portanto, a penalização para estes casos distintos deve ser diferenciada, de acordo com a distância da margem.</p>
+<p>O ajuste do <strong>parâmetro C</strong> ajuda a encontrar um <strong>compromisso entre a tolerância a vetores classificados erroneamente</strong> devido a margens amplas (valor de C baixo) <strong>e a minimização dos erros de treinamento</strong> (valor de C alto, e margens estreitas). As margens verdes correspondem a um Fator de Complexidade C baixo (~1), enquanto que as margens vermelhas correspondem a um valor de C alto (~10).</p>
+<p>Note que a minimização dos erros de treinamento nem sempre é uma garantia de elevada taxa de sucesso na fase de testes. Isso depende de quão representativo é o Conjunto de Treinamento com relação ao Conjunto de Teste, e do <em>kernel</em> escolhido. Para encontrar o melhor valor de C, geralmente são coletados vários resultados empíricos usando o método da <em>Cross-validation</em>.</p>
+<p>A Figura 5.10 ainda ilustra o fato de que, uma vez encontrado a reta de separação dos dados, apenas os Vetores de Suporte (aqueles pontos que tocam as margens) passam a ter importância para a fase de testes. Todos os demais Vetores de Treinamento podem ser desconsiderados porque eles não têm qualquer influência sobre as margens. A implicação desse fato para o desempenho do classificador é decisiva, uma vez que para classificar um novo ponto no plano, basta considerar os Vetores de Suporte, que são os delimitadores das margens.</p>
+<p>Figura . – Diferentes Margens com Diferentes Capacidades de Generalização.</p>
+</section>
+<section id="ferramental-matemático-básico" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="ferramental-matemático-básico"><span class="header-section-number">5.7</span> Ferramental Matemático Básico</h2>
+<p>Vamos agora, de forma sucinta, dar uma ideia de como as bordas de decisão de uma MVS podem ser obtidas matematicamente num espaço bidimensional. Considere o plano cartesiano da Figura 5.11 e os respectivos vetores <strong>x</strong> e <strong>w</strong>.</p>
+<p>Figura . – Produto Interno dos Vetores w e x.</p>
+<p>O Produto Interno de dois vetores, também chamado de Produto Escalar ou Produto de Ponto, gera como resultado uma grandeza escalar, ou seja, um número real. Para sua representação, podemos usar tanto um ponto, w⋅x, quanto os sinais de maior e menor, &lt;w,x&gt;. As letras em negrito representam um vetor, enquanto que as letras simples representam uma grandeza escalar. Usando Produto Escalar, qualquer segmento de reta pode ser representado no plano da forma mostrada na Figura 5.12.</p>
+<p>Figura . – Equação da Reta: w⋅x + b = 0.</p>
+<p>Para representar uma reta e suas margens, usamos o mesmo procedimento (Figura 5.13).</p>
+<p>Como estamos interessados em maximizar as margens, ou seja, tornar módulo da subtração de <strong>x<sub>1</sub></strong> por <strong>x<sub>2</sub></strong>, ||<strong>x<sub>1</sub></strong> - <strong>x<sub>2</sub></strong>||, o mais largo possível, isso equivale a minimizar o módulo do vetor peso <strong>w</strong>, já que</p>
+<p>||<strong>x<sub>1</sub></strong> - <strong>x<sub>2</sub></strong>|| = 2/||<strong>w</strong>|| (5.1)</p>
+<p>A Equação mostra que quanto menor o módulo de <strong>w</strong>, mais largas serão as margens!</p>
+<p>Figura . – Equação do Classificador e Margens.</p>
+<p>Dessa forma, a <strong>Função de Aprendizado</strong> de uma MVS consiste em “testar” coordenadas para <strong>w</strong> de tal modo que seu módulo decresça a um mínimo, fazendo com que as margens se alarguem, até o limite em que elas toquem os primeiros Vetores de Treinamento nas bordas de decisão. Quando isso ocorrer, estes Vetores de Treinamento que foram atingidos pelas margens do Classificador, se tornam os <strong>Vetores de Suporte</strong> da MVS.</p>
+<p>Existem técnicas matemáticas de otimização deste problema, por exemplo a <strong>Programação Quadrática</strong>, bastante conhecida entre os matemáticos, e que foram aproveitadas por (Cortes &amp; Vapnik, 1995) para desenvolver o algoritmo da MVS. Sucintamente o problema pode ser formalizado da forma exposta a seguir.</p>
+<p>Dado um <strong>Conjunto de Treinamento</strong>: (<strong>x<sub>1</sub></strong>, y<sub>1</sub>), (<strong>x<sub>2</sub></strong>, y<sub>2</sub>) ... (<strong>x<sub>N</sub></strong>, y<sub>N</sub>)</p>
+<p>O <strong>Hiperplano com Margem Máxima</strong> é definido pelo par (<strong>w</strong>, b) que resolve o seguinte problema:</p>
+<p>Minimize : ||<strong>w</strong>||<sup>2</sup></p>
+<p>Sob as restrições: <em>∀i = 1 .. N, y<sub>i</sub>(<strong>w⋅x<sub>i</sub></strong> + b) ≥ 1</em></p>
+<p>Mais detalhes de como solucionar a forma dual desse problema de Programação Quadrática podem ser obtidos na Referência Bibliográfica desta unidade de estudo.</p>
+<p>Há uma interessante implementação de MVS, proposta por (Platt, 1998), conhecida como <strong>SMO</strong> <em>(Sequential Minimal Optimization)</em>, que em vez de considerar todos os Vetores de Treinamento conjuntamente, eles são divididos em pares e seus valores ótimos são deduzidos analiticamente. Embora o número de operações matemáticas aumente com relação à forma mais tradicional de resolver numericamente o problema com um sistema de equações, estas operações matemáticas da forma analítica são simples, operações aritméticas básicas, e portanto muito rápidas num computador. Dessa forma, o ganho no tempo total de computação pode ser significativo.</p>
+<p>Outro atrativo muito interessante da implementação SMO é que não é necessário carregar simultaneamente todos os Vetores de Treinamento na memória principal do computador. Considerando aplicações reais, com centenas de milhares ou milhões de Vetores de Treinamento, o algoritmo SMO pode ser o mais indicado.</p>
+</section>
+<section id="como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka"><span class="header-section-number">5.8</span> Como Visualizar as Bordas Decisão de uma MVS Usando o Weka</h2>
+<p>A ferramenta Weka (Weka, 2013) permite rodar várias implementações de <strong>SVM</strong>, ajustar o <strong>Parâmetro de Complexidade C</strong>, entre outros, e visualizar as <strong>Bordas de Decisão</strong> obtidas.</p>
+<p><strong><br>
+</strong></p>
+<p><strong>Passo 1 -</strong> Primeiramente vamos carregar o arquivo “iris.arff” no Weka e eliminar dois de seus Atributos, para tornar os resultados visualmente mais interessantes. Carregue no “Weka Explorer” o arquivo “íris.arff” (anexo), selecione os Atributos “sepallength” e “sepalwidth”, e dê um clique em “Remove”, como mostra a Figura 5.14.</p>
+<p><img src="images/image43.png" style="width:4.22292in;height:3.16806in"></p>
+<p>Figura . – Remoção de Atributos de um Arquivo “.arff”.</p>
+<p>Salve o novo arquivo com o nome “iris_mod.arff”, dando um clique no botão “Save...” (no canto superior direito do “Weka Explorer”).</p>
+<p><strong><br>
+</strong></p>
+<p><strong>Passo 2</strong> – Vamos abrir o arquivo modificado “íris_mod.arff” no “Weka GUI Chooser” (Figura 5.15), clicando primeiro na opção “Vizualization” e depois em “BoundaryVisualizer”.</p>
+<p><img src="images/image45.png" style="width:2.34028in;height:1.4in"></p>
+<p>Figura . – Interface “Weka GUI Chooser”.</p>
+<p><img src="images/image47.png" style="width:4.72292in;height:4.94792in">Uma janela semelhante à mostrada na Figura 5.16 deve aparecer.</p>
+<p>Figura . – Janela do “BoundaryVizualizer”.</p>
+<p><strong>Passo 3</strong> – Clique no Botão “Open File”, localize o arquivo “íris_mod.arff” e carregue no “BoundaryVisualizer. Os Vetores de Treinamento (representados por pontos) devem aparecer na tela de visualização do”BoundaryVisualizer” (Figura 5.17). (Como o “BoundaryVisualizer” leva em conta os ajustes da última vez em que ele foi utilizado, a imagem que aparece na tela pode variar de simulação para simulação.) .</p>
+<p><img src="images/image49.png" style="width:4.81597in;height:4.82708in"></p>
+<p>Figura . – Dados do Arquivo “íris_mod.arff” na Tela do “BoundaryVizualizer.</p>
+<p><strong><br>
+</strong></p>
+<p><strong>Passo 4</strong> – Na parte superior direita, em “Classifier”, clique em “Choose” (Figura 5.17), escolha “Classifiers” , depois “functions” e, finalmente “SMO”, como ilustra a Figura 5.18. Inicialmente deixe os valores default do SMO.</p>
+<p><img src="images/image51.png" style="width:5.23125in;height:5.22986in"></p>
+<p>Figura . – Escolha do Algoritmo SMO.</p>
+<p>Marque a opção “Plot training data” (Figura 5.18), na parte inferior direita, para que ao final da simulação apareçam não apenas as bordas de decisão do classificador, mas também os dados usados no treinamento. Dê um clique em “Start” (Figura 5.18).</p>
+<p>Lentamente as bordas de decisão do classificador vão se formando, enquanto uma linha horizontal corre a tela indicando que a simulação está em progresso.</p>
+<p><strong>Passo 5</strong> – O número de Vetores de Treinamento classificados erroneamente deve ser em torno de 6. Vá com o mouse novamente na parte superior direita do “BoundaryVisualizer” e clique com o botão da esquerda sobre a palavra “SMO”, ao lado de “Choose”, no campo “Classifieres”. Uma janela de ajustes dos parâmetros do SMO, semelhante à mostrada na Figura 5.19, deve se abrir.</p>
+<p><img src="images/image53.png" style="width:3.86111in;height:4.60208in"></p>
+<p>Figura . – Janela de Ajustes de Parâmetros do SMO.</p>
+<p>Nesta janela, no botão “More” há uma explicação sucinta de todos parâmetros mostrados.</p>
+<p><strong><br>
+</strong></p>
+<p><strong>Passo 6 –</strong> Faça novas simulações variando o valor default do Parâmetro de Complexidade C de 1.0 para 2.0, 5.0, 30.0 etc. e confira o número de Vetores de Treinamento que continuam classificados erroneamente. Com ajuste de C = 2.0 e kernel “PolyKernel” foi rodada uma simulação, cujos resultados são mostrados na Figura 5.20.</p>
+<p><img src="images/image55.png" style="width:3.75in;height:2.5in"></p>
+<p>Figura . – Bordas de Decisão da Simulação para C = 2.0 e kernel “PolyKernel”.</p>
+<p>Quando o valor do parâmetro C foi alterado para 91, as Bordas de Decisão se alteraram, como mostra a Figura 5.21.</p>
+<p><img src="images/image56.png" style="width:4in;height:2.5in"></p>
+<p>Figura . – Bordas de Decisão da Simulação para C = 2.0 e kernel “PolyKernel”.</p>
+<p>Como pode ser observado, há dois ou três pontos verdes e azuis que se parecem com “outliers”. Vamos retirar alguns deles, ativando a opção “Remove points” (Figura 5.21), e ver como a Borda de Decisão se altera. A Figura 5.22 mostra o resultado da remoção de alguns pontos azuis da tela, usando o botão esquerdo do mouse.</p>
+<p><img src="images/image58.png" style="width:4.8in;height:4.81458in"></p>
+<p>Figura . – Simulação com a Remoção de Alguns Pontos Perto das Bordas.</p>
+<p>Como pode ser observado na Figura 5.22, a Borda de Decisão superior sofreu uma alteração significativa, mostrando que Vetores de Treinamento próximos das Margens têm um peso muito grande nos resultados obtidos.</p>
+<p><strong><br>
+</strong></p>
+<p><strong>Passo 7</strong> – Novos kernels podem ser escolhidos entre os ajustes do SMO. As cores do painel do “BoundaryVisualizer” podem ser alteradas, clicando sobre os nomes das três “iris” no campo intermediário “Class color”. Outros ajustes interessantes podem ser feitos no “BoundaryVisualizer” e testados em novas simulações. Bom trabalho!</p>
+</section>
+<section id="considerações-finais" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="considerações-finais"><span class="header-section-number">5.9</span> Considerações Finais</h2>
+<p>Nesta unidade, apresentamos um tipo de algoritmo de <strong>Aprendizado Estatístico</strong> conhecido como <strong>Máquina de Vetores de Suporte</strong>.</p>
+<p>Entre suas grandes vantagens, podemos citar:</p>
+<ul>
+<li><p>Por ser um <strong>algoritmo determinístico</strong>, se uma simulação for &gt; repetida como os mesmos valores iniciais e os mesmos parâmetros, &gt; obtém-se o mesmo resultado (diferentemente do que ocorre com as Redes Neurais).</p></li>
+<li><p>Durante o aprendizado não se verifica o problema de <strong>mínimos &gt; locais</strong> na otimização da Função Custo de aprendizado. Há apenas &gt; um <strong>mínimo global</strong> que corresponde ao classificador com <strong>margem &gt; máxima</strong>.</p></li>
+<li><p>As MVS estão menos sujeitas ao problema do <em>overfitting</em> &gt; comparativamente às Redes Neurais, porque a indução do &gt; classificador é menos sensível à retirada ou acréscimo de um ou &gt; outro Vetor de Treinamento (a menos que seja um Vetor de Suporte. &gt; Na prática, porém, os Vetores de Suporte constituem uma pequena fração dos &gt; Vetores de Treinamento).</p></li>
+</ul>
+<p>Comparando com os algoritmos de Aprendizado Orientado a Conhecimento, as MVS apresentam tempo de treinamento mais elevado, porém sua taxa de acerto costuma ser mais elevada, porque o princípio de Margem (Suave) Máxima pode ser funcionalmente equivalente a uma borda de decisão não linear.</p>
+<p>Como desvantagem com relação aos algoritmos de Aprendizado Orientado a Conhecimento, podemos citar a dificuldade em interpretar os resultados do aprendizado, que na prática é um conjunto de pesos do vetor <strong>w</strong>, ou algo equivalente. Outro aspecto que pode ser visto como uma desvantagem das MVS em relação a outros modelos, é que não é possível incorporar Conhecimento do Domínio do Problema no Modelo gerado. Numa Rede Neural, por exemplo, a topologia da rede reflete o Conhecimento do Domínio do Problema. Além disso, redes com multicamadas de neurônios podem aprender a ignorar Atributos irrelevantes (Witten &amp; Frank, 2005).</p>
+<p>Através de exemplos e interpretações geométricas, tentamos mostrar que o desempenho de uma MVS pode ser substancialmente influenciado pela escolha do <strong><em>kernel</em></strong> e do <strong>Parâmetro de Complexidade C</strong>. Por se tratar de um algoritmo de aprendizado supervisionado, ou seja, os rótulos das classes dos Vetores de Treinamento já são previamente conhecidos, é possível desenvolver um <em>kernel</em> específico para uma aplicação especial (embora não seja algo muito simples) e avaliar empiricamente o desempenho do <em>kernel</em> usando o método da <em>Cross-validation</em>.</p>
+<p>Os argumentos e ilustrações aqui utilizados para explicar o algoritmo das MVS foram baseados num <strong>espaço bidimensional</strong>. No entanto, eles podem ser estendidos para o <strong>espaço tridimensional</strong>, quando então a reta que representa o classificador deve ser substituída por um <strong>plano</strong>. Da forma semelhante, os mesmos argumentos podem ser aplicados a <strong>espaços com mais de três dimensões</strong>, e neste caso o classificador passa a ser representado por um <strong>hiperplano</strong>.</p>
+</section>
+<section id="lista-de-exercícios" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="lista-de-exercícios"><span class="header-section-number">5.10</span> Lista de Exercícios</h2>
+<p>1. (20%) Explique <strong>com suas próprias palavras</strong> o que vem a ser um <strong><em>kernel</em></strong> no contexto de SVM.</p>
+<p>2. (30%) Explique <strong>com suas próprias palavras</strong> qual a função do <strong>Fator de Complexidade <em>C</em></strong> e como ele pode afetar tanto a taxa de erros de treinamento como a de classificação.</p>
+<p>3. Carregue o arquivo <strong>“iris.arff”</strong> (anexo) no Weka e faça a classificação com uma <strong>Máquina de Vetores de Suporte</strong> usando o algoritmo <strong>“<em>SMO</em>”</strong>, (clique na aba “<em>Classify</em>”, depois “<em>Choose</em>”, escolha “<em>functions</em>” e clique em “SMO”) com o método <strong><em>“Cross-validation”</em></strong> (10 <em>Folds</em>).</p>
+<p>(a) (30%) – Escolha valores para o <strong>Fator de Complexidade <em>C</em></strong> entre 1 e 5 e analise os resultados da Matriz de Confusão. (Para ajustar o valor de <strong><em>C</em></strong>, clique com o botão esquerdo do mouse sobre a palavra “<em>SMO</em>”, ao lado de “<em>Choose</em>”, e mude o valor de <strong>C</strong> na janela que deve se abrir).</p>
+<p>(b) (20%) – Compare o desempenho dos <em>kernels</em> “<strong><em>PolyKernel</em></strong>” e “<strong><em>RBFKernel</em></strong>”. (Para escolher o tipo de <em>kernel</em>, clique com o botão esquerdo do mouse sobre a palavra “<em>SMO</em>”, ao lado de “<em>Choose</em>”, e escolha o <em>kernel</em> na janela que deve se abrir).</p>
+</section>
+<section id="referência-bibliográfica" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="referência-bibliográfica"><span class="header-section-number">5.11</span> Referência Bibliográfica</h2>
+<p>CORTES, C. &amp; VAPNIK, V. <strong>Support Vector Networks</strong>. Netherlands: Machine Learning, 20, pp.&nbsp;273-297, Springer Verlag, 1995.</p>
+<p>PLATT, J. <strong>Fast Training of Support Vector Machines Using Sequential Minimal Optimization</strong>. http://research.microsoft.com/apps/pubs/?id=68391 . Acessado em 22.03.13.</p>
+<p>REZENDE, S. O. (Organizadora). <strong>Sistemas Inteligentes: Fundamentos e Aplicações.</strong> Barueri: Editora Manole Ltda, 2005.</p>
+<p>ROCHA, M.; CORTEZ, P. &amp; NEVES, J. M. <strong>Análise Inteligente de Dados: Algoritmos e Implementação em Java.</strong> Lisboa: Editora de Informática, 2008.</p>
+<p>ROSENBLATT, F. <strong>The Perceptron: a Perceiving and Recognizing Automaton</strong>. Report 85, 460-1, Cornell Aeronautical Laboratory, 1957.</p>
+<p>SCHÖLKOPF, B. &amp; SMOLA, A. J. <strong>Learning with Kernels</strong>. Cambridge: Cambridge Press, 2001.</p>
+<p>TAN, P.N.; STEINBACH, M. &amp; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados.</strong> Rio de Janeiro: Editora Ciência Moderna Ltda., 2009.</p>
+<p>WITTEN, I. H. &amp; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques.</strong> Second Edition. Amsterdam: Morgan Kaufmann Publishers, 2005.</p>
+<p>Weka. The Waikato University. In <a href="http://www.cs.waikato.ac.nz/ml/weka/" class="uri">http://www.cs.waikato.ac.nz/ml/weka/</a> . Acessado em 03.03.13.</p>
+<p>WITTEN, I. H. &amp; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques.</strong> Thirdy Edition. Amsterdam: Morgan Kaufmann Publishers, 2011.</p>
+</section>
+<section id="referências-do-capítulo" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">5.12</span> Referências do Capítulo</h2>
+<p>Tem que citar neste capítulo: <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="forouzan2011">Forouzan; Mosharraf (<a href="#ref-forouzan2011" role="doc-biblioref">2011</a>)</span></p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-forouzan2011" class="csl-entry" role="listitem">
+FOROUZAN, B.; MOSHARRAF, F. <strong>Fundamentos da Ciência da Computação</strong>. <em>[S.l.]</em>: Cengage Learning, 2011.
+</div>
+<div id="ref-han2008" class="csl-entry" role="listitem">
+HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
+</div>
+<div id="ref-witten2005" class="csl-entry" role="listitem">
+WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2005.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../cap04/cap04.html" class="pagination-link" aria-label="Classificação e Regras de Classificação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 | <a href="https://www.ufabc.edu.br/ensino/docentes/jose-artur-quilici-gonzalez">Quilici-Gonzalez</a> , <a href="https://www.ufabc.edu.br/ensino/docentes/francisco-de-assis-zampirolli#">Zampirolli</a> e <a href="https://www.linkedin.com/in/frezendesouza/">Souza</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fzampirolli/si-md2">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.ufabc.edu.br/">
+<p>UFABC</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

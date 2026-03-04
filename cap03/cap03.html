@@ -1,0 +1,2453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Classificação e Árvores de Decisão – Sistemas Inteligentes e Mineração de Dados</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../cap04/cap04.html" rel="next">
+<link href="../cap02/cap02.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cap03/cap03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Sistemas Inteligentes e Mineração de Dados</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap01/cap01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sistemas Inteligentes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap02/cap02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap03/cap03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap04/cap04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap05/cap05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">3.1</span> Introdução</a></li>
+  <li><a href="#classificação" id="toc-classificação" class="nav-link" data-scroll-target="#classificação"><span class="header-section-number">3.2</span> Classificação</a></li>
+  <li><a href="#árvores-de-decisão" id="toc-árvores-de-decisão" class="nav-link" data-scroll-target="#árvores-de-decisão"><span class="header-section-number">3.3</span> Árvores de Decisão</a></li>
+  <li><a href="#indução-de-árvores-de-decisão" id="toc-indução-de-árvores-de-decisão" class="nav-link" data-scroll-target="#indução-de-árvores-de-decisão"><span class="header-section-number">3.4</span> Indução de Árvores de Decisão</a></li>
+  <li><a href="#árvore-de-decisão-não-compacta" id="toc-árvore-de-decisão-não-compacta" class="nav-link" data-scroll-target="#árvore-de-decisão-não-compacta"><span class="header-section-number">3.5</span> Árvore de Decisão Não Compacta</a></li>
+  <li><a href="#árvores-de-decisão-usadas-para-modelagem-descritiva" id="toc-árvores-de-decisão-usadas-para-modelagem-descritiva" class="nav-link" data-scroll-target="#árvores-de-decisão-usadas-para-modelagem-descritiva"><span class="header-section-number">3.6</span> Árvores de Decisão Usadas para Modelagem Descritiva</a></li>
+  <li><a href="#regras-de-classificação-a-partir-de-uma-árvore-de-decisão" id="toc-regras-de-classificação-a-partir-de-uma-árvore-de-decisão" class="nav-link" data-scroll-target="#regras-de-classificação-a-partir-de-uma-árvore-de-decisão"><span class="header-section-number">3.7</span> Regras de Classificação a partir de uma Árvore de Decisão</a></li>
+  <li><a href="#treinamento-aprendizado-e-classificação" id="toc-treinamento-aprendizado-e-classificação" class="nav-link" data-scroll-target="#treinamento-aprendizado-e-classificação"><span class="header-section-number">3.8</span> Treinamento, Aprendizado e Classificação</a></li>
+  <li><a href="#overfitting-e-poda" id="toc-overfitting-e-poda" class="nav-link" data-scroll-target="#overfitting-e-poda"><span class="header-section-number">3.9</span> <em>Overfitting</em> e Poda</a></li>
+  <li><a href="#matriz-de-confusão-e-avaliação-dos-resultados" id="toc-matriz-de-confusão-e-avaliação-dos-resultados" class="nav-link" data-scroll-target="#matriz-de-confusão-e-avaliação-dos-resultados"><span class="header-section-number">3.10</span> Matriz de Confusão e Avaliação dos Resultados</a></li>
+  <li><a href="#como-gerar-uma-árvore-de-decisão-usando-o-weka" id="toc-como-gerar-uma-árvore-de-decisão-usando-o-weka" class="nav-link" data-scroll-target="#como-gerar-uma-árvore-de-decisão-usando-o-weka"><span class="header-section-number">3.11</span> Como Gerar uma Árvore de Decisão Usando o Weka</a></li>
+  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">3.12</span> Considerações Finais</a></li>
+  <li><a href="#lista-de-exercícios" id="toc-lista-de-exercícios" class="nav-link" data-scroll-target="#lista-de-exercícios"><span class="header-section-number">3.13</span> Lista de Exercícios</a></li>
+  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">3.14</span> Referências do Capítulo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/cap03/cap03_aluno.ipynb"><img src="images/colab-badge.png" class="img-fluid"></a></p>
+<section id="introdução" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">3.1</span> Introdução</h2>
+<p>É de grande interesse, em muitas situações, conseguir classificar antecipadamente o tipo de problema apresentado por um paciente com base nos sintomas relatados e tomar medidas para combater determinada doença em seu estágio inicial. Em muitos casos reais isso tem sido possível graças à análise minuciosa de Bases de Dados contendo anotações médicas de outros pacientes com soluções bem sucedidas previamente documentadas.</p>
+<p>Em instituições financeiras, para um gerente de banco nem sempre é algo simples fazer uma avaliação de risco sobre a concessão de empréstimos de alto valor. Com base em dados de transações anteriores e nas características específicas de cada cliente, quase sempre é possível extrair automaticamente informações não óbvias que ajudam a classificar um correntista como bom ou mau pagador.</p>
+<p>Estes são apenas alguns casos em que se verifica que há sempre informações úteis e não evidentes em grandes Bases de Dados. Estas informações podem ser automaticamente extraídas com Mineração de Dados e interpretadas de modo a constituir conhecimento especializado e útil para a tomada de decisão. A representação do conhecimento através de Árvores de Decisão vai ser o tema deste capítulo.</p>
+</section>
+<section id="classificação" class="level2 page-columns page-full" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="classificação"><span class="header-section-number">3.2</span> Classificação</h2>
+<p>Classificação é uma forma de <strong>modelagem preditiva</strong>, isto é, com base nos <strong>atributos de entrada</strong> de um objeto é possível predizer o <strong>atributo de saída</strong> desse objeto. Na prática, os Exemplos de uma Base de Dados estão previamente rotulados em duas ou mais classes para serem utilizados num processo de treinamento, cujo fim é criar uma estrutura de representação do conhecimento contido nessa Base de Dados.</p>
+<p>Quando se fala em Exemplos previamente rotulados geralmente se subentende que eles serão usados em Aprendizado Supervisionado de Máquina. Os rótulos ou classes dos Exemplos orientam o processo de treinamento, ao final do qual se obtém um Modelo que sintetiza todo o conhecimento contido nas variáveis ou nos atributos. Este Modelo pode então ser usado para prever o valor da variável alvo ou do atributo de saída de novos Exemplos desconhecidos.</p>
+<p>O objetivo então da Classificação é predizer em que classe um novo Exemplo, não pertencente ao Conjunto de Treinamento, deve ser colocado. Para que esta tarefa possa ser adequadamente desempenhada é necessário extrair da Base de Dados uma estrutura de conhecimento, tal como Árvores de Decisão ou Regras de Classificação.</p>
+<p>Em outras palavras, o Modelo induzido por inferência é equivalente a uma função que mapeia valores de entrada, geralmente denominados variáveis independentes ou explicativas, a um único valor de saída, geralmente denominado variável dependente ou alvo. Na <strong>Classificação</strong>, a variável de saída, via de regra, é discreta (ou categórica), enquanto que na <strong>Regressão</strong> a variável de saída é contínua.</p>
+<p>A <a href="#fig-3-1" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> ilustra simplificadamente um estudo clássico introduzido por (<span class="citation" data-cites="fisher1936">Fisher (<a href="#ref-fisher1936" role="doc-biblioref">1936</a>)</span>), cujo artigo original apresenta três conjuntos com 50 amostras (ou Exemplos), totalizando 150 medidas do comprimento e da largura de uma pequena flor conhecida como Flor de Lis ou Íris. De acordo com os atributos de entrada “Comprimento” e “Largura” da pétala, cada Exemplo dessa flor pode ser classificado em uma das três classes: Setosa, Versicolor ou Virgínica.</p>
+<p>As linhas tracejadas no gráfico ajudam a entender por que a classificação da Íris do tipo Setosa pode ser mais simples que a dos tipos Versicolor e Virgínica. Como a Íris do tipo Setosa apresenta largura e comprimento da pétala bem menor que as outras duas, basta considerar apenas um dos atributos, digamos Comprimento <span class="math inline">\(&lt; 2,5\)</span> cm, para poder classificá-la corretamente. No caso dos tipos Versicolor e Virgínica, tanto o atributo Comprimento quanto Largura se sobrepõem em algumas regiões do gráfico e, portanto, poderá haver erro associado à classificação destes tipos de Íris.</p>
+<div id="fig-3-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.1: Representação do Estudo da Flor Íris com Dois Atributos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.
+</figcaption>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Fonte: <a href="http://en.wikipedia.org/wiki/File:Iris_virginica.jpg">Wikimedia Commons - Iris virginica</a> (Acessado em 03.03.26).</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Fonte: <a href="http://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg">Wikimedia Commons - Iris versicolor</a> (Acessado em 03.03.26).</p></div><div id="fn3"><p><sup>3</sup>&nbsp;Fonte: <a href="http://en.wikipedia.org/wiki/File:Kosaciec_szczecinkowaty_Iris_setosa.jpg">Wikimedia Commons - Iris setosa</a> (Acessado em 03.03.26).</p></div></div></figure>
+</div>
+<p>Em muitas aplicações práticas é perfeitamente aceitável a utilização de algoritmos relativamente simples que produzam um modelo claro de representação do conhecimento, mesmo que isso implique uma certa taxa de erro na classificação. Modelos facilmente compreensíveis de representação de conhecimento, como Árvores de Decisão e Regras de Classificação, permitem que um especialista avalie o modelo e detecte problemas em sua estrutura. Tanto para o médico quanto para o gerente de banco que se utilizam de um modelo de classificação para auxiliar em sua decisão, é importante que eles consigam interpretar todos os passos lógicos utilizados pelo sistema para chegar àquela classificação e avaliá-los à luz da respectiva experiência profissional.</p>
+<p>Por outro lado, em muitas aplicações o mais importante é otimizar a taxa de acerto ou a precisão do modelo, mesmo que isso implique certa perda de clareza, de simplicidade ou de desempenho do modelo. Redes Neurais e Máquinas de Vetor de Suporte são duas ilustrações de técnicas que podem oferecer alta precisão, mas que utilizam modelos de classificação difíceis de entender. É comum o uso dessas duas técnicas na área de aplicações financeiras, porque investidores geralmente estão mais interessados no ganho obtido diariamente na aplicação mais bem classificada do que no modelo matemático explicativo. Por esta razão, a decisão de usar um <strong>modelo orientado ao conhecimento</strong> ou um <strong>modelo tipo caixa-preta</strong> deve ser feita caso a caso.</p>
+<p>Para a tarefa de Classificação, os dois modelos orientados ao conhecimento mais comuns de representação são Árvores de Decisão e Regras de Classificação. Ambos são logicamente equivalentes e permitem que a partir de uma Árvore de Decisão seja possível obter as correspondentes Regras de Classificação, e vice-versa, embora a obtenção de Árvores a partir de Regras seja um processo mais complexo. Há, porém, vantagens e desvantagens observadas durante a geração desses modelos, que serão discutidas mais a frente.</p>
+<p>A <a href="#fig-3-2" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> apresenta modelos simplificados de uma <strong>Árvore de Decisão</strong> e das correspondentes <strong>Regras de Classificação</strong> para o caso da flor Íris. Com estes modelos simplificados, os erros de classificação ilustrados na <a href="#fig-3-1" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> novamente se repetiriam aqui. Para reduzir a taxa de erros, veremos que será necessário usar métodos de aprendizado mais refinados ou complexos.</p>
+<div id="fig-3-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-2.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.2: Modelos Equivalentes: (a) Árvore de Decisão e (b) Regras de Classificação.
+</figcaption>
+</figure>
+</div>
+<p>Dependendo da representação desejada, diferentes métodos de inferência serão usados sobre os dados. Mesmo que um modelo faça classificação com erros, é importante observar que cada Exemplo sempre pertencerá a uma única classe.</p>
+</section>
+<section id="árvores-de-decisão" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="árvores-de-decisão"><span class="header-section-number">3.3</span> Árvores de Decisão</h2>
+<p>Numa Árvore de Decisão cada <strong>atributo</strong> é representado por um <strong>nó de decisão</strong>, cuja função é testar o valor desse atributo. Uma <strong>classe</strong> é representada por um <strong>nó folha</strong>, que reúne todos os Exemplos que chegarem a ele depois de satisfazerem os testes dos nós de decisão intermediários. Portanto, numa Árvore de Decisão, a classificação de um Exemplo desconhecido implica percorrer toda a árvore a partir de um <strong>nó raiz</strong>, testando atributos em sucessivos <strong>nós internos</strong> até chegar a um <strong>nó folha</strong>, que lhe atribuirá uma <strong>classe</strong>. O objetivo de uma Árvore de Decisão é retornar uma classe para um Exemplo desconhecido.</p>
+</section>
+<section id="indução-de-árvores-de-decisão" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="indução-de-árvores-de-decisão"><span class="header-section-number">3.4</span> Indução de Árvores de Decisão</h2>
+<p>Uma Árvore de Decisão pode ser construída de forma recursiva, dividindo sucessivamente o conjunto de atributos em subconjuntos. Primeiramente escolhemos um elemento do conjunto de atributos para ser o nó raiz e adicionamos uma aresta para cada um dos possíveis valores que este atributo pode assumir. A seguir, repetimos o processo em cada uma das arestas com os atributos restantes até que todos os Exemplos considerados pertençam à mesma classe.</p>
+<p>Gerar uma Árvore de Decisão com escolha aleatória dos atributos não é difícil, porém dependendo da ordem dos atributos, diferentes árvores serão geradas. Isso significa que uma mesma Base de Dados pode produzir muitas Árvores de Decisão funcionalmente equivalentes, mas com tamanhos distintos. Como estamos interessados nos modelos mais compactos, é interessante encontrar critérios que ajudem a decidir sobre a ordem em que os atributos devem aparecer na Árvore de Decisão.</p>
+<p>Para ilustrar esta questão, vamos utilizar como caso de estudo novamente a clássica Tabela do Tempo (<a href="#tbl-3-1" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a>), introduzida por (Quinlan, 1986), tendo como atributos de entrada “Dia”, “Temperatura”, “Umidade” e "Vento”, e como atributo de saída (ou classe) “Partida”. Para ser mais preciso, na realidade temos duas classes “Sim” e “Não”, e queremos construir uma Árvore de Decisão que represente de forma compacta os Exemplos contidos nessa tabela. A seguir, com a Árvore de Decisão obtida, dado um novo Exemplo, vamos tentar predizer se vai ou não haver “Partida” num determinado dia, sendo a resposta a combinação linear dos atributos de entrada.</p>
+<div id="tbl-3-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.1: Tabela do Tempo.
+</figcaption>
+<div aria-describedby="tbl-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dia</th>
+<th>Temperatura</th>
+<th>Umidade</th>
+<th>Vento</th>
+<th>Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ensolarado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Ensolarado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nublado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Chuvoso</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nublado</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Ensolarado</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ensolarado</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ensolarado</td>
+<td>Amena</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Nublado</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nublado</td>
+<td>Elevada</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Inicialmente vamos considerar separadamente para o nó raiz cada um dos quatro atributos possíveis e ver como o atributo de saída “Partida” se divide em “Sim” e “Não”. Na <a href="#tbl-3-2" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a> é ressaltado o atributo “Dia”, na <a href="#tbl-3-3" class="quarto-xref">Tabela&nbsp;<span>3.3</span></a>, “Temperatura”, na <a href="#tbl-3-4" class="quarto-xref">Tabela&nbsp;<span>3.4</span></a>, “Umidade”, e na <a href="#tbl-3-5" class="quarto-xref">Tabela&nbsp;<span>3.5</span></a>, “Vento”.</p>
+<p>Como estamos interessados em construir uma árvore compacta, dentre os quatro atributos candidatos para nó raiz, o atributo “Dia” parece o mais promissor porque dentre as três arestas que teremos de colocar neste nó (“Ensolarado”, “Nublado” e “Chuvoso”), a aresta para “Nublado” tem <strong>todos</strong> seus elementos pertencentes à mesma classe “Sim” e, portanto, esta aresta da Árvore de Decisão termina aqui com um nó folha “Sim”.</p>
+<div class="quarto-layout-panel" data-layout-ncol="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div id="tbl-3-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.2: Dia
+</figcaption>
+<div aria-describedby="tbl-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Nublado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Nublado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Nublado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Nublado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div id="tbl-3-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.3: Temperatura
+</figcaption>
+<div aria-describedby="tbl-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Temperatura</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div id="tbl-3-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.4: Umidade
+</figcaption>
+<div aria-describedby="tbl-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Umidade</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div id="tbl-3-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.5: Vento
+</figcaption>
+<div aria-describedby="tbl-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Vento</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-3-3" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> ilustra esta primeira iteração na construção de uma Árvore de Decisão compacta.</p>
+<div id="fig-3-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-3.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.3: Nó raiz para os dados do Tempo.
+</figcaption>
+</figure>
+</div>
+<p>Como nas arestas “Ensolarado” e “Chuvoso” há elementos tanto da classe “Sim” como da classe “Não” (veja <a href="#tbl-3-2" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a>), outro atributo deve ser escolhido para cada aresta, e assim sucessivamente até que todos os elementos de um ramo pertençam a uma mesma classe. Como restam os atributos “Temperatura”, “Umidade” e “Vento”, analisando a <a href="#tbl-3-1" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a>, vamos testar cada um deles em combinação com a aresta “Ensolarado”.</p>
+<p>As Tabelas <a href="#tbl-3-6" class="quarto-xref"><span>3.6</span></a>, <a href="#tbl-3-7" class="quarto-xref"><span>3.7</span></a> e <a href="#tbl-3-8" class="quarto-xref"><span>3.8</span></a> mostram as combinações possíveis de “Dia=Ensolarado” com “Temperatura”, “Umidade” e “Vento”. Aqui também percebemos que “Umidade” parece ser a escolha mais promissora porque todos os elementos de “Umidade=Alta” correspondem à classe “Não” e todos os elementos com “Umidade=Normal” pertencem à classe “Sim”. Portanto, temos mais dois nós folhas aqui, favorecendo a construção de uma árvore mais compacta.</p>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div id="tbl-3-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.6: Temperatura
+</figcaption>
+<div aria-describedby="tbl-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Temp.</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div id="tbl-3-7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.7: Umidade
+</figcaption>
+<div aria-describedby="tbl-3-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Umidade</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Ensolarado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Alta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Ensolarado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Alta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Ensolarado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Alta}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Ensolarado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Normal}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Ensolarado}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Normal}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div id="tbl-3-8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.8: Vento
+</figcaption>
+<div aria-describedby="tbl-3-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Vento</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>A <a href="#fig-3-4" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> ilustra a segunda iteração do algoritmo com mais dois nós folhas, dando por completa esta região da Árvore de Decisão.</p>
+<div id="fig-3-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-4.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.4: O atributo “Umidade” combinado com “Dia”.
+</figcaption>
+</figure>
+</div>
+<p>Para a terceira aresta, ou seja, “Dia=Chuvoso”, restam duas alternativas agora: “Temperatura” e “Vento”. Vamos construir as tabelas de combinação para descobrir a mais interessante. As Tabelas <a href="#tbl-3-9" class="quarto-xref"><span>3.9</span></a> e <a href="#tbl-3-10" class="quarto-xref"><span>3.10</span></a> ilustram as possíveis combinações.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-3-9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.9: Dia e Temperatura
+</figcaption>
+<div aria-describedby="tbl-3-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Temperatura</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-3-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.10: Dia e Vento
+</figcaption>
+<div aria-describedby="tbl-3-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Vento</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Chuvoso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Falso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Chuvoso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Falso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Chuvoso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Falso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Chuvoso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Verdadeiro}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Chuvoso}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Verdadeiro}}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{green}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Comparando as duas tabelas, nota-se que o atributo “Vento” é o mais indicado para esta iteração porque todos os elementos de “Vento=Falso” estão classificados como “Sim” e todos os elementos de “Vento=Verdadeiro” estão classificados como “Não”. Portanto estas duas arestas da Árvore de Decisão terminam com um nó folha cada. A <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> ilustra a nova situação.</p>
+<div id="fig-3-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-5.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.5: Árvore de Decisão para os Dados da Tabela do Tempo.
+</figcaption>
+</figure>
+</div>
+<p>Nesta iteração o algoritmo termina, pois todos os Exemplos da tabela foram avaliados e classificados em suas respectivas classes. Porém algumas considerações podem ser feitas.</p>
+<p>Por trás do critério de seleção de atributos aqui apresentado de forma intuitiva, há uma sólida justificativa matemática introduzida por (Quinlan, 1986), baseada na Teoria da Informação de Claude Shannon, capaz de avaliar a quantidade de informação do melhor atributo dentre os candidatos para teste em um determinado nó.</p>
+<p>O critério de escolha do melhor atributo para cada iteração no algoritmo ID3, criado por (Quinlan, 1986), é medido pela significância estatística, que em nosso caso se expressa pela proporção de “Sim”s e “Não”s no atributo de saída “Partida”. Como foi ilustrado anteriormente, é mais promissor escolher um atributo que tenha associado a ele respostas compostas unicamente por “Sim”s ou “Não”s porque neste caso podemos colocar um nó folha correspondente e terminar com as subdivisões. Em outras palavras, quanto mais compacta uma árvore, menos testes serão necessários para classificar um Exemplo. Por outro lado, se o conjunto de respostas é composto por uma mescla de “Sim”s e “Não”s, então faz-se necessário colocar mais um nó interno, com um novo atributo sendo testado, implicando um crescimento da Árvore de Decisão.</p>
+<p>De acordo com a fórmula de Shannon, em uma tabela como a <a href="#tbl-3-1" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> a quantidade de informação presente é,</p>
+<p><span class="math display">\[Info(Tabela) = - \sum_{i = 1}^{N}{p_{i}\log_{2}p_{i}}\]</span></p>
+<p>sendo <span class="math inline">\(p_i\)</span> a proporção de “Sim”s e “Não”s associados a um atributo (a quantidade de informação ou entropia é medida em bits, ou frações de bits!). Por ex., na <a href="#tbl-3-1" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a> temos apenas duas classes (“Sim” e “Não”), sendo que dos 14 Exemplos, 9 pertencem à classe “Sim” e 5 à classe “Não”. Portanto, a quantidade de informação associada a esta tabela pode ser calculada da seguinte forma,</p>
+<p><span class="math display">\[\text{Info}\left( Tab.3.1 \right) = ( - 9/14\log_{2}{9/14) + ( - 5/14\log_{2}{5/14}}) = 0,94 bits\]</span></p>
+<p>Uma forma alternativa de interpretar estes números, é pensar que estamos interessados em medir o grau de “impureza” de um conjunto de respostas. Se todas as respostas forem apenas “Sim” ou apenas “Não”, então o grau de impureza do conjunto é 0. Por outro lado, se tivermos <span class="math inline">\(10\%\)</span> de “Sim”s e <span class="math inline">\(90\%\)</span> de “Não”s, então o grau de impureza seria,</p>
+<p><span class="math display">\[Info(Tab\_(10/90)) = ( - 1/10\log_{2}{1/10) + ( -}9/10\log_{2}{9/10) = 0,47 bits}\]</span></p>
+<p>De acordo com este raciocínio, o grau de impureza máxima é representado pela proporção <span class="math inline">\(50\%\)</span> de “Sim”s e <span class="math inline">\(50\%\)</span> de “Não”s, sendo <span class="math inline">\(Info(Tab\_(50/50) =
+1 bit)\)</span>.</p>
+<p>Voltando ao nosso problema original de escolha do atributo mais promissor em cada iteração do algoritmo, vamos calcular o grau de impureza da <a href="#tbl-3-2" class="quarto-xref">Tabela&nbsp;<span>3.2</span></a>, que se refere ao atributo “Dia”. Esse atributo se subdivide em três alternativa possíveis, com as seguintes proporções de “Sim”s e “Não”s: “Ensolarado” (2”Sim”/3”Não)“,”Nublado” (4”Sim”/0”Não) e “Chuvoso” (3”Sim”/2”Não”). Portanto, seu grau de impureza é,</p>
+<p><span class="math display">\[Info(Ensolarado) = ( - 2/5\log_{2}{2/5) + ( -}3/5\log_{2}{3/5) = 0,97bits}\]</span></p>
+<p><span class="math display">\[Info(Nublado) = ( - 4/4\log_{2}{4/4) + ( -}0/4\log_{2}{0/4) = 0,00bits}\]</span></p>
+<p><span class="math display">\[Info(Chuvoso) = ( - 3/5\log_{2}{3/5) + ( -}2/5\log_{2}{2/5) = 0,97bits}\]</span></p>
+<p>Fazendo a soma ponderada de cada uma dessas alternativas sobre os 14 Exemplos, resulta,</p>
+<p><span class="math display">\[Info\left( Dia \right) = 0,97*\frac{5}{14} + 0*\frac{4}{14} + 0,97*\frac{5}{14} = \ 0,69bits\]</span></p>
+<p>Aplicando-se raciocínio semelhante para os atributos “Temperatura”, “Umidade” e “Vento” obtêm-se os seguintes valores,</p>
+<p><span class="math display">\[Info\left( Temperatura \right) = 0.91bits\]</span></p>
+<p><span class="math display">\[Info\left( Umidade \right) = 0.79bits\]</span></p>
+<p><span class="math display">\[Info\left( Vento \right) = 0.89bits\]</span></p>
+<p>Portanto, dos quatro atributos possíveis na primeira iteração, o atributo “Dia” é o que tem o grau mais baixo de impureza, e , portanto, é o mais promissor para construir uma Árvore de Decisão Compacta. Continuando este procedimento recursivamente, chega-se a Árvore de Decisão apresentada na <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a>.</p>
+<p>Há mais sutilezas matemáticas envolvidas que não foram mencionadas, e outros detalhes importantes do algoritmo ID3 precisariam ser abordados se nossa intenção fosse explicar seu funcionamento. Porém, o que pretendemos aqui é apenas dar uma ideia de seu embasamento teórico para que ao nos depararmos com uma ferramenta que implemente este algoritmo seja possível entender o resultado de seus cálculos.</p>
+</section>
+<section id="árvore-de-decisão-não-compacta" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="árvore-de-decisão-não-compacta"><span class="header-section-number">3.5</span> Árvore de Decisão Não Compacta</h2>
+<p>Para efeito comparativo, vamos supor que algum critério arbitrário de escolha da ordem dos atributos tenha sido utilizado e que o nó raiz contenha o atributo “Umidade”. A <a href="#tbl-3-11" class="quarto-xref">Tabela&nbsp;<span>3.11</span></a> mostra que este atributo possui Exemplos misturados pertencentes a classes distintas, portanto é necessário um novo teste, i.e., escolher um novo atributo para teste. A <a href="#fig-3-6" class="quarto-xref">Figura&nbsp;<span>3.6</span></a> mostra o resultado dessa escolha arbitrária.</p>
+<div class="quarto-layout-panel" data-layout="[[1, 1]]" data-valign="center">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-3-11" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.11: Umidade (arbitrária).
+</figcaption>
+<div aria-describedby="tbl-3-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Umidade</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-3-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-6.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.6: Árvore de Decisão com Nó Raiz Arbitrário.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>O atributo escolhido arbitrariamente agora foi “Dia” e as combinações possíveis com “Umidade” são mostradas na <a href="#tbl-3-12" class="quarto-xref">Tabela&nbsp;<span>3.12</span></a>. A segunda iteração do algoritmo para a construção da Árvore de Decisão Alternativa é mostrada na <a href="#fig-3-7" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>.</p>
+<div class="quarto-layout-panel" data-layout="[[1, 1]]" data-valign="center">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-3-12" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.12: Dia e Umidade (arbitrários).
+</figcaption>
+<div aria-describedby="tbl-3-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Umidade</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;"><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-3-7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-7.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.7: Segunda Iteração da Árvore de Decisão Alternativa.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Embora as arestas de “Dia=Ensolarado” e “Dia=Nublado” terminem em nó folha, a aresta para “Dia=Chuvoso” exige um novo teste já que há duas respostas distintas possíveis. O próximo atributo escolhido arbitrariamente foi “Vento”, como mostra a <a href="#tbl-3-13" class="quarto-xref">Tabela&nbsp;<span>3.13</span></a>. A ilustração da <a href="#fig-3-8" class="quarto-xref">Figura&nbsp;<span>3.8</span></a> ajuda a entender como a falta de uma rotina de otimização produz árvores desnecessariamente grandes.</p>
+<div id="tbl-3-13" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.13: Dia, Umidade e Vento (arbitrários).
+</figcaption>
+<div aria-describedby="tbl-3-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dia</th>
+<th>Umidade</th>
+<th>Vento</th>
+<th>Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chuvoso</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-3-8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-8.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.8: Árvore de Decisão sem Otimização.
+</figcaption>
+</figure>
+</div>
+<p>A <a href="#tbl-3-13" class="quarto-xref">Tabela&nbsp;<span>3.13</span></a> mostra que esta região da Árvore de Decisão está encerrada, com dois novos nós folhas. Vamos agora considerar a aresta correspondente a “Umidade=Normal” (<a href="#tbl-3-14" class="quarto-xref">Tabela&nbsp;<span>3.14</span></a>) e supor que o novo teste escolhido será o atributo “Dia”. O resultado da escolha do atributo “Dia” para a aresta de “Umidade=Normal” é mostrado na <a href="#fig-3-9" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>.</p>
+<div id="tbl-3-14" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.14: Dia e Umidade (arbitrários).
+</figcaption>
+<div aria-describedby="tbl-3-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dia</th>
+<th>Umidade</th>
+<th>Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ensolarado</td>
+<td>Normal</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Ensolarado</td>
+<td>Normal</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nublado</td>
+<td>Normal</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Nublado</td>
+<td>Normal</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Chuvoso</td>
+<td>Normal</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Normal</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Chuvoso</td>
+<td>Normal</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-3-9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-9.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.9: Atributo “Dia” Usados em Duas Posições Diferentes.
+</figcaption>
+</figure>
+</div>
+<p>Como a opção de “Dia=Chuvoso” exige um novo teste, vamos supor que o atributo escolhido tenha sido “Vento”, produzindo o resultado mostrado na <a href="#tbl-3-15" class="quarto-xref">Tabela&nbsp;<span>3.15</span></a>. O resultado final da Árvore de Decisão Não-Compacta é mostrado na <a href="#fig-3-10" class="quarto-xref">Figura&nbsp;<span>3.10</span></a>.</p>
+<div id="tbl-3-15" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.15: Dia, Umidade e Vento (arbitrários).
+</figcaption>
+<div aria-describedby="tbl-3-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dia</th>
+<th>Umidade</th>
+<th>Vento</th>
+<th>Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chuvoso</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Chuvoso</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-3-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-10.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.10: Árvore de Decisão Não-Compacta para a Tabela do Tempo.
+</figcaption>
+</figure>
+</div>
+<p>Com este teste, o algoritmo se encerra já que todos os Exemplos foram devidamente considerados e se encaixaram num dos caminhos possíveis da Árvore de Decisão.</p>
+<p>Tanto a árvore da <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> quanto a da <a href="#fig-3-10" class="quarto-xref">Figura&nbsp;<span>3.10</span></a> classificam corretamente todos os Exemplos da Tabela do Tempo representada pela <a href="#tbl-3-1" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a>. Mas, como a <a href="#tbl-3-5" class="quarto-xref">Tabela&nbsp;<span>3.5</span></a> é mais compacta, ela deve ser preferida.</p>
+</section>
+<section id="árvores-de-decisão-usadas-para-modelagem-descritiva" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="árvores-de-decisão-usadas-para-modelagem-descritiva"><span class="header-section-number">3.6</span> Árvores de Decisão Usadas para Modelagem Descritiva</h2>
+<p>Comparando-se as Árvores de Decisão das <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> e <a href="#fig-3-10" class="quarto-xref">Figura&nbsp;<span>3.10</span></a>, percebe-se que em nenhuma das duas aparece o atributo “Temperatura” e, no entanto, ambas classificam corretamente todos os Exemplos. Considerando que essas Árvores de Decisão representam as relações relevantes entre os valores dos atributos e os respectivos rótulos de classe, isso significa que “Temperatura” não é essencial para a determinação de classe do atributo de saída “Partida”. O conjunto de Exemplos da Tabela do Tempo mostra que a combinação dos outros atributos é que determina se vai ou não haver uma partida, independentemente da “Temperatura” (porque possivelmente a partida se dará em ambiente fechado).</p>
+<p>Ao fazer este tipo de análise para explicar um padrão de relacionamento entre atributos, estamos usando uma Árvore de Decisão como um modelo descritivo, e não preditivo. Isso ilustra outra aplicação interessante das Árvores de Decisão na qual o objetivo é adquirir um melhor entendimento sobre os dados coletados e, dessa forma, formular hipóteses explicativas para um fenômeno em estudo.</p>
+<p>Considere, por exemplo, a pesquisa sobre determinada doença, para a qual foram coletados dados médicos de pacientes portadores ou não dessa doença. A descoberta de quais fatores podem desencadeá-la, e de quais fatores são irrelevantes, é da maior importância para a pesquisa médica. Em outras áreas, a modelagem descritiva pode ser igualmente interessante. Pense, por exemplo, na importância em entender o comportamento dos frequentadores de determinado estabelecimento comercial, ou no aumento de lucro que alguém pode obter ao traçar o perfil de consumo de um segmento social.</p>
+</section>
+<section id="regras-de-classificação-a-partir-de-uma-árvore-de-decisão" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="regras-de-classificação-a-partir-de-uma-árvore-de-decisão"><span class="header-section-number">3.7</span> Regras de Classificação a partir de uma Árvore de Decisão</h2>
+<p>A geração de Regras de Classificação a partir de uma Árvore de Decisão é feita percorrendo desde o nó raiz até um nó folha, anotando a conjunção de condições representadas pelos nós internos. A cada classe da Árvore de Decisão corresponde uma Regra de Classificação, sendo ambas logicamente equivalentes.</p>
+<p>Vamos reproduzir a Árvore de Decisão da <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> para ilustrar esse processo de geração de Regras de Classificação a partir de uma Árvore de Decisão.</p>
+<p>Partindo-se do nó raiz “Dia”, seguindo pela aresta correspondente à condição “Ensolarado”, passando pelo nó interno “Umidade” e, finalmente, tomando a aresta “Alta”, chega-se ao nó folha “Não”. Dessa forma, podemos gerar a primeira regra relativa à classe “Não”, como ilustra a Regra <a href="#eq-3-1" class="quarto-xref"><span>3.1</span></a>:</p>
+<p><span id="eq-3-1"><span class="math display">\[\textcolor{red}{\textbf{If }}
+(\text{Dia} = \text{Ensolarado})
+\textcolor{red}{\textbf{ and }}
+(\text{Umidade} = \text{Alta})
+\textcolor{red}{\textbf{ then }} \\
+(\text{Partida} = \text{Não})
+\tag{3.1}\]</span></span></p>
+<p>Esta regra foi construída como uma conjunção lógica (“<em>AND</em>”) de duas condições lógicas. Por inspeção na Árvore de Decisão da <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> verifica-se que há outro caminho que pode levar à classe “Não”, que pode ser representada pela Regra <a href="#eq-3-2" class="quarto-xref"><span>3.2</span></a>:</p>
+<p><span id="eq-3-2"><span class="math display">\[
+\textcolor{red}{\textbf{If }}
+(\text{Dia} = \text{Chuvoso})
+\textcolor{red}{\textbf{ and }}
+(\text{Vento} = \text{Verdadeiro}) \\
+\textcolor{red}{\textbf{ then }}
+(\text{Partida} = \text{Não})
+\tag{3.2}\]</span></span></p>
+<p>As duas Regras [-@-eq3-1] e <a href="#eq-3-2" class="quarto-xref"><span>3.2</span></a>, formadas por conjunções (“<em>AND</em>”), podem ser fundidas numa única regra utilizando-se uma disjunção lógica (“<em>OR</em>”), como mostra a Regra <a href="#eq-3-3" class="quarto-xref"><span>3.3</span></a>:</p>
+<p><span id="eq-3-3"><span class="math display">\[\begin{gathered}
+\textcolor{red}{\textbf{If }}
+[(\text{Dia} = \text{Ensolarado}) \textcolor{red}{\textbf{ and }} (\text{Umidade} = \text{Alta})] \\
+\textcolor{red}{\textbf{ or }}
+[(\text{Dia} = \text{Chuvoso}) \textcolor{red}{\textbf{ and }} (\text{Vento} = \text{Verdadeiro})] \\
+\textcolor{red}{\textbf{ then }}
+(\text{Partida} = \text{Não})
+\end{gathered}
+\tag{3.3}\]</span></span></p>
+<p>Regras com estrutura lógica semelhante à Regra <a href="#eq-3-3" class="quarto-xref"><span>3.3</span></a> são conhecidas como regras na forma disjunção de conjunções. Aplicando-se o mesmo procedimento descrito para os casos restantes, obtém-se a Regra de Classificação correspondente à classe “Sim”, representada pela Regra <a href="#eq-3-4" class="quarto-xref"><span>3.4</span></a>:</p>
+<p><span id="eq-3-4"><span class="math display">\[
+\begin{gathered}
+\textcolor{red}{\textbf{If }}
+[(\text{Dia} = \text{Ensolarado}) \textcolor{red}{\textbf{ and }} (\text{Umidade} = \text{Normal})] \
+\textcolor{red}{\textbf{ or }}
+[(\text{Dia} = \text{Nublado})] \\
+\textcolor{red}{\textbf{ or }}
+[(\text{Dia} = \text{Chuvoso}) \textcolor{red}{\textbf{ and }} (\text{Vento} = \text{Falso})] \\
+\textcolor{red}{\textbf{ then }}
+(\text{Partida} = \text{Sim})
+\end{gathered}
+\tag{3.4}\]</span></span></p>
+</section>
+<section id="treinamento-aprendizado-e-classificação" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="treinamento-aprendizado-e-classificação"><span class="header-section-number">3.8</span> Treinamento, Aprendizado e Classificação</h2>
+<p>Recapitulando o que foi feito até aqui, inicialmente consideramos a existência de uma Base de Dados codificada na forma de uma tabela com vários atributos. A seguir, apresentamos um algoritmo capaz de construir uma Árvore de Decisão a partir desses dados estruturados. Como cada Exemplo da Base de Dados era composto por alguns atributos e um rótulo de classe (ou atributo de saída), nós podemos entender todo este processo de construção de Árvores de Decisão como sendo um processo de <strong>Aprendizado Supervisionado</strong> por meio de <strong>Treinamento</strong>.</p>
+<p>Diz-se que o <strong>Aprendizado</strong> é <strong>Supervisionado</strong> quando cada <strong>Exemplo</strong> usado no <strong>Treinamento</strong> possui um <strong>rótulo de classe</strong> que orienta (ou otimiza) um mecanismo de reforço ou penalização, ou seja, quando já se sabe antecipadamente a qual classe determinado elemento pertence. Muitas vezes os Exemplos não trazem o rótulo de classe e ainda assim é possível ocorrer aprendizado, porém, nestes casos diz-se que o Aprendizado é Não-Supervisionado. Por ex., com um conjunto de Exemplos sem rótulos de classe é possível agrupá-los de acordo com algum critério, como o critério de afinidade.</p>
+<p>A Árvore de Decisão resultante representa o Modelo gerado ou o Conceito aprendido. Note que para cada Base de Dados será construída uma Árvore de Decisão que lhe corresponde. Ou seja, nós temos um algoritmo que em princípio gera árvores genéricas, que refletem a estrutura dos dados utilizados no treinamento. Como a Árvore de Decisão gerada poderá ser usada para diagnosticar doenças, classificar produtos comerciais, ou explicar a correlação de fatores de um fenômeno, podemos dizer que o Sistema Inteligente que emprega este tipo de algoritmo de aprendizado melhora seu desempenho a partir de sua própria experiência (ou treinamento). A <a href="#fig-3-11" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> ilustra as três fases de um Sistema Inteligente Classificatório.</p>
+<div id="fig-3-11" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-11.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.11: Treinamento, Aprendizado e Classificação em um Sistema Inteligente Simples.
+</figcaption>
+</figure>
+</div>
+<p>O Treinamento viabiliza o Aprendizado de um Conceito pelo Sistema Inteligente, e a aquisição de um Conceito pelo sistema elimina a necessidade de um aprendizado constante. O processo de Aprendizado pode ser demorado, mas uma vez aprendido um Conceito, o processo de Classificação é bem mais rápido. A Figura 3.11 não mostra outros caminhos ou fluxos de trabalho do sistema para a obtenção do Modelo desejado de Árvore de Decisão. É comum que após a geração do primeiro modelo de árvore, os resultados obtidos não sejam satisfatórios. Nesse caso, nova rodada de treinamento se inicia, com novos parâmetros e ajustes adicionais, até a geração de um segundo modelo. Este processo se repete de forma iterativa e interativa até que se chegue a uma Árvore de Decisão com as características buscadas.</p>
+<p>Tendo descrito o processo de criação ou indução de uma Árvore de Decisão, vamos ver agora que resultados de classificação podemos obter com esta árvore. A <a href="#tbl-3-16" class="quarto-xref">Tabela&nbsp;<span>3.16</span></a> apresenta alguns novos Exemplos que usaremos para teste.</p>
+<div id="tbl-3-16" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.16: Tabela do Tempo com Exemplos de Teste.
+</figcaption>
+<div aria-describedby="tbl-3-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dia</th>
+<th>Temperatura</th>
+<th>Umidade</th>
+<th>Vento</th>
+<th>Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ensolarado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Ensolarado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nublado</td>
+<td>Elevada</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Chuvoso</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nublado</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Ensolarado</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ensolarado</td>
+<td>Baixa</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ensolarado</td>
+<td>Amena</td>
+<td>Normal</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Nublado</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Nublado</td>
+<td>Elevada</td>
+<td>Normal</td>
+<td>Falso</td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Sim}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chuvoso</td>
+<td>Amena</td>
+<td>Alta</td>
+<td>Verdadeiro</td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Não}}\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\textcolor{green}{\text{Ensolarado}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Amena}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Normal}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Falso}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\textbf{????}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\textcolor{green}{\text{Ensolarado}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Baixa}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Alta}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Verdadeiro}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\textbf{????}}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\textcolor{green}{\text{Nublado}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Baixa}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Alta}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Verdadeiro}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\textbf{????}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\textcolor{green}{\text{Chuvoso}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Elevada}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Normal}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\text{Falso}}\)</span></td>
+<td><span class="math inline">\(\textcolor{green}{\textbf{????}}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Usando tanto a Árvore de Decisão da <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> quanto a da <a href="#fig-3-10" class="quarto-xref">Figura&nbsp;<span>3.10</span></a>, o resultado para o primeiro Exemplo de Teste, aquele que se inicia com “Dia=Ensolarado” e “Temperatura=Amena”, é “Sim”, para o segundo Exemplo, com “Dia=Ensolarado” e “Temperatura=Baixa” , a resposta é “Não”, para o terceiro Exemplo “Dia=Nublado”, a resposta é “Sim” e finalmente para o quarto Exemplo, com “Dia=Chuvoso”, a resposta é “Sim”.</p>
+</section>
+<section id="overfitting-e-poda" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="overfitting-e-poda"><span class="header-section-number">3.9</span> <em>Overfitting</em> e Poda</h2>
+<p>É possível que para alguns Exemplos de Teste os resultados produzidos por Árvores de Decisão compactas, como a da <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a>, não sejam os mesmos de Árvores de Decisão não-compactas, como a da <a href="#fig-3-10" class="quarto-xref">Figura&nbsp;<span>3.10</span></a>, muito embora os resultados para todos os Exemplos de Treinamento tenham sido os mesmos. O que pode ocorrer com árvores não compactas é que algumas das arestas refletem um superajuste (<em>overfitting</em>) aos Exemplos de Treinamento. Se neste Conjunto de Treinamento houver ruído ou <em>outliers</em>, a estrutura resultante da Árvore de Decisão pode não refletir às relações essenciais entre os atributos da Base de Dados.</p>
+<p>Para evitar o <em>overfitting</em>, muitos algoritmos se valem de uma técnica conhecida como “Poda”, que consiste em eliminar algumas arestas da Árvore de Decisão com base em medidas estatísticas dos Exemplos. A Poda pode ocorrer sobre uma Árvore de Decisão concluída, com a eliminação de algumas arestas consideradas não necessárias, ou durante a construção da Árvore de Decisão, com a introdução precoce de um nó folha em arestas com baixa importância estatística, por exemplo.</p>
+<p>A Árvore de Decisão da <a href="#fig-3-10" class="quarto-xref">Figura&nbsp;<span>3.10</span></a> poderia ter algumas de suas arestas removidas sem comprometer seriamente a taxa de erros na classificação. De fato, observando-se a <a href="#tbl-3-4" class="quarto-xref">Tabela&nbsp;<span>3.4</span></a>, verifica-se que dos sete Exemplos que apresentam “Umidade=Normal”, seis deles têm rótulo de classe “Sim”. Por esta razão, o nó interno à direita da <a href="#fig-3-10" class="quarto-xref">Figura&nbsp;<span>3.10</span></a>, (reproduzida na <a href="#fig-3-12a" class="quarto-xref">Figura&nbsp;<span>3.12 (a)</span></a>), representando o atributo “Vento”, poderia ser eliminado e substituído por um nó folha “Sim” já que a maioria dos Exemplos que chegam a este nó apresentam o rótulo de classe “Sim”. A seguir, o nó interno “Dia” também pode ser eliminado pois todas seus nós terminais passaram a ser do tipo “Sim”. A <a href="#fig-3-12b" class="quarto-xref">Figura&nbsp;<span>3.12 (b)</span></a> mostra o resultado desse processo de Poda.</p>
+<p>Para avaliar quantitativamente o desempenho de um modelo gerado, seja ele uma Árvore de Decisão ou um conjunto de Regras de Classificação, veremos que há técnicas e medidas de desempenho especialmente desenvolvidas para este fim.</p>
+<div id="fig-3-12" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-12" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-3-12a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-12a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-12a.png" class="img-fluid figure-img" data-ref-parent="fig-3-12">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-12a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Antes da Poda
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-12" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-3-12b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-12b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig3-12b.png" class="img-fluid figure-img" data-ref-parent="fig-3-12">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-12b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Depois da Poda
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.12: Árvore de Decisão Não-Compacta: (a) antes da poda e (b) depois da poda.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="matriz-de-confusão-e-avaliação-dos-resultados" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="matriz-de-confusão-e-avaliação-dos-resultados"><span class="header-section-number">3.10</span> Matriz de Confusão e Avaliação dos Resultados</h2>
+<p>Ao se gerar uma Árvore de Decisão o que se espera é que ela classifique corretamente Exemplos desconhecidos, mas na prática às vezes verifica-se a ocorrência de classificações equivocadas. Isso também ocorre com o diagnóstico de profissionais especializados. Quando um especialista deseja detectar a presença ou não de uma doença, ele solicita exames laboratoriais para auxiliá-lo a formular um diagnóstico positivo ou negativo sobre esta provável doença.</p>
+<p>Se as respostas possíveis para um diagnóstico forem “Positivo” e “Negativo”, quatro combinações de resultados previstos e resultados reais podem ocorrer:</p>
+<ol type="1">
+<li>Se o paciente for portador da doença e o médico acertar no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Positivo (VP)</strong>;</li>
+<li>Se o paciente não for portador da doença e o médico acertar no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Negativo (VN)</strong>;</li>
+<li>Se o paciente for portador da doença, e o médico errar no diagnóstico afirmando que ele está são, dizemos que este caso é um <strong>Falso Negativo (FN)</strong>;</li>
+<li>Se o paciente não for portador da doença, e o médico errar no diagnóstico dizendo que ele está doente, dizemos que este caso é um <strong>Falso Positivo (FP)</strong>.</li>
+</ol>
+<p>Essas quatro combinações de resultados costumam ser representadas por uma matriz que recebe o nome de “Matriz de Confusão”, como mostra a <a href="#tbl-3-17" class="quarto-xref">Tabela&nbsp;<span>3.17</span></a>.</p>
+<div id="tbl-3-17" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.17: Matriz de Confusão.
+</figcaption>
+<div aria-describedby="tbl-3-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Positivo Previsto</th>
+<th>Negativo Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Positivo Real</strong></td>
+<td><strong>Verdadeiro Positivo (VP)</strong></td>
+<td><strong>Falso Negativo (FN)</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Negativo Real</strong></td>
+<td><strong>Falso Positivo (FP)</strong></td>
+<td><strong>Verdadeiro Negativo (VN)</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Os valores contidos numa Matriz de Confusão podem ser utilizados para avaliar o desempenho de uma Árvore de Decisão. O que se espera nos resultados é que os casos positivos sejam classificados como positivos e os negativos como negativos, ou seja, o desejável é que as taxas de sucesso para Verdadeiro Positivo e Verdadeiro Negativo sejam altas, e que as taxas de Falso Positivo e Falso Negativo sejam baixas.</p>
+<p>Fazendo uma relação entre os Exemplos corretamente classificados, i.e., Verdadeiro Positivo (VP) mais Verdadeiro Negativo (VN), com o número total de classificações (VP+VN+FP+FN), podemos definir uma métrica de desempenho para a taxa de acertos ou sucesso, conhecida como Precisão ou Acurácia de uma Árvore de Decisão. Portanto,</p>
+<p><span class="math display">\[Acurácia = \frac{VP + VN}{VP + VN + FP + FN} \times 100\%\]</span></p>
+</section>
+<section id="como-gerar-uma-árvore-de-decisão-usando-o-weka" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="como-gerar-uma-árvore-de-decisão-usando-o-weka"><span class="header-section-number">3.11</span> Como Gerar uma Árvore de Decisão Usando o Weka</h2>
+<p>A ferramenta Weka (Weka, 2013) permite gerar Árvores de Decisão de forma automática ou interativa. Vamos mostrar a geração automática a partir de um arquivo de entrada.</p>
+<p><strong>Passo 1</strong> - Uma forma rápida de criar o arquivo de entrada tipo “.arff” a partir de uma planilha de dados “.xls” (<a href="#fig-3-13a" class="quarto-xref">Figura&nbsp;<span>3.13 (a)</span></a>) é salvá-la no formato “.csv” (<a href="#fig-3-13b" class="quarto-xref">Figura&nbsp;<span>3.13 (b)</span></a>), depois abrir este arquivo num editor de texto, acrescentar algumas palavras-chave e salvar novamente (<a href="#fig-3-14a" class="quarto-xref">Figura&nbsp;<span>3.14 (a)</span></a>). Saia do editor de texto e mude manualmente a extensão do arquivo de “.csv” para “.arff” (<a href="#fig-3-14b" class="quarto-xref">Figura&nbsp;<span>3.14 (b)</span></a>). Note que as Figuras <a href="#fig-3-14a" class="quarto-xref"><span>3.14 (a)</span></a> e <a href="#fig-3-14b" class="quarto-xref"><span>3.14 (b)</span></a> são idênticas, mas a extensão dos arquivos é diferente.</p>
+<div id="fig-3-13" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-13" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-3-13a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-13a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image28.png" class="img-fluid figure-img" data-ref-parent="fig-3-13">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-13a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Formato “.xls”
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-13" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-3-13b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-13b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image29.png" class="img-fluid figure-img" data-ref-parent="fig-3-13">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-13b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Formato “.csv”
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.13: Tabela do Tempo: (a) formato “.xls” e (b) formato “.csv.”
+</figcaption>
+</figure>
+</div>
+<p>Na unidade anterior, sobre como gerar Regras de Associação no Weka, foi explicado que o Weka aceita trabalhar diretamente o formato “.csv”, sem a necessidade de acrescentar palavras-chaves. Mas, em alguns casos a criação do arquivo “.arff” se justifica. Em caso de dúvida sobre esta questão, consulte o material da unidade anterior.</p>
+<div id="fig-3-14" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-14" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-3-14a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-14a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image30.png" class="img-fluid figure-img" data-ref-parent="fig-3-14">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-14a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Formato “.csv” com Palavras-Chave
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-14" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-3-14b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-14b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image31.png" class="img-fluid figure-img" data-ref-parent="fig-3-14">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-14b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Arquivo “.arff”
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.14: Arquivo Tabela_do_Tempo: (a) formato “.csv” com Palavras-Chave e (b) arquivo “.arff”.
+</figcaption>
+</figure>
+</div>
+<p><strong>Passo 2</strong> - Dando dois cliques sobre o ícone do arquivo “Tabela_do_Tempo.arff” ele se abrirá dentro do Weka, mostrando uma figura semelhante à <a href="#fig-3-15" class="quarto-xref">Figura&nbsp;<span>3.15</span></a>. Alternativamente, é possível primeiramente abrir o Weka Explorer, depois “Open file…” e localizar o arquivo “Tabela_do_Tempo.arff”.</p>
+<div id="fig-3-15" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image32.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.15: Arquivo “Tabela_do_Tempo.arff” aberto no Weka.
+</figcaption>
+</figure>
+</div>
+<p>Note que na seção “Attributes” aparecem os cinco atributos da Tabela do Tempo na ordem em que foram declarados. Na <a href="#fig-3-15" class="quarto-xref">Figura&nbsp;<span>3.15</span></a> aparecem ainda os detalhes da composição de um dos atributos selecionados, neste caso “Dia”, mas qualquer um dos quatro atributos restantes pode ser selecionado.</p>
+<p><strong>Passo 3</strong> – Com o arquivo “Tabela_do_Tempo.arff” aberto, clique na aba “Classify”, localizada da parte superior esquerda da janela do Weka Explorer. A seguir, clique em “Choose” para escolher o algoritmo de classificação. Primeiro clique em “trees”, depois em “J48” (<a href="#fig-3-16a" class="quarto-xref">Figura&nbsp;<span>3.16 (a)</span></a> e <a href="#fig-3-16b" class="quarto-xref">Figura&nbsp;<span>3.16 (b)</span></a> ). O algoritmo “J48” é uma implementação mais recente do “ID3” e, além disso, tem também a vantagem de permitir, dentro do Weka, visualizar a Árvore de Decisão construída.</p>
+<div id="fig-3-16" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-16" style="flex-basis: 75.0%;justify-content: flex-start;">
+<div id="fig-3-16a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-16a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image34.png" class="img-fluid figure-img" data-ref-parent="fig-3-16">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-16a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Opção “Choose” para escolher
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-16" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div id="fig-3-16b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-3-16b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image33.png" class="img-fluid figure-img" data-ref-parent="fig-3-16">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-16b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Menu de algoritmos
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.16: Aba “Classify” com a opção (a) “Choose” para escolher e (b) o menu de algoritmos.
+</figcaption>
+</figure>
+</div>
+<p>Uma vez escolhido o algoritmo “J48” é possível conferir e alterar alguns parâmetros. Clicando com o botão esquerdo do mouse sobre “J48” abre-se um menu com todos os valores <em>default</em>. Inicialmente vamos trabalhar com estes valores.</p>
+<p><strong>Passo 4</strong> – Ainda dentro da aba “Classify”, em “Test options” escolha “Use training set” e clique no botão “Start”, um pouco abaixo. A opção “Use training set” significa que o mesmo <strong>Conjunto de Treinamento</strong> usado para gerar a Árvore de Decisão será usado para testar os resultados (veja <a href="#fig-3-17" class="quarto-xref">Figura&nbsp;<span>3.17</span></a>). Se o Conjunto de Exemplos da Base de Dados não for inconsistente, geralmente a taxa de acerto com esta opção deve ser de 100%. Mais adiante, na próxima unidade de estudo, veremos que há outras formas mais interessantes de testar a robustez e a qualidade do Modelo gerado.</p>
+<div id="fig-3-17" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image35.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.17: A Escolha da Opção de Teste “Use training set”.
+</figcaption>
+</figure>
+</div>
+<p><strong>Passo 5</strong> – Ao disparar o processo de treinamento com o algoritmo “J48” aparecem na região direita da tela (“Classifier output”) os resultados desejados (<a href="#fig-3-18" class="quarto-xref">Figura&nbsp;<span>3.18</span></a>). A Árvore de Decisão aparece na forma textual, mas pode ser vista na forma gráfica. Na parte inferior da tela, aparecem o número e a porcentagem de exemplos classificados corretamente, a Acurácia (ou Precisão) por Classe e a Matriz de Confusão.</p>
+<div id="fig-3-18" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image36.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.18: Resultado do Processo de Treinamento e Indução da Árvore de Decisão.
+</figcaption>
+</figure>
+</div>
+<p>Se você tiver interesse em saber como cada uma dos exemplos foi classificado, clique na aba “More options...” e depois habilite “Output predictions”. Clique em “Start” novamente.</p>
+<p><strong>Passo 6</strong> – Clicando com o botão direito do mouse na região inferior esquerda, onde se lê “Result list (right-click for options)”, mais precisamente sobre a faixa azul “trees.J48”, é possível visualizar graficamente o resultado, escolhendo “Visualize tree” (<a href="#fig-3-19" class="quarto-xref">Figura&nbsp;<span>3.19</span></a>).</p>
+<div id="fig-3-19" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image37.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.19: Representação Gráfica da Árvore de Decisão.
+</figcaption>
+</figure>
+</div>
+<p>Os números entre parênteses em cada nó folha da Figura 3.19 indicam quantos exemplos chegaram até esta folha. Somando-se estes números, verifica-se que 14 exemplos foram testados nesta simulação.</p>
+<p><strong>Passo 7</strong> – Se você quiser saber exatamente quais Exemplos foram classificados em quais classes, primeiramente abra o arquivo “Tabela_do_Tempo.arff” no editor do Weka, que pode ser acessado pelo seguinte caminho: interface “Weka GUI Chooser”, depois “Tools”, e depois “ArffViewer” (<a href="#fig-3-20" class="quarto-xref">Figura&nbsp;<span>3.21</span></a>).</p>
+<div id="fig-3-20" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image38.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.20: Interface “Weka GUI Chooser”.
+</figcaption>
+</figure>
+</div>
+<p>Quando a janela “ARFF-Viewer” se abrir, localize o arquivo “Tabela_do_Tempo.arff” clicando primeiramente em “File” e depois em “Open...”.</p>
+<p>Com o editor do Weka aberto, clique no atributo “Umidade”, ou qualquer outro atributo, para ordenar os Exemplos de acordo com os valores que este atributo pode assumir.</p>
+<div id="fig-3-20" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image39.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.21: Tabela do Tempo Ordenada pelos Valores de “Umidade”.
+</figcaption>
+</figure>
+</div>
+<p>Note que com este editor, é possível alterar os valores dos atributos, clicando sobre o campo a ser alterado.</p>
+<p>Obs.: O editor do Weka também pode ser acessado no “Weka Explorer”, escolhendo a aba “Preprocess” e depois “Edit...”.</p>
+<p><strong>Passo 8</strong> – Para testar novos Exemplos no Classificador sem sair da interface “Weka Explorer”, há a opção “Supplied test set”. Vamos supor que os quatro novos Exemplos da <a href="#tbl-3-16" class="quarto-xref">Tabela&nbsp;<span>3.16</span></a> de nosso material de Teoria devam ser testados no “Weka Explorer”.</p>
+<p>Primeiramente crie um arquivo “.arff” com os quatro Exemplos extras da <a href="#tbl-3-16" class="quarto-xref">Tabela&nbsp;<span>3.16</span></a> (basta abrir o arquivo “Tabela_do_Tempo.arff” no editor do Weka, fazer as modificações e salvar com um novo nome, digamos “Teste.arff”).</p>
+<p>Carregue no “Weka Explorer” o <strong>Conjunto de Treinamento</strong> “Tabela_do_Tempo.arff” da forma usual, i.e., clicando no “Preprocess” da barra superior e depois em “Open file...”. A seguir clique em “Classify”, escolha em “Choose” o algoritmo desejado, digamos “J48”, e em “Test options” escolha “Supplied test set”. Pressionando a tecla “Set”, aparece a opção “Open file...” com a qual é possível carregar o <strong>Conjunto de Teste</strong> “Teste.arff”.</p>
+<p>Em “More options” habilite a opção “Output predictions” e dispare o programa com a opção “Start”. Na seção “Classifier output”, devem aparecer as quatro predições buscadas.</p>
+</section>
+<section id="considerações-finais" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="considerações-finais"><span class="header-section-number">3.12</span> Considerações Finais</h2>
+<p>A geração de Árvores de Decisão normalmente é comparativamente mais rápida que outros métodos de classificação. Árvores de Decisão pequenas são fáceis de entender e Árvores grandes podem ser convertidas em Regras de Classificação. Geralmente a taxa de acerto de classificação de Exemplos de Teste, ou seja, a Acurácia das Árvores de Decisão, é compatível com outros métodos equivalentes, ou um pouco abaixo de métodos mais complexos. Porém, em Aprendizado de Máquina raramente se encontra um método com desempenho superior que seus pares para qualquer conjunto de dados.</p>
+<p>Não foram estudados aqui casos reais de inconsistências, ausência de dados ou exceções na Base de Dados, para citar apenas alguns dos possíveis problemas. Suponha que durante a indução da Árvore de Decisão dois Exemplos ligeiramente distintos, mas que percorrem o mesmo caminho, pertençam a classes distintas! Neste caso, verifica-se que há inconsistência nos dados e uma análise pontual deverá determinar e eliminar o problema. Considere casos reais de Exemplos ausentes representados por caminhos logicamente possíveis, como um dos valores possíveis que determinado atributo pode assumir, mas que não estão presentes na Base de Dados. Que classe atribuir a estes casos? Algum critério deverá ser adotado para estes casos, como o de atribuir o valor da classe estatisticamente predominante no conjunto de Exemplos.</p>
+<p>Além dessas situações, há os casos de dados espúrios causados por coleta equivocada, mas com valores lógicos perfeitamente dentro das possibilidades aceitas para cada atributo, e que não terão sido detectados na fase inicial de limpeza de dados porque a natureza desses problemas é de incompatibilidade com o modelo gerado ou o conceito aprendido. O tratamento de problemas desta natureza foge ao escopo desta primeira abordagem à geração ou indução de Árvores de Decisão, mas tais problemas podem ser estudados na referência bibliográfica fornecida na parte final deste material.</p>
+</section>
+<section id="lista-de-exercícios" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="lista-de-exercícios"><span class="header-section-number">3.13</span> Lista de Exercícios</h2>
+<p>1. (<span class="math inline">\(20\%\)</span>) Explique <strong>com suas próprias palavras</strong> a seguinte afirmação: numa <strong>Árvore de Decisão</strong>, os nós testam <strong>Atributos</strong>.</p>
+<p>2. (<span class="math inline">\(30\%\)</span>) Explique <strong>com suas próprias palavras</strong>, o que é “superajuste” ou “<em>overfitting</em>”, seus efeitos e dê um exemplo.</p>
+<p>3. Carregue o arquivo “iris.arff” (anexo) no Weka e elimine os atributos “sepalwidth” (largura da sépala) e “sepallength” (comprimento da sépala). Para fazer esta operação, basta selecionar estes dois atributos no “Weka Explorer” e depois clicar em “Remove”. Devem sobrar apenas três atributos: “petallength” (comprimento da pétala), “petalwidth” (largura da pétala) e “class” (classe), com 150 Exemplos, divididos entre “Iris-setosa”, “Iris-versicolor” e “Iris-virginica”.</p>
+<p>(a) (<span class="math inline">\(30\%\)</span>) – Gere a Árvore de Decisão com o algoritmo “J4.8”, analise a representação gráfica da árvore e explique por que esta Árvore de Decisão deve cometer menos erros de classificação que a Árvore de Decisão da Figura 3.2, de nosso material didático.</p>
+<p>(b) (<span class="math inline">\(20\%\)</span>) – No “Weka Explorer”, vá em “Visualize”, ajuste “PlotSize” e “PointSize”, clique em “Update” e escolha a representação com os atributos “petalwidth” e “petallength”. Analise esta figura (que deve se parecer à Figura 3.1 de nosso material didático).</p>
+</section>
+<section id="referências-do-capítulo" class="level2" data-number="3.14">
+<h2 data-number="3.14" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">3.14</span> Referências do Capítulo</h2>
+<p>Este capítulo baseou-se em obras clássicas e manuais técnicos que definem o estado da arte em ciência de dados. A fundamentação teórica sobre a indução de árvores de decisão seguiu o trabalho seminal de <span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span>, complementado pelas metodologias de mineração e descoberta de conhecimento exploradas em <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span> e <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span>. As implementações práticas e o uso da ferramenta Weka fundamentam-se em <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span> e <span class="citation" data-cites="frank2016weka">Frank; Hall; Witten (<a href="#ref-frank2016weka" role="doc-biblioref">2016</a>)</span>. Para a contextualização no cenário de sistemas inteligentes e análise de dados, foram consultadas as obras de <span class="citation" data-cites="rezende2005">Rezende (<a href="#ref-rezende2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="pinheiro2008">Pinheiro (<a href="#ref-pinheiro2008" role="doc-biblioref">2008</a>)</span> e <span class="citation" data-cites="rocha2008analise">Rocha; Cortez; Neves (<a href="#ref-rocha2008analise" role="doc-biblioref">2008</a>)</span>. Por fim, o conjunto de dados histórico utilizado em diversos exemplos práticos remete ao estudo de <span class="citation" data-cites="fisher1936">Fisher (<a href="#ref-fisher1936" role="doc-biblioref">1936</a>)</span>.</p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-fisher1936" class="csl-entry" role="listitem">
+FISHER, Ronald A. <a href="https://doi.org/10.1111/j.1469-1809.1936.tb02137.x">The Use of Multiple Measurements in Taxonomic Problems</a>. <strong>Annals of Eugenics</strong>, v. 7, n. 2, p. 179–188, 1936.
+</div>
+<div id="ref-frank2016weka" class="csl-entry" role="listitem">
+FRANK, Eibe; HALL, Mark A.; WITTEN, Ian H. <strong>The <span>WEKA</span> Workbench. Online Appendix for "Data Mining: Practical Machine Learning Tools and Techniques"</strong>. Online; Morgan Kaufmann, 2016. Disponível em: &lt;<a href="https://ml.cms.waikato.ac.nz/weka/book.html">https://ml.cms.waikato.ac.nz/weka/book.html</a>&gt;
+</div>
+<div id="ref-han2008" class="csl-entry" role="listitem">
+HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
+</div>
+<div id="ref-pinheiro2008" class="csl-entry" role="listitem">
+PINHEIRO, C. A. R. <strong>Inteligência Analítica: Mineração de Dados e Descoberta de Conhecimento</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2008.
+</div>
+<div id="ref-quinlan1986" class="csl-entry" role="listitem">
+QUINLAN, Ross. <strong>Induction of Decision Trees</strong>. <em>[S.l.: S.n.]</em>.
+</div>
+<div id="ref-rezende2005" class="csl-entry" role="listitem">
+REZENDE, S. O. <strong>Sistemas Inteligentes: Fundamentos e Aplicações</strong>. <em>[S.l.]</em>: Editora Manole Ltda, 2005.
+</div>
+<div id="ref-rocha2008analise" class="csl-entry" role="listitem">
+ROCHA, Miguel; CORTEZ, Paulo; NEVES, José M. <strong>An<span>á</span>lise Inteligente de Dados: Algoritmos e Implementa<span>ç</span><span>ã</span>o em Java</strong>. Lisboa: Editora de Inform<span>á</span>tica, 2008.
+</div>
+<div id="ref-tan2009" class="csl-entry" role="listitem">
+TAN, P. N.; STEINBACH, M.; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2009.
+</div>
+<div id="ref-witten2005" class="csl-entry" role="listitem">
+WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2005.
+</div>
+</div>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../cap02/cap02.html" class="pagination-link" aria-label="Mineração de Dados e Regras de Associação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../cap04/cap04.html" class="pagination-link" aria-label="Classificação e Regras de Classificação">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 | <a href="https://www.ufabc.edu.br/ensino/docentes/jose-artur-quilici-gonzalez">Quilici-Gonzalez</a> , <a href="https://www.ufabc.edu.br/ensino/docentes/francisco-de-assis-zampirolli#">Zampirolli</a> e <a href="https://www.linkedin.com/in/frezendesouza/">Souza</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fzampirolli/si-md2">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.ufabc.edu.br/">
+<p>UFABC</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

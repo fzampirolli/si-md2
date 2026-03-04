@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Classificação e Regras de Classificação – Sistemas Inteligentes e Mineração de Dados</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../cap05/cap05.html" rel="next">
+<link href="../cap03/cap03.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cap04/cap04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Sistemas Inteligentes e Mineração de Dados</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap01/cap01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sistemas Inteligentes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap02/cap02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap03/cap03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap04/cap04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cap05/cap05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">4.1</span> Introdução</a></li>
+  <li><a href="#classificação" id="toc-classificação" class="nav-link" data-scroll-target="#classificação"><span class="header-section-number">4.2</span> Classificação</a></li>
+  <li><a href="#algoritmos-de-aprendizado" id="toc-algoritmos-de-aprendizado" class="nav-link" data-scroll-target="#algoritmos-de-aprendizado"><span class="header-section-number">4.3</span> Algoritmos de Aprendizado</a></li>
+  <li><a href="#algoritmo-oner-ou-1r-uma-regra" id="toc-algoritmo-oner-ou-1r-uma-regra" class="nav-link" data-scroll-target="#algoritmo-oner-ou-1r-uma-regra"><span class="header-section-number">4.4</span> Algoritmo <em>oneR</em> ou 1R (uma Regra)</a></li>
+  <li><a href="#avaliação-dos-resultados" id="toc-avaliação-dos-resultados" class="nav-link" data-scroll-target="#avaliação-dos-resultados"><span class="header-section-number">4.5</span> Avaliação dos Resultados</a></li>
+  <li><a href="#avaliação-de-desempenho-do-classificador" id="toc-avaliação-de-desempenho-do-classificador" class="nav-link" data-scroll-target="#avaliação-de-desempenho-do-classificador"><span class="header-section-number">4.6</span> Avaliação de Desempenho do Classificador</a></li>
+  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">4.7</span> Considerações Finais</a></li>
+  <li><a href="#lista-exercícios" id="toc-lista-exercícios" class="nav-link" data-scroll-target="#lista-exercícios"><span class="header-section-number">4.8</span> Lista Exercícios</a></li>
+  <li><a href="#referência-bibliográfica" id="toc-referência-bibliográfica" class="nav-link" data-scroll-target="#referência-bibliográfica"><span class="header-section-number">4.9</span> Referência Bibliográfica</a></li>
+  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">4.10</span> Referências do Capítulo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/cap04/cap04_aluno.ipynb"><img src="images/colab-badge.png" class="img-fluid"></a></p>
+<section id="introdução" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">4.1</span> Introdução</h2>
+<p>No contexto de Aprendizado de Máquina, a Classificação pressupõe que um Modelo tenha sido gerado ou induzido a partir de Exemplos de Treinamento. Com este Modelo, novos Exemplos de Teste podem ser classificados. A Figura 4.1 ilustra as três fases desse processo: <strong>Treinamento</strong>, <strong>Aprendizado</strong> e <strong>Classificação</strong>.</p>
+<p>Figura . – Treinamento, Aprendizado e Classificação em um Sistema Inteligente Simples.</p>
+<p>Há várias maneiras de representar o conhecimento embutido num Modelo, sendo as mais comuns Árvores de Decisão e <strong>Regras de Classificação</strong>. As Regras de Classificação assumem a forma genérica:</p>
+<p><strong><em>IF Condição THEN Valor</em></strong></p>
+<p>sendo “Valor” um resultado discreto, como sim/não, baixo/médio/alto verdadeiro/falso etc. Quando os resultados esperados não pertencem a classes discretas, ou seja, quando “Valor” for uma variável real, a classificação recebe o nome de <strong>Regressão</strong>.</p>
+<p>A Classificação através de Regras de Classificação e o processo de geração automática de Regras de Classificação serão os temas desta unidade.</p>
+</section>
+<section id="classificação" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="classificação"><span class="header-section-number">4.2</span> Classificação</h2>
+<p>O <strong>Aprendizado Supervisionado</strong> se dá através de um <strong>Algoritmo de Aprendizado</strong>, cuja função é criar uma representação do conhecimento extraído de um conjunto de <strong>Exemplos de Treinamento</strong>. Há várias formas possíveis de representação, mas a que nos interessa aqui são as <strong>Regras de Classificação</strong>.</p>
+<p>Os Exemplos de Treinamento, por sua vez, são uma forma conveniente de estruturar os dados de uma empresa ou de um certo domínio do saber. Todos os Exemplos de Treinamento têm o mesmo número de atributos, sendo a diferença entre eles representada pelos valores que cada atributo assume.</p>
+<p>O algoritmo de aprendizado recebe este nome porque ele cria um modelo cuja aplicação específica não foi pensada pelo seu projetista. Ou seja, ele demonstra certa capacidade de adaptação que melhora seu desempenho depois de uma fase de treinamento. Alguns algoritmos de aprendizado demonstram a capacidade de aprendizado incremental e podem ir melhorando seu desempenho com o acúmulo de experiência. Esta capacidade é muito apreciada porque concede certa <strong>autonomia</strong> aos <strong>Sistemas Inteligentes</strong>.</p>
+<p>Uma equipe de físicos, engenheiros e cientistas da computação, responsáveis pelo lançamento de sondas espaciais, conseguiu recentemente desenvolver um algoritmo de aprendizado que permite a uma sonda espacial sair de sua trajetória para desviar-se de uma possível colisão com um meteorito ou cometa inesperado e retornar à rota original. Alguns robôs atualmente conseguem, sem ajuda externa, voltar à posição vertical depois de uma queda acidental causada por irregularidade no terreno e continuar normalmente sua tarefa de rotina.</p>
+</section>
+<section id="algoritmos-de-aprendizado" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="algoritmos-de-aprendizado"><span class="header-section-number">4.3</span> Algoritmos de Aprendizado</h2>
+<p>Um algoritmo de aprendizado pode variar desde aqueles que simplesmente escolhem um dos atributos do Conjunto de Treinamento como a resposta possível a um teste, caso do algoritmo <strong><em>oneR</em></strong> (uma Regra), passando por aqueles cuja resposta a um novo teste é uma combinação linear dos valores dos atributos, até a utilização de complicados modelos não-lineares, como as <strong><em>Redes Neurais</em></strong>, ou o aprendizado estatístico das <strong><em>Máquinas de Vetor de Suporte</em></strong>, ou <strong><em>Support Vector Machines</em></strong>, <strong><em>SVM</em></strong>.</p>
+<p>A finalidade desta unidade não é estudar detalhadamente algoritmos de aprendizado. Como há um grande número de ferramentas de acesso livre que implementam estes algoritmos, nosso objetivo é passar uma ideia geral do funcionamento desses algoritmos, cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados.</p>
+</section>
+<section id="algoritmo-oner-ou-1r-uma-regra" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="algoritmo-oner-ou-1r-uma-regra"><span class="header-section-number">4.4</span> Algoritmo <em>oneR</em> ou 1R (uma Regra)</h2>
+<p>É possivelmente o Algoritmo de Aprendizado para classificação mais simples e, no entanto, seu desempenho pode ser surpreendentemente bom, dependendo da Base de Dados (Witten &amp; Frank, 2005). Esse algoritmo aposta na hipótese de que basta consultar apenas um dos atributos para classificar corretamente os Exemplos de Teste. A tarefa então do algoritmo é encontrar durante o treinamento o atributo que apresenta a menor taxa de erros de classificação.</p>
+<p>O algoritmo <em>oneR</em> tem bom desempenho para Bases de Dados em que um dos atributos é claramente mais importante que o restante, porque seus valores quase sempre darão uma pista de qual deve ser a classificação correta. Para Bases de Dados em que todos os atributos contribuem com igual peso na resposta, a taxa de acerto do algoritmo tende a ser inversamente proporcional ao número de atributos.</p>
+<p>Para compreendermos como o <em>oneR</em> calcula a taxa de erros de cada atributo, vamos utilizar a clássica Tabela do Tempo, criada por (Quinlan, 1986), e reproduzida na Tabela 4.1.</p>
+<p>Tabela . - Tabela do Tempo.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Temperatura</th>
+<th style="text-align: left;">Umidade</th>
+<th style="text-align: left;">Vento</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Baixa</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">Elevada</td>
+<td style="text-align: left;">Normal</td>
+<td style="text-align: left;">Falso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">Amena</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: left;">Verdadeiro</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Primeiramente isolamos um dos atributos, digamos “Dia” e verificamos qual a distribuição das classes “Sim” e “Não” no atributo de saída “Partida”.</p>
+<p>Tabela . - Relação entre “Dia” e “Partida”.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dia</th>
+<th style="text-align: left;">Partida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><strong>Sim</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;"><strong>Não</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Vamos considerar como “sucesso” a classe (“Sim” ou “Não”) que aparecer com maior frequência, i.e., a maioria, para cada uma das opções possíveis (“Ensolarado”, “Nublado”, “Chuvoso”) do atributo “Dia” e como “erro” a menos frequente. Então uma inspeção na Tabela 4.2 mostra a seguinte distribuição:</p>
+<p>Tabela . – Taxa de Erros do Atributo “Dia”.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Valor do Atributo</th>
+<th style="text-align: left;">Exemplos com Partida=Não</th>
+<th style="text-align: left;">Exemplos com Partida=Sim</th>
+<th style="text-align: left;">Maioria</th>
+<th style="text-align: left;">Erros</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ensolarado</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Não</td>
+<td style="text-align: left;">2/5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nublado</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Sim</td>
+<td style="text-align: left;">0/4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chuvoso</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Sim</td>
+<td style="text-align: left;">2/5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total de Erros</td>
+<td style="text-align: left;"><strong>4/14</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Com base na Tabela 4.3 já podemos gerar algumas regras de classificação iniciais:</p>
+<p>Dia(Ensolarado) → Partida=Não ou <strong><em>IF</em></strong> Dia<strong>=</strong>Ensolarado <strong><em>THEN</em></strong> Partida<strong>=</strong>Não (R 4.1)</p>
+<p>Dia(Nublado) → Partida=Sim ou <strong><em>IF</em></strong> Dia<strong>=</strong>Nublado <strong><em>THEN</em></strong> Partida<strong>=</strong>Sim (R 4.2)</p>
+<p>Dia(Chuvoso) → Partida=Sim ou <strong><em>IF</em></strong> Dia<strong>=</strong>Chuvoso <strong><em>THEN</em></strong> Partida<strong>=</strong>Sim (R 4.3)</p>
+<p>Os resultados mostram que em dia ensolarado não há partidas, possivelmente por se tratar de um esporte em quadra coberta e talvez porque os participantes prefiram neste tipo de dia outra atividade a céu aberto. Convém ressaltar que este conjunto de regras baseadas unicamente no atributo “Dia” apresenta uma taxa de erros de 4 em 14, ou 4/14. Vamos reproduzir a tabela de (Witten &amp; Frank, 2005) que aplica o mesmo procedimento para os outros atributos e ver se algum deles apresenta uma taxa de erros menor.</p>
+<p>Tabela . – Taxa de Erros dos Atributos.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Atributo</th>
+<th style="text-align: left;">Regras</th>
+<th style="text-align: left;">Erros</th>
+<th style="text-align: left;">Total de Erros</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Dia</td>
+<td style="text-align: left;">Ensolarado → Não</td>
+<td style="text-align: left;">2/5</td>
+<td style="text-align: left;">4/14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Nublado → Sim</td>
+<td style="text-align: left;">0/4</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Chuvoso → Sim</td>
+<td style="text-align: left;">2/5</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Temperatura</td>
+<td style="text-align: left;">Elevada → Não</td>
+<td style="text-align: left;">2/4</td>
+<td style="text-align: left;">5/14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Amena → Sim</td>
+<td style="text-align: left;">2/6</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Baixa → Sim</td>
+<td style="text-align: left;">1/4</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Umidade</td>
+<td style="text-align: left;">Alta → Não</td>
+<td style="text-align: left;">3/7</td>
+<td style="text-align: left;">4/14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Normal → Sim</td>
+<td style="text-align: left;">1/7</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vento</td>
+<td style="text-align: left;">Falso → Sim</td>
+<td style="text-align: left;">2/8</td>
+<td style="text-align: left;">5/14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Verdadeiro → Não</td>
+<td style="text-align: left;">3/6</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>A Tabela 4.4 revela que os atributos “Dia” e “Umidade” apresentam as menores taxas de erros. Adotando qualquer critério arbitrário de desempate, vamos ficar com o conjunto de erros gerados pelo atributo “Umidade” e gerar as seguintes Regras de Classificação:</p>
+<p>Umidade(Alta) → Partida=Não ou <strong><em>IF</em></strong> Umidade<strong>=</strong>Alta <strong><em>THEN</em></strong> Partida<strong>=</strong>Não (R 4.4)</p>
+<p>Umidade(Normal) → Partida=Sim ou <strong><em>IF</em></strong> Umidade<strong>=</strong>Normal <strong><em>THEN</em></strong> Partida<strong>=</strong>Sim (R 4.5)</p>
+<p>Portanto, quando o algoritmo <strong>oneR</strong> tiver que classificar um novo exemplo, somente o atributo “Umidade” será considerado e o resultado será baseado nas Regras de Classificação “R 4.4” e “R 4.5”. Isso significa que se os Exemplos de Treinamento forem usados como Exemplos de Teste e supondo que entre os 14 Exemplos de Treinamento não haja contradição entre si, o algoritmo <strong>oneR</strong> deve acertar 10 vezes e errar 4.</p>
+<p>Mas, e se o Conjunto de Teste for diferente do Conjunto de Treinamento? Não será a estimativa de 10 acertos e 4 erros demasiadamente otimista ou ela se confirmará com os novos dados? E se o número de Exemplos de Treinamento tivesse sido 140, em vez de 14, que implicações isso teria nas estimativas de acertos?</p>
+<p>Há outros algoritmos de classificação bem mais refinados que o <strong>oneR</strong> e que, na maioria dos casos, produzem resultados com taxa de sucesso mais elevada. Um dos algoritmos de classificação mais famosos é o <strong><em>PRISM</em></strong> (Cendrowska, 1987), que utiliza o princípio de “cobertura”, i.e., ele vai criando regras que se aplicam ao maior número possível de exemplos do Conjunto de Treinamento, até que toda a tabela esteja “coberta” pelas regras produzidas. Seu desenvolvimento foi inspirado nos “pontos fracos” do algoritmo de indução de Árvores de Decisão ID3 (Quinlan, 1986), como a dificuldade de entender as árvores muito grandes e complexas geradas pelo algoritmo ID3.</p>
+<p>Não vamos aqui nos deter em particularidades do <strong>PRISM</strong> porque os resultados gerados pelo oneR são suficientemente representativos para os nossos propósitos, de abordar os métodos de avaliação dos resultados produzidos pelo modelo induzido. E ao avaliarmos os resultados, estamos de certa forma avaliando a capacidade de predição de um modelo para determinada Base de Dados.</p>
+<p>Abordar um modelo pelo seu desempenho é interessante porque há evidências empíricas de que nenhum algoritmo tem desempenho superior aos demais para qualquer Base de Dados. A estrutura interna do conjunto de dados desempenha um papel decisivo no desempenho do algoritmo e na qualidade dos resultados.</p>
+<p>O algoritmo oneR, com toda sua simplicidade, pode ser imbatível para uma Base de Dados que tenha um atributo que se destaque sobre os demais, cujos valores são redundantes ou irrelevantes. E pode ser uma catástrofe para uma Base de Dados constituída por centenas ou milhares de atributos, todos igualmente importantes. Da mesma forma, qualquer algoritmo pode ter uma taxa de sucesso baixa se o Conjunto de Treinamento não constituir uma amostra representativa do universo de teste.</p>
+</section>
+<section id="avaliação-dos-resultados" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="avaliação-dos-resultados"><span class="header-section-number">4.5</span> Avaliação dos Resultados</h2>
+<p>Após o treinamento para gerar um Modelo através do Algoritmo de Aprendizado, é de grande importância fazer uma avaliação do desempenho do modelo. Em outras palavras, interessa saber quão preditivo é o Modelo Aprendido. Há várias metodologia consagradas para este fim. Vamos iniciar nossa abordagem ao tema relembrando a <strong>Acurácia</strong> de um Classificador Binário.</p>
+<p>Considere que nosso Classificador Binário esteja sendo usado para fazer um diagnóstico médico. Se as respostas possíveis para este diagnóstico forem “Positivo” e “Negativo”, quatro possibilidades de predição podem ocorrer:</p>
+<ol type="1">
+<li><p>Se o paciente for portador de uma doença e o Classificador acertar &gt; no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Positivo</strong> &gt; ou <strong>VP</strong>;</p></li>
+<li><p>Se o paciente não for portador da doença e o Classificador acertar &gt; no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Negativo</strong> &gt; ou <strong>VN</strong>;</p></li>
+<li><p>Se o paciente for portador da doença, mas o Classificador errar no &gt; diagnóstico indicando que ele está são, dizemos que este caso é um &gt; <strong>Falso Negativo</strong> ou <strong>FN</strong>;</p></li>
+<li><p>Se o paciente não for portador da doença, mas o Classificador errar &gt; no diagnóstico indicando que ele está doente, dizemos que este &gt; caso é um <strong>Falso Positivo</strong> ou <strong>FP</strong>.</p></li>
+</ol>
+<p>Essas quatro combinações de resultados estão representadas na <strong>Matriz de Confusão</strong> mostrada na Tabela 4.5.</p>
+<p>Tabela . – Matriz de Confusão.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Positivo Previsto</th>
+<th style="text-align: left;">Negativo Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Positivo Real</td>
+<td style="text-align: left;"><strong>Verdadeiro Positivo (VP)</strong></td>
+<td style="text-align: left;"><strong>Falso Negativo (FN)</strong></td>
+</tr>
+<tr class="even">
+<td>Negativo Real</td>
+<td style="text-align: left;"><strong>Falso Positivo (FP)</strong></td>
+<td style="text-align: left;"><strong>Verdadeiro Negativo (VN)</strong></td>
+</tr>
+</tbody>
+</table>
+<p>A Precisão ou Acurácia do Classificador se expressa pelo número de classificações corretas (VP+VN) divididas pelo número total de classificações (VP+VN+FP+FN),</p>
+<p><span class="math display">\[Acurácia = \frac{VP + VN}{VP + VN + FP + FN} \times 100\%\]</span></p>
+<p>Ocorre que em situações reais o custo de um <strong>Falso Positivo</strong> pode não ser igual ao de um <strong>Falso Negativo</strong> e a Acurácia não consegue captar adequadamente essa situação de interesse.</p>
+<p>Suponha que um classificador usado para Detecção de Anomalia tenha que atribuir a cada um dos 100 testes um rótulo de “Situação=Normal” ou “Situação=Anormal”. Suponha ainda que a relação entre donos honestos de cartão de crédito e golpistas seja de 96 para 4 e o classificador tenha colocado 99 portadores de cartão na classe “Normal” e apenas um dos golpistas na classe “Anormal”. Neste caso a Acurácia do Classificador será de,</p>
+<p><span class="math display">\[Acurácia_{\text{Classif}} = \frac{96 + 1}{96 + 1 + 3 + 0} \times 100\% = 97\%\]</span></p>
+<p>A interpretação baseada apenas na Acurácia indicaria um excelente desempenho, mas na realidade este é um péssimo classificador para uma operadora de cartões de crédito, porque seu interesse em detectar os golpistas é bem maior do que os donos honestos de cartão! Há um sem número de situações semelhantes a esta. Pense nos danos diferenciados, do ponto de vista de saúde pública, entre fornecer um falso diagnóstico positivo para um paciente são e um falso diagnóstico negativo para um paciente com uma doença contagiosa.</p>
+<p>Para detectar estes casos de conjuntos não-balanceados de Falso Positivo e Falso Negativo, podemos definir a <strong>Taxa de Verdadeiro Negativo</strong>, também conhecida por <strong>Especificidade</strong>, como sendo o número de Verdadeiro Negativo (VN) dividido pelo número total de negativos, que é a soma de Verdadeiro Negativo (VN) mais Falso Positivo (FP), ou seja,</p>
+<p><span class="math display">\[Taxa\_ VN = \frac{\text{VN}}{VN + FP} \times 100\%\]</span></p>
+<p>Se o indicador Taxa de Verdadeiro Negativo for utilizado para o caso citado dos cartões de crédito, teremos uma Taxa de Verdadeiro Negativo de,</p>
+<p><span class="math display">\[Taxa\_ VN = \frac{1}{1 + 3} \times 100\% = 25\%\]</span></p>
+<p>Para outras situações, pode ser mais conveniente utilizar a <strong>Taxa de Verdadeiro Positivo</strong> , também conhecida por <strong>Sensibilidade</strong>, como sendo o número de Verdadeiro Positivo (VP) dividido pelo número total de positivos, que é a soma de Verdadeiro Positivo (VP) mais Falso Negativo (FN), ou seja,</p>
+<p><span class="math display">\[Taxa\_ VP = \frac{\text{VP}}{VP + FN} \times 100\%\]</span></p>
+<p>Com estes indicadores em mente, suponha que se queira avaliar qual será o desempenho do Modelo gerado pelo Algoritmo de Aprendizado para determinada Base de Dados. Se utilizarmos o mesmo Conjunto de Treinamento como Conjunto de Teste, muito possivelmente a estimativa de desempenho resultará excessivamente otimista para testes reais, com novos Conjuntos de Teste.</p>
+<p>Outra alternativa é reservar parte do Conjunto de Treinamento para ser usada como Conjunto de Teste. Mas qual o tamanho ideal da partição do conjunto de Exemplos de Treinamento? E como escolher os elementos deste subconjunto do Conjunto de Treinamento que serão usados para teste? E se o Conjunto de Teste for muito pequeno? Felizmente a Estatística tem estudos bastante robustos sobre questões dessa natureza que podem nos auxiliar.</p>
+</section>
+<section id="avaliação-de-desempenho-do-classificador" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="avaliação-de-desempenho-do-classificador"><span class="header-section-number">4.6</span> Avaliação de Desempenho do Classificador</h2>
+<p>As duas técnicas citadas, conhecidas como <strong>Técnica de Ressubstituição</strong> e <strong>Técnica de Reamostragem</strong>, apresentam pontos fortes e fracos, e justificam a criação de vários <strong>métodos de avaliação de desempenho</strong> de classificadores. Vamos analisar apenas alguns dos principais métodos de avaliação de desempenho.</p>
+<p><strong>Método da Ressubstituição ou <em>“Use training set”</em></strong></p>
+<p>Neste método o Conjunto de Treinamento é também utilizado como Conjunto de Teste, conforme mostra a Figura 4.2. Se o Conjunto de Treinamento for uma amostra representativa do universo do problema, suas estimativas de desempenho para um Conjunto de Teste composto por Exemplos não vistos anteriormente podem ser muito boas. Caso contrário, o modelo poderá apresentar muitos erros de generalização durante os testes, seja por problemas de excesso de complexidade do Modelo, que costuma causar <em>overfitting</em>, ou por Poda inadequada.</p>
+<p>Por outro lado, o fato de o conjunto completo de treinamento ser usado para gerar o Modelo constitui uma vantagem sobre os métodos de reamostragem, principalmente se o número de Exemplos de Treinamento for pequeno.</p>
+<p>Figura . – Na Ressubistituição, o Conjunto de Treinamento também é o Conjunto de Teste.</p>
+<p>De fato, na simulação Weka da Tabela do Tempo (Tabela 4.1) com o algoritmo oneR usando o método <em>“Use training set”</em>, o número de instâncias ou exemplos classificados corretamente foi 10 (71%) e 4 (29%) classificados incorretamente, conforme esperado. A Matriz de Confusão para os 14 Exemplos está mostrada na Tabela 4.6.</p>
+<p>Tabela . – Matriz de Confusão para a Tabela do Tempo com o oneR e o Método <em>“Use training set”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>7</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Quando repetimos os mesmos procedimentos, porém usando o algoritmo <em>PRISM</em>, os resultados foram os seguintes: simulação Weka da Tabela do Tempo (Tabela 4.1) com o algoritmo <em>PRISM</em> usando o método <em>“Use training set”</em>, o número de instâncias ou exemplos classificados corretamente foi 14 (100%) e 0 (0%) classificados incorretamente. A Matriz de Confusão para os 14 Exemplos está mostrada na Tabela 4.7.</p>
+<p>Tabela . – Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em> e o Método <em>“Use training set”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: left;"><strong>9</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Método da Divisão da Amostra ou <em>Holdout</em> ou <em>Percentage Split</em></strong></p>
+<p>Consiste na divisão dos Exemplos de Treinamento em dois conjuntos disjuntos, um para Treinamento, outro para Teste, conforme mostra a Figura 4.3. O valor das porcentagens de cada um dos conjuntos é geralmente expresso numa única porcentagem maior que 50%, estando subentendido que o conjunto menor é o complemento para 100%. O valor de divisão mais comum é 66% para Treinamento e 34% para Teste, embora não haja evidências empíricas que justifiquem essa escolha de 2/3 e 1/3.</p>
+<p>Sua vantagem é a simplicidade, mas dependendo da composição obtida, as classes dos Exemplos podem não estar igualmente representadas nos dois conjuntos. Outra limitação desse método está no fato de que menos Exemplos são usados no Treinamento, podendo ter um impacto negativo no desempenho do Modelo induzido.</p>
+<p>Figura . – No <em>Holdout</em>, os Exemplos de Treinamento são Divididos em Dois Subconjuntos.</p>
+<p>Para Conjuntos de Teste excessivamente pequenos, dividir o já escasso número de Exemplos de Teste pode ter um efeito desastroso ou na geração do Modelo ou na sua avaliação de desempenho. De fato, na simulação Weka da Tabela do Tempo com o algoritmo oneR usando o método da <em>“Percentage Split”</em>, com o Conjunto de Treinamento correspondendo a 66% dos Exemplos, o número de instâncias ou exemplos classificados corretamente foi 2 (40%) e 3 (60%) classificados incorretamente!. A Matriz de Confusão para os 5 Exemplos considerados está mostrada na Tabela 4.8.</p>
+<p>Tabela . – Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em> e o Método da <em>“Percentage Split”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Quando repetimos os mesmos procedimentos, porém usando o algoritmo <em>PRISM</em>, os resultados foram os seguintes: simulação Weka da Tabela do Tempo com o algoritmo <em>PRISM</em> usando o método <em>“Percentage split”</em>, com o Conjunto de Treinamento correspondendo a 66% dos Exemplos, o número de instâncias ou exemplos classificados corretamente foi 4 (80%) e 1 (20%) classificado incorretamente. A Matriz de Confusão para os 5 Exemplos está mostrada na Tabela 4.9.</p>
+<p>Tabela . – Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em> e o Método <em>“Use training set”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: left;"><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Método da Validação Cruzada ou <em>Cross-validation</em></strong></p>
+<p>Neste método, os Exemplos de Treinamento são aleatoriamente divididos em <em>k</em> partições mutuamente exclusivas ou “<em>folds</em>”, sendo <em>k</em> normalmente igual a 10. A Figura 4.4 mostra um exemplo para <em>k = 4</em>, ou seja, 3/4 dos Exemplos de Treinamento são usados para Treinamento e 1/4 dos Exemplos de Treinamento são reservados para a fase de Teste.</p>
+<p>A cada iteração um desses <em>folds</em> será usado como Conjunto de Teste, enquanto que os outros serão usados para Treinamento. O nome de validação cruzada se justifica então pelo fato de que cada <em>fold</em> será usado <em>(k-1)</em> vezes para Treinamento e uma vez para Teste. O erro total será a soma dos erros de todas as <em>k</em> execuções, enquanto que o erro médio é o erro total dividido pelo número <em>k</em> de partições.</p>
+<p>Figura . – Na Validação Cruzada, o Conjunto de Treinamento é Dividido em <em>k</em> Partições.</p>
+<p>De fato, na simulação Weka da Tabela do Tempo com o algoritmo oneR usando o método da “Cross-validation”, com <em>k</em> = 10 <em>folds</em>, o número de instâncias ou exemplos classificados corretamente foi 5 (36%), e 9 (66%) classificados incorretamente!. A Matriz de Confusão para os 14 Exemplos considerados está mostrada na Tabela 4.10.</p>
+<p>Tabela . – Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em> e o Método da <em>“Cross-validation”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Na simulação Weka da Tabela do Tempo com o algoritmo <em>PRISM</em> usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 10 <em>folds</em>, o número de instâncias ou Exemplos classificados corretamente foi 12 (86%), e 0 (0%) classificados incorretamente! (com 3 Exemplos não classificados). A Matriz de Confusão para os Exemplos considerados está mostrada na Tabela 4.11.</p>
+<p>Tabela . - Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em> e o Método da <em>“Cross-validation”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: left;"><strong>7</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Método Deixe-Um-De-Fora ou <em>Leave-One-Out</em></strong></p>
+<p>É um caso especial do Método da Validação Cruzada em que o número de partições <em>k</em> é igual ao número de Exemplos <em>N</em>, isto é, <em>k = N</em>, e cada partição é composta por apenas um Exemplo, como mostra a Figura 4.5. A vantagem é que mais dados são usados para o Treinamento, mas a desvantagem é seu custo computacional para os casos em que <em>N</em> for muito grande.</p>
+<p>Figura . – No <em>Leave-One-Out</em>, o Conjunto de Treinamento é Dividido em <em>N</em> Partições.</p>
+<p>Na simulação Weka da Tabela do Tempo com o algoritmo oneR usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 14 <em>folds</em>, número idêntico ao de Exemplos ou instâncias, portanto <em>k = N</em>, o resultado da classificação foi idêntico ao da <em>“Cross-validation”</em>, sendo o número de Exemplos classificadas corretamente 5 (36%), e 9 (66%) classificados incorretamente!. A Matriz de Confusão para os 14 Exemplos considerados está mostrada na Tabela 4.12.</p>
+<p>Tabela . – Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em> e o Método da <em>“Leave-one-out”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Repetindo o mesmo Conjunto de Teste, porém com o Algoritmo PRISM, usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 14 <em>folds</em>, o resultado da classificação foi idêntico ao da <em>“Cross-validation”</em>, sendo o número de Exemplos classificadas corretamente 11 (79%), 0 (0%) classificados incorretamente e 3 Exemplos não classificados. A Matriz de Confusão para os 11 Exemplos considerados está mostrada na Tabela 4.13.</p>
+<p>Tabela . – Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em> e o Método da <em>“Leave-one-out”</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">Não Previsto</th>
+<th style="text-align: left;">Sim Previsto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Não Real</td>
+<td style="text-align: left;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td>Sim Real</td>
+<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: left;"><strong>6</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Nesta série de simulações, o algoritmo PRISM produziu um classificador com melhor desempenho que o classificador do algoritmo oneR para o mesmo Conjunto de Treinamento.</p>
+</section>
+<section id="considerações-finais" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="considerações-finais"><span class="header-section-number">4.7</span> Considerações Finais</h2>
+<p>Nesta unidade, vimos um algoritmo simples, conhecido como oneR, usado para gerar Regras de Classificação. Outros algoritmos mais refinados usam princípios mais complexos, como o de cobertura, para produzir Regras de Classificação (caso do PRISM).</p>
+<p>Foram apresentados alguns indicadores que auxiliam o usuário a decidir se os resultados obtidos são satisfatórios ou não. Também foram apresentados alguns métodos para estimar o desempenho futuro do classificador em situação de testes reais.</p>
+<p>Duas simulações comparativas entre o desempenho do algoritmo oneR e PRISM para a Tabela do Tempo foram apresentadas para ajudar a fixar os conceitos aprendidos.</p>
+</section>
+<section id="lista-exercícios" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="lista-exercícios"><span class="header-section-number">4.8</span> Lista Exercícios</h2>
+<p>1. (20%) Explique <strong>com suas próprias palavras</strong> as vantagens e desvantagens das <strong>Árvores de Decisão</strong> e <strong>Regras de Classificação</strong>.</p>
+<p>2. (30%) Explique <strong>com suas próprias palavras</strong> os Métodos <em>“<strong>Cross-validation</strong>”</em> e <em>“<strong>Holdout</strong>”</em>.</p>
+<p>3. Carregue o arquivo <strong>“iris.arff”</strong> (anexo) no Weka e faça a Classificação usando o algoritmo <strong>“oneR”</strong>, com o método <strong><em>“Cross-validation”</em></strong> (10 <em>Folds</em>).</p>
+<p>(a) (30%) – Faça uma análise da <strong>Matriz de Confusão</strong> gerada, reproduzindo os valores obtidos na simulação.</p>
+<p>(b) (20%) – Ainda com base nos resultados da simulação no Weka, explique <strong>com suas próprias palavras</strong> por que a classe <strong>“Iris Setosa”</strong> tem a mais alta taxa de <strong>Verdadeiro Positivo</strong> <em>(“TP Rate”)</em>, enquanto que a <strong>“Iris Versicolor”</strong>, a mais baixa (consulte a Figura 3.1 do Capítulo 3).</p>
+</section>
+<section id="referência-bibliográfica" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="referência-bibliográfica"><span class="header-section-number">4.9</span> Referência Bibliográfica</h2>
+<p>CENDROWSKA, J. <strong>PRISM: An Algorithm for Inducing Modular Rules</strong>. International Journal of Man-Machine Studies. Vol. 27, pages 349-370, 1987. In http:// http://sci2s.ugr.es/keel/pdf/algorithm/articulo/1987-Cendrowska-IJMMS.pdf. Acessado em 06.03.2013.</p>
+<p>QUINLAN, J. R. <strong>Induction of Decision Trees</strong>. Machine Learning, Vol. 1, No.&nbsp;1, pp.&nbsp;81-106. Boston: Kluwer Academic Publishers, 1986.</p>
+<p>REZENDE, S. O. (Organizadora). <strong>Sistemas Inteligentes: Fundamentos e Aplicações.</strong> Barueri: Editora Manole Ltda, 2005.</p>
+<p>ROCHA, M.; CORTEZ, P. &amp; NEVES, J. M. <strong>Análise Inteligente de Dados: Algoritmos e Implementação em Java.</strong> Lisboa: Editora de Informática, 2008.</p>
+<p>TAN, P.N.; STEINBACH, M. &amp; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados.</strong> Rio de Janeiro: Editora Ciência Moderna Ltda., 2009.</p>
+<p>WITTEN, I. H. &amp; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques.</strong> Second Edition. Amsterdam: Morgan Kaufmann Publishers, 2005.</p>
+</section>
+<section id="referências-do-capítulo" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">4.10</span> Referências do Capítulo</h2>
+<p>Tem que citar neste capítulo: <span class="citation" data-cites="goldschmidt2005">Goldschmidt; Passos (<a href="#ref-goldschmidt2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="pinheiro2008">Pinheiro (<a href="#ref-pinheiro2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span></p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-goldschmidt2005" class="csl-entry" role="listitem">
+GOLDSCHMIDT, R.; PASSOS, E. <strong>Data Mining: Um Guia Prático</strong>. <em>[S.l.]</em>: Elsevier, 2005.
+</div>
+<div id="ref-pinheiro2008" class="csl-entry" role="listitem">
+PINHEIRO, C. A. R. <strong>Inteligência Analítica: Mineração de Dados e Descoberta de Conhecimento</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2008.
+</div>
+<div id="ref-tan2009" class="csl-entry" role="listitem">
+TAN, P. N.; STEINBACH, M.; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2009.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../cap03/cap03.html" class="pagination-link" aria-label="Classificação e Árvores de Decisão">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../cap05/cap05.html" class="pagination-link" aria-label="Máquina de Vetores de Suporte ou *Support Vector Machine*">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 | <a href="https://www.ufabc.edu.br/ensino/docentes/jose-artur-quilici-gonzalez">Quilici-Gonzalez</a> , <a href="https://www.ufabc.edu.br/ensino/docentes/francisco-de-assis-zampirolli#">Zampirolli</a> e <a href="https://www.linkedin.com/in/frezendesouza/">Souza</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fzampirolli/si-md2">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.ufabc.edu.br/">
+<p>UFABC</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
