@@ -18,7 +18,7 @@ Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto**
 * **`si-md1/`**: Material legado (PDF/Docx). **Não editar.**
 * **`si-md2/`**: **Pasta de trabalho ativa.**
     - `_quarto.yml`: Configuração mestre (sumário e temas).
-    - `capXX/`: Pasta de cada capítulo (**Editar** -- contém o `.ipynb`, `/images` e `/data`).
+    - `capXX/`: Pasta de cada capítulo (**Editar** -- contém o `capXX.ipynb` e `/images`).
     - `references.bib`: Base de dados bibliográfica global.
     - **`notebooks_alunos/`**: Versão processada para distribuição (gerada via script).
 
