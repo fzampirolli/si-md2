@@ -266,10 +266,10 @@ window.Quarto = {
 <p>Em outras palavras, o Modelo induzido por inferência é equivalente a uma função que mapeia valores de entrada, geralmente denominados variáveis independentes ou explicativas, a um único valor de saída, geralmente denominado variável dependente ou alvo. Na <strong>Classificação</strong>, a variável de saída, via de regra, é discreta (ou categórica), enquanto que na <strong>Regressão</strong> a variável de saída é contínua.</p>
 <p>A <a href="#fig-3-1" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> ilustra simplificadamente um estudo clássico introduzido por (<span class="citation" data-cites="fisher1936">Fisher (<a href="#ref-fisher1936" role="doc-biblioref">1936</a>)</span>), cujo artigo original apresenta três conjuntos com 50 amostras (ou Exemplos), totalizando 150 medidas do comprimento e da largura de uma pequena flor conhecida como Flor de Lis ou Íris. De acordo com os atributos de entrada “Comprimento” e “Largura” da pétala, cada Exemplo dessa flor pode ser classificado em uma das três classes: Setosa, Versicolor ou Virgínica.</p>
 <p>As linhas tracejadas no gráfico ajudam a entender por que a classificação da Íris do tipo Setosa pode ser mais simples que a dos tipos Versicolor e Virgínica. Como a Íris do tipo Setosa apresenta largura e comprimento da pétala bem menor que as outras duas, basta considerar apenas um dos atributos, digamos Comprimento <span class="math inline">\(&lt; 2,5\)</span> cm, para poder classificá-la corretamente. No caso dos tipos Versicolor e Virgínica, tanto o atributo Comprimento quanto Largura se sobrepõem em algumas regiões do gráfico e, portanto, poderá haver erro associado à classificação destes tipos de Íris.</p>
-<div id="fig-3-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<div id="fig-3-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-1.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="images/fig-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.1: Representação do Estudo da Flor Íris com Dois Atributos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.
@@ -280,10 +280,10 @@ Figura&nbsp;3.1: Representação do Estudo da Flor Íris com Dois Atributos <a h
 <p>Por outro lado, em muitas aplicações o mais importante é otimizar a taxa de acerto ou a precisão do modelo, mesmo que isso implique certa perda de clareza, de simplicidade ou de desempenho do modelo. Redes Neurais e Máquinas de Vetor de Suporte são duas ilustrações de técnicas que podem oferecer alta precisão, mas que utilizam modelos de classificação difíceis de entender. É comum o uso dessas duas técnicas na área de aplicações financeiras, porque investidores geralmente estão mais interessados no ganho obtido diariamente na aplicação mais bem classificada do que no modelo matemático explicativo. Por esta razão, a decisão de usar um <strong>modelo orientado ao conhecimento</strong> ou um <strong>modelo tipo caixa-preta</strong> deve ser feita caso a caso.</p>
 <p>Para a tarefa de Classificação, os dois modelos orientados ao conhecimento mais comuns de representação são Árvores de Decisão e Regras de Classificação. Ambos são logicamente equivalentes e permitem que a partir de uma Árvore de Decisão seja possível obter as correspondentes Regras de Classificação, e vice-versa, embora a obtenção de Árvores a partir de Regras seja um processo mais complexo. Há, porém, vantagens e desvantagens observadas durante a geração desses modelos, que serão discutidas mais a frente.</p>
 <p>A <a href="#fig-3-2" class="quarto-xref">Figura&nbsp;<span>3.2</span></a> apresenta modelos simplificados de uma <strong>Árvore de Decisão</strong> e das correspondentes <strong>Regras de Classificação</strong> para o caso da flor Íris. Com estes modelos simplificados, os erros de classificação ilustrados na <a href="#fig-3-1" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> novamente se repetiriam aqui. Para reduzir a taxa de erros, veremos que será necessário usar métodos de aprendizado mais refinados ou complexos.</p>
-<div id="fig-3-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-2.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/fig-3-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.2: Modelos Equivalentes: (a) Árvore de Decisão e (b) Regras de Classificação.
@@ -747,10 +747,10 @@ Tabela&nbsp;3.5: Vento
 </div>
 </div>
 <p>A <a href="#fig-3-3" class="quarto-xref">Figura&nbsp;<span>3.3</span></a> ilustra esta primeira iteração na construção de uma Árvore de Decisão compacta.</p>
-<div id="fig-3-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-3.png" class="img-fluid figure-img" style="width:60.0%">
+<img src="images/fig-3-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.3: Nó raiz para os dados do Tempo.
@@ -910,10 +910,10 @@ Tabela&nbsp;3.8: Vento
 </div>
 </div>
 <p>A <a href="#fig-3-4" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> ilustra a segunda iteração do algoritmo com mais dois nós folhas, dando por completa esta região da Árvore de Decisão.</p>
-<div id="fig-3-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-4.png" class="img-fluid figure-img" style="width:70.0%">
+<img src="images/fig-3-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.4: O atributo “Umidade” combinado com “Dia”.
@@ -1025,10 +1025,10 @@ Tabela&nbsp;3.10: Dia e Vento
 </div>
 </div>
 <p>Comparando as duas tabelas, nota-se que o atributo “Vento” é o mais indicado para esta iteração porque todos os elementos de “Vento=Falso” estão classificados como “Sim” e todos os elementos de “Vento=Verdadeiro” estão classificados como “Não”. Portanto estas duas arestas da Árvore de Decisão terminam com um nó folha cada. A <a href="#fig-3-5" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> ilustra a nova situação.</p>
-<div id="fig-3-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-5.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="images/fig-3-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.5: Árvore de Decisão para os Dados da Tabela do Tempo.
@@ -1062,7 +1062,7 @@ Figura&nbsp;3.5: Árvore de Decisão para os Dados da Tabela do Tempo.
 <section id="árvore-de-decisão-não-compacta" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="árvore-de-decisão-não-compacta"><span class="header-section-number">3.5</span> Árvore de Decisão Não Compacta</h2>
 <p>Para efeito comparativo, vamos supor que algum critério arbitrário de escolha da ordem dos atributos tenha sido utilizado e que o nó raiz contenha o atributo “Umidade”. A <a href="#tbl-3-11" class="quarto-xref">Tabela&nbsp;<span>3.11</span></a> mostra que este atributo possui Exemplos misturados pertencentes a classes distintas, portanto é necessário um novo teste, i.e., escolher um novo atributo para teste. A <a href="#fig-3-6" class="quarto-xref">Figura&nbsp;<span>3.6</span></a> mostra o resultado dessa escolha arbitrária.</p>
-<div class="quarto-layout-panel" data-valign="center" data-layout="[[1, 1]]">
+<div class="quarto-layout-panel" data-layout="[[1, 1]]" data-valign="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div id="tbl-3-11" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1142,10 +1142,10 @@ Tabela&nbsp;3.11: Umidade (arbitrária).
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-3-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-6.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/fig-3-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.6: Árvore de Decisão com Nó Raiz Arbitrário.
@@ -1156,7 +1156,7 @@ Figura&nbsp;3.6: Árvore de Decisão com Nó Raiz Arbitrário.
 </div>
 </div>
 <p>O atributo escolhido arbitrariamente agora foi “Dia” e as combinações possíveis com “Umidade” são mostradas na <a href="#tbl-3-12" class="quarto-xref">Tabela&nbsp;<span>3.12</span></a>. A segunda iteração do algoritmo para a construção da Árvore de Decisão Alternativa é mostrada na <a href="#fig-3-7" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>.</p>
-<div class="quarto-layout-panel" data-valign="center" data-layout="[[1, 1]]">
+<div class="quarto-layout-panel" data-layout="[[1, 1]]" data-valign="center">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div id="tbl-3-12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1216,10 +1216,10 @@ Tabela&nbsp;3.12: Dia e Umidade (arbitrários).
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-3-7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-7.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/fig-3-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.7: Segunda Iteração da Árvore de Decisão Alternativa.
@@ -1263,10 +1263,10 @@ Tabela&nbsp;3.13: Dia, Umidade e Vento (arbitrários).
 </div>
 </figure>
 </div>
-<div id="fig-3-8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-8.png" class="img-fluid figure-img" style="width:70.0%">
+<img src="images/fig-3-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.8: Árvore de Decisão sem Otimização.
@@ -1329,10 +1329,10 @@ Tabela&nbsp;3.14: Dia e Umidade (arbitrários).
 </div>
 </figure>
 </div>
-<div id="fig-3-9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-9.png" class="img-fluid figure-img" style="width:90.0%">
+<img src="images/fig-3-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.9: Atributo “Dia” Usados em Duas Posições Diferentes.
@@ -1379,10 +1379,10 @@ Tabela&nbsp;3.15: Dia, Umidade e Vento (arbitrários).
 </div>
 </figure>
 </div>
-<div id="fig-3-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-10.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/fig-3-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.10: Árvore de Decisão Não-Compacta para a Tabela do Tempo.
@@ -1448,10 +1448,10 @@ Figura&nbsp;3.10: Árvore de Decisão Não-Compacta para a Tabela do Tempo.
 <p>Recapitulando o que foi feito até aqui, inicialmente consideramos a existência de uma Base de Dados codificada na forma de uma tabela com vários atributos. A seguir, apresentamos um algoritmo capaz de construir uma Árvore de Decisão a partir desses dados estruturados. Como cada Exemplo da Base de Dados era composto por alguns atributos e um rótulo de classe (ou atributo de saída), nós podemos entender todo este processo de construção de Árvores de Decisão como sendo um processo de <strong>Aprendizado Supervisionado</strong> por meio de <strong>Treinamento</strong>.</p>
 <p>Diz-se que o <strong>Aprendizado</strong> é <strong>Supervisionado</strong> quando cada <strong>Exemplo</strong> usado no <strong>Treinamento</strong> possui um <strong>rótulo de classe</strong> que orienta (ou otimiza) um mecanismo de reforço ou penalização, ou seja, quando já se sabe antecipadamente a qual classe determinado elemento pertence. Muitas vezes os Exemplos não trazem o rótulo de classe e ainda assim é possível ocorrer aprendizado, porém, nestes casos diz-se que o Aprendizado é Não-Supervisionado. Por ex., com um conjunto de Exemplos sem rótulos de classe é possível agrupá-los de acordo com algum critério, como o critério de afinidade.</p>
 <p>A Árvore de Decisão resultante representa o Modelo gerado ou o Conceito aprendido. Note que para cada Base de Dados será construída uma Árvore de Decisão que lhe corresponde. Ou seja, nós temos um algoritmo que em princípio gera árvores genéricas, que refletem a estrutura dos dados utilizados no treinamento. Como a Árvore de Decisão gerada poderá ser usada para diagnosticar doenças, classificar produtos comerciais, ou explicar a correlação de fatores de um fenômeno, podemos dizer que o Sistema Inteligente que emprega este tipo de algoritmo de aprendizado melhora seu desempenho a partir de sua própria experiência (ou treinamento). A <a href="#fig-3-11" class="quarto-xref">Figura&nbsp;<span>3.11</span></a> ilustra as três fases de um Sistema Inteligente Classificatório.</p>
-<div id="fig-3-11" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-11" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-11.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/fig-3-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.11: Treinamento, Aprendizado e Classificação em um Sistema Inteligente Simples.
@@ -1635,13 +1635,13 @@ Tabela&nbsp;3.16: Tabela do Tempo com Exemplos de Teste.
 <div aria-describedby="fig-3-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-12" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-3-12a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-12a" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-12a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-12a.png" class="img-fluid figure-img" data-ref-parent="fig-3-12">
+<img src="images/fig-3-12a.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-ref-parent="fig-3-12">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-12a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Antes da Poda
+(a) Antes da poda.
 </figcaption>
 </figure>
 </div>
@@ -1649,13 +1649,13 @@ Tabela&nbsp;3.16: Tabela do Tempo com Exemplos de Teste.
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-12" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-3-12b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-12b" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-12b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-3-12b.png" class="img-fluid figure-img" data-ref-parent="fig-3-12">
+<img src="images/fig-3-12b.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-ref-parent="fig-3-12">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-12b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Depois da Poda
+(b) Depois da poda.
 </figcaption>
 </figure>
 </div>
@@ -1727,25 +1727,25 @@ Tabela&nbsp;3.17: Matriz de Confusão.
 <div aria-describedby="fig-3-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-13" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-3-13a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-13a" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-13a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image28.png" class="img-fluid figure-img" data-ref-parent="fig-3-13">
+<img src="images/image28.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-ref-parent="fig-3-13">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-13a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Formato “.xls”
+(a) Formato “.xls”.
 </figcaption>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-13" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-3-13b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-13b" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-13b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image29.png" class="img-fluid figure-img" data-ref-parent="fig-3-13">
+<img src="images/image29.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-ref-parent="fig-3-13">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-13b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Formato “.csv”
+(b) Formato “.csv”.
 </figcaption>
 </figure>
 </div>
@@ -1753,7 +1753,7 @@ Tabela&nbsp;3.17: Matriz de Confusão.
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.13: Tabela do Tempo: (a) formato “.xls” e (b) formato “.csv.”
+Figura&nbsp;3.13: Tabela do Tempo: (a) formato “.xls” e (b) formato “.csv”.
 </figcaption>
 </figure>
 </div>
@@ -1763,10 +1763,10 @@ Figura&nbsp;3.13: Tabela do Tempo: (a) formato “.xls” e (b) formato “.csv.
 <div aria-describedby="fig-3-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-14" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-3-14a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-14a" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-14a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image30.png" class="img-fluid figure-img" data-ref-parent="fig-3-14">
+<img src="images/image30.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-ref-parent="fig-3-14">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-14a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Formato “.csv” com Palavras-Chave
@@ -1775,10 +1775,10 @@ Figura&nbsp;3.13: Tabela do Tempo: (a) formato “.xls” e (b) formato “.csv.
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-14" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-3-14b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-14b" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-14b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image31.png" class="img-fluid figure-img" data-ref-parent="fig-3-14">
+<img src="images/image31.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" data-ref-parent="fig-3-14">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-14b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Arquivo “.arff”
@@ -1794,10 +1794,10 @@ Figura&nbsp;3.14: Arquivo Tabela_do_Tempo: (a) formato “.csv” com Palavras-C
 </figure>
 </div>
 <p><strong>Passo 2</strong> - Dando dois cliques sobre o ícone do arquivo “Tabela_do_Tempo.arff” ele se abrirá dentro do Weka, mostrando uma figura semelhante à <a href="#fig-3-15" class="quarto-xref">Figura&nbsp;<span>3.15</span></a>. Alternativamente, é possível primeiramente abrir o Weka Explorer, depois “Open file…” e localizar o arquivo “Tabela_do_Tempo.arff”.</p>
-<div id="fig-3-15" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-15" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image32.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/image32.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.15: Arquivo “Tabela_do_Tempo.arff” aberto no Weka.
@@ -1810,11 +1810,11 @@ Figura&nbsp;3.15: Arquivo “Tabela_do_Tempo.arff” aberto no Weka.
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-16" style="flex-basis: 75.0%;justify-content: flex-start;">
-<div id="fig-3-16a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-16" style="flex-basis: 66.7%;justify-content: flex-start;">
+<div id="fig-3-16a" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-16a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image34.png" class="img-fluid figure-img" data-ref-parent="fig-3-16">
+<img src="images/image34.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-ref-parent="fig-3-16">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-16a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Opção “Choose” para escolher
@@ -1822,11 +1822,11 @@ Figura&nbsp;3.15: Arquivo “Tabela_do_Tempo.arff” aberto no Weka.
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-16" style="flex-basis: 25.0%;justify-content: flex-start;">
-<div id="fig-3-16b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3-16" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-3-16b" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-3-16b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image33.png" class="img-fluid figure-img" data-ref-parent="fig-3-16">
+<img src="images/image33.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" data-ref-parent="fig-3-16">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-3-16b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Menu de algoritmos
@@ -1843,10 +1843,10 @@ Figura&nbsp;3.16: Aba “Classify” com a opção (a) “Choose” para escolhe
 </div>
 <p>Uma vez escolhido o algoritmo “J48” é possível conferir e alterar alguns parâmetros. Clicando com o botão esquerdo do mouse sobre “J48” abre-se um menu com todos os valores <em>default</em>. Inicialmente vamos trabalhar com estes valores.</p>
 <p><strong>Passo 4</strong> – Ainda dentro da aba “Classify”, em “Test options” escolha “Use training set” e clique no botão “Start”, um pouco abaixo. A opção “Use training set” significa que o mesmo <strong>Conjunto de Treinamento</strong> usado para gerar a Árvore de Decisão será usado para testar os resultados (veja <a href="#fig-3-17" class="quarto-xref">Figura&nbsp;<span>3.17</span></a>). Se o Conjunto de Exemplos da Base de Dados não for inconsistente, geralmente a taxa de acerto com esta opção deve ser de 100%. Mais adiante, na próxima unidade de estudo, veremos que há outras formas mais interessantes de testar a robustez e a qualidade do Modelo gerado.</p>
-<div id="fig-3-17" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-17" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image35.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/image35.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.17: A Escolha da Opção de Teste “Use training set”.
@@ -1854,10 +1854,10 @@ Figura&nbsp;3.17: A Escolha da Opção de Teste “Use training set”.
 </figure>
 </div>
 <p><strong>Passo 5</strong> – Ao disparar o processo de treinamento com o algoritmo “J48” aparecem na região direita da tela (“Classifier output”) os resultados desejados (<a href="#fig-3-18" class="quarto-xref">Figura&nbsp;<span>3.18</span></a>). A Árvore de Decisão aparece na forma textual, mas pode ser vista na forma gráfica. Na parte inferior da tela, aparecem o número e a porcentagem de exemplos classificados corretamente, a Acurácia (ou Precisão) por Classe e a Matriz de Confusão.</p>
-<div id="fig-3-18" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-18" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image36.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/image36.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.18: Resultado do Processo de Treinamento e Indução da Árvore de Decisão.
@@ -1866,10 +1866,10 @@ Figura&nbsp;3.18: Resultado do Processo de Treinamento e Indução da Árvore de
 </div>
 <p>Se você tiver interesse em saber como cada uma dos exemplos foi classificado, clique na aba “More options...” e depois habilite “Output predictions”. Clique em “Start” novamente.</p>
 <p><strong>Passo 6</strong> – Clicando com o botão direito do mouse na região inferior esquerda, onde se lê “Result list (right-click for options)”, mais precisamente sobre a faixa azul “trees.J48”, é possível visualizar graficamente o resultado, escolhendo “Visualize tree” (<a href="#fig-3-19" class="quarto-xref">Figura&nbsp;<span>3.19</span></a>).</p>
-<div id="fig-3-19" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-19" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image37.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/image36.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.19: Representação Gráfica da Árvore de Decisão.
@@ -1877,11 +1877,11 @@ Figura&nbsp;3.19: Representação Gráfica da Árvore de Decisão.
 </figure>
 </div>
 <p>Os números entre parênteses em cada nó folha da Figura 3.19 indicam quantos exemplos chegaram até esta folha. Somando-se estes números, verifica-se que 14 exemplos foram testados nesta simulação.</p>
-<p><strong>Passo 7</strong> – Se você quiser saber exatamente quais Exemplos foram classificados em quais classes, primeiramente abra o arquivo “Tabela_do_Tempo.arff” no editor do Weka, que pode ser acessado pelo seguinte caminho: interface “Weka GUI Chooser”, depois “Tools”, e depois “ArffViewer” (<a href="#fig-3-20" class="quarto-xref">Figura&nbsp;<span>3.21</span></a>).</p>
-<div id="fig-3-20" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p><strong>Passo 7</strong> – Se você quiser saber exatamente quais Exemplos foram classificados em quais classes, primeiramente abra o arquivo “Tabela_do_Tempo.arff” no editor do Weka, que pode ser acessado pelo seguinte caminho: interface “Weka GUI Chooser”, depois “Tools”, e depois “ArffViewer” (<a href="#fig-3-20" class="quarto-xref">Figura&nbsp;<span>3.20</span></a>).</p>
+<div id="fig-3-20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image38.png" class="img-fluid figure-img" style="width:60.0%">
+<img src="images/image38.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.20: Interface “Weka GUI Chooser”.
@@ -1890,12 +1890,12 @@ Figura&nbsp;3.20: Interface “Weka GUI Chooser”.
 </div>
 <p>Quando a janela “ARFF-Viewer” se abrir, localize o arquivo “Tabela_do_Tempo.arff” clicando primeiramente em “File” e depois em “Open...”.</p>
 <p>Com o editor do Weka aberto, clique no atributo “Umidade”, ou qualquer outro atributo, para ordenar os Exemplos de acordo com os valores que este atributo pode assumir.</p>
-<div id="fig-3-20" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-3-21" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/image39.png" class="img-fluid figure-img" style="width:100.0%">
+<div aria-describedby="fig-3-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image39.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;3.21: Tabela do Tempo Ordenada pelos Valores de “Umidade”.
 </figcaption>
 </figure>

@@ -100,9 +100,6 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-59cb2755e9fdc26506ad51b1a5643527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -333,10 +330,10 @@ window.Quarto = {
 <p>As <strong>informações úteis a um propósito</strong> permitem ao indivíduo compreender uma situação, ou formar uma crença justificada sobre um fato. Portanto, o conhecimento se forma a partir das informações necessárias para o <strong>entendimento</strong> de uma situação. Nesse contexto, conhecimento é o resultado da análise das informações relacionadas a um fato ou evento, ou ainda a percepção de como certa informação pode ajudar na realização de uma tarefa específica.</p>
 <p>No mundo corporativo, o conhecimento produzido com regras de inferência sobre as informações analíticas da empresa ou com mineração de dados operacionais torna-se um importante aliado durante o processo de tomada de decisões gerenciais.</p>
 <p>Embora a diferenciação entre dados, informação e conhecimento seja tênue, é comumente aceito que estes três conceitos podem ser relacionados em uma estrutura hierárquica, como a representada pela <a href="#fig-1-1" class="quarto-xref">Figura&nbsp;<span>1.1</span></a>.</p>
-<div id="fig-1-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-1-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-1-1.png" class="img-fluid figure-img">
+<img src="images/fig-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.1: Relação entre Dados, Informação e Conhecimento.
@@ -361,10 +358,10 @@ Figura&nbsp;1.1: Relação entre Dados, Informação e Conhecimento.
 <p>O que se espera com a Mineração de Dados é obter conhecimento, ou uma representação de conhecimento na forma de regras ou de estruturas equivalentes, que oriente uma decisão. Além disso, quando aplicado de modo inteligente, esse conhecimento alarga horizontes, permitindo fazer previsões (ou modelagem preditiva), descobrir novas associações (ou modelagem descritiva), refinar agrupamentos efetuados por critério de semelhança ou certificar-se de anomalias de comportamento.</p>
 <p>E, com a representação do conhecimento em mãos, há a necessidade de um pós-processamento para interpretar e validar os resultados obtidos. Considere o caso de Sistemas Inteligentes conhecidos como Sistemas Especialistas, utilizados por exemplo para diagnóstico médico, que precisam expor de forma inteligível a um especialista todas as etapas do encadeamento lógico de inferências que levaram àquele resultado. Caso contrário, o médico poderá não se sentir seguro para acolher o diagnóstico produzido pelo sistema.</p>
 <p>A <a href="#fig-1-2" class="quarto-xref">Figura&nbsp;<span>1.2</span></a> ilustra as principais etapas do processo de Descoberta de Conhecimento em Bases de Dados. O propósito do <strong><em>Pré-processamento</em></strong> é eliminar eventuais problemas nos dados brutos e colocá-los num formato apropriado para a etapa seguinte, a da <strong><em>Mineração de Dados</em></strong>, visando com isso melhorar significativamente a eficiência dos algoritmos que serão usados. Os dados originais podem ter sido coletados e reunidos por diferentes departamentos, apresentando valores espúrios ou ausentes, ou contendo redundâncias.</p>
-<div id="fig-1-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-1-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-1-2.png" class="img-fluid figure-img">
+<img src="images/fig-1-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.2: Processo de Descoberta de Conhecimento ou KDD.
@@ -388,10 +385,10 @@ Figura&nbsp;1.2: Processo de Descoberta de Conhecimento ou KDD.
 <p>Em linhas gerais, as tarefas da Mineração de Dados são de natureza <strong><em>descritiva</em></strong> ou <strong><em>preditiva</em></strong>. Numa rede de supermercados pode ser extremamente valioso descobrir quais produtos são comprados juntos. Por exemplo, ao se descobrir que os produtos A, G e M são quase sempre comprados juntos, a simples alteração da posição das gôndolas desses produtos pode aumentar as vendas. Em situações desse tipo, em que o conhecimento extraído auxilia na interpretação da massa de dados, os padrões de associação descobertos nos produtos oferecidos têm um caráter <strong>essencialmente descritivo</strong>.</p>
 <p>Já em certos ramos empresariais, pode ser muito importante descobrir qual o comportamento típico de clientes que estão prestes a mudar de fornecedor, e, com base em suas características, construir um <em>modelo</em> que auxilie na previsão de comportamentos futuros. Geralmente vale mais a pena usar técnicas de fidelização para reter um cliente bom e antigo do que investir na busca de novos clientes, cuja fidelidade ainda é incerta. Usando o modelo de comportamento previamente desenvolvido, juntamente com o histórico de compras de um cliente, é possível fazer algumas inferências e prever qual será o possível desfecho. Tarefas que procuram predizer se um item pertence a uma classe ou não, são <strong>essencialmente preditivas</strong>.</p>
 <p>A <a href="#fig-1-3" class="quarto-xref">Figura&nbsp;<span>1.3</span></a> ilustra a classificação das principais tarefas de Mineração de Dados em Atividades Descritivas ou Preditivas. Vale ressaltar que, dependendo de como for implementada a “Detecção de Anomalia”, esta tarefa poderá ser mais bem caracterizada como de natureza descritiva.</p>
-<div id="fig-1-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-1-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-1-3.png" class="img-fluid figure-img">
+<img src="images/fig-1-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados.
@@ -431,7 +428,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="células-de-código-python"><span class="header-section-number">1.6.2</span> 🔹 Células de Código Python</h3>
 <p>Abaixo, você encontrará uma célula de <strong>código</strong>. Diferente do texto, as células de código podem ser executadas para realizar cálculos e gerar gráficos.</p>
 <p><strong>Como executar:</strong> 1. Clique dentro da célula abaixo. 2. Pressione <strong><code>Shift + Enter</code></strong> (ou clique no botão <strong>Play</strong> no Google Colab).</p>
-<div id="cell-19" class="cell" data-quarto-raw="true" data-execution_count="7">
+<div id="cell-20" class="cell" data-quarto-raw="true" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de execução para testar o ambiente</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Se você está lendo esta mensagem, o código foi executado com sucesso!"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -445,7 +442,7 @@ O resultado da soma de 10 + 20.5 é: 30.5</code></pre>
 </div>
 </div>
 <p>O código a seguir mostra a execução de um laço de repetição (<code>for</code>) para iterar sobre uma sequência numérica de 0 a 4, gerada pela função <code>range(5)</code>. Do ponto de vista da Mineração de Dados, esse fluxo representa o processamento sequencial de <strong>Dados</strong> brutos para a geração de <strong>Informação</strong> estruturada, servindo como base para a identificação de padrões em sistemas inteligentes.</p>
-<div id="cell-21" class="cell" data-quarto-raw="true" data-execution_count="8">
+<div id="cell-22" class="cell" data-quarto-raw="true" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esta é uma célula de código Python para testar um laço! 🚀"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>)) <span class="co"># cria uma lista de números de 0 a 4</span></span>
@@ -468,7 +465,7 @@ Valor: 4</code></pre>
 <section id="função-simples" class="level3" data-number="1.6.3">
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="função-simples"><span class="header-section-number">1.6.3</span> 🔹 Função Simples</h3>
 <p>O código a seguir mostra o fluxo técnico de transformação de <strong>Dados</strong> (sequência numérica) em <strong>Informação</strong> (valores ao quadrado). Embora a extração de <strong>Conhecimento</strong> seja simplificada neste cenário, o exemplo ilustra a base necessária para que algoritmos de Mineração de Dados identifiquem padrões de comportamento e tendências em grandes volumes de informação, permitindo que o sistema aprenda a lógica subjacente aos dados para melhorar seu desempenho futuro.</p>
-<div id="cell-24" class="cell" data-quarto-raw="true" data-execution_count="9">
+<div id="cell-25" class="cell" data-quarto-raw="true" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Definição da Função</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadrado(x):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -504,7 +501,7 @@ O último elemento é: 25
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="de-números-a-leis-da-natureza-o-salto-para-o-conhecimento"><span class="header-section-number">1.6.4</span> 🔹 De Números a Leis da Natureza: O Salto para o Conhecimento</h3>
 <p>A <strong><a href="#fig-1-plot" class="quarto-xref">Figura&nbsp;<span>1.4</span></a></strong> ilustra mais do que uma simples função matemática; ela representa a base para a <strong>modelagem preditiva</strong>. Na Mineração de Dados, a extração de conhecimento ocorre quando o sistema identifica que a relação entre os dados segue um padrão constante.</p>
 <p>Se esses dados representassem a posição de um objeto em queda livre ao longo do tempo, o “conhecimento” extraído seria a descoberta da aceleração constante da gravidade. Com essa regra em mãos, o sistema deixa de ser um calculador de trajetórias passadas e torna-se um <strong>agente preditivo</strong>, capaz de antecipar onde o objeto estará em um futuro ainda não registrado nos dados.</p>
-<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="10">
+<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. DADOS (Fatos Brutos): Segundos decorridos</span></span>
@@ -569,7 +566,7 @@ Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir)
 <li><strong>Mapeamento</strong>: As <strong>chaves</strong> do dicionário (<code>'Paciente'</code>, <code>'Peso_kg'</code>, <code>'Altura_m'</code>) são automaticamente convertidas em <strong>cabeçalhos de colunas</strong>, enquanto as <strong>listas de valores</strong> passam a compor as <strong>linhas</strong> da tabela.</li>
 <li><strong><code>df</code></strong>: A tabela resultante é armazenada na variável <code>df</code> (abreviação convencional para <em>DataFrame</em>), permitindo a execução de cálculos complexos e filtragens de alto desempenho.</li>
 </ul>
-<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="11">
+<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -685,10 +682,10 @@ RELATÓRIO DE EXECUÇÃO:
 <li><strong>Análise de Dados (Tabela de Dados)</strong>: Organização de dados extraídos do texto em tabelas estruturadas, auxiliando na compreensão de exemplos práticos como o cálculo do IMC.</li>
 <li><strong>Chat Contextualizado</strong>: Permite o questionamento direto sobre o código e a teoria, como: <em>“Onde o dado bruto se transforma em informação no script do IMC?”</em>.</li>
 </ul>
-<div id="fig-notebooklm" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Estúdo do NotebooLM.">
+<div id="fig-notebooklm" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Estúdo do NotebooLM." width="80%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-notebooklm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/fig1_notebooklm.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;1.6: Estúdo do NotebooLM."><img src="images/fig1_notebooklm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Estúdo do NotebooLM."></a>
+<img src="images/fig1_notebooklm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-notebooklm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;1.6: Estúdo do NotebooLM.
@@ -1255,38 +1252,6 @@ WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools a
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

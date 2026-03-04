@@ -307,10 +307,10 @@ window.Quarto = {
 <p>Durante o processo de <strong>Descoberta de Conhecimento em Bases de Dados</strong>, <strong>KDD</strong>, é na etapa de <strong>Mineração de Dados</strong> que efetivamente são encontrados os padrões de associação implícitos nos dados. A análise automatizada dessa massa de dados visa detectar regularidades, ou quebra de regularidade, que constitui informação implícita, porém desconhecida, e útil para determinado fim.</p>
 <p>A Mineração de Dados pode ser vista como a sistematização de teorias, técnicas e algoritmos desenvolvidos em outras disciplinas já consagradas, como a Estatística, a Inteligência Artificial, o Aprendizado de Máquina, a Base de Dados etc. O propósito da Mineração de Dados é detectar automaticamente padrões de associação úteis e não óbvios em grandes quantidades de dados, veja <a href="#fig-2-1" class="quarto-xref">Figura&nbsp;<span>2.1</span></a>.</p>
 <p>No dia a dia, uma quantidade incalculável de dados é gerada na forma de registros de vendas, textos brutos, imagens, sons, gráficos etc., tanto por sistemas computacionais como por seres humanos, constituindo uma espécie de informação não estruturada. Embora esta forma de registro de dados seja adequada para o ser humano, quando se trata de analisar grandes quantidades de dados de forma automatizada, é comum e conveniente que se introduza alguma <strong>estrutura</strong> que facilite o acesso e o processamento sistemático.</p>
-<div id="fig-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-1.png" class="img-fluid figure-img" style="width:50.0%">
+<img src="images/fig-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Correlatas.
@@ -319,7 +319,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="27" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -359,14 +359,14 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
-<div class="cell" data-quarto-raw="true">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div class="cell" data-quarto-raw="true" data-execution_count="28">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="28" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </figcaption>
 <div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="28">
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 9%">
@@ -449,14 +449,14 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div class="cell" data-quarto-raw="true" data-execution_count="29">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="29" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
 </figcaption>
 <div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="29">
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1297,7 +1297,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="30" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1369,7 +1369,7 @@ Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.csv</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-csv-only" class="cell" data-quarto-raw="true">
+<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="31">
 <div id="download-csv-only" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -1422,21 +1422,21 @@ Figura&nbsp;2.3: Telas Iniciais do Weka (a) GUI Chooser e (b) Explorer.
 </figure>
 </div>
 <p><strong>Passo 3 –</strong> Com a aba superior “Preprocess” escolhida, dê um clique em “Open file...”. Uma janela denominada “Open” deve se abrir. Ajuste a opção de “File Format:” para “.csv”, e escolha o arquivo “Transacoes_1.csv”, conforme mostra a <a href="#fig-2-4" class="quarto-xref">Figura&nbsp;<span>2.4</span></a>.</p>
-<div id="fig-2-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-4.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="images/fig-2-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.4: Janela “Open” com a Opção “File Format:” em “.csv”.
+Figura&nbsp;2.4: Janela <em>Open</em> com a Opção <em>File Format:</em> em <code>.csv</code>.
 </figcaption>
 </figure>
 </div>
 <p><strong>Passo 4</strong> – A tela do Weka Explorer deve apresentar os sete atributo do arquivo <code>Transacoes_1</code>, como mostra a <a href="#fig-2-5" class="quarto-xref">Figura&nbsp;<span>2.5</span></a>.</p>
-<div id="fig-2-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-5.png" class="img-fluid figure-img">
+<img src="images/fig-2-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.5: Os Sete Atributos do Arquivo <code>Transacoes_1</code> São Mostrados.
@@ -1445,20 +1445,20 @@ Figura&nbsp;2.5: Os Sete Atributos do Arquivo <code>Transacoes_1</code> São Mos
 </div>
 <p><strong>Passo 5</strong> – Como nossa “Base de Dados” é muito pequena, a conversão manual do arquivo “.csv” para “.arff” pode ser feita muito rapidamente.</p>
 <p>Digite no arquivo “Transacoes_1.csv” as palavras-chave “@relation”, “@attribute” e “@data”, de acordo com a <a href="#fig-2-6" class="quarto-xref">Figura&nbsp;<span>2.6</span></a>, salve e feche o arquivo “.csv”. Mude a terminação do arquivo de “.csv” para “.arff”. Há ainda outras alternativas: Crie um arquivo “Transacoes_1.txt” com o conteúdo mostrado abaixo na <a href="#fig-2-6" class="quarto-xref">Figura&nbsp;<span>2.6</span></a> (certifique-se de que se trata efetivamente de arquivo tipo “.txt” e não, por exemplo, “Transacoes_1.txt.doc” ou “Transacoes_1.txt.rtf”). Feche o arquivo e mude a terminação para “.arff”, ou seja, para “Transacoes_1.arff”.</p>
-<div id="fig-2-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-6" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-6.png" class="img-fluid figure-img" style="width:60.0%">
+<img src="images/fig-2-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representados por “n”
+Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representados por “n”.
 </figcaption>
 </figure>
 </div>
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-only" class="cell" data-quarto-raw="true">
+<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="32">
 <div id="download-arff-only" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMQoKQGF0dHJpYnV0ZSBBIHt5LCBufQpAYXR0cmlidXRlIEIge3ksIG59CkBhdHRyaWJ1dGUgQyB7eSwgbn0KQGF0dHJpYnV0ZSBEIHt5LCBufQpAYXR0cmlidXRlIEUge3ksIG59CkBhdHRyaWJ1dGUgRiB7eSwgbn0KQGF0dHJpYnV0ZSBHIHt5LCBufQoKQGRhdGEKeSx5LG4seSxuLG4sbgpuLG4sbixuLG4seSx5CnkseSx5LHksbixuLG4KeSxuLG4sbix5LHkseQp5LHkseSx5LG4sbixuCg==" download="Transacoes_1.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1473,10 +1473,10 @@ Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representa
 </div>
 </div>
 <p><strong>Passo 6</strong> – Com o arquivo “Transacoes_1.arff” pronto, disparar o Weka, selecionar a aba “Preprocess”, depois clicar na opção “Open file...” e escolher o arquivo “Transacoes1_.arff”, conforme mostra a <a href="#fig-2-7" class="quarto-xref">Figura&nbsp;<span>2.7</span></a>.</p>
-<div id="fig-2-7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-7.png" class="img-fluid figure-img">
+<img src="images/fig-2-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.7: Aba “Preprocess” + “Open file…” para Escolha do Arquivo ARFF.
@@ -1484,10 +1484,10 @@ Figura&nbsp;2.7: Aba “Preprocess” + “Open file…” para Escolha do Arqui
 </figure>
 </div>
 <p><strong>Passo 7</strong> – Depois de abrir o arquivo “Transacoes_1.arff”, ainda com a aba “Preprocess” selecionada, escolha “No class” (ao lado de “Visualize all”), conforme ilustra a <a href="#fig-2-8" class="quarto-xref">Figura&nbsp;<span>2.8</span></a>. (Como vamos gerar Regras de Associação, qualquer um dos atributos pode funcionar como “classe”. Este conceito vai ser melhor explicado quando formos estudar Regras de Classificação.).</p>
-<div id="fig-2-8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-8.png" class="img-fluid figure-img">
+<img src="images/fig-2-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.8: Seleção da Opção “No class” para Regras de Associação.
@@ -1495,10 +1495,10 @@ Figura&nbsp;2.8: Seleção da Opção “No class” para Regras de Associação
 </figure>
 </div>
 <p><strong>Passo 8</strong> – Na aba superior do Weka, escolher “Associate” e ao lado de “Choose” clicar duas vezes sobre o algoritmo “Apriori”, conforme mostra a <a href="#fig-2-9" class="quarto-xref">Figura&nbsp;<span>2.9</span></a>.</p>
-<div id="fig-2-9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-9.png" class="img-fluid figure-img">
+<img src="images/fig-2-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.9: Ajuste dos Parâmetros de Entrada do Algoritmo Apriori.
@@ -1506,10 +1506,10 @@ Figura&nbsp;2.9: Ajuste dos Parâmetros de Entrada do Algoritmo Apriori.
 </figure>
 </div>
 <p><strong>Passo 9 –</strong> Na janela que se abre, ajustar o <span class="math inline">\(\mathbf{SupMin}\)</span> (“lowerBoundMinSupport”) para 0.4, a ConfMin (minMetric) para 0.9 e o número de regras mostradas (“numRules”) para 1000, conforme mostra a <a href="#fig-2-10" class="quarto-xref">Figura&nbsp;<span>2.10</span></a>. Clicar em “OK”.</p>
-<div id="fig-2-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-10.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="images/fig-2-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.10: Ajuste dos Parâmetros SupMin e ConfMin.
@@ -1517,10 +1517,10 @@ Figura&nbsp;2.10: Ajuste dos Parâmetros SupMin e ConfMin.
 </figure>
 </div>
 <p><strong>Passo 10</strong> – Ao clicar em “Start” (ver <a href="#fig-2-9" class="quarto-xref">Figura&nbsp;<span>2.9</span></a>) centenas de Regras de Associação serão geradas, a maioria delas sem qualquer interesse, conforme ilustra a <a href="#fig-2-11" class="quarto-xref">Figura&nbsp;<span>2.11</span></a>. Um dos riscos da geração de Regras de Associação é que muitas delas podem não ter qualquer significado prático. Para contornar este tipo de problema, é possível introduzir pequenas mudanças na forma como os atributos são declarados e reduzir significativamente o número de regras geradas.</p>
-<div id="fig-2-11" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-11" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-11.png" class="img-fluid figure-img">
+<img src="images/fig-2-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.11: Algumas Regras de Associação Geradas com o Arquivo “Transacoes_1.arff”.
@@ -1528,10 +1528,10 @@ Figura&nbsp;2.11: Algumas Regras de Associação Geradas com o Arquivo “Transa
 </figure>
 </div>
 <p><strong>Passo 11</strong> – Uma forma de diminuir o número de regras é substituir os valores ausentes de atributo “n” por “?”. Crie um arquivo “Transacoes_2.arff” conforme mostra a <a href="#fig-2-12" class="quarto-xref">Figura&nbsp;<span>2.12</span></a>.</p>
-<div id="fig-2-12" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-12" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-12.png" class="img-fluid figure-img">
+<img src="images/fig-2-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representados por “?”.
@@ -1541,7 +1541,7 @@ Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representad
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_2.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true">
+<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="33">
 <div id="download-arff-v2" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMgoKQGF0dHJpYnV0ZSBBIHt5fQpAYXR0cmlidXRlIEIge3l9CkBhdHRyaWJ1dGUgQyB7eX0KQGF0dHJpYnV0ZSBEIHt5fQpAYXR0cmlidXRlIEUge3l9CkBhdHRyaWJ1dGUgRiB7eX0KQGF0dHJpYnV0ZSBHIHt5fQoKQGRhdGEKeSx5LD8seSw/LD8sPwo/LD8sPyw/LD8seSx5CnkseSx5LHksPyw/LD8KeSw/LD8sPyx5LHkseQp5LHkseSx5LD8sPyw/Cg==" download="Transacoes_2.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1557,10 +1557,10 @@ Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representad
 </div>
 <p>Isso evitará que o Weka crie regras sem qualquer significado prático, envolvendo itens ausentes, como por exemplo <span class="math inline">\(\{F = n\} \Rightarrow \{G = n\}\)</span> (Regra 20 na <a href="#fig-2-11" class="quarto-xref">Figura&nbsp;<span>2.11</span></a>). Embora a regra <span class="math inline">\(\{F = y\} \Rightarrow \{G = y\}\)</span> (isto é, “quem compra queijo também costuma comprar vinho”) possa ser de interesse, a regra segundo a qual “quem não compra queijo também não compra vinho” dificilmente trará alguma informação prática. Em uma Base de Dados muito grande, regras desse tipo podem aparecer em quantidades proibitivamente elevadas.</p>
 <p>Com o arquivo “Transacoes_2.arff” foram geradas 30 Regras de Associação (<a href="#fig-2-13" class="quarto-xref">Figura&nbsp;<span>2.13</span></a>), sendo que as regras ilustrativas do texto teórico do Capítulo 2, envolvendo o <span class="math inline">\(\mathbf{CF} = \{A, B, C\}\)</span>, aparecem na <a href="#fig-2-13" class="quarto-xref">Figura&nbsp;<span>2.13</span></a> como as regras 15, 16 e 17.</p>
-<div id="fig-2-13" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-2-13" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-13.png" class="img-fluid figure-img" style="width:80.0%">
+<img src="images/fig-2-13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transacoes_2.arff”.
@@ -1581,7 +1581,7 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <section id="prática-1-configuração-e-dados-estruturados" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="prática-1-configuração-e-dados-estruturados"><span class="header-section-number">2.7.2</span> 🔹 Prática 1 — Configuração e Dados Estruturados</h3>
 <p>Retomamos o padrão do capítulo anterior, todos os <code>import</code> no topo, verificação de versões e uso de <strong>dicionários</strong> para estruturar os dados antes de convertê-los em <code>DataFrames</code>.</p>
-<div id="cell-57" class="cell">
+<div id="cell-57" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -1599,9 +1599,9 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy     : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Python    : 3.9.7
-Pandas    : 2.3.3
-NumPy     : 2.0.2
+<pre><code>Python    : 3.12.3
+Pandas    : 3.0.1
+NumPy     : 2.4.2
 ✅ Ambiente pronto!</code></pre>
 </div>
 </div>
@@ -1617,7 +1617,7 @@ NumPy     : 2.0.2
 <blockquote class="blockquote">
 <p>💡 <strong>Novo conceito Python:</strong> <code>set</code> — coleção <strong>sem ordem</strong> e <strong>sem duplicatas</strong>, ideal para operações de conjuntos (∪, ∩, −). Perfeitamente alinhado com a notação matemática de Regras de Associação.</p>
 </blockquote>
-<div id="cell-59" class="cell">
+<div id="cell-59" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Transações: cada elemento é um frozenset (set imutável)</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos frozenset pois sets não são hasheáveis (não podem</span></span>
@@ -1711,7 +1711,7 @@ Vinho     2
 </ul>
 </div>
 </div>
-<div id="cell-61" class="cell">
+<div id="cell-61" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset: <span class="bu">frozenset</span>, transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula o suporte de um itemset nas transações.</span></span>
@@ -1799,7 +1799,7 @@ Queijo → Vinho                0.40       1.00</code></pre>
 </ul>
 </div>
 </div>
-<div id="cell-63" class="cell">
+<div id="cell-63" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1917,42 +1917,42 @@ Regras encontradas (48):
 =======================================================
   Queijo → Vinho [sup=0.40, conf=1.00, lift=2.50]
   Vinho → Queijo [sup=0.40, conf=1.00, lift=2.50]
-  Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
   Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
+  Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
   Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
+  Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
   Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
-  Batata → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
   Feijão → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Batata → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
   Arroz, Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
   Óleo → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
+  Batata → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
   Arroz, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Feijão → Arroz, Óleo [sup=0.60, conf=1.00, lift=1.67]
+  Arroz, Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
   Óleo → Arroz, Feijão [sup=0.60, conf=1.00, lift=1.67]
-  Arroz, Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
+  Feijão → Arroz, Óleo [sup=0.60, conf=1.00, lift=1.67]
   Arroz, Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
-  Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
   Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
   Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Arroz, Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Feijão → Arroz, Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
   Óleo → Arroz, Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Batata, Feijão → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Batata, Óleo → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Feijão → Arroz, Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Batata → Arroz, Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
   Feijão, Óleo → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
+  Batata, Óleo → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Batata, Feijão → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
   Arroz, Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
   Batata → Arroz [sup=0.40, conf=1.00, lift=1.25]
   Feijão → Arroz [sup=0.60, conf=1.00, lift=1.25]
   Óleo → Arroz [sup=0.60, conf=1.00, lift=1.25]
@@ -1969,7 +1969,7 @@ Regras encontradas (48):
 <section id="prática-5-simulação-do-apriori-clássico-join-prune" class="level3" data-number="2.7.6">
 <h3 data-number="2.7.6" class="anchored" data-anchor-id="prática-5-simulação-do-apriori-clássico-join-prune"><span class="header-section-number">2.7.6</span> 🔹 Prática 5 — Simulação do Apriori Clássico (Join &amp; Prune)</h3>
 <p>Nesta etapa, vamos focar na <strong>Geração de Candidatos</strong> de forma eficiente, como descrito nas obras de <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> e <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>.</p>
-<div id="cell-65" class="cell">
+<div id="cell-65" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prática 5: Implementação da Lógica de "Join" do Apriori</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
