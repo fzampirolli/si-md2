@@ -125,7 +125,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -218,16 +218,15 @@ window.Quarto = {
   <li><a href="#classificadores-não-lineares" id="toc-classificadores-não-lineares" class="nav-link" data-scroll-target="#classificadores-não-lineares"><span class="header-section-number">5.5</span> Classificadores Não Lineares</a></li>
   <li><a href="#margem-suave-máxima" id="toc-margem-suave-máxima" class="nav-link" data-scroll-target="#margem-suave-máxima"><span class="header-section-number">5.6</span> Margem Suave Máxima</a></li>
   <li><a href="#ferramental-matemático-básico" id="toc-ferramental-matemático-básico" class="nav-link" data-scroll-target="#ferramental-matemático-básico"><span class="header-section-number">5.7</span> Ferramental Matemático Básico</a></li>
-  <li><a href="#como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka" id="toc-como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka" class="nav-link" data-scroll-target="#como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka"><span class="header-section-number">5.8</span> Como Visualizar as Bordas Decisão de uma MVS Usando o Weka</a></li>
+  <li><a href="#como-visualizar-as-bordas-de-decisão-de-uma-mvs-usando-o-weka" id="toc-como-visualizar-as-bordas-de-decisão-de-uma-mvs-usando-o-weka" class="nav-link" data-scroll-target="#como-visualizar-as-bordas-de-decisão-de-uma-mvs-usando-o-weka"><span class="header-section-number">5.8</span> Como Visualizar as Bordas de Decisão de uma MVS Usando o Weka</a></li>
   <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">5.9</span> Considerações Finais</a></li>
   <li><a href="#lista-de-exercícios" id="toc-lista-de-exercícios" class="nav-link" data-scroll-target="#lista-de-exercícios"><span class="header-section-number">5.10</span> Lista de Exercícios</a></li>
-  <li><a href="#referência-bibliográfica" id="toc-referência-bibliográfica" class="nav-link" data-scroll-target="#referência-bibliográfica"><span class="header-section-number">5.11</span> Referência Bibliográfica</a></li>
-  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">5.12</span> Referências do Capítulo</a></li>
+  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">5.11</span> Referências do Capítulo</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -249,64 +248,171 @@ window.Quarto = {
 
 
 <p><a href="https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/cap05/cap05_aluno.ipynb"><img src="images/colab-badge.png" class="img-fluid"></a></p>
-<section id="introdução" class="level2" data-number="5.1">
+<section id="introdução" class="level2 page-columns page-full" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">5.1</span> Introdução</h2>
-<p>Nas unidades anteriores, foi usado o recurso de representar um <strong>Exemplo de Treinamento</strong> por um ponto num plano cartesiano, como no caso da flor Íris (Figura 5.1). As Regras de Classificação, por sua vez, eram representadas por retas tracejadas e ilustravam como o <strong>Modelo Aprendido</strong> classificava os Exemplos.</p>
-<p>Figura . – Representação de Exemplos de Treinamento no Plano Cartesiano. <img src="images/image22.png" style="width:5.625in;height:3.72639in">[^4]</p>
+<p>Nas unidades anteriores, foi usado o recurso de representar um <strong>Exemplo de Treinamento</strong> por um ponto num plano cartesiano, como no caso da flor Íris (<a href="#fig-5-1" class="quarto-xref">Figura&nbsp;<span>5.1</span></a>). As Regras de Classificação, por sua vez, eram representadas por retas tracejadas e ilustravam como o <strong>Modelo Aprendido</strong> classificava os Exemplos.</p>
+<div id="fig-5-1" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.1: Representação de Exemplos de Treinamento no Plano Cartesiano <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.
+</figcaption>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Fonte: <a href="http://en.wikipedia.org/wiki/File:Iris_virginica.jpg">Wikimedia Commons - Iris virginica</a> (Acessado em 03.03.26).</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Fonte: <a href="http://en.wikipedia.org/wiki/File:Iris_versicolor_3.jpg">Wikimedia Commons - Iris versicolor</a> (Acessado em 03.03.26).</p></div><div id="fn3"><p><sup>3</sup>&nbsp;Fonte: <a href="http://en.wikipedia.org/wiki/File:Kosaciec_szczecinkowaty_Iris_setosa.jpg">Wikimedia Commons - Iris setosa</a> (Acessado em 03.03.26).</p></div></div></figure>
+</div>
 <p>Tanto as <strong>Regras de Associação</strong> e <strong>Classificação</strong> quanto as <strong>Árvores de Decisão</strong> podem ser vistas como representantes de um paradigma de aprendizado supervisionado denominado <strong>Aprendizado Orientado a Conhecimento</strong>, porque são de fácil compreensão e utilização pelos seres humanos. Outro nome que se dá a este tipo de aprendizado é <strong>Paradigma de Aprendizado Simbólico</strong>, porque ele cria <strong>Representações Simbólicas do Modelo</strong> gerado, tais como Árvores de Decisão, Regras etc.</p>
 <p>Vamos agora estudar um novo paradigma de aprendizado supervisionado, conhecido como <strong>Paradigma de Modelos Funcionais</strong>, que em geral apresenta resultados com melhor precisão que os representantes do paradigma Orientado a Conhecimento, mas que para entender como se chegou a determinado resultado há que ter um certo preparo em matemática. Este tipo de aprendizado também é conhecido como <strong>Paradigma do Aprendizado Estatístico</strong>, porque ele utiliza <strong>Modelos Estatísticos</strong> para guiar a geração do Modelo induzido durante o treinamento.</p>
 <p>Como o escopo desta unidade não é a apresentação da teoria matemática dessa classe de algoritmos, vamos reduzir a um mínimo as deduções matemáticas e nos valer de ilustrações gráficas e interpretações geométricas das ideias fundamentais deste interessante tópico.</p>
-<p>Dois dos algoritmos de aprendizado supervisionado mais populares dos Modelos Funcionais, são as <strong>Redes Neurais</strong>[^5] ou <em>Neural Networks</em>, e as <strong>Máquinas de Vetores</strong> <strong>de Suporte</strong> ou <em>Support Vector Machine</em>. A teoria matemática sobre as Máquinas de Vetores de Suporte foi apresentada à comunidade científica por (Cortes e Vapnik, 1995), em meados da década de 1990, e desde então suas implementações algorítmicas têm produzido resultados animadores para o problema do <strong>reconhecimento de padrões</strong> em Bases de Dados.</p>
-</section>
+<p>Dois dos algoritmos de aprendizado supervisionado mais populares dos Modelos Funcionais, são as <strong>Redes Neurais</strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> ou <em>Neural Networks</em>, e as <strong>Máquinas de Vetores</strong> <strong>de Suporte</strong> ou <em>Support Vector Machine</em>. A teoria matemática sobre as Máquinas de Vetores de Suporte foi apresentada à comunidade científica por (<span class="citation" data-cites="cortes1995">Cortes; Vapnik (<a href="#ref-cortes1995" role="doc-biblioref">1995</a>)</span>), em meados da década de 1990, e desde então suas implementações algorítmicas têm produzido resultados animadores para o problema do <strong>reconhecimento de padrões</strong> em Bases de Dados.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Em inglês, o termo “neural” é usado tanto para tópicos do sistema nervoso quanto para neurônios. Em português, no entanto, temos dois adjetivos distintos: neuronal e neural, sendo este último relacionado a nervos e ao sistema nervoso em geral. Como a inspiração inicial para as “<em>neural networks</em>” foram os neurônios, a tradução mais adequada para o português deveria ser “redes neuronais”, mas como “redes neurais” acabou prevalecendo, vamos manter esta terminologia.</p></div></div></section>
 <section id="representação-dos-exemplos-como-vetores" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="representação-dos-exemplos-como-vetores"><span class="header-section-number">5.2</span> Representação dos Exemplos como Vetores</h2>
-<p>Nesta introdução a <strong>Máquinas de Vetores de Suporte</strong> (<strong>MVS</strong>), vamos passar a representar um <strong>Exemplo de Treinamento</strong> por um vetor, e o <strong>Modelo Aprendido</strong>, por outro vetor, chamado de <strong>Vetor Peso</strong> <strong>w</strong>. Qual a vantagem dessa forma de representação? A vantagem é que para classificar um Exemplo, bastará fazer o produto de dois vetores, algo computacionalmente simples. No contexto de classificação com MVS, mostraremos que o resultado dessa multiplicação será sempre ou “+1” ou “-1”. Dessa forma, por meio da operação de <strong>produto interno</strong> entre dois vetores, os <strong>Exemplos de Teste</strong> serão classificados como pertencentes ou à classe “y = +1” ou à “y = -1”.</p>
+<p>Nesta introdução a <strong>Máquinas de Vetores de Suporte</strong> (<strong>MVS</strong>), vamos passar a representar um <strong>Exemplo de Treinamento</strong> por um vetor, e o <strong>Modelo Aprendido</strong>, por outro vetor, chamado de <strong>Vetor Peso</strong> <span class="math inline">\(\mathbf{w}\)</span>. Qual a vantagem dessa forma de representação? A vantagem é que para classificar um Exemplo, bastará fazer o produto de dois vetores, algo computacionalmente simples. No contexto de classificação com MVS, mostraremos que o resultado dessa multiplicação será sempre ou “<span class="math inline">\(+1\)</span>” ou “<span class="math inline">\(-1\)</span>”. Dessa forma, por meio da operação de <strong>produto interno</strong> entre dois vetores, os <strong>Exemplos de Teste</strong> serão classificados como pertencentes ou à classe “<span class="math inline">\(y = +1\)</span>” ou à “<span class="math inline">\(y = -1\)</span>”.</p>
 <p>Embora o algoritmo de aprendizado de um Modelo Funcional seja bem diferente daqueles algoritmos de aprendizado Orientado a Conhecimento, a formalização do problema da classificação continua a mesma. Em termos práticos, estamos simplesmente substituindo um módulo de classificação por outro, que desempenha a mesma função, possivelmente de forma mais complexa, porém com melhores resultados para muitos casos.</p>
-<p>Um classificador binário é equivalente a uma função que faz o mapeamento de um conjunto de <strong>atributos de entrada</strong>, agora representados por um vetor <strong>X</strong>, em uma das classes “y = +1” ou à “y = -1”. Em termos matemáticos,</p>
-<p><span class="math inline">\(y = f\left( \mathbf{x} \right),\ \ \ \ \ \ \ \ \ y \in \left\{ - 1,\  + 1 \right\}\text{\ \ \ \ \ \ \ e\ \ \ \ \ }\mathbf{x} \in \mathbb{R}^{N}\)</span> (5.1)</p>
-<p>Por exemplo, num plano cartesiano, um ponto <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{2}\)</span> pode ser descrito tanto por suas coordenadas (x<sub>1</sub>, x<sub>2</sub>), quanto por um vetor. Por esta razão, daqui para frente, em vez de utilizarmos o termo Exemplos de Treinamento, vamos falar em Vetores de Treinamento (cuja ilustração aparece na Figura 5.2. Da mesma forma, falaremos em <strong>Vetores de Teste</strong> em vez de Exemplos de Teste.</p>
+<p>Um classificador binário é equivalente a uma função que faz o mapeamento de um conjunto de <strong>atributos de entrada</strong>, agora representados por um vetor <span class="math inline">\(\mathbf{x}\)</span>, em uma das classes “<span class="math inline">\(y = +1\)</span>” ou “<span class="math inline">\(y = -1\)</span>”. Em termos matemáticos,</p>
+<p><span id="eq-5.1"><span class="math display">\[
+y = f(\mathbf{x}), \qquad y \in \{-1,\ +1\} \qquad \text{e} \qquad \mathbf{x} \in \mathbb{R}^{N}
+\tag{5.1}\]</span></span></p>
+<p>Por exemplo, num plano cartesiano, um ponto <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{2}\)</span> pode ser descrito tanto por suas coordenadas <span class="math inline">\((x_1, x_2)\)</span>, quanto por um vetor. Por esta razão, daqui para frente, em vez de utilizarmos o termo Exemplos de Treinamento, vamos falar em <strong>Vetores de Treinamento</strong> (cuja ilustração aparece na <a href="#fig-5-2" class="quarto-xref">Figura&nbsp;<span>5.2</span></a>). Da mesma forma, falaremos em <strong>Vetores de Teste</strong> em vez de Exemplos de Teste.</p>
 <p>Para efeito didático, consideraremos um ponto no plano ou um vetor como representações equivalentes, e usaremos sempre a representação mais conveniente para o argumento em questão.</p>
 <p>Por opção metodológica, vamos comparar as MVS com as Redes Neurais, com o propósito de mostrar como algumas das dificuldades mais sérias apresentadas pelas Redes Neurais têm sido superadas com as MVS. Mas, aproveitamos para reafirmar uma constatação empírica mencionada em outra unidade de que em Mineração de Dados não existe um algoritmo que sempre mostre desempenho superior aos demais para qualquer Base de Dados. Muitos autores consideram a Mineração de Dados mais uma arte que uma ciência, porque via de regra é preciso certo traquejo do operador e uma boa dose de experimentos empíricos para melhorar os resultados práticos.</p>
 <p>Aliás, um dos objetivos deste livro de <strong>Sistemas Inteligentes</strong>, e especialmente desta unidade, é propiciar experiências que favoreçam o desenvolvimento da sensibilidade indispensável a um usuário competente da <strong>Mineração de Dados</strong>.</p>
-<p>Figura . – Representação de Vetores de Treinamento no Plano Cartesiano.</p>
+<div id="fig-5-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.2: Representação de Vetores de Treinamento no Plano Cartesiano.
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="classificadores-lineares" class="level2" data-number="5.3">
+<section id="classificadores-lineares" class="level2 page-columns page-full" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="classificadores-lineares"><span class="header-section-number">5.3</span> Classificadores Lineares</h2>
-<p>Vamos voltar ao conjunto de dados da flor Íris, porque este exemplo clássico apresenta situações típicas de um problema de classificação real. Olhando a Figura 5.1, nota-se que não há qualquer dificuldade para distinguir a Íris Setosa das Íris Versicolor e Virgínica. Mas a situação é bem diferente quando consideramos a Íris Versicolor com a Virgínica, porque há uma região comum a ambas. Encontrar um classificador que separe linearmente estes dois tipos de Íris constitui uma tarefa nada simples.</p>
+<p>Vamos voltar ao conjunto de dados da flor Íris, porque este exemplo clássico apresenta situações típicas de um problema de classificação real. Olhando a <a href="#fig-5-1" class="quarto-xref">Figura&nbsp;<span>5.1</span></a>, nota-se que não há qualquer dificuldade para distinguir a Íris Setosa das Íris Versicolor e Virgínica. Mas a situação é bem diferente quando consideramos a Íris Versicolor com a Virgínica, porque há uma região comum a ambas. Encontrar um classificador que separe linearmente estes dois tipos de Íris constitui uma tarefa nada simples.</p>
 <p>Vamos então dividir o problema em duas partes e considerar inicialmente apenas os tipos Setosa e Versicolor, já que a separação entre ambas parece ser bem mais simples. Com os resultados obtidos para os casos linearmente separáveis, vamos estendê-los aos casos não separáveis linearmente, com algumas adaptações.</p>
-<p>A Figura 5.3 apresenta os dados apenas da Íris Setosa e Versicolor, com vários <strong>classificadores</strong> possíveis. Qual deles devemos escolher?</p>
-<p>Figura . – Qual Classificador Escolher?</p>
+<p>A <a href="#fig-5-3" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> apresenta os dados apenas da Íris Setosa e Versicolor, com vários <strong>classificadores</strong> possíveis. Qual deles devemos escolher?</p>
+<div id="fig-5-3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.3: Qual Classificador Escolher?
+</figcaption>
+</figure>
+</div>
 <p>Talvez antes de dar uma resposta a esta pergunta, seria oportuno colocar outra questão ainda mais básica. Por que tentar fazer a separação entre as classes usando uma reta e não uma curva que se adapte aos dados? Porque usar uma reta, ou uma função linear para separar classes é matematicamente menos custoso do que outras formas de curvas, ou funções polinomiais, além de tornar o problema do <em>overfitting</em> menos provável. A equação de uma reta exige um tratamento matemático simples, resultando num custo computacional mais baixo do que o custo dos polinômios de grau maior ou igual a dois.</p>
 <p>Dentre todas as possibilidades, o classificador azul parece ser o menos indicado porque ele comete vários erros de classificação durante o treinamento. Seu poder de generalização já se mostra antecipadamente comprometido. Mas dentre os restantes, qual deles vai apresentar o melhor desempenho na fase de teste? Ou seja, qual deles tem a melhor capacidade de generalização? Será este o melhor critério a utilizar para escolher um classificador?</p>
-<p>Em outros algoritmos de Aprendizado Supervisionado de Classificadores Lineares, como o Perceptron[^6] (Rosenblatt, 1957), os três classificadores da Figura 5.3 que não cometem erros de classificação durante o treinamento seriam considerados igualmente bons. Aliás, como na resposta do Perceptron, e das <strong>Redes Neurais</strong> em geral, há um <strong>componente probabilístico</strong>, em cada simulação com o mesmo conjunto de Vetores de Treinamento, qualquer uma das três retas poderia ser escolhida alternadamente como o classificador linear. Para o Perceptron, desde que um classificador linear faça a separação das classes sem cometer erros durante o treinamento, ele é tão bom quanto seus pares que mostrarem o mesmo resultado.</p>
-<p>Para as <strong>MVS</strong>, no entanto, que utilizam um <strong>algoritmo determinístico</strong>, existe um classificador considerado melhor que todos os demais, porque ele possivelmente vai minimizar os erros de classificação na fase de teste. E este classificador é o que maximiza suas margens, tornando-as as mais largas possíveis antes de tocar os primeiros pontos do plano, que representam os <strong>Vetores de Suporte</strong> (Figura 5.4). Note que o <strong>vetor peso</strong> <strong>w</strong>, também conhecido como <strong>vetor normal w</strong>, é perpendicular à reta que representa o classificador. Portanto, conhecendo-se o vetor <strong>w</strong>, a inclinação do classificador estará determinada.</p>
-<p>Note que o classificador vermelho da Figura 5.3, por exemplo, também separaria sem erros as duas classes, mas suas margens não seriam tão largas quanto as mostradas na Figura 5.4. E como encontrar este classificador que maximiza as margens? Primeiramente considerando o conjunto de pontos como um <strong>Conjunto Convexo</strong>, e depois encontrando a menor distância entre eles. A reta de separação, i.e., o classificador, é perpendicular ao menor segmento que une os dois conjuntos.</p>
-<p>Figura . - Nas MVS, o Melhor Classificador Possui Margem Máxima.</p>
+<p>Em outros algoritmos de Aprendizado Supervisionado de Classificadores Lineares, como o Perceptron<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> (<span class="citation" data-cites="rosenblatt1957">Rosenblatt (<a href="#ref-rosenblatt1957" role="doc-biblioref">1957</a>)</span>), os três classificadores da Figura 5.3 que não cometem erros de classificação durante o treinamento seriam considerados igualmente bons. Aliás, como na resposta do Perceptron, e das <strong>Redes Neurais</strong> em geral, há um <strong>componente probabilístico</strong>, em cada simulação com o mesmo conjunto de Vetores de Treinamento, qualquer uma das três retas poderia ser escolhida alternadamente como o classificador linear. Para o Perceptron, desde que um classificador linear faça a separação das classes sem cometer erros durante o treinamento, ele é tão bom quanto seus pares que mostrarem o mesmo resultado.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;O <em>Perceptron</em> é um tipo de Rede Neural simples, com apenas uma camada de neurônios.</p></div></div><p>Para as <strong>MVS</strong>, no entanto, que utilizam um <strong>algoritmo determinístico</strong>, existe um classificador considerado melhor que todos os demais, porque ele possivelmente vai minimizar os erros de classificação na fase de teste. E este classificador é o que maximiza suas margens, tornando-as as mais largas possíveis antes de tocar os primeiros pontos do plano, que representam os <strong>Vetores de Suporte</strong> (<a href="#fig-5-4" class="quarto-xref">Figura&nbsp;<span>5.4</span></a>). Note que o <strong>vetor peso</strong> <span class="math inline">\(\mathbf{w}\)</span>, também conhecido como <strong>vetor normal</strong> <span class="math inline">\(\mathbf{w}\)</span>, é perpendicular à reta que representa o classificador. Portanto, conhecendo-se o vetor <span class="math inline">\(\mathbf{w}\)</span>, a inclinação do classificador estará determinada.</p>
+<p>Note que o classificador vermelho da <a href="#fig-5-3" class="quarto-xref">Figura&nbsp;<span>5.3</span></a>, por exemplo, também separaria sem erros as duas classes, mas suas margens não seriam tão largas quanto as mostradas na <a href="#fig-5-4" class="quarto-xref">Figura&nbsp;<span>5.4</span></a>. E como encontrar este classificador que maximiza as margens? Primeiramente considerando o conjunto de pontos como um <strong>Conjunto Convexo</strong>, e depois encontrando a menor distância entre eles. A reta de separação, i.e., o classificador, é perpendicular ao menor segmento que une os dois conjuntos.</p>
+<div id="fig-5-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.4: Nas MVS, o Melhor Classificador Possui Margem Máxima.
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="conjunto-convexo" class="level2" data-number="5.4">
+<section id="conjunto-convexo" class="level2 page-columns page-full" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="conjunto-convexo"><span class="header-section-number">5.4</span> Conjunto Convexo</h2>
 <p>Se conectarmos cada ponto de um conjunto aos demais pontos restantes, o polígono externo que resulta será um polígono convexo, e o conjunto de pontos delimitados por este polígono será chamado de <strong>conjunto convexo</strong>.</p>
-<p>A Figura 5.5 mostra como as duas classes de Vetores de Treinamento podem ser representadas por dois conjuntos convexos (com as conexões dos pontos internos omitidas para tornar mais clara a apresentação).</p>
-<p>Figura . – Representação das Classes como Conjuntos Convexos.</p>
+<p>A <a href="#fig-5-5" class="quarto-xref">Figura&nbsp;<span>5.5</span></a> mostra como as duas classes de Vetores de Treinamento podem ser representadas por dois conjuntos convexos (com as conexões dos pontos internos omitidas para tornar mais clara a apresentação).</p>
+<div id="fig-5-5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.5: Representação das Classes como Conjuntos Convexos.
+</figcaption>
+</figure>
+</div>
 <p>A vantagem de se considerar as classes como se fossem dois conjuntos convexos é que na busca pelo menor segmento que une estes dois conjuntos, não ocorre o problema do <strong>mínimo local</strong>. Enquanto a distância entre ambos estiver diminuindo, a direção seguida estará correta.</p>
-<p>A analogia para este procedimento é que o <strong>Algoritmo de Aprendizado</strong> pode ser visto como um método de otimização[^7] de uma <strong>Função Custo</strong>. A cada iteração do processo de aprendizado a Função Custo é avaliada e, se seu valor decrescer, os pesos do vetor peso <strong>w</strong> são atualizados. O processo continua até encontrar o valor mínimo.</p>
-<p>Esta forma de otimização produz bons resultados quando a Função Custo não apresenta mínimos locais, i.e., quando há apenas um <strong>mínimo global</strong>. No caso das Redes Neurais, geralmente a Função Custo apresenta mínimos locais, o que obriga a adoção de mecanismos mais complexos de otimização, como manter alguns registros do que se acredita ser o mínimo global atual, e continuar atualizando os pesos do vetor <strong>w</strong> mesmo que a Função Custo esteja aumentando (Figura 5.5).</p>
+<p>A analogia para este procedimento é que o <strong>Algoritmo de Aprendizado</strong> pode ser visto como um método de otimização <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> de uma <strong>Função Custo</strong>. A cada iteração do processo de aprendizado a Função Custo é avaliada e, se seu valor decrescer, os pesos do vetor peso <span class="math inline">\(\mathbf{w}\)</span> são atualizados. O processo continua até encontrar o valor mínimo.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Este método é conhecido como <strong>Otimização Convexa</strong>.</p></div></div><p>Esta forma de otimização produz bons resultados quando a Função Custo não apresenta mínimos locais, i.e., quando há apenas um <strong>mínimo global</strong>. No caso das Redes Neurais, geralmente a Função Custo apresenta mínimos locais, o que obriga a adoção de mecanismos mais complexos de otimização, como manter alguns registros do que se acredita ser o mínimo global atual, e continuar atualizando os pesos do vetor <span class="math inline">\(\mathbf{w}\)</span> mesmo que a Função Custo esteja aumentando (<a href="#fig-5-6" class="quarto-xref">Figura&nbsp;<span>5.6</span></a>).</p>
 <p>Se um novo mínimo for encontrado, os registros antigos são apagados e novos valores de peso são adotados. Embora este procedimento heurístico aumente as possibilidades de detectar o mínimo global, não há nenhuma garantia de que ele será encontrado, a menos que se pague um alto custo computacional com uma busca exaustiva.</p>
-<p>(a) (b)</p>
-<p>Figura . – Função Custo (a) Com e (b) Sem Mínimo Local.</p>
+<div id="fig-5-6" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-5-6" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-5-6a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-5-6a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-6a.png" class="img-fluid figure-img" data-ref-parent="fig-5-6">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-5-6a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Com Mínimo Local
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-5-6" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-5-6b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-5-6b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-6b.png" class="img-fluid figure-img" data-ref-parent="fig-5-6">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-5-6b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Sem Mínimo Local
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.6: Função Custo (a) Com e (b) Sem Mínimo Local.
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="classificadores-não-lineares" class="level2" data-number="5.5">
+<section id="classificadores-não-lineares" class="level2 page-columns page-full" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="classificadores-não-lineares"><span class="header-section-number">5.5</span> Classificadores Não Lineares</h2>
-<p>Se as duas classes não forem linearmente separáveis, a teoria de MVS prevê o mapeamento dos pontos do <strong>Espaço de Entrada</strong> para outro espaço de maior dimensão, conhecido como <strong>Espaço de Característica</strong>. A Figura 5.7 mostra uma situação em que os dados não podem ser linearmente separados. Para fazer a separação entre ambas podemos usar não uma reta, mas uma curva descrita por uma função polinomial, ou tentar um recurso matemático conhecido como “<strong>Truque do Núcleo</strong>” ou <em>“<strong>Kernel Trick</strong>”</em>.</p>
-<p>O uso de funções polinomiais, além de apresentar risco de alto custo computacional, pode favorecer o ajuste excessivo da curva polinomial aos Vetores de Treinamento, podendo então ocorrer problemas de <strong><em>overfitting</em></strong> decorrente da <strong>instabilidade</strong> causada pela enorme influência que um ou outro vetor pode ter sobre a curva polinomial. Já o princípio de <strong>margem máxima</strong> das MVS traz mais <strong>estabilidade</strong> na classificação, diminuindo as chances de <em>overfitting</em>. Para entender melhor este comportamento, vamos primeiramente ver o que significa usar um <em>kernel</em>[^8].</p>
-<p>Figura . – Exemplo de Classes Não Separáveis Linearmente.</p>
-<p>A ideia por trás dos <em>kernels</em> é mapear os Vetores num espaço de dimensão mais elevada que a original. Por exemplo, se o espaço original dos Vetores de Entrada for bidimensional, podemos introduzir algumas redundâncias em suas coordenadas e mapear estes mesmos vetores num espaço tridimensional. Qual o propósito disso? É que duas classes não separáveis linearmente num espaço bidimensional podem se tornar linearmente separáveis num espaço tridimensional, como ilustra a Figura 5.8.</p>
-<p>Figura . – Exemplo de Transformação Não Linear do Espaço de Entrada para o Espaço de Características.</p>
-<p>Essa transformação em que os vetores são representados num espaço de dimensão mais elevada, geralmente é uma transformação não linear ϕ(<strong>x</strong>). O espaço de partida dessa transformação não linear é conhecido como <strong>Espaço de Entrada</strong> e o espaço com dimensão mais alta é conhecido como <strong>Espaço de Características</strong>.</p>
+<p>Se as duas classes não forem linearmente separáveis, a teoria de MVS prevê o mapeamento dos pontos do <strong>Espaço de Entrada</strong> para outro espaço de maior dimensão, conhecido como <strong>Espaço de Característica</strong>. A <a href="#fig-5-7" class="quarto-xref">Figura&nbsp;<span>5.7</span></a> mostra uma situação em que os dados não podem ser linearmente separados. Para fazer a separação entre ambas podemos usar não uma reta, mas uma curva descrita por uma função polinomial, ou tentar um recurso matemático conhecido como <strong>Truque do Núcleo</strong> ou <strong><em>Kernel Trick</em></strong>.</p>
+<p>O uso de funções polinomiais, além de apresentar risco de alto custo computacional, pode favorecer o ajuste excessivo da curva polinomial aos Vetores de Treinamento, podendo então ocorrer problemas de <strong><em>overfitting</em></strong> decorrente da <strong>instabilidade</strong> causada pela enorme influência que um ou outro vetor pode ter sobre a curva polinomial. Já o princípio de <strong>margem máxima</strong> das MVS traz mais <strong>estabilidade</strong> na classificação, diminuindo as chances de <em>overfitting</em>. Para entender melhor este comportamento, vamos primeiramente ver o que significa usar um <em>kernel</em> <a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Embora o termo “<em>kernel</em>” possa ser perfeitamente traduzido para o português como “núcleo”, a tradução não parece ter prevalecido por aqui, sendo mais comum a utilização de <em>kernel</em>.</p></div></div><div id="fig-5-7" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.7: Exemplo de Classes Não Separáveis Linearmente.
+</figcaption>
+</figure>
+</div>
+<p>A ideia por trás dos <em>kernels</em> é mapear os Vetores num espaço de dimensão mais elevada que a original. Por exemplo, se o espaço original dos Vetores de Entrada for bidimensional, podemos introduzir algumas redundâncias em suas coordenadas e mapear estes mesmos vetores num espaço tridimensional. Qual o propósito disso? É que duas classes não separáveis linearmente num espaço bidimensional podem se tornar linearmente separáveis num espaço tridimensional, como ilustra a <a href="#fig-5-8" class="quarto-xref">Figura&nbsp;<span>5.8</span></a>.</p>
+<div id="fig-5-8" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.8: Exemplo de Transformação Não Linear do Espaço de Entrada para o Espaço de Características.
+</figcaption>
+</figure>
+</div>
+<p>Essa transformação em que os vetores são representados num espaço de dimensão mais elevada, geralmente é uma transformação não linear <span class="math inline">\(\varphi(\mathbf{x})\)</span>. O espaço de partida dessa transformação não linear é conhecido como <strong>Espaço de Entrada</strong> e o espaço com dimensão mais alta é conhecido como <strong>Espaço de Características</strong>.</p>
 <p>O que se busca com esta transformação é linearizar o Espaço de Características, e com isso tornar os dados linearmente separáveis. Pode parecer paradoxal, mas através de uma transformação não linear é possível linearizar o Espaço de Características.</p>
-<p>Vamos reproduzir um exemplo, apresentado por (Schölkopt &amp; Smola, 2001), ilustrando como esta transformação não linear pode ser feita. Suponha um <strong>Espaço de Entrada</strong> <strong>bidimensional</strong>, composto por duas classes não separáveis linearmente. Aplicando-se o truque do <em>kernel</em>, vamos mapear esses dados num <strong>Espaço de Características tridimensional</strong>, como ilustrado na Figura 5.9.</p>
-<p>Observando-se o resultado da operação mostrada na Figura 5.9, verifica-se que a <strong>transformação não linear</strong> ϕ(<strong>x</strong>) não criou novas variáveis; ainda estamos trabalhando com x<sub>1</sub> e x<sub>2</sub> no início e no fim da transformação. As variáveis z<sub>1</sub>, z<sub>2</sub> e z<sub>3</sub> são apenas elementos intermediários que ajudam no entendimento da transformação operada nos dados. Isso significa que não será necessário computar explicitamente a transformação ϕ(<strong>x</strong>) para obtermos no Espaço de Entrada resultados semelhantes àqueles que obteríamos se as operações tivessem sido feitas no Espaço de Características.</p>
-<p>Figura . – Exemplo de Transformação Não Linear do Espaço de Entrada para o Espaço de Características.</p>
+<p>Vamos reproduzir um exemplo, apresentado por <span class="citation" data-cites="scholkopf2001">Schölkopf; Smola (<a href="#ref-scholkopf2001" role="doc-biblioref">2001</a>)</span>, ilustrando como esta transformação não linear pode ser feita. Suponha um <strong>Espaço de Entrada bidimensional</strong>, composto por duas classes não separáveis linearmente. Aplicando-se o truque do <em>kernel</em>, vamos mapear esses dados num <strong>Espaço de Características tridimensional</strong>, como ilustrado na <a href="#fig-5-9" class="quarto-xref">Figura&nbsp;<span>5.9</span></a>.</p>
+<p>Observando-se o resultado da operação mostrada na <a href="#fig-5-9" class="quarto-xref">Figura&nbsp;<span>5.9</span></a>, verifica-se que a <strong>transformação não linear</strong> <span class="math inline">\(\varphi(\mathbf{x})\)</span> não criou novas variáveis; ainda estamos trabalhando com <span class="math inline">\(x_1\)</span> e <span class="math inline">\(x_2\)</span> no início e no fim da transformação. As variáveis <span class="math inline">\(z_1\)</span>, <span class="math inline">\(z_2\)</span> e <span class="math inline">\(z_3\)</span> são apenas elementos intermediários que ajudam no entendimento da transformação operada nos dados. Isso significa que não será necessário computar explicitamente a transformação <span class="math inline">\(\varphi(\mathbf{x})\)</span> para obtermos no Espaço de Entrada resultados semelhantes àqueles que obteríamos se as operações tivessem sido feitas no Espaço de Características.</p>
+<div id="fig-5-9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.9: Exemplo de Transformação Não Linear do Espaço de Entrada para o Espaço de Características.
+</figcaption>
+</figure>
+</div>
 <p>O <strong>truque do <em>kernel</em></strong> permite que as operações de <strong>produto interno</strong> entre dois vetores no Espaço de Características sejam computadas como se ainda estivéssemos no Espaço de Entrada. Como, para efeitos práticos, não houve efetivamente aumento da dimensão do espaço onde ocorrem as operações de produto interno, o truque do <em>kernel</em> oferece a possibilidade de escapar das complicações que as operações no Espaço de Características poderiam trazer. Por isso, os matemáticos dizem que <em>kernels</em> podem ajudar fugir da <strong>Praga da Dimensionalidade</strong>.</p>
 <p>Existem vários <em>kernels</em> conhecidos (<em>Polynomial</em>, RBF etc.), alguns desenvolvidos para aplicações específicas, como <em>kernels</em> para bioinformática, para classificação de imagens ou caracteres etc. Como as MVS se enquadram no paradigma do aprendizado supervisionado, isso significa que existe um Conjunto de Vetores de Treinamento, cujos rótulos de classe são previamente conhecidos. Portanto, com um pouco de teoria e uma dose de experimentação é possível desenvolver <em>kernels</em> que aumentem a taxa de sucesso durante o treinamento.</p>
 <p>Se o Conjunto de Treinamento for uma amostra representativa dos Vetores de Teste, então uma alta taxa de sucesso no treinamento possivelmente significará boa capacidade de generalização para o teste. Caso contrário, não será possível fazer previsões confiáveis com relação à taxa de sucesso nos testes.</p>
@@ -314,78 +420,184 @@ window.Quarto = {
 <section id="margem-suave-máxima" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="margem-suave-máxima"><span class="header-section-number">5.6</span> Margem Suave Máxima</h2>
 <p>Há casos porém em que mesmo com a linearização do Espaço de Características, obtida com o truque do <em>kernel</em>, as classes continuarão não separáveis linearmente. O que fazer nessa situação?</p>
-<p>A solução adotada pelas MVS foi criar uma “<strong>margem suave</strong>” que admite ruídos, mas estabelece uma penalidade para cada caso de classificação equivocada. Considere um parâmetro <strong><em>C</em></strong>, chamado de <strong>Parâmetro de Complexidade <em>C</em></strong>, que aplica uma pena a cada vetor classificado erroneamente. A Figura 5.10 ilustra diversas situações envolvendo violações das bordas de classificação.</p>
-<p>Se considerarmos primeiramente as margens verdes tracejadas do Classificador da Figura 5.10, notamos que embora os vetores 1 e 2 tenham violado os limites das margens verdes, eles estão classificados do lado correto do plano. Os vetores 3, 4 e 5, por sua vez, estão do lado oposto ao que deveriam estar. Portanto, a penalização para estes casos distintos deve ser diferenciada, de acordo com a distância da margem.</p>
-<p>O ajuste do <strong>parâmetro C</strong> ajuda a encontrar um <strong>compromisso entre a tolerância a vetores classificados erroneamente</strong> devido a margens amplas (valor de C baixo) <strong>e a minimização dos erros de treinamento</strong> (valor de C alto, e margens estreitas). As margens verdes correspondem a um Fator de Complexidade C baixo (~1), enquanto que as margens vermelhas correspondem a um valor de C alto (~10).</p>
-<p>Note que a minimização dos erros de treinamento nem sempre é uma garantia de elevada taxa de sucesso na fase de testes. Isso depende de quão representativo é o Conjunto de Treinamento com relação ao Conjunto de Teste, e do <em>kernel</em> escolhido. Para encontrar o melhor valor de C, geralmente são coletados vários resultados empíricos usando o método da <em>Cross-validation</em>.</p>
-<p>A Figura 5.10 ainda ilustra o fato de que, uma vez encontrado a reta de separação dos dados, apenas os Vetores de Suporte (aqueles pontos que tocam as margens) passam a ter importância para a fase de testes. Todos os demais Vetores de Treinamento podem ser desconsiderados porque eles não têm qualquer influência sobre as margens. A implicação desse fato para o desempenho do classificador é decisiva, uma vez que para classificar um novo ponto no plano, basta considerar os Vetores de Suporte, que são os delimitadores das margens.</p>
-<p>Figura . – Diferentes Margens com Diferentes Capacidades de Generalização.</p>
+<p>A solução adotada pelas MVS foi criar uma “<strong>margem suave</strong>” que admite ruídos, mas estabelece uma penalidade para cada caso de classificação equivocada. Considere um parâmetro <span class="math inline">\(C\)</span>, chamado de <strong>Parâmetro de Complexidade</strong> <span class="math inline">\(C\)</span>, que aplica uma pena a cada vetor classificado erroneamente. A <a href="#fig-5-10" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> ilustra diversas situações envolvendo violações das bordas de classificação.</p>
+<p>Se considerarmos primeiramente as margens verdes tracejadas do classificador da <a href="#fig-5-10" class="quarto-xref">Figura&nbsp;<span>5.10</span></a>, notamos que embora os vetores 1 e 2 tenham violado os limites das margens verdes, eles estão classificados do lado correto do plano. Os vetores 3, 4 e 5, por sua vez, estão do lado oposto ao que deveriam estar. Portanto, a penalização para estes casos distintos deve ser diferenciada, de acordo com a distância da margem.</p>
+<p>O ajuste do <strong>parâmetro</strong> <span class="math inline">\(C\)</span> ajuda a encontrar um <strong>compromisso entre a tolerância a vetores classificados erroneamente</strong> devido a margens amplas (valor de <span class="math inline">\(C\)</span> baixo) <strong>e a minimização dos erros de treinamento</strong> (valor de <span class="math inline">\(C\)</span> alto, e margens estreitas). As margens verdes correspondem a um Fator de Complexidade <span class="math inline">\(C\)</span> baixo (<span class="math inline">\({\sim}1\)</span>), enquanto que as margens vermelhas correspondem a um valor de <span class="math inline">\(C\)</span> alto (<span class="math inline">\({\sim}10\)</span>).</p>
+<p>Note que a minimização dos erros de treinamento nem sempre é uma garantia de elevada taxa de sucesso na fase de testes. Isso depende de quão representativo é o Conjunto de Treinamento com relação ao Conjunto de Teste, e do <em>kernel</em> escolhido. Para encontrar o melhor valor de <span class="math inline">\(C\)</span>, geralmente são coletados vários resultados empíricos usando o método da <em>cross-validation</em>.</p>
+<p>A <a href="#fig-5-10" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> ainda ilustra o fato de que, uma vez encontrada a reta de separação dos dados, apenas os Vetores de Suporte (aqueles pontos que tocam as margens) passam a ter importância para a fase de testes. Todos os demais Vetores de Treinamento podem ser desconsiderados porque eles não têm qualquer influência sobre as margens. A implicação desse fato para o desempenho do classificador é decisiva, uma vez que para classificar um novo ponto no plano, basta considerar os Vetores de Suporte, que são os delimitadores das margens.</p>
+<div id="fig-5-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-10.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.10: Diferentes Margens com Diferentes Capacidades de Generalização.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="ferramental-matemático-básico" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="ferramental-matemático-básico"><span class="header-section-number">5.7</span> Ferramental Matemático Básico</h2>
-<p>Vamos agora, de forma sucinta, dar uma ideia de como as bordas de decisão de uma MVS podem ser obtidas matematicamente num espaço bidimensional. Considere o plano cartesiano da Figura 5.11 e os respectivos vetores <strong>x</strong> e <strong>w</strong>.</p>
-<p>Figura . – Produto Interno dos Vetores w e x.</p>
-<p>O Produto Interno de dois vetores, também chamado de Produto Escalar ou Produto de Ponto, gera como resultado uma grandeza escalar, ou seja, um número real. Para sua representação, podemos usar tanto um ponto, w⋅x, quanto os sinais de maior e menor, &lt;w,x&gt;. As letras em negrito representam um vetor, enquanto que as letras simples representam uma grandeza escalar. Usando Produto Escalar, qualquer segmento de reta pode ser representado no plano da forma mostrada na Figura 5.12.</p>
-<p>Figura . – Equação da Reta: w⋅x + b = 0.</p>
-<p>Para representar uma reta e suas margens, usamos o mesmo procedimento (Figura 5.13).</p>
-<p>Como estamos interessados em maximizar as margens, ou seja, tornar módulo da subtração de <strong>x<sub>1</sub></strong> por <strong>x<sub>2</sub></strong>, ||<strong>x<sub>1</sub></strong> - <strong>x<sub>2</sub></strong>||, o mais largo possível, isso equivale a minimizar o módulo do vetor peso <strong>w</strong>, já que</p>
-<p>||<strong>x<sub>1</sub></strong> - <strong>x<sub>2</sub></strong>|| = 2/||<strong>w</strong>|| (5.1)</p>
-<p>A Equação mostra que quanto menor o módulo de <strong>w</strong>, mais largas serão as margens!</p>
-<p>Figura . – Equação do Classificador e Margens.</p>
-<p>Dessa forma, a <strong>Função de Aprendizado</strong> de uma MVS consiste em “testar” coordenadas para <strong>w</strong> de tal modo que seu módulo decresça a um mínimo, fazendo com que as margens se alarguem, até o limite em que elas toquem os primeiros Vetores de Treinamento nas bordas de decisão. Quando isso ocorrer, estes Vetores de Treinamento que foram atingidos pelas margens do Classificador, se tornam os <strong>Vetores de Suporte</strong> da MVS.</p>
-<p>Existem técnicas matemáticas de otimização deste problema, por exemplo a <strong>Programação Quadrática</strong>, bastante conhecida entre os matemáticos, e que foram aproveitadas por (Cortes &amp; Vapnik, 1995) para desenvolver o algoritmo da MVS. Sucintamente o problema pode ser formalizado da forma exposta a seguir.</p>
-<p>Dado um <strong>Conjunto de Treinamento</strong>: (<strong>x<sub>1</sub></strong>, y<sub>1</sub>), (<strong>x<sub>2</sub></strong>, y<sub>2</sub>) ... (<strong>x<sub>N</sub></strong>, y<sub>N</sub>)</p>
-<p>O <strong>Hiperplano com Margem Máxima</strong> é definido pelo par (<strong>w</strong>, b) que resolve o seguinte problema:</p>
-<p>Minimize : ||<strong>w</strong>||<sup>2</sup></p>
-<p>Sob as restrições: <em>∀i = 1 .. N, y<sub>i</sub>(<strong>w⋅x<sub>i</sub></strong> + b) ≥ 1</em></p>
-<p>Mais detalhes de como solucionar a forma dual desse problema de Programação Quadrática podem ser obtidos na Referência Bibliográfica desta unidade de estudo.</p>
-<p>Há uma interessante implementação de MVS, proposta por (Platt, 1998), conhecida como <strong>SMO</strong> <em>(Sequential Minimal Optimization)</em>, que em vez de considerar todos os Vetores de Treinamento conjuntamente, eles são divididos em pares e seus valores ótimos são deduzidos analiticamente. Embora o número de operações matemáticas aumente com relação à forma mais tradicional de resolver numericamente o problema com um sistema de equações, estas operações matemáticas da forma analítica são simples, operações aritméticas básicas, e portanto muito rápidas num computador. Dessa forma, o ganho no tempo total de computação pode ser significativo.</p>
+<p>Vamos agora, de forma sucinta, dar uma ideia de como as bordas de decisão de uma MVS podem ser obtidas matematicamente num espaço bidimensional. Considere o plano cartesiano da <a href="#fig-5-11" class="quarto-xref">Figura&nbsp;<span>5.11</span></a> e os respectivos vetores <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(\mathbf{w}\)</span>.</p>
+<div id="fig-5-11" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-11.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.11: Produto Interno dos Vetores <span class="math inline">\(\mathbf{w}\)</span> e <span class="math inline">\(\mathbf{x}\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>O <strong>Produto Interno</strong> de dois vetores, também chamado de <strong>Produto Escalar</strong> ou <strong>Produto de Ponto</strong>, gera como resultado uma grandeza escalar, ou seja, um número real. Para sua representação, podemos usar tanto um ponto, <span class="math inline">\(\mathbf{w} \cdot \mathbf{x}\)</span>, quanto os sinais de maior e menor, <span class="math inline">\(\langle \mathbf{w}, \mathbf{x} \rangle\)</span>. As letras em negrito representam um vetor, enquanto que as letras simples representam uma grandeza escalar. Usando Produto Escalar, qualquer segmento de reta pode ser representado no plano da forma mostrada na <a href="#fig-5-12" class="quarto-xref">Figura&nbsp;<span>5.12</span></a>.</p>
+<div id="fig-5-12" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.12: Equação da Reta: <span class="math inline">\(\mathbf{w} \cdot \mathbf{x} + b = 0\)</span>.
+</figcaption>
+</figure>
+</div>
+<p>Para representar uma reta e suas margens, usamos o mesmo procedimento (<a href="#fig-5-13" class="quarto-xref">Figura&nbsp;<span>5.13</span></a>).</p>
+<p>Como estamos interessados em maximizar as margens, ou seja, tornar o módulo da subtração de <span class="math inline">\(\mathbf{x}_1\)</span> por <span class="math inline">\(\mathbf{x}_2\)</span>, <span class="math inline">\(\|\mathbf{x}_1 - \mathbf{x}_2\|\)</span>, o mais largo possível, isso equivale a minimizar o módulo do vetor peso <span class="math inline">\(\mathbf{w}\)</span>, já que</p>
+<p><span id="eq-5-1"><span class="math display">\[
+\|\mathbf{x}_1 - \mathbf{x}_2\| = \frac{2}{\|\mathbf{w}\|}
+\tag{5.2}\]</span></span></p>
+<p>A <a href="#eq-5-1" class="quarto-xref">Equação&nbsp;<span>5.2</span></a> mostra que quanto menor o módulo de <span class="math inline">\(\mathbf{w}\)</span>, mais largas serão as margens!</p>
+<div id="fig-5-13" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.13: Equação do Classificador e Margens.
+</figcaption>
+</figure>
+</div>
+<p>Dessa forma, a <strong>Função de Aprendizado</strong> de uma MVS consiste em “testar” coordenadas para <span class="math inline">\(\mathbf{w}\)</span> de tal modo que seu módulo decresça a um mínimo, fazendo com que as margens se alarguem, até o limite em que elas toquem os primeiros Vetores de Treinamento nas bordas de decisão. Quando isso ocorrer, estes Vetores de Treinamento que foram atingidos pelas margens do classificador se tornam os <strong>Vetores de Suporte</strong> da MVS.</p>
+<p>Existem técnicas matemáticas de otimização deste problema, por exemplo a <strong>Programação Quadrática</strong>, bastante conhecida entre os matemáticos, e que foram aproveitadas por <span class="citation" data-cites="cortes1995">Cortes; Vapnik (<a href="#ref-cortes1995" role="doc-biblioref">1995</a>)</span> para desenvolver o algoritmo da MVS. Sucintamente o problema pode ser formalizado da forma exposta a seguir.</p>
+<p>Dado um <strong>Conjunto de Treinamento</strong>: <span class="math inline">\((\mathbf{x}_1, y_1),
+(\mathbf{x}_2, y_2), \ldots, (\mathbf{x}_N, y_N)\)</span></p>
+<p>O <strong>Hiperplano com Margem Máxima</strong> é definido pelo par <span class="math inline">\((\mathbf{w}, b)\)</span> que resolve o seguinte problema:</p>
+<p><span class="math display">\[
+\text{Minimize:} \quad \|\mathbf{w}\|^2
+\]</span></p>
+<p><span class="math display">\[
+\text{Sujeito a:} \quad y_i(\mathbf{w} \cdot \mathbf{x}_i + b) \geq 1, \quad \forall\, i = 1, \ldots, N
+\]</span></p>
+<p>Mais detalhes de como solucionar a forma dual desse problema de Programação Quadrática podem ser obtidos na referência bibliográfica desta unidade de estudo.</p>
+<p>Há uma interessante implementação de MVS, proposta por <span class="citation" data-cites="platt1998">Platt (<a href="#ref-platt1998" role="doc-biblioref">1998</a>)</span>, conhecida como <strong>SMO</strong> (<em>Sequential Minimal Optimization</em>), que em vez de considerar todos os Vetores de Treinamento conjuntamente, eles são divididos em pares e seus valores ótimos são deduzidos analiticamente. Embora o número de operações matemáticas aumente com relação à forma mais tradicional de resolver numericamente o problema com um sistema de equações, estas operações matemáticas da forma analítica são simples, operações aritméticas básicas, e portanto muito rápidas num computador. Dessa forma, o ganho no tempo total de computação pode ser significativo.</p>
 <p>Outro atrativo muito interessante da implementação SMO é que não é necessário carregar simultaneamente todos os Vetores de Treinamento na memória principal do computador. Considerando aplicações reais, com centenas de milhares ou milhões de Vetores de Treinamento, o algoritmo SMO pode ser o mais indicado.</p>
 </section>
-<section id="como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="como-visualizar-as-bordas-decisão-de-uma-mvs-usando-o-weka"><span class="header-section-number">5.8</span> Como Visualizar as Bordas Decisão de uma MVS Usando o Weka</h2>
-<p>A ferramenta Weka (Weka, 2013) permite rodar várias implementações de <strong>SVM</strong>, ajustar o <strong>Parâmetro de Complexidade C</strong>, entre outros, e visualizar as <strong>Bordas de Decisão</strong> obtidas.</p>
-<p><strong><br>
-</strong></p>
-<p><strong>Passo 1 -</strong> Primeiramente vamos carregar o arquivo “iris.arff” no Weka e eliminar dois de seus Atributos, para tornar os resultados visualmente mais interessantes. Carregue no “Weka Explorer” o arquivo “íris.arff” (anexo), selecione os Atributos “sepallength” e “sepalwidth”, e dê um clique em “Remove”, como mostra a Figura 5.14.</p>
-<p><img src="images/image43.png" style="width:4.22292in;height:3.16806in"></p>
-<p>Figura . – Remoção de Atributos de um Arquivo “.arff”.</p>
+<section id="como-visualizar-as-bordas-de-decisão-de-uma-mvs-usando-o-weka" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="como-visualizar-as-bordas-de-decisão-de-uma-mvs-usando-o-weka"><span class="header-section-number">5.8</span> Como Visualizar as Bordas de Decisão de uma MVS Usando o Weka</h2>
+<p>A ferramenta Weka <span class="citation" data-cites="frank2016weka">(<a href="#ref-frank2016weka" role="doc-biblioref">Frank; Hall; Witten, 2016</a>)</span> permite rodar várias implementações de <strong>SVM</strong>, ajustar o <strong>Parâmetro de Complexidade</strong> <span class="math inline">\(C\)</span>, entre outros, e visualizar as <strong>Bordas de Decisão</strong> obtidas.</p>
+<p><strong>Passo 1 —</strong> Primeiramente vamos carregar o arquivo “iris.arff” no Weka e eliminar dois de seus Atributos, para tornar os resultados visualmente mais interessantes. Carregue no “Weka Explorer” o arquivo “íris.arff” (anexo), selecione os Atributos “sepallength” e “sepalwidth”, e dê um clique em “Remove”, como mostra a <a href="#fig-5-14" class="quarto-xref">Figura&nbsp;<span>5.14</span></a>.</p>
+<div id="fig-5-14" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-14.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.14: Remoção de Atributos de um Arquivo “.arff”.
+</figcaption>
+</figure>
+</div>
 <p>Salve o novo arquivo com o nome “iris_mod.arff”, dando um clique no botão “Save...” (no canto superior direito do “Weka Explorer”).</p>
-<p><strong><br>
-</strong></p>
-<p><strong>Passo 2</strong> – Vamos abrir o arquivo modificado “íris_mod.arff” no “Weka GUI Chooser” (Figura 5.15), clicando primeiro na opção “Vizualization” e depois em “BoundaryVisualizer”.</p>
-<p><img src="images/image45.png" style="width:2.34028in;height:1.4in"></p>
-<p>Figura . – Interface “Weka GUI Chooser”.</p>
-<p><img src="images/image47.png" style="width:4.72292in;height:4.94792in">Uma janela semelhante à mostrada na Figura 5.16 deve aparecer.</p>
-<p>Figura . – Janela do “BoundaryVizualizer”.</p>
-<p><strong>Passo 3</strong> – Clique no Botão “Open File”, localize o arquivo “íris_mod.arff” e carregue no “BoundaryVisualizer. Os Vetores de Treinamento (representados por pontos) devem aparecer na tela de visualização do”BoundaryVisualizer” (Figura 5.17). (Como o “BoundaryVisualizer” leva em conta os ajustes da última vez em que ele foi utilizado, a imagem que aparece na tela pode variar de simulação para simulação.) .</p>
-<p><img src="images/image49.png" style="width:4.81597in;height:4.82708in"></p>
-<p>Figura . – Dados do Arquivo “íris_mod.arff” na Tela do “BoundaryVizualizer.</p>
-<p><strong><br>
-</strong></p>
-<p><strong>Passo 4</strong> – Na parte superior direita, em “Classifier”, clique em “Choose” (Figura 5.17), escolha “Classifiers” , depois “functions” e, finalmente “SMO”, como ilustra a Figura 5.18. Inicialmente deixe os valores default do SMO.</p>
-<p><img src="images/image51.png" style="width:5.23125in;height:5.22986in"></p>
-<p>Figura . – Escolha do Algoritmo SMO.</p>
-<p>Marque a opção “Plot training data” (Figura 5.18), na parte inferior direita, para que ao final da simulação apareçam não apenas as bordas de decisão do classificador, mas também os dados usados no treinamento. Dê um clique em “Start” (Figura 5.18).</p>
+<p><strong>Passo 2 —</strong> Vamos abrir o arquivo modificado “íris_mod.arff” no “Weka GUI Chooser” (<a href="#fig-5-15" class="quarto-xref">Figura&nbsp;<span>5.15</span></a>), clicando primeiro na opção “Vizualization” e depois em “BoundaryVisualizer”.</p>
+<div id="fig-5-15" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-15.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.15: Interface do “Weka GUI Chooser”.
+</figcaption>
+</figure>
+</div>
+<p>Uma janela semelhante à mostrada na <a href="#fig-5-16" class="quarto-xref">Figura&nbsp;<span>5.16</span></a> deve aparecer.</p>
+<div id="fig-5-16" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-16.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.16: Janela do “BoundaryVisualizer”.
+</figcaption>
+</figure>
+</div>
+<p><strong>Passo 3</strong> – Clique no Botão “Open File”, localize o arquivo “íris_mod.arff” e carregue no “BoundaryVisualizer. Os Vetores de Treinamento (representados por pontos) devem aparecer na tela de visualização do”BoundaryVisualizer” (<a href="#fig-5-17" class="quarto-xref">Figura&nbsp;<span>5.17</span></a>). (Como o “BoundaryVisualizer” leva em conta os ajustes da última vez em que ele foi utilizado, a imagem que aparece na tela pode variar de simulação para simulação.).</p>
+<div id="fig-5-17" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-17.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.17: Dados do Arquivo “íris_mod.arff” na Tela do “BoundaryVizualizer.
+</figcaption>
+</figure>
+</div>
+<p><strong>Passo 4</strong> – Na parte superior direita, em “Classifier”, clique em “Choose” (<a href="#fig-5-17" class="quarto-xref">Figura&nbsp;<span>5.17</span></a>), escolha “Classifiers” , depois “functions” e, finalmente “SMO”, como ilustra a <a href="#fig-5-18" class="quarto-xref">Figura&nbsp;<span>5.18</span></a>. Inicialmente deixe os valores default do SMO.</p>
+<div id="fig-5-18" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-18.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.18: Escolha do Algoritmo SMO.
+</figcaption>
+</figure>
+</div>
+<p>Marque a opção “Plot training data” (<a href="#fig-5-18" class="quarto-xref">Figura&nbsp;<span>5.18</span></a>), na parte inferior direita, para que ao final da simulação apareçam não apenas as bordas de decisão do classificador, mas também os dados usados no treinamento. Dê um clique em “Start” (<a href="#fig-5-18" class="quarto-xref">Figura&nbsp;<span>5.18</span></a>).</p>
 <p>Lentamente as bordas de decisão do classificador vão se formando, enquanto uma linha horizontal corre a tela indicando que a simulação está em progresso.</p>
-<p><strong>Passo 5</strong> – O número de Vetores de Treinamento classificados erroneamente deve ser em torno de 6. Vá com o mouse novamente na parte superior direita do “BoundaryVisualizer” e clique com o botão da esquerda sobre a palavra “SMO”, ao lado de “Choose”, no campo “Classifieres”. Uma janela de ajustes dos parâmetros do SMO, semelhante à mostrada na Figura 5.19, deve se abrir.</p>
-<p><img src="images/image53.png" style="width:3.86111in;height:4.60208in"></p>
-<p>Figura . – Janela de Ajustes de Parâmetros do SMO.</p>
+<p><strong>Passo 5</strong> – O número de Vetores de Treinamento classificados erroneamente deve ser em torno de 6. Vá com o mouse novamente na parte superior direita do “BoundaryVisualizer” e clique com o botão da esquerda sobre a palavra “SMO”, ao lado de “Choose”, no campo “Classifieres”. Uma janela de ajustes dos parâmetros do SMO, semelhante à mostrada na <a href="#fig-5-19" class="quarto-xref">Figura&nbsp;<span>5.19</span></a>, deve se abrir.</p>
+<div id="fig-5-19" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-19.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.19: Janela de Ajustes de Parâmetros do SMO.
+</figcaption>
+</figure>
+</div>
 <p>Nesta janela, no botão “More” há uma explicação sucinta de todos parâmetros mostrados.</p>
-<p><strong><br>
-</strong></p>
-<p><strong>Passo 6 –</strong> Faça novas simulações variando o valor default do Parâmetro de Complexidade C de 1.0 para 2.0, 5.0, 30.0 etc. e confira o número de Vetores de Treinamento que continuam classificados erroneamente. Com ajuste de C = 2.0 e kernel “PolyKernel” foi rodada uma simulação, cujos resultados são mostrados na Figura 5.20.</p>
-<p><img src="images/image55.png" style="width:3.75in;height:2.5in"></p>
-<p>Figura . – Bordas de Decisão da Simulação para C = 2.0 e kernel “PolyKernel”.</p>
-<p>Quando o valor do parâmetro C foi alterado para 91, as Bordas de Decisão se alteraram, como mostra a Figura 5.21.</p>
-<p><img src="images/image56.png" style="width:4in;height:2.5in"></p>
-<p>Figura . – Bordas de Decisão da Simulação para C = 2.0 e kernel “PolyKernel”.</p>
-<p>Como pode ser observado, há dois ou três pontos verdes e azuis que se parecem com “outliers”. Vamos retirar alguns deles, ativando a opção “Remove points” (Figura 5.21), e ver como a Borda de Decisão se altera. A Figura 5.22 mostra o resultado da remoção de alguns pontos azuis da tela, usando o botão esquerdo do mouse.</p>
-<p><img src="images/image58.png" style="width:4.8in;height:4.81458in"></p>
-<p>Figura . – Simulação com a Remoção de Alguns Pontos Perto das Bordas.</p>
-<p>Como pode ser observado na Figura 5.22, a Borda de Decisão superior sofreu uma alteração significativa, mostrando que Vetores de Treinamento próximos das Margens têm um peso muito grande nos resultados obtidos.</p>
-<p><strong><br>
-</strong></p>
+<p><strong>Passo 6 –</strong> Faça novas simulações variando o valor default do Parâmetro de Complexidade C de 1.0 para 2.0, 5.0, 30.0 etc. e confira o número de Vetores de Treinamento que continuam classificados erroneamente. Com ajuste de C = 2.0 e kernel “PolyKernel” foi rodada uma simulação, cujos resultados são mostrados na <a href="#fig-5-20" class="quarto-xref">Figura&nbsp;<span>5.20</span></a>.</p>
+<div id="fig-5-20" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-20.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.20: Bordas de Decisão da Simulação para C = 2.0 e kernel “PolyKernel”.
+</figcaption>
+</figure>
+</div>
+<p>Quando o valor do parâmetro C foi alterado para 91, as Bordas de Decisão se alteraram, como mostra a <a href="#fig-5-21" class="quarto-xref">Figura&nbsp;<span>5.21</span></a>.</p>
+<div id="fig-5-21" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-21.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-21-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.21: Bordas de Decisão da Simulação para C = 2.0 e kernel “PolyKernel”.
+</figcaption>
+</figure>
+</div>
+<p>Como pode ser observado, há dois ou três pontos verdes e azuis que se parecem com “outliers”. Vamos retirar alguns deles, ativando a opção “Remove points” (<a href="#fig-5-21" class="quarto-xref">Figura&nbsp;<span>5.21</span></a>), e ver como a Borda de Decisão se altera. A <a href="#fig-5-22" class="quarto-xref">Figura&nbsp;<span>5.22</span></a> mostra o resultado da remoção de alguns pontos azuis da tela, usando o botão esquerdo do mouse.</p>
+<div id="fig-5-22" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig-5-22.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-22-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.22: Simulação com a Remoção de Alguns Pontos Perto das Bordas.
+</figcaption>
+</figure>
+</div>
+<p>Como pode ser observado na <a href="#fig-5-22" class="quarto-xref">Figura&nbsp;<span>5.22</span></a>, a Borda de Decisão superior sofreu uma alteração significativa, mostrando que Vetores de Treinamento próximos das Margens têm um peso muito grande nos resultados obtidos.</p>
 <p><strong>Passo 7</strong> – Novos kernels podem ser escolhidos entre os ajustes do SMO. As cores do painel do “BoundaryVisualizer” podem ser alteradas, clicando sobre os nomes das três “iris” no campo intermediário “Class color”. Outros ajustes interessantes podem ser feitos no “BoundaryVisualizer” e testados em novas simulações. Bom trabalho!</p>
 </section>
 <section id="considerações-finais" class="level2" data-number="5.9">
@@ -410,36 +622,42 @@ window.Quarto = {
 <p>(a) (30%) – Escolha valores para o <strong>Fator de Complexidade <em>C</em></strong> entre 1 e 5 e analise os resultados da Matriz de Confusão. (Para ajustar o valor de <strong><em>C</em></strong>, clique com o botão esquerdo do mouse sobre a palavra “<em>SMO</em>”, ao lado de “<em>Choose</em>”, e mude o valor de <strong>C</strong> na janela que deve se abrir).</p>
 <p>(b) (20%) – Compare o desempenho dos <em>kernels</em> “<strong><em>PolyKernel</em></strong>” e “<strong><em>RBFKernel</em></strong>”. (Para escolher o tipo de <em>kernel</em>, clique com o botão esquerdo do mouse sobre a palavra “<em>SMO</em>”, ao lado de “<em>Choose</em>”, e escolha o <em>kernel</em> na janela que deve se abrir).</p>
 </section>
-<section id="referência-bibliográfica" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="referência-bibliográfica"><span class="header-section-number">5.11</span> Referência Bibliográfica</h2>
-<p>CORTES, C. &amp; VAPNIK, V. <strong>Support Vector Networks</strong>. Netherlands: Machine Learning, 20, pp.&nbsp;273-297, Springer Verlag, 1995.</p>
-<p>PLATT, J. <strong>Fast Training of Support Vector Machines Using Sequential Minimal Optimization</strong>. http://research.microsoft.com/apps/pubs/?id=68391 . Acessado em 22.03.13.</p>
-<p>REZENDE, S. O. (Organizadora). <strong>Sistemas Inteligentes: Fundamentos e Aplicações.</strong> Barueri: Editora Manole Ltda, 2005.</p>
-<p>ROCHA, M.; CORTEZ, P. &amp; NEVES, J. M. <strong>Análise Inteligente de Dados: Algoritmos e Implementação em Java.</strong> Lisboa: Editora de Informática, 2008.</p>
-<p>ROSENBLATT, F. <strong>The Perceptron: a Perceiving and Recognizing Automaton</strong>. Report 85, 460-1, Cornell Aeronautical Laboratory, 1957.</p>
-<p>SCHÖLKOPF, B. &amp; SMOLA, A. J. <strong>Learning with Kernels</strong>. Cambridge: Cambridge Press, 2001.</p>
-<p>TAN, P.N.; STEINBACH, M. &amp; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados.</strong> Rio de Janeiro: Editora Ciência Moderna Ltda., 2009.</p>
-<p>WITTEN, I. H. &amp; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques.</strong> Second Edition. Amsterdam: Morgan Kaufmann Publishers, 2005.</p>
-<p>Weka. The Waikato University. In <a href="http://www.cs.waikato.ac.nz/ml/weka/" class="uri">http://www.cs.waikato.ac.nz/ml/weka/</a> . Acessado em 03.03.13.</p>
-<p>WITTEN, I. H. &amp; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques.</strong> Thirdy Edition. Amsterdam: Morgan Kaufmann Publishers, 2011.</p>
-</section>
-<section id="referências-do-capítulo" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">5.12</span> Referências do Capítulo</h2>
-<p>Tem que citar neste capítulo: <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="forouzan2011">Forouzan; Mosharraf (<a href="#ref-forouzan2011" role="doc-biblioref">2011</a>)</span></p>
+<section id="referências-do-capítulo" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">5.11</span> Referências do Capítulo</h2>
+<p>Este capítulo baseou-se nos fundamentos teóricos e práticos que consolidaram o aprendizado de máquina e a mineração de dados. A base histórica das redes neurais seguiu o trabalho clássico de <span class="citation" data-cites="rosenblatt1957">Rosenblatt (<a href="#ref-rosenblatt1957" role="doc-biblioref">1957</a>)</span> sobre o Perceptron. Para a fundamentação de Support Vector Machines (SVM), apoiamo-nos no artigo seminal de <span class="citation" data-cites="cortes1995">Cortes; Vapnik (<a href="#ref-cortes1995" role="doc-biblioref">1995</a>)</span> e nas otimizações práticas propostas por <span class="citation" data-cites="platt1998">Platt (<a href="#ref-platt1998" role="doc-biblioref">1998</a>)</span>, complementados pela teoria de kernels detalhada em <span class="citation" data-cites="scholkopf2001">Schölkopf; Smola (<a href="#ref-scholkopf2001" role="doc-biblioref">2001</a>)</span>. Os conceitos estruturais do processo de descoberta de conhecimento e algoritmos foram fundamentados nas obras de <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span> e <span class="citation" data-cites="rocha2008analise">Rocha; Cortez; Neves (<a href="#ref-rocha2008analise" role="doc-biblioref">2008</a>)</span>, utilizando como suporte técnico a ferramenta WEKA (<span class="citation" data-cites="frank2016weka">Frank; Hall; Witten (<a href="#ref-frank2016weka" role="doc-biblioref">2016</a>)</span>). Por fim, a contextualização em sistemas inteligentes utilizou a organização de <span class="citation" data-cites="rezende2005">Rezende (<a href="#ref-rezende2005" role="doc-biblioref">2005</a>)</span>.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
-<div id="ref-forouzan2011" class="csl-entry" role="listitem">
-FOROUZAN, B.; MOSHARRAF, F. <strong>Fundamentos da Ciência da Computação</strong>. <em>[S.l.]</em>: Cengage Learning, 2011.
+<div id="ref-cortes1995" class="csl-entry" role="listitem">
+CORTES, Corinna; VAPNIK, Vladimir. Support Vector Networks. <strong>Machine Learning</strong>, v. 20, n. 3, p. 273–297, 1995.
 </div>
-<div id="ref-han2008" class="csl-entry" role="listitem">
-HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
+<div id="ref-frank2016weka" class="csl-entry" role="listitem">
+FRANK, Eibe; HALL, Mark A.; WITTEN, Ian H. <strong>The <span>WEKA</span> Workbench. Online Appendix for "Data Mining: Practical Machine Learning Tools and Techniques"</strong>. Online; Morgan Kaufmann, 2016. Disponível em: &lt;<a href="https://ml.cms.waikato.ac.nz/weka/book.html">https://ml.cms.waikato.ac.nz/weka/book.html</a>&gt;
+</div>
+<div id="ref-platt1998" class="csl-entry" role="listitem">
+PLATT, John. <strong>Fast Training of Support Vector Machines Using Sequential Minimal Optimization</strong>., 1998. Disponível em: &lt;<a href="https://www.microsoft.com/en-us/research/publication/fast-training-of-support-vector-machines-using-sequential-minimal-optimization/">https://www.microsoft.com/en-us/research/publication/fast-training-of-support-vector-machines-using-sequential-minimal-optimization/</a>&gt;
+</div>
+<div id="ref-rezende2005" class="csl-entry" role="listitem">
+REZENDE, S. O. <strong>Sistemas Inteligentes: Fundamentos e Aplicações</strong>. <em>[S.l.]</em>: Editora Manole Ltda, 2005.
+</div>
+<div id="ref-rocha2008analise" class="csl-entry" role="listitem">
+ROCHA, Miguel; CORTEZ, Paulo; NEVES, José M. <strong>An<span>á</span>lise Inteligente de Dados: Algoritmos e Implementa<span>ç</span><span>ã</span>o em Java</strong>. Lisboa: Editora de Inform<span>á</span>tica, 2008.
+</div>
+<div id="ref-rosenblatt1957" class="csl-entry" role="listitem">
+ROSENBLATT, Frank. <strong>The Perceptron: A Perceiving and Recognizing Automaton</strong>. Ithaca, NY: Cornell Aeronautical Laboratory, 1957.
+</div>
+<div id="ref-scholkopf2001" class="csl-entry" role="listitem">
+SCHÖLKOPF, Bernhard; SMOLA, Alexander J. <strong>Learning with Kernels: Support Vector Machines, Regularization, Optimization, and Beyond</strong>. Cambridge, MA: MIT Press, 2001.
+</div>
+<div id="ref-tan2009" class="csl-entry" role="listitem">
+TAN, P. N.; STEINBACH, M.; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2009.
 </div>
 <div id="ref-witten2005" class="csl-entry" role="listitem">
 WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2005.
 </div>
 </div>
 </section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
