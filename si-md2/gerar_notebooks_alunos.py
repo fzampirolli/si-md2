@@ -665,7 +665,7 @@ def render_img_element(alt: str, path: str, elem_id: str, label: str, kind: str 
     Tabelas: legenda acima da imagem. Figuras: legenda abaixo.
     """
     caption = f'  <figcaption><strong>{label}:</strong> {alt}</figcaption>\n'
-    img     = f'  <img src="{path}" alt="{alt}" style="max-width:100%" />\n'
+    img     = f'  <img src="{path}" alt="{alt}" style="max-width:80%" />\n'
     if kind == "tbl":
         body = caption + img
     else:

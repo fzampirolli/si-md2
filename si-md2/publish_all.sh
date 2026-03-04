@@ -48,25 +48,18 @@ log "=== Workflow C: Notebooks Alunos ==="
 }
 
 # ---------------------------------------------------------------------------
-# Workflow D: PDF (Com "Try/Finally" para garantir restauração)
+# Workflow D: PDF (Simplificado e Seguro)
 # ---------------------------------------------------------------------------
 log "=== Workflow D: PDF ==="
-# "Try"
-if python3 clean_download_cells.py limpar; then
-    {
-        quarto render --to pdf
-        rm -rf "$BOOK_PDF"
-        mv "$BOOK_HTML" "$BOOK_PDF"
-        ok "PDF gerado em $BOOK_PDF/"
-    } || {
-        log "${RED}Erro durante o render do PDF.${NC}"
-    }
-    
-    # "Finally" - Sempre restaura, mesmo se o render falhar
-    log "Restaurando células de download..."
-    python3 clean_download_cells.py restaurar
+
+if quarto render --to pdf; then
+    # O Quarto gera o PDF baseado na configuração do _quarto.yml
+    # Geralmente ele já sai no destino correto, mas se precisar mover:
+    rm -rf "$BOOK_PDF" 
+    mv "$BOOK_HTML" "$BOOK_PDF" 
+    ok "PDF gerado com sucesso."
 else
-    log "${RED}Falha ao limpar células. Abortando Workflow D.${NC}"
+    log "${RED}Erro durante o render do PDF.${NC}"
 fi
 
 # ---------------------------------------------------------------------------

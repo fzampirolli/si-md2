@@ -7,7 +7,7 @@ book:
   title: "Sistemas Inteligentes e Mineração de Dados"
   subtitle: "2ª Edição: Do Weka ao Python"
   author: "José Artur Quilici-Gonzalez, Francisco de Assis Zampirolli e Fábio Rezende de Souza"
-  cover-image: images/capa.png  # <--- ADICIONE ESTA LINHA
+  cover-image: images/capa.png  
   date: "today"
   chapters:
     - index.qmd
@@ -15,6 +15,8 @@ book:
     - cap01/cap01.ipynb
     - cap02/cap02.ipynb
     - cap03/cap03.ipynb  
+    - cap04/cap04.ipynb
+    - cap05/cap05.ipynb
 
   page-footer: 
     left: |
@@ -37,14 +39,19 @@ csl: abnt.csl
 filters:
   - emoji-filter.lua
 
+
+
 format:
   html:
+    reference-location: margin
     theme: cosmo
     css: styles.css        
     cite-method: citeproc
     code-tools: true
     toc: true
   pdf:
+    
+    footnotes-hover: true
     pdf-engine: lualatex
     cite-method: biblatex
     tbl-colwidths: false
@@ -68,6 +75,10 @@ format:
       - right=20mm
     include-in-header:
       text: |
+        \usepackage{url}
+        \def\UrlBreaks{\do\/\do-}
+        \usepackage{adjustbox}
+        \def\pandocbounded#1{\adjustbox{max width=\linewidth, max height=0.75\textheight, keepaspectratio}{#1}}
         \usepackage{emoji}
         \usepackage[table]{xcolor}
         \usepackage{array}

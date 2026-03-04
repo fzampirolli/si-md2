@@ -5,13 +5,12 @@
 
 Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto** para integrar teoria e prática.
 
-### 🚧 Status do Projeto
+### 🚧 Status do Projeto {.unnumbered}
 
-* **Capítulos 1 e 2:** Em fase de revisão técnica.
-* *Foco:* Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.
-
-
-* **Capítulo 3:** Início da edição.
+- **Capítulos 1 e 2:** Em fase de revisão final e melhorias nos exemplos em Python.
+- **Capítulo 3:** Falta incluir exemplos em Python.
+- **Capítulos 4 e 5:** Parser inicial.
+- **Foco:** Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.
 
 
 ### 📂 Estrutura Simplificada {.unnumbered}
@@ -22,6 +21,30 @@ Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto**
     - `capXX/`: Pasta de cada capítulo (**Editar** -- contém o `.ipynb`, `/images` e `/data`).
     - `references.bib`: Base de dados bibliográfica global.
     - **`notebooks_alunos/`**: Versão processada para distribuição (gerada via script).
+
+**Processo:**
+
+1. Gerado `si-md1/Sist_Intel_j.md` de `si-md1/Sist_Intel_j.docx` com pandoc.
+2. Copiado `si-md1/Sist_Intel_j.md` para `si-md2/capXX/capXX.ipynb` (e ajustes manuais).
+3. Gerado `si-md1/sistemas_inteligentes_impresso.md` de `si-md1/sistemas_inteligentes_impresso.pdf` com tesseract.
+4. Pequenas correções em `si-md2/capXX/capXX.ipynb` usando `si-md1/sistemas_inteligentes_impresso.md`.
+5. Ajustes manuais para funcionar `quarto render` em html, ipynb e pdf.
+
+```{mermaid}
+flowchart TD
+
+    A["`**si-md1/Sist_Intel.docx**`"] -->|pandoc| B["`**si-md1/Sist_Intel.md**`"]
+    C["`**si-md1/sistemas_inteligentes_impresso.pdf**`"] -->|tesseract| D["`**si-md1/sistemas_inteligentes_impresso.md**`"]
+
+    B -->|"cópia + ajustes manuais"| E["`**si-md2/capXX/capXX.ipynb**`"]
+    D -->|"referência para correções"| E
+
+    E -->|"ajustes manuais"| F["`**quarto render**`"]
+
+    F --> G[HTML]
+    F --> H[IPYNB]
+    F --> I[PDF]
+```
 
 ---
 

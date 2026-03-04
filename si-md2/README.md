@@ -199,10 +199,6 @@ if quarto_format in ('html', ''):
 
 > ⚠️ **Nunca use `#| quarto-raw: true`** — essa diretiva não existe no Quarto e causa comportamento imprevisível.
 
-#### Problema com outputs cacheados no PDF
-
-O Quarto para PDF pode usar outputs salvos no `.ipynb` em vez de re-executar o notebook. Se o botão aparecer no PDF mesmo com o código correto, é porque o output HTML está cacheado na célula. O script `clean_download_cells.py` resolve isso automaticamente durante o `publish_all.sh` (veja a seção de workflows).
-
 ---
 
 ## 🚀 Fluxos de Trabalho em `si-md2`
@@ -256,26 +252,13 @@ jupyter lab notebooks_alunos/cap01/cap01_aluno.ipynb
 
 ### Workflow C: Renderizar PDF (sempre por último)
 
-O PDF é gerado por último porque requer a limpeza prévia dos outputs de células de download cacheados nos notebooks. O script `clean_download_cells.py` faz isso automaticamente:
 
 ```bash
-# Passo 1: limpa outputs de células de download em todos os notebooks
-python3 clean_download_cells.py limpar
-
-# Passo 2: renderiza o PDF
+# renderiza o PDF
 quarto render --to pdf
-
-# Passo 3: restaura os outputs para não quebrar o HTML
-python3 clean_download_cells.py restaurar
 ```
 
 Ou simplesmente execute `./publish_all.sh`, que cuida de tudo na ordem correta.
-
-#### Como funciona o `clean_download_cells.py`
-
-O script varre todos os `.ipynb` do projeto e identifica células cujos outputs contenham marcadores de botão de download (`IPython.core.display.HTML`, `download=`, `Baixar Arquivo`). No modo `limpar`, salva um backup em `*_download_backup.json` e esvazia esses outputs. No modo `restaurar`, relê o backup e reinsere os outputs originais, apagando o arquivo de backup em seguida.
-
-Notebooks vazios ou corrompidos são ignorados com aviso, sem interromper o processo.
 
 ---
 
@@ -330,7 +313,6 @@ O script pós-processa os notebooks Quarto (`.ipynb`) para distribuição, resol
 * `_quarto.yml`: O cérebro do projeto. Se adicionar um capítulo novo, registre-o aqui.
 * `references.bib`: Onde você deve colar o BibTeX de novas referências.
 * `capXX/`: Cada capítulo é uma pasta. Mantenha os dados em `capXX/data/` e imagens em `capXX/images/`.
-* `clean_download_cells.py`: Limpa/restaura outputs de células de download para geração correta do PDF.
 * `limpar.sh`: Use sempre que notar erros de cache ou arquivos fantasmas.
 
 ## 📋 Checklist antes do Push
