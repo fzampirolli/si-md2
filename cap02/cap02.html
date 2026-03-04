@@ -319,7 +319,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="15">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -359,8 +359,8 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="16">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="16">
+<div class="cell" data-quarto-raw="true">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
@@ -449,8 +449,8 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="17">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="17">
+<div class="cell" data-quarto-raw="true">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
@@ -1297,7 +1297,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="18">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1369,7 +1369,7 @@ Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.csv</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="19">
+<div id="cell-download-csv-only" class="cell" data-quarto-raw="true">
 <div id="download-csv-only" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -1458,7 +1458,7 @@ Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representa
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="20">
+<div id="cell-download-arff-only" class="cell" data-quarto-raw="true">
 <div id="download-arff-only" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMQoKQGF0dHJpYnV0ZSBBIHt5LCBufQpAYXR0cmlidXRlIEIge3ksIG59CkBhdHRyaWJ1dGUgQyB7eSwgbn0KQGF0dHJpYnV0ZSBEIHt5LCBufQpAYXR0cmlidXRlIEUge3ksIG59CkBhdHRyaWJ1dGUgRiB7eSwgbn0KQGF0dHJpYnV0ZSBHIHt5LCBufQoKQGRhdGEKeSx5LG4seSxuLG4sbgpuLG4sbixuLG4seSx5CnkseSx5LHksbixuLG4KeSxuLG4sbix5LHkseQp5LHkseSx5LG4sbixuCg==" download="Transacoes_1.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1541,7 +1541,7 @@ Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representad
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_2.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="21">
+<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true">
 <div id="download-arff-v2" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMgoKQGF0dHJpYnV0ZSBBIHt5fQpAYXR0cmlidXRlIEIge3l9CkBhdHRyaWJ1dGUgQyB7eX0KQGF0dHJpYnV0ZSBEIHt5fQpAYXR0cmlidXRlIEUge3l9CkBhdHRyaWJ1dGUgRiB7eX0KQGF0dHJpYnV0ZSBHIHt5fQoKQGRhdGEKeSx5LD8seSw/LD8sPwo/LD8sPyw/LD8seSx5CnkseSx5LHksPyw/LD8KeSw/LD8sPyx5LHkseQp5LHkseSx5LD8sPyw/Cg==" download="Transacoes_2.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1581,7 +1581,7 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <section id="prática-1-configuração-e-dados-estruturados" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="prática-1-configuração-e-dados-estruturados"><span class="header-section-number">2.7.2</span> 🔹 Prática 1 — Configuração e Dados Estruturados</h3>
 <p>Retomamos o padrão do capítulo anterior, todos os <code>import</code> no topo, verificação de versões e uso de <strong>dicionários</strong> para estruturar os dados antes de convertê-los em <code>DataFrames</code>.</p>
-<div id="cell-57" class="cell" data-execution_count="22">
+<div id="cell-57" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -1617,7 +1617,7 @@ NumPy     : 2.0.2
 <blockquote class="blockquote">
 <p>💡 <strong>Novo conceito Python:</strong> <code>set</code> — coleção <strong>sem ordem</strong> e <strong>sem duplicatas</strong>, ideal para operações de conjuntos (∪, ∩, −). Perfeitamente alinhado com a notação matemática de Regras de Associação.</p>
 </blockquote>
-<div id="cell-59" class="cell" data-execution_count="23">
+<div id="cell-59" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Transações: cada elemento é um frozenset (set imutável)</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos frozenset pois sets não são hasheáveis (não podem</span></span>
@@ -1711,7 +1711,7 @@ Vinho     2
 </ul>
 </div>
 </div>
-<div id="cell-61" class="cell" data-execution_count="24">
+<div id="cell-61" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset: <span class="bu">frozenset</span>, transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula o suporte de um itemset nas transações.</span></span>
@@ -1799,7 +1799,7 @@ Queijo → Vinho                0.40       1.00</code></pre>
 </ul>
 </div>
 </div>
-<div id="cell-63" class="cell" data-execution_count="25">
+<div id="cell-63" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1969,7 +1969,7 @@ Regras encontradas (48):
 <section id="prática-5-simulação-do-apriori-clássico-join-prune" class="level3" data-number="2.7.6">
 <h3 data-number="2.7.6" class="anchored" data-anchor-id="prática-5-simulação-do-apriori-clássico-join-prune"><span class="header-section-number">2.7.6</span> 🔹 Prática 5 — Simulação do Apriori Clássico (Join &amp; Prune)</h3>
 <p>Nesta etapa, vamos focar na <strong>Geração de Candidatos</strong> de forma eficiente, como descrito nas obras de <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> e <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>.</p>
-<div id="cell-65" class="cell" data-execution_count="26">
+<div id="cell-65" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prática 5: Implementação da Lógica de "Join" do Apriori</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
@@ -2086,9 +2086,9 @@ Candidatos C3 gerados (após poda): 4
 <section id="lista-de-exercícios-1" class="level2 list-paragraph" data-number="2.10">
 <h2 class="list-paragraph anchored" data-number="2.10" data-anchor-id="lista-de-exercícios-1"><span class="header-section-number">2.10</span> Lista de Exercícios</h2>
 <ol type="1">
-<li><p>(<span class="math inline">\(20\%\)</span>) Explique com suas próprias palavras a importância do <strong>Suporte Mínimo (<span class="math inline">\(\mathbf{SupMin}\)</span>)</strong> e <strong>Confiança Mínima (ConfMin)</strong> para a geração de <strong>Regras de Associação</strong>.</p></li>
-<li><p>(<span class="math inline">\(30\%\)</span>) Explique com suas próprias palavras o que é <strong>Conjunto Frequente</strong> no contexto das <strong>Regras de Associação</strong>.</p></li>
-<li><p>(<span class="math inline">\(50\%\)</span>) Crie uma pequena <strong>Cesta de Compras</strong> (± 5 Exemplos) com itens relacionados ao seu ambiente de trabalho, ou à área de seu TCC, ou a qualquer outra área de seu interesse, e gere as <strong>Regras de Associação</strong> no Weka. Anexe o respectivo arquivo “<code>.arff</code>”, e um pequeno relatório sobre a simulação.</p></li>
+<li><p>(20%) Explique com suas próprias palavras a importância do <strong>Suporte Mínimo (<span class="math inline">\(\mathbf{SupMin}\)</span>)</strong> e <strong>Confiança Mínima (ConfMin)</strong> para a geração de <strong>Regras de Associação</strong>.</p></li>
+<li><p>(30%) Explique com suas próprias palavras o que é <strong>Conjunto Frequente</strong> no contexto das <strong>Regras de Associação</strong>.</p></li>
+<li><p>(50%) Crie uma pequena <strong>Cesta de Compras</strong> (± 5 Exemplos) com itens relacionados ao seu ambiente de trabalho, ou à área de seu TCC, ou a qualquer outra área de seu interesse, e gere as <strong>Regras de Associação</strong> no Weka. Anexe o respectivo arquivo “<code>.arff</code>”, e um pequeno relatório sobre a simulação.</p></li>
 </ol>
 <hr>
 <section id="desafios-de-programação-extras" class="level3" data-number="2.10.1">
