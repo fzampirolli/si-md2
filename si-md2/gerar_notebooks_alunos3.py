@@ -471,8 +471,8 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                 elem_id = group_id_m.group(1)
                 info = elem_map.get(elem_id)
                 
-                # Extrai as imagens internas (com ou sem atributos width/id)
-                img_find = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)(?:\{[^}]*\})?', inner_text)
+                # Extrai as imagens internas
+                img_find = re.findall(r'!\[.*?\]\((.*?)\)\{.*?width=([\d.]+)%?\}', inner_text)
                 
                 # A legenda costuma ser a última linha de texto puro no bloco
                 caption_parts = [line for line in inner_text.split('\n') if not line.strip().startswith('!')]
@@ -480,13 +480,9 @@ def convert_callouts(text: str, elem_map: dict) -> str:
 
                 if img_find and info:
                     cols_html = ""
-                    for alt, path in img_find:
-                        cols_html += (
-                            f'<td style="text-align:center; border:none; padding:4px;">'
-                            f'<img src="{path}" alt="{alt}" style="width:60%;" />'
-                            f'<br/><small>{alt}</small>'
-                            f'</td>'
-                        )
+                    for path, width in img_find:
+                        cols_html += (f'<td style="text-align:center; border:none;">'
+                                    f'<img src="{path}" style="width:100%;" /></td>')
                     
                     block = (
                         f'<figure id="{elem_id}" style="text-align:center; margin:1em 0;">\n'
@@ -498,44 +494,8 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                 else:
                     out.append(inner_text)
             
-            elif group_id_m and not has_layout:
-                # Figura/tabela simples: ::: {#fig-X-Y} ou ::: {#tbl-X-Y} sem layout-ncol
-                elem_id = group_id_m.group(1)
-                kind    = elem_id.split('-')[0]   # "fig" ou "tbl"
-                info    = elem_map.get(elem_id)
-
-                # Extrai imagem interna: ![](path){atributos}
-                img_m = re.search(r'!\[([^\]]*)\]\(([^)]+)\)', inner_text)
-
-                # Legenda: linhas que não são imagem nem vazias
-                caption_lines = [
-                    l.strip() for l in inner_text.split('\n')
-                    if l.strip() and not l.strip().startswith('!')
-                ]
-                caption = caption_lines[-1] if caption_lines else ""
-
-                if img_m and info:
-                    img_alt  = img_m.group(1)
-                    img_path = img_m.group(2)
-                    label_prefix = info.get("label_prefix") or info.get("label", "")
-                    # Remove dois-pontos redundante se label já vier de "label"
-                    if not label_prefix.endswith(":"):
-                        label_prefix += ":"
-                    img_tag  = f'<img src="{img_path}" alt="{img_alt}" style="max-width:60%; display:block; margin:auto;" />'
-                    figcap   = f'<figcaption><strong>{label_prefix}</strong> {caption}</figcaption>'
-                    if kind == "tbl":
-                        body = figcap + "\n  " + img_tag
-                    else:
-                        body = img_tag + "\n  " + figcap
-                    block = f'<figure id="{elem_id}" style="text-align:center; margin:1em 0;">\n  {body}\n</figure>'
-                    out.append(block)
-                else:
-                    # Fallback: mantém conteúdo sem as marcas :::
-                    if inner_text:
-                        out.append(inner_text)
-
             elif ".text-center" in attrs:
-                # Suporte para centralização
+                # NOVO: Suporte para centralização
                 block = f'<div style="text-align:center;">\n\n{inner_text}\n\n</div>'
                 out.append(block)
             else:
@@ -872,8 +832,6 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     """
     text = source_to_str(source)
 
-    text = re.sub(r'\{\{<\s*pagebreak\s*>\}\}\n?', '', text)
-
     # 0. Converte callouts e divs Quarto (::: {.callout-*} ... :::)
     #text = convert_callouts(text)
     text = convert_callouts(text, elem_map)
@@ -1193,9 +1151,7 @@ def clean_notebook(notebook: dict) -> dict:
             lines = src.splitlines(keepends=True)
             
             # 1. Verifica se deve esconder (echo: false)
-            #should_hide = any("echo: false" in l for l in lines)
-            has_output = bool(cell.get("outputs"))
-            should_hide = any("echo: false" in l for l in lines) and has_output
+            should_hide = any("echo: false" in l for l in lines)
             
             # 2. Filtra: remove linhas #| E remove qualquer # @title que já exista
             # para evitar a duplicação que você observou
