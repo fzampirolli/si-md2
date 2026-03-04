@@ -25,16 +25,89 @@ Para numeração automática em PDF/HTML, use:
 ---
 
 ### 📊 Figuras e Tabelas (como imagem)
-Sintaxe única para qualquer imagem. O label **sempre** inclui o capítulo:
+
+#### Figura simples
 
 ```markdown
-![Legenda descritiva](caminho/arquivo.png){#fig-3-nome-significativo}
+::: {#fig-3-dispersao}
+
+![](imagens/dispersao.png){width=60% fig-align="center"}
+
+Gráfico de dispersão dos dados coletados.
+:::
 ```
 
-**Exemplo prático:**
+> **Nota:** Use sempre `![](caminho)` sem texto no `alt` — a legenda vai na linha após a imagem, dentro do bloco `:::`.
+
+---
+
+#### Figura com subfiguras lado a lado (`layout-ncol` ou `layout="[[2,1]]"`)
+
+Use `::::` no bloco externo e `:::` nos internos. O label das subfiguras deve terminar em letra (`a`, `b`, ...) — o script numera automaticamente como `(a)`, `(b)` e deriva o `num_str` do pai (ex: `3.2a`).
+
 ```markdown
-![Gráfico de dispersão dos dados coletados](imagens/dispersao.png){#fig-3-dispersao}
+:::: {#fig-3-dispersao layout-ncol=2}
+
+::: {#fig-3-dispersaoa}
+
+![](imagens/dispersao-treino.png){width=100% fig-align="center"}
+
+Conjunto de treino.
+:::
+
+::: {#fig-3-dispersaob}
+
+![](imagens/dispersao-teste.png){width=100% fig-align="center"}
+
+Conjunto de teste.
+:::
+
+Dispersão dos dados: (a) treino e (b) teste.
+::::
 ```
+
+Para proporção diferente entre colunas (ex: coluna esquerda 2/3):
+
+```markdown
+:::: {#fig-3-dispersao layout="[[2,1]]"}
+...
+::::
+```
+
+---
+
+#### Figura com subfiguras empilhadas (`layout-nrow`)
+
+```markdown
+:::: {#fig-3-dispersao layout-nrow=2}
+
+::: {#fig-3-dispersaoa}
+
+![](imagens/antes.png){width=100% fig-align="center"}
+
+Antes do processamento.
+:::
+
+::: {#fig-3-dispersaob}
+
+![](imagens/depois.png){width=100% fig-align="center"}
+
+Depois do processamento.
+:::
+
+Resultado: (a) antes e (b) depois do processamento.
+::::
+```
+
+---
+
+#### Referências cruzadas a subfiguras
+
+| Sintaxe | Resultado |
+|---------|-----------|
+| `@fig-3-dispersaoa` | `Figura 3.2a` |
+| `[-@fig-3-dispersaoa]` | `3.2a` |
+| `@fig-3-dispersao` | `Figura 3.2` |
 
 ---
 
@@ -292,6 +365,10 @@ O script pós-processa os notebooks Quarto (`.ipynb`) para distribuição, resol
 | `[@chave]` | `(AUTOR, ano)` — citação indireta ABNT |
 | `\printbibliography` | Lista de referências formatada por capítulo |
 | `![alt](img){#fig-X-Y}` | `<figure>` HTML com legenda numerada |
+| `::: {#fig-X-Y}` | `<figure>` HTML com legenda numerada (padrão recomendado) |
+| `:::: {#fig-X-Y layout-ncol=2}` com `:::` internos | `<figure>` com subfiguras `(a)`, `(b)` lado a lado |
+| `:::: {#fig-X-Y layout-nrow=2}` com `:::` internos | `<figure>` com subfiguras `(a)`, `(b)` empilhadas |
+| `@fig-X-Ya` | `[Figura X.Ya](#fig-X-Ya)` — link para subfigura |
 | `@fig-X-Y` | `[Figura X.Y](#fig-X-Y)` — link interno |
 | `::: {.callout-tip}` | `<blockquote>` HTML com emoji e título |
 | `### Título {.unnumbered}` | `### Título` — atributos removidos |

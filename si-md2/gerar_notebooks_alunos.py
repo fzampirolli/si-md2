@@ -233,7 +233,7 @@ IMG_DEF_RE = re.compile(
 TBL_MD_RE = re.compile(
     r'((?:[ \t]*\|[^\n]+\n)+)'           # bloco de linhas | col |
     r'(?:'
-        r'\n?[ \t]*: (.*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
+        r'\n?[ \t]*: ([^\n{]*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
         r'|'
         r'[ \t]*\{#(tbl-[\w-]+)[^}]*\}'  # antiga: {#tbl-X} direto
     r')',
@@ -420,26 +420,34 @@ def convert_callouts(text: str, elem_map: dict) -> str:
             # 2. Verifica se é um grupo de figuras/tabelas com ID e Layout
             # Ex: ::: {#fig-2-2 layout-ncol=2}
             group_id_m = re.search(r'#((?:fig|tbl)-[\w-]+)', attrs)
-            has_layout = "layout-ncol" in attrs
+            has_layout = "layout-ncol" in attrs or "layout=" in attrs or "layout-nrow" in attrs
 
             # Coleta o conteúdo interno do bloco ::: até o fechamento
+            # Usa pilha de fence_len para rastrear blocos aninhados corretamente
             i += 1
-            depth = 1
+            fence_stack = [fence_len]
             inner = []
             title_override = None
 
-            while i < len(lines) and depth > 0:
+            while i < len(lines) and fence_stack:
                 l = lines[i]
-                if re.match(r'^:{' + str(fence_len) + r',}\s*$', l):
-                    depth -= 1
-                    if depth == 0:
-                        i += 1
-                        break
-                elif re.match(r'^:::+\s*\{', l):
-                    depth += 1
+                open_m = re.match(r'^(:::+)\s*\{', l)
+                close_m = re.match(r'^(:::+)\s*$', l)
+                if close_m:
+                    close_len = len(close_m.group(1))
+                    if fence_stack and close_len >= fence_stack[-1]:
+                        fence_stack.pop()
+                        if not fence_stack:
+                            i += 1
+                            break
+                        else:
+                            inner.append(l)
+                    else:
+                        inner.append(l)
+                elif open_m:
+                    fence_stack.append(len(open_m.group(1)))
                     inner.append(l)
                 else:
-                    # Captura heading como título de callout se existir
                     hm = re.match(r'^#{1,4}\s+(.+)$', l)
                     if hm and title_override is None and callout_type:
                         title_override = hm.group(1).strip()
@@ -474,17 +482,25 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                 # Extrai as imagens internas (com ou sem atributos width/id)
                 img_find = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)(?:\{[^}]*\})?', inner_text)
                 
-                # A legenda costuma ser a última linha de texto puro no bloco
-                caption_parts = [line for line in inner_text.split('\n') if not line.strip().startswith('!')]
-                main_caption = caption_parts[-1].strip() if caption_parts else ""
+                # Legenda: última linha não-vazia que não começa com ::: ou !
+                main_caption = ""
+                for _cl in reversed(inner_text.split('\n')):
+                    _s = _cl.strip()
+                    if _s and not _s.startswith('!') and not _s.startswith(':::'):
+                        main_caption = _s
+                        break
 
                 if img_find and info:
                     cols_html = ""
+                    subfig_labels = [f'({chr(ord("a") + i)})' for i in range(len(img_find))]
+                    cont=0
                     for alt, path in img_find:
+                        label_prefix = subfig_labels[cont]
+                        cont+=1
                         cols_html += (
                             f'<td style="text-align:center; border:none; padding:4px;">'
-                            f'<img src="{path}" alt="{alt}" style="width:60%;" />'
-                            f'<br/><small>{alt}</small>'
+                            f'<img src="{path.strip()}" alt="{alt}" style="width:60%;" />'
+                            f'<br/><small>{label_prefix} {alt}</small>'
                             f'</td>'
                         )
                     
@@ -499,49 +515,72 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                     out.append(inner_text)
             
             elif group_id_m and not has_layout:
-                # Figura/tabela simples: ::: {#fig-X-Y} ou ::: {#tbl-X-Y} sem layout-ncol
                 elem_id = group_id_m.group(1)
-                kind    = elem_id.split('-')[0]   # "fig" ou "tbl"
+                kind    = elem_id.split('-')[0]
                 info    = elem_map.get(elem_id)
+                subfig_ids = re.findall(r'^:::+\s*\{#((fig|tbl)-[\w-]+)', inner_text, re.MULTILINE)
 
-                # Extrai imagem interna: ![](path){atributos}
-                img_m = re.search(r'!\[([^\]]*)\]\(([^)]+)\)', inner_text)
-
-                # Legenda: linhas que não são imagem nem vazias
-                caption_lines = [
-                    l.strip() for l in inner_text.split('\n')
-                    if l.strip() and not l.strip().startswith('!')
-                ]
-                caption = caption_lines[-1] if caption_lines else ""
-
-                if img_m and info:
-                    img_alt  = img_m.group(1)
-                    img_path = img_m.group(2)
-                    label_prefix = info.get("label_prefix") or info.get("label", "")
-                    # Remove dois-pontos redundante se label já vier de "label"
-                    if not label_prefix.endswith(":"):
-                        label_prefix += ":"
-                    img_tag  = f'<img src="{img_path}" alt="{img_alt}" style="max-width:60%; display:block; margin:auto;" />'
-                    figcap   = f'<figcaption><strong>{label_prefix}</strong> {caption}</figcaption>'
-                    if kind == "tbl":
-                        body = figcap + "\n  " + img_tag
+                if subfig_ids:
+                    inner_lines = inner_text.split('\n')
+                    caption = ""
+                    body_end = len(inner_lines)
+                    for idx in range(len(inner_lines) - 1, -1, -1):
+                        s = inner_lines[idx].strip()
+                        if s and not s.startswith(':::') and not s.startswith('!'):
+                            caption = s
+                            body_end = idx
+                            break
+                    for sub_idx, (sub_id, _) in enumerate(subfig_ids):
+                        if sub_id in elem_map and elem_map[sub_id].get("is_subfig"):
+                            elem_map[sub_id]["label_prefix"] = f'({chr(ord("a") + sub_idx)})'
+                    inner_body = '\n'.join(inner_lines[:body_end])
+                    processed_inner = convert_callouts(inner_body, elem_map)
+                    if info:
+                        lp = info.get("label_prefix") or (info.get("label", "") + ":")
+                        if not lp.endswith(":"):
+                            lp += ":"
+                        block = (
+                            f'<figure id="{elem_id}" style="text-align:center; margin:1em 0;">\n'
+                            f'  {processed_inner}\n'
+                            f'  <figcaption><strong>{lp}</strong> {caption}</figcaption>\n'
+                            f'</figure>'
+                        )
+                        out.append(block)
                     else:
-                        body = img_tag + "\n  " + figcap
-                    block = f'<figure id="{elem_id}" style="text-align:center; margin:1em 0;">\n  {body}\n</figure>'
-                    out.append(block)
+                        out.append(processed_inner)
                 else:
-                    # Fallback: mantém conteúdo sem as marcas :::
-                    if inner_text:
-                        out.append(inner_text)
+                    img_m = re.search(r'!\[([^\]]*)\]\(([^)]+)\)', inner_text)
+                    caption_lines = [
+                        l.strip() for l in inner_text.split('\n')
+                        if l.strip() and not l.strip().startswith('!')
+                    ]
+                    caption = caption_lines[-1] if caption_lines else ""
+                    if img_m and info:
+                        img_alt  = img_m.group(1)
+                        img_path = img_m.group(2)
+                        lp = info.get("label_prefix") or info.get("label", "")
+                        is_subfig = info.get("is_subfig", False)
+                        if not is_subfig and lp and not lp.endswith(":"):
+                            lp += ":"
+                        img_tag = f'<img src="{img_path.strip()}" alt="{img_alt}" style="max-width:60%; display:block; margin:auto;" />'
+                        figcap  = f'<figcaption><strong>{lp}</strong> {caption}</figcaption>'
+                        body = img_tag + "\n  " + figcap if kind != "tbl" else figcap + "\n  " + img_tag
+                        block = f'<figure id="{elem_id}" style="text-align:center; margin:1em 0;">\n  {body}\n</figure>'
+                        out.append(block)
+                    else:
+                        if inner_text:
+                            out.append(inner_text)
 
             elif ".text-center" in attrs:
                 # Suporte para centralização
                 block = f'<div style="text-align:center;">\n\n{inner_text}\n\n</div>'
                 out.append(block)
             else:
-                # Div genérico: apenas mantém o conteúdo
+                # Div genérico (ex: layout="[[1,1]]"): processa sub-blocos ::: recursivamente
+                # O restante (tabelas, imagens) será processado pelas etapas seguintes do process_cell
                 if inner_text:
-                    out.append(inner_text)
+                    processed = convert_callouts(inner_text, elem_map)
+                    out.append(processed)
         else:
             out.append(line)
             i += 1
@@ -609,8 +648,40 @@ def build_element_map(notebook: dict) -> dict:
             continue
         source = source_to_str(cell.get("source", []))
 
+        # Detecção de blocos ::: {#fig-ID} PRIMEIRO para reservar o id antes do IMG_DEF_RE
+        for m in re.finditer(r'^:::+\s*\{#((fig|tbl)-[\w-]+)[^}]*\}', source, re.MULTILINE):
+            elem_id = m.group(1)
+            kind = m.group(2)
+            if elem_id not in elem_map:
+                is_subfig = bool(re.search(r'\d[a-z]$', elem_id))
+                if is_subfig:
+                    parent_id = elem_id[:-1]
+                    parent_info = elem_map.get(parent_id)
+                    parent_num = parent_info["num_str"] if parent_info else _chapter_from_id(elem_id)
+                    sub_num_str = f"{parent_num}{elem_id[-1]}" if parent_num else elem_id
+                    elem_map[elem_id] = {
+                        "kind": kind,
+                        "is_subfig": True,
+                        "num_str": sub_num_str,
+                        "label_prefix": None,
+                        "caption": "",
+                        "from_group": True
+                    }
+                else:
+                    num_str = make_num_str(kind, elem_id)
+                    prefix = "Figura" if kind == "fig" else "Tabela"
+                    elem_map[elem_id] = {
+                        "kind": kind,
+                        "num_str": num_str,
+                        "label_prefix": f"{prefix} {num_str}:",
+                        "caption": "",
+                        "from_group": True
+                    }
+
         # Figuras e tabelas-imagem: ![alt](path){#fig-* ou #tbl-*}
-        for m in IMG_DEF_RE.finditer(source):
+        # Ignora imagens dentro de blocos ::: (já contadas acima)
+        source_no_div = re.sub(r':::.*?:::', '', source, flags=re.DOTALL)
+        for m in IMG_DEF_RE.finditer(source_no_div):
             alt      = m.group(1)
             path     = m.group(2)
             elem_id  = m.group(3)             # ex: fig-1-1 ou tbl-2-X
@@ -676,21 +747,6 @@ def build_element_map(notebook: dict) -> dict:
                     "alt":     None,
                     "path":    None,
                     "content": eq_body,
-                }
-
-        # Detecção de blocos de figuras agrupadas ::: {#fig-ID ...}
-        for m in re.finditer(r'^:::+\s*\{#((fig|tbl)-[\w-]+)[^}]*\}', source, re.MULTILINE):
-            elem_id = m.group(1)
-            kind = m.group(2)
-            if elem_id not in elem_map:
-                num_str = make_num_str(kind, elem_id)
-                prefix = "Figura" if kind == "fig" else "Tabela"
-                elem_map[elem_id] = {
-                    "kind": kind,
-                    "num_str": num_str,
-                    "label_prefix": f"{prefix} {num_str}:",
-                    "caption": "", # Será preenchido na renderização
-                    "from_group": True
                 }
 
     return elem_map
@@ -977,7 +1033,7 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
         """Retorna o num_str do elemento ou fallback."""
         info = elem_map.get(elem_id)
         if info:
-            return info["num_str"]
+            return info.get("num_str") or elem_id
         return _chapter_from_id(elem_id) or elem_id
 
     def _prefix_for(elem_id: str) -> str:
