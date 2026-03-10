@@ -318,13 +318,20 @@ def md_table_to_html(md: str) -> str:
         for c in header_cells
     )
     tr_rows = ""
-    for row in data_rows:
+    # for row in data_rows:
+    #     tds = "".join(
+    #         f'<td style="border:1px solid #ccc; padding:4px 8px;">{c}</td>'
+    #         for c in row
+    #     )
+    #     tr_rows += f'<tr>{tds}</tr>\n'
+    for i, row in enumerate(data_rows):
+        bg = "#ffffff" if i % 2 == 0 else "#f7f7f7"
         tds = "".join(
-            f'<td style="border:1px solid #ccc; padding:4px 8px;">{c}</td>'
+            f'<td style="border:1px solid #ccc; padding:4px 8px; background:{bg};">{c}</td>'
             for c in row
         )
         tr_rows += f'<tr>{tds}</tr>\n'
-
+        
     return (
         f'<table style="border-collapse:collapse; width:100%;">\n'
         f'<thead><tr>{th_html}</tr></thead>\n'
@@ -571,7 +578,8 @@ def convert_callouts(text: str, elem_map: dict) -> str:
 
                         cap_html = f'<div style="text-align:left; font-size:0.9em; margin-bottom:4px;">{cap_label}</div>' if cap_label else ""
                         cells_html += (
-                            f'<td style="vertical-align:top; padding:4px; width:{col_width}; border:none;">'
+                            #f'<td style="vertical-align:top; padding:4px; width:{col_width}; border:none;">'
+                            f'<td style="vertical-align:top; padding:4px; width:{col_width}; border:none; background:white;">'
                             f'{anchor}{cap_html}\n\n{tbl_src}\n\n'
                             f'</td>\n'
                         )
