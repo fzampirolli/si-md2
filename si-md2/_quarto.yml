@@ -17,6 +17,7 @@ book:
     - cap03/cap03.ipynb  
     - cap04/cap04.ipynb
     - cap05/cap05.ipynb
+    # - cap06/cap06.ipynb
 
   page-footer: 
     left: |
@@ -38,8 +39,6 @@ csl: abnt.csl
 
 filters:
   - emoji-filter.lua
-
-
 
 format:
   html:

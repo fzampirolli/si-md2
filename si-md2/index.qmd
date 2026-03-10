@@ -2,14 +2,13 @@
 
 ## 📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição) {.unnumbered}
 
-
 Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto** para integrar teoria e prática.
 
 ### 🚧 Status do Projeto {.unnumbered}
 
 - **Capítulos 1 e 2:** Em fase de revisão final e melhorias nos exemplos em Python.
-- **Capítulo 3:** Falta incluir exemplos em Python.
-- **Capítulos 4 e 5:** Parser inicial.
+- **Capítulos 3, 4 e 5:** Falta incluir exemplos em Python.
+- **Capítulo 6:** Em construção.
 - **Foco:** Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.
 
 
@@ -28,7 +27,7 @@ Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto**
 2. Copiado `si-md1/Sist_Intel_j.md` para `si-md2/capXX/capXX.ipynb` (e ajustes manuais).
 3. Gerado `si-md1/sistemas_inteligentes_impresso.md` de `si-md1/sistemas_inteligentes_impresso.pdf` com tesseract.
 4. Pequenas correções em `si-md2/capXX/capXX.ipynb` usando `si-md1/sistemas_inteligentes_impresso.md`.
-5. Ajustes manuais para funcionar `quarto render` em html, ipynb e pdf.
+5. Ajustes manuais para funcionar `quarto render` em html, ipynb, pdf e epub.
 
 ```{mermaid}
 flowchart TD
@@ -44,27 +43,8 @@ flowchart TD
     F --> G[HTML]
     F --> H[IPYNB]
     F --> I[PDF]
+    F --> J[ePUB]
 ```
-
----
-
-### 🛠️ Regras de Ouro para Autores (Padrão Quarto) {.unnumbered}
-
-**1. Referências Cruzadas (Obrigatório incluir o número do capítulo):**
-
-* **Figuras:** `![Legenda](images/fig.png){#fig-3-nome width=50%}`
-* **Tabelas:** `: Legenda {#tbl-3-nome}` (após a tabela).
-* **Equações:** `$$E = mc^2$$ {#eq-3-nome}`
-* **Citar no texto:** Use `@fig-3-nome`, `@tbl-3-nome` ou `@eq-3-nome`.
-
-**2. Bibliografia:** 
-
-* Citação indireta: `[@chave]` $\rightarrow$ (Autor, Ano).
-* Citação direta: `@chave` $\rightarrow$ Autor (Ano).
-
-**3. Células de Download (Python):** {.unnumbered}
-
-* Devem usar o check `if quarto_format in ('html', ''):` para não quebrarem a geração do PDF.
 
 ---
 
