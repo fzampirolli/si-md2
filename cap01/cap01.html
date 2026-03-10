@@ -400,19 +400,6 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 <p>Os dados sobre pagamentos feitos com cartão de crédito podem expor as preferências religiosas de seu dono. Seus hábitos de compras de livros podem revelar suas preferências políticas, ou gastos elevados podem colocá-lo inadvertidamente no grupo de clientes de alto risco para empréstimo bancário. O CEP de um candidato pode apontar que ele vive em uma região considerada problemática ou num bairro nobre, seus dados médicos podem lhe custar uma vaga numa grande empresa.</p>
 <p>Por outro lado, as estatísticas sobre determinada modalidade de crime podem ajudar as autoridades policiais a adotar medidas preventivas. O levantamento estatístico de regiões carentes frequentemente serve de orientação aos formuladores de políticas públicas na hora de conceber ações compensatórias localizadas. A análise dos dados de gasto do governo pode ajudar a corrigir distorções ou denunciar mazelas. O conhecimento prévio de que algumas doenças e problemas de saúde parecem estar mais fortemente associados a uma etnia que a outra auxilia o médico na hora de solicitar exames médicos, mesmo que o paciente não apresente nenhum sintoma.</p>
 <p>Como se vê, não é nada simples traçar uma linha divisória que condene ou justifique o uso ético ou legal de dados armazenados. E se os dados tiverem sido coletados sem o conhecimento do usuário, a questão torna-se ainda mais controversa. Por esta razão, e por se tratar de uma tecnologia relativamente jovem, recomenda-se que a Mineração de Dados seja empregada com cautela e, se possível, com a anuência prévia das pessoas cujos dados foram coletados.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Aviso</span>Autores - Sugestão de incluir:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Se um banco quer saber se um cliente vai pagar um empréstimo, qual tarefa ele está realizando?</p>
-</div>
-</div>
 </section>
 <section id="prática-em-python---ambiente-inicial" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="prática-em-python---ambiente-inicial"><span class="header-section-number">1.6</span> 🧪 Prática em Python - Ambiente Inicial</h2>
@@ -426,7 +413,7 @@ Figura&nbsp;1.3: Classificação da Natureza das Tarefas da Mineração de Dados
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="células-de-código-python"><span class="header-section-number">1.6.2</span> 🔹 Células de Código Python</h3>
 <p>Abaixo, você encontrará uma célula de <strong>código</strong>. Diferente do texto, as células de código podem ser executadas para realizar cálculos e gerar gráficos.</p>
 <p><strong>Como executar:</strong> 1. Clique dentro da célula abaixo. 2. Pressione <strong><code>Shift + Enter</code></strong> (ou clique no botão <strong>Play</strong> no Google Colab).</p>
-<div id="cell-20" class="cell" data-quarto-raw="true" data-execution_count="1">
+<div id="cell-18" class="cell" data-quarto-raw="true" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de execução para testar o ambiente</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Se você está lendo esta mensagem, o código foi executado com sucesso!"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -440,7 +427,7 @@ O resultado da soma de 10 + 20.5 é: 30.5</code></pre>
 </div>
 </div>
 <p>O código a seguir mostra a execução de um laço de repetição (<code>for</code>) para iterar sobre uma sequência numérica de 0 a 4, gerada pela função <code>range(5)</code>. Do ponto de vista da Mineração de Dados, esse fluxo representa o processamento sequencial de <strong>Dados</strong> brutos para a geração de <strong>Informação</strong> estruturada, servindo como base para a identificação de padrões em sistemas inteligentes.</p>
-<div id="cell-22" class="cell" data-quarto-raw="true" data-execution_count="2">
+<div id="cell-20" class="cell" data-quarto-raw="true" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Esta é uma célula de código Python para testar um laço! 🚀"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lista <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>)) <span class="co"># cria uma lista de números de 0 a 4</span></span>
@@ -463,7 +450,7 @@ Valor: 4</code></pre>
 <section id="função-simples" class="level3" data-number="1.6.3">
 <h3 data-number="1.6.3" class="anchored" data-anchor-id="função-simples"><span class="header-section-number">1.6.3</span> 🔹 Função Simples</h3>
 <p>O código a seguir mostra o fluxo técnico de transformação de <strong>Dados</strong> (sequência numérica) em <strong>Informação</strong> (valores ao quadrado). Embora a extração de <strong>Conhecimento</strong> seja simplificada neste cenário, o exemplo ilustra a base necessária para que algoritmos de Mineração de Dados identifiquem padrões de comportamento e tendências em grandes volumes de informação, permitindo que o sistema aprenda a lógica subjacente aos dados para melhorar seu desempenho futuro.</p>
-<div id="cell-25" class="cell" data-quarto-raw="true" data-execution_count="3">
+<div id="cell-23" class="cell" data-quarto-raw="true" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Definição da Função</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadrado(x):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -499,32 +486,33 @@ O último elemento é: 25
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="de-números-a-leis-da-natureza-o-salto-para-o-conhecimento"><span class="header-section-number">1.6.4</span> 🔹 De Números a Leis da Natureza: O Salto para o Conhecimento</h3>
 <p>A <strong><a href="#fig-1-plot" class="quarto-xref">Figura&nbsp;<span>1.4</span></a></strong> ilustra mais do que uma simples função matemática; ela representa a base para a <strong>modelagem preditiva</strong>. Na Mineração de Dados, a extração de conhecimento ocorre quando o sistema identifica que a relação entre os dados segue um padrão constante.</p>
 <p>Se esses dados representassem a posição de um objeto em queda livre ao longo do tempo, o “conhecimento” extraído seria a descoberta da aceleração constante da gravidade. Com essa regra em mãos, o sistema deixa de ser um calculador de trajetórias passadas e torna-se um <strong>agente preditivo</strong>, capaz de antecipar onde o objeto estará em um futuro ainda não registrado nos dados.</p>
-<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. DADOS (Fatos Brutos): Segundos decorridos</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>tempo <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">6</span>)) </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. INFORMAÇÃO (Contexto): Distância percorrida (d = t²)</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>distancia <span class="op">=</span> [t<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> t <span class="kw">in</span> tempo]</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. VISUALIZAÇÃO (Pós-processamento do KDD)</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.plot(tempo, distancia, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'g'</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulação de Aceleração (Conhecimento Preditivo)"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Tempo (segundos)"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Distância (metros)"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. CONHECIMENTO (Inferência)</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ss">ANÁLISE DE MINERAÇÃO:</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ss">=====================</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="ss">Padrão Identificado: Crescimento Quadrático.</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="ss">Conhecimento Extraído: O sistema detectou uma aceleração constante.</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="ss">Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir).</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-1-plot" class="cell" data-quarto-raw="true" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualização de dados usando Matplotlib</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. DADOS (Fatos Brutos): Segundos decorridos</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>tempo <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">6</span>)) </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. INFORMAÇÃO (Contexto): Distância percorrida (d = t²)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>distancia <span class="op">=</span> [t<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> t <span class="kw">in</span> tempo]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. VISUALIZAÇÃO (Pós-processamento do KDD)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.plot(tempo, distancia, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'g'</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulação de Aceleração (Conhecimento Preditivo)"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Tempo (segundos)"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Distância (metros)"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. CONHECIMENTO (Inferência)</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ss">ANÁLISE DE MINERAÇÃO:</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="ss">=====================</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="ss">Padrão Identificado: Crescimento Quadrático.</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="ss">Conhecimento Extraído: O sistema detectou uma aceleração constante.</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="ss">Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir).</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-1-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -564,7 +552,7 @@ Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir)
 <li><strong>Mapeamento</strong>: As <strong>chaves</strong> do dicionário (<code>'Paciente'</code>, <code>'Peso_kg'</code>, <code>'Altura_m'</code>) são automaticamente convertidas em <strong>cabeçalhos de colunas</strong>, enquanto as <strong>listas de valores</strong> passam a compor as <strong>linhas</strong> da tabela.</li>
 <li><strong><code>df</code></strong>: A tabela resultante é armazenada na variável <code>df</code> (abreviação convencional para <em>DataFrame</em>), permitindo a execução de cálculos complexos e filtragens de alto desempenho.</li>
 </ul>
-<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="5">
+<div id="cell-fig-1-imc-analise" class="cell" data-quarto-raw="true" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -583,39 +571,41 @@ Capacidade Preditiva: Para t=10, a distância será de 100m (sem precisar medir)
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">2. TRANSFORMAÇÃO EM INFORMAÇÃO (Information):</span></span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">O cálculo do IMC contextualiza peso e altura, conferindo significado aos dados.</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'IMC'</span>] <span class="op">=</span> df[<span class="st">'Peso_kg'</span>] <span class="op">/</span> (df[<span class="st">'Altura_m'</span>] <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. RUMO AO CONHECIMENTO (Knowledge):</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicamos uma regra de negócio (Classificação) para extrair padrões.</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_saude(imc):</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> imc <span class="op">&lt;</span> <span class="fl">18.5</span>: <span class="cf">return</span> <span class="st">'Abaixo do peso'</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">25</span>: <span class="cf">return</span> <span class="st">'Normal'</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">'Sobrepeso'</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Status'</span>] <span class="op">=</span> df[<span class="st">'IMC'</span>].<span class="bu">apply</span>(classificar_saude)</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Tabela Processada (Informação) ==="</span>)</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.<span class="bu">round</span>(<span class="dv">2</span>))</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. VISUALIZAÇÃO PARA TOMADA DE DECISÃO (Inteligência/Ação)</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">'skyblue'</span> <span class="cf">if</span> s <span class="op">==</span> <span class="st">'Normal'</span> <span class="cf">else</span> <span class="st">'salmon'</span> <span class="cf">for</span> s <span class="kw">in</span> df[<span class="st">'Status'</span>]]</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">'Paciente'</span>], df[<span class="st">'IMC'</span>], color<span class="op">=</span>cores)</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">25</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Limite Normalidade (OMS)'</span>)</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Análise de Saúde dos Pacientes'</span>)</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Índice de Massa Corporal (IMC)'</span>)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="ss">RELATÓRIO DE EXECUÇÃO:</span></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="ss">======================</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- Média de IMC: </span><span class="sc">{</span>df[<span class="st">'IMC'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- Casos de Atenção: </span><span class="sc">{</span><span class="bu">len</span>(df[df[<span class="st">'Status'</span>] <span class="op">!=</span> <span class="st">'Normal'</span>])<span class="sc">}</span></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- Status do ambiente: PRONTO.</span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">Uma nova coluna 'IMC' é criada, permitindo comparações e análises posteriores.</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'IMC'</span>] <span class="op">=</span> (df[<span class="st">'Peso_kg'</span>] <span class="op">/</span> (df[<span class="st">'Altura_m'</span>] <span class="op">**</span> <span class="dv">2</span>)).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. RUMO AO CONHECIMENTO (Knowledge):</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicamos uma regra de negócio (Classificação) para extrair padrões.</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_saude(imc):</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> imc <span class="op">&lt;</span> <span class="fl">18.5</span>: <span class="cf">return</span> <span class="st">'Abaixo do peso'</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> imc <span class="op">&lt;</span> <span class="dv">25</span>: <span class="cf">return</span> <span class="st">'Normal'</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: <span class="cf">return</span> <span class="st">'Sobrepeso'</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Criamos uma nova coluna 'Status' com a classificação de saúde baseada no IMC.</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Status'</span>] <span class="op">=</span> df[<span class="st">'IMC'</span>].<span class="bu">apply</span>(classificar_saude)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Tabela Processada (Informação) ==="</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.<span class="bu">round</span>(<span class="dv">2</span>)) <span class="co"># Apenas duas casas decimais para melhor visualização</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. VISUALIZAÇÃO PARA TOMADA DE DECISÃO (Inteligência/Ação)</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">'skyblue'</span> <span class="cf">if</span> s <span class="op">==</span> <span class="st">'Normal'</span> <span class="cf">else</span> <span class="st">'salmon'</span> <span class="cf">for</span> s <span class="kw">in</span> df[<span class="st">'Status'</span>]]</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">'Paciente'</span>], df[<span class="st">'IMC'</span>], color<span class="op">=</span>cores)</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">25</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Limite Normalidade (OMS)'</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Análise de Saúde dos Pacientes'</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Índice de Massa Corporal (IMC)'</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"""</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="ss">RELATÓRIO DE EXECUÇÃO:</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ss">======================</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- Média de IMC: </span><span class="sc">{</span>df[<span class="st">'IMC'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- Casos de Atenção: </span><span class="sc">{</span><span class="bu">len</span>(df[df[<span class="st">'Status'</span>] <span class="op">!=</span> <span class="st">'Normal'</span>])<span class="sc">}</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- Total de Pacientes: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Tabela Processada (Informação) ===
   Paciente  Peso_kg  Altura_m    IMC     Status
@@ -642,7 +632,7 @@ RELATÓRIO DE EXECUÇÃO:
 ======================
 - Média de IMC: 24.96
 - Casos de Atenção: 2
-- Status do ambiente: PRONTO.
+- Total de Pacientes: 4
 </code></pre>
 </div>
 </div>
@@ -690,22 +680,21 @@ Figura&nbsp;1.6: Estúdo do NotebooLM.
 </figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-tip callout-titled" title="💡 Reflita e Pratique — Desafio de Classificação">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Aviso</span>Nota para os Autores (Trecho em Construção)
+<span class="screen-reader-only">Dica</span>💡 Reflita e Pratique — Desafio de Classificação
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<blockquote class="blockquote">
-<p><span style="color:red; font-weight:bold;"> Se um banco quer saber se um cliente vai pagar um empréstimo, qual tarefa ele está realizando? </span></p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>Contexto para os autores</strong>: No NotebookLM, ao carregar este capítulo, o aluno poderá perguntar isso à IA. A resposta correta deve estar fundamentada na seção de <strong>Classificação</strong> (Tarefa Preditiva). Precisamos garantir que o texto descreva claramente que o retorno (pagar/não pagar) é uma classe discreta.</p>
-</blockquote>
+<p><strong>Pergunta:</strong> Imagine que uma instituição bancária precisa decidir se um cliente adimplirá (pagará) ou não um empréstimo. Você saberia dizer qual tarefa de mineração de dados está sendo executada?</p>
+<p><strong>Resposta:</strong> Trata-se de uma tarefa de <strong>Classificação</strong> (um tipo de Tarefa Preditiva). Como o objetivo é prever um rótulo categórico discreto (<em>adimplente</em> ou <em>inadimplente</em>), utilizamos modelos de classificação. Se o objetivo fosse prever um valor numérico exato (como o valor da parcela), a tarefa seria de <strong>Regressão</strong>.</p>
+</div>
 </div>
 </div>
 </section>

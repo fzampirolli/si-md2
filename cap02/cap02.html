@@ -317,7 +317,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="27" data-quarto-raw="true">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="8">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -357,14 +357,14 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="28">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="28" data-quarto-raw="true">
+<div class="cell" data-quarto-raw="true" data-execution_count="9">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="9">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </figcaption>
 <div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="28">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 9%">
@@ -447,14 +447,14 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="29">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="29" data-quarto-raw="true">
+<div class="cell" data-quarto-raw="true" data-execution_count="10">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="10">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
 </figcaption>
 <div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="29">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1255,7 +1255,7 @@ a Confiança de cada uma das seis regras possíveis será:
 </section>
 <section id="como-gerar-regras-de-associação-usando-a-ferramenta-weka" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="como-gerar-regras-de-associação-usando-a-ferramenta-weka"><span class="header-section-number">2.6</span> Como Gerar Regras de Associação Usando a Ferramenta Weka</h2>
-<p>Nesta seção será apresentado um pequeno tutorial sobre a geração de Regras de Associação usando o algoritmo “Apriori” implementado na ferramenta de Aprendizado de Máquina para tarefas de Mineração de Dados Weka <span class="citation" data-cites="frank2016weka">(<a href="#ref-frank2016weka" role="doc-biblioref">Frank; Hall; Witten, 2016</a>)</span>. A versão utilizada é a 3.6.7 (<span class="math inline">\(\textcolor{red}{\textbf{versão 3.8.6?}}\)</span>). Para fazer uma simulação no Weka, a Base de Dados terá de ser escrita ou no formato CSV <em>(Comma-Separated Value)</em> (“.csv”) ou no formato “ARFF” <em>(Attribute-Relation File Format)</em>, um formato bastante simples e intuitivo dessa ferramenta. Com o arquivo “.arff” carregado, podemos ajustar os parâmetros Suporte e Confiança e rodar o algoritmo Apriori.</p>
+<p>Nesta seção será apresentado um pequeno tutorial sobre a geração de Regras de Associação usando o algoritmo “Apriori” implementado na ferramenta de Aprendizado de Máquina para tarefas de Mineração de Dados Weka <span class="citation" data-cites="frank2016weka">(<a href="#ref-frank2016weka" role="doc-biblioref">Frank; Hall; Witten, 2016</a>)</span>. A versão utilizada é a 3.6.7 (<span class="math inline">\(\textcolor{red}{\textbf{versão 3.8.6 ou 3.9.* ?}}\)</span>). Para fazer uma simulação no Weka, a Base de Dados terá de ser escrita ou no formato CSV <em>(Comma-Separated Value)</em> (“.csv”) ou no formato “ARFF” <em>(Attribute-Relation File Format)</em>, um formato bastante simples e intuitivo dessa ferramenta. Com o arquivo “.arff” carregado, podemos ajustar os parâmetros Suporte e Confiança e rodar o algoritmo Apriori.</p>
 <p><strong>Passo 1</strong> - Vamos supor que nossa Base de Dados tenha sido retirada de uma planilha eletrônica (“.xls”) e salva no formato “.csv”, como mostra a <a href="#fig-2-2" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>.</p>
 <div id="fig-2-2" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1295,7 +1295,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="30" data-quarto-raw="true">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="11">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1367,7 +1367,7 @@ Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.csv</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="31">
+<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="12">
 <div id="download-csv-only" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -1456,7 +1456,7 @@ Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representa
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="32">
+<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="13">
 <div id="download-arff-only" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMQoKQGF0dHJpYnV0ZSBBIHt5LCBufQpAYXR0cmlidXRlIEIge3ksIG59CkBhdHRyaWJ1dGUgQyB7eSwgbn0KQGF0dHJpYnV0ZSBEIHt5LCBufQpAYXR0cmlidXRlIEUge3ksIG59CkBhdHRyaWJ1dGUgRiB7eSwgbn0KQGF0dHJpYnV0ZSBHIHt5LCBufQoKQGRhdGEKeSx5LG4seSxuLG4sbgpuLG4sbixuLG4seSx5CnkseSx5LHksbixuLG4KeSxuLG4sbix5LHkseQp5LHkseSx5LG4sbixuCg==" download="Transacoes_1.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1539,7 +1539,7 @@ Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representad
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_2.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="33">
+<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="14">
 <div id="download-arff-v2" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMgoKQGF0dHJpYnV0ZSBBIHt5fQpAYXR0cmlidXRlIEIge3l9CkBhdHRyaWJ1dGUgQyB7eX0KQGF0dHJpYnV0ZSBEIHt5fQpAYXR0cmlidXRlIEUge3l9CkBhdHRyaWJ1dGUgRiB7eX0KQGF0dHJpYnV0ZSBHIHt5fQoKQGRhdGEKeSx5LD8seSw/LD8sPwo/LD8sPyw/LD8seSx5CnkseSx5LHksPyw/LD8KeSw/LD8sPyx5LHkseQp5LHkseSx5LD8sPyw/Cg==" download="Transacoes_2.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1579,7 +1579,7 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <section id="prática-1-configuração-e-dados-estruturados" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="prática-1-configuração-e-dados-estruturados"><span class="header-section-number">2.7.2</span> 🔹 Prática 1 — Configuração e Dados Estruturados</h3>
 <p>Retomamos o padrão do capítulo anterior, todos os <code>import</code> no topo, verificação de versões e uso de <strong>dicionários</strong> para estruturar os dados antes de convertê-los em <code>DataFrames</code>.</p>
-<div id="cell-57" class="cell" data-execution_count="34">
+<div id="cell-57" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -1597,9 +1597,9 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy     : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Python    : 3.12.3
-Pandas    : 3.0.1
-NumPy     : 2.4.2
+<pre><code>Python    : 3.9.7
+Pandas    : 2.3.3
+NumPy     : 2.0.2
 ✅ Ambiente pronto!</code></pre>
 </div>
 </div>
@@ -1615,7 +1615,7 @@ NumPy     : 2.4.2
 <blockquote class="blockquote">
 <p>💡 <strong>Novo conceito Python:</strong> <code>set</code> — coleção <strong>sem ordem</strong> e <strong>sem duplicatas</strong>, ideal para operações de conjuntos (∪, ∩, −). Perfeitamente alinhado com a notação matemática de Regras de Associação.</p>
 </blockquote>
-<div id="cell-59" class="cell" data-execution_count="35">
+<div id="cell-59" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Transações: cada elemento é um frozenset (set imutável)</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos frozenset pois sets não são hasheáveis (não podem</span></span>
@@ -1709,7 +1709,7 @@ Vinho     2
 </ul>
 </div>
 </div>
-<div id="cell-61" class="cell" data-execution_count="36">
+<div id="cell-61" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset: <span class="bu">frozenset</span>, transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula o suporte de um itemset nas transações.</span></span>
@@ -1797,7 +1797,7 @@ Queijo → Vinho                0.40       1.00</code></pre>
 </ul>
 </div>
 </div>
-<div id="cell-63" class="cell" data-execution_count="37">
+<div id="cell-63" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1915,41 +1915,41 @@ Regras encontradas (48):
 =======================================================
   Queijo → Vinho [sup=0.40, conf=1.00, lift=2.50]
   Vinho → Queijo [sup=0.40, conf=1.00, lift=2.50]
-  Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
   Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
+  Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
   Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
+  Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
   Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
-  Feijão → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
+  Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
   Batata → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
+  Feijão → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
   Arroz, Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Óleo → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
   Batata → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
+  Óleo → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
   Arroz, Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Óleo → Arroz, Feijão [sup=0.60, conf=1.00, lift=1.67]
+  Arroz, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
   Feijão → Arroz, Óleo [sup=0.60, conf=1.00, lift=1.67]
-  Arroz, Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
+  Óleo → Arroz, Feijão [sup=0.60, conf=1.00, lift=1.67]
   Arroz, Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
-  Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
   Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
   Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
+  Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
   Óleo → Arroz, Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Feijão → Arroz, Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
   Batata → Arroz, Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
+  Feijão → Arroz, Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
+  Batata, Óleo → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
   Feijão, Óleo → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
   Arroz, Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Batata, Óleo → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
   Batata, Feijão → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
   Arroz, Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
   Arroz, Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
   Arroz, Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
   Batata → Arroz [sup=0.40, conf=1.00, lift=1.25]
   Feijão → Arroz [sup=0.60, conf=1.00, lift=1.25]
@@ -1967,7 +1967,7 @@ Regras encontradas (48):
 <section id="prática-5-simulação-do-apriori-clássico-join-prune" class="level3" data-number="2.7.6">
 <h3 data-number="2.7.6" class="anchored" data-anchor-id="prática-5-simulação-do-apriori-clássico-join-prune"><span class="header-section-number">2.7.6</span> 🔹 Prática 5 — Simulação do Apriori Clássico (Join &amp; Prune)</h3>
 <p>Nesta etapa, vamos focar na <strong>Geração de Candidatos</strong> de forma eficiente, como descrito nas obras de <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> e <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>.</p>
-<div id="cell-65" class="cell" data-execution_count="38">
+<div id="cell-65" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prática 5: Implementação da Lógica de "Join" do Apriori</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
@@ -2051,6 +2051,48 @@ Candidatos C3 gerados (após poda): 4
 <li><strong>Poda (Pruning):</strong> Se um candidato a conjunto de 3 itens (ex: <code>{Arroz, Feijão, Batata}</code>) for gerado, mas o subconjunto <code>{Feijão, Batata}</code> não estiver na lista de frequentes anterior, o candidato é descartado imediatamente, antes mesmo de olharmos para a base de dados. Isso economiza processamento computacional massivo.</li>
 <li><strong>Eficiência:</strong> Essa abordagem reduz drasticamente o número de acessos ao disco/memória para contar o suporte, focando apenas no que é estatisticamente promissor.</li>
 </ul>
+<div id="cell-67" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma visualização das conexões fortes encontradas</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesos baseados nos resultados da Tabela 2.13 (cap02.ipynb)</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Os valores (1.0, 0.67, 0.75) representam a Confiança das regras</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>conexoes <span class="op">=</span> [</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="fl">1.0</span>), </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="fl">0.67</span>), </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arroz"</span>, <span class="st">"Óleo"</span>, <span class="fl">0.75</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item1, item2, peso <span class="kw">in</span> conexoes:</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    G.add_edge(item1, item2, weight<span class="op">=</span>peso)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 'seed' garante que o layout seja o mesmo em todas as execuções</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, seed<span class="op">=</span><span class="dv">42</span>) </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Desenha a estrutura básica (nós e linhas)</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>nx.draw(G, pos, with_labels<span class="op">=</span><span class="va">True</span>, node_color<span class="op">=</span><span class="st">'lightgreen'</span>, </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        node_size<span class="op">=</span><span class="dv">3000</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>, edge_color<span class="op">=</span><span class="st">'gray'</span>, </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        width<span class="op">=</span><span class="dv">2</span>, font_size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. EXIBE OS PESOS: Obtém os atributos e desenha os labels sobre as arestas</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>edge_labels <span class="op">=</span> nx.get_edge_attributes(G, <span class="st">'weight'</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edge_labels(G, pos, edge_labels<span class="op">=</span>edge_labels, </span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                             font_color<span class="op">=</span><span class="st">'red'</span>, font_size<span class="op">=</span><span class="dv">12</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Mapa de Associações (Confiança Extraída da Tabela 2.13)"</span>)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cap02_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -2069,7 +2111,7 @@ Candidatos C3 gerados (após poda): 4
 </div>
 <div class="callout-body-container callout-body">
 <p>Para interagir com o conteúdo deste capítulo, acesse o link abaixo. O ambiente contém materiais didáticos em diferentes formatos, gerados a partir do <strong>PDF</strong> do capítulo. Na plataforma, explore especialmente as opções <strong>Guia de Estudo</strong> e <strong>Conversa</strong> para aprofundar sua compreensão.</p>
-<p><a href="https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 02</a></p>
+<p><a href="https://notebooklm.google.com/notebook/421763f5-e597-4ec9-99da-6e0b5ca3e9bb">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 02</a></p>
 </div>
 </div>
 </section>

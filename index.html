@@ -109,35 +109,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -232,7 +203,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#status-do-projeto" id="toc-status-do-projeto" class="nav-link" data-scroll-target="#status-do-projeto">🚧 Status do Projeto</a></li>
   <li><a href="#estrutura-simplificada" id="toc-estrutura-simplificada" class="nav-link" data-scroll-target="#estrutura-simplificada">📂 Estrutura Simplificada</a></li>
-  <li><a href="#regras-de-ouro-para-autores-padrão-quarto" id="toc-regras-de-ouro-para-autores-padrão-quarto" class="nav-link" data-scroll-target="#regras-de-ouro-para-autores-padrão-quarto">🛠️ Regras de Ouro para Autores (Padrão Quarto)</a></li>
   <li><a href="#workflow-rápido-terminal" id="toc-workflow-rápido-terminal" class="nav-link" data-scroll-target="#workflow-rápido-terminal">🔄 Workflow Rápido (Terminal)</a></li>
   <li><a href="#checklist-de-qualidade" id="toc-checklist-de-qualidade" class="nav-link" data-scroll-target="#checklist-de-qualidade">📋 Checklist de Qualidade</a></li>
   </ul></li>
@@ -262,7 +232,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">5 de março de 2026</p>
+      <p class="date">10 de março de 2026</p>
     </div>
   </div>
   
@@ -282,8 +252,8 @@ window.Quarto = {
 <h3 class="unnumbered anchored" data-anchor-id="status-do-projeto">🚧 Status do Projeto</h3>
 <ul>
 <li><strong>Capítulos 1 e 2:</strong> Em fase de revisão final e melhorias nos exemplos em Python.</li>
-<li><strong>Capítulo 3:</strong> Falta incluir exemplos em Python.</li>
-<li><strong>Capítulos 4 e 5:</strong> Parser inicial.</li>
+<li><strong>Capítulos 3, 4 e 5:</strong> Falta incluir exemplos em Python.</li>
+<li><strong>Capítulo 6:</strong> Em construção.</li>
 <li><strong>Foco:</strong> Simplificar os laboratórios em Python para criar exemplos curtos, práticos e <strong>extremamente motivacionais</strong>.</li>
 </ul>
 </section>
@@ -305,7 +275,7 @@ window.Quarto = {
 <li>Copiado <code>si-md1/Sist_Intel_j.md</code> para <code>si-md2/capXX/capXX.ipynb</code> (e ajustes manuais).</li>
 <li>Gerado <code>si-md1/sistemas_inteligentes_impresso.md</code> de <code>si-md1/sistemas_inteligentes_impresso.pdf</code> com tesseract.</li>
 <li>Pequenas correções em <code>si-md2/capXX/capXX.ipynb</code> usando <code>si-md1/sistemas_inteligentes_impresso.md</code>.</li>
-<li>Ajustes manuais para funcionar <code>quarto render</code> em html, ipynb e pdf.</li>
+<li>Ajustes manuais para funcionar <code>quarto render</code> em html, ipynb, pdf e epub.</li>
 </ol>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -325,32 +295,13 @@ window.Quarto = {
     F --&gt; G[HTML]
     F --&gt; H[IPYNB]
     F --&gt; I[PDF]
+    F --&gt; J[ePUB]
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="regras-de-ouro-para-autores-padrão-quarto" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="regras-de-ouro-para-autores-padrão-quarto">🛠️ Regras de Ouro para Autores (Padrão Quarto)</h3>
-<p><strong>1. Referências Cruzadas (Obrigatório incluir o número do capítulo):</strong></p>
-<ul>
-<li><strong>Figuras:</strong> <code>![Legenda](images/fig.png){#fig-3-nome width=50%}</code></li>
-<li><strong>Tabelas:</strong> <code>: Legenda {#tbl-3-nome}</code> (após a tabela).</li>
-<li><strong>Equações:</strong> <code>$$E = mc^2$$ {#eq-3-nome}</code></li>
-<li><strong>Citar no texto:</strong> Use <code>@fig-3-nome</code>, <code>@tbl-3-nome</code> ou <code>@eq-3-nome</code>.</li>
-</ul>
-<p><strong>2. Bibliografia:</strong></p>
-<ul>
-<li>Citação indireta: <code>[@chave]</code> <span class="math inline">\(\rightarrow\)</span> (Autor, Ano).</li>
-<li>Citação direta: <code>@chave</code> <span class="math inline">\(\rightarrow\)</span> Autor (Ano).</li>
-</ul>
-<p><strong>3. Células de Download (Python):</strong> {.unnumbered}</p>
-<ul>
-<li>Devem usar o check <code>if quarto_format in ('html', ''):</code> para não quebrarem a geração do PDF.</li>
-</ul>
 <hr>
 </section>
 <section id="workflow-rápido-terminal" class="level3">
@@ -846,98 +797,78 @@ window.Quarto = {
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição) {.unnumbered}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto** para integrar teoria e prática.</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🚧 Status do Projeto {.unnumbered}</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 1 e 2:** Em fase de revisão final e melhorias nos exemplos em Python.</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 3:** Falta incluir exemplos em Python.</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 4 e 5:** Parser inicial.</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Foco:** Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto** para integrar teoria e prática.</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🚧 Status do Projeto {.unnumbered}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 1 e 2:** Em fase de revisão final e melhorias nos exemplos em Python.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 3, 4 e 5:** Falta incluir exemplos em Python.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 6:** Em construção.</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Foco:** Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📂 Estrutura Simplificada {.unnumbered}</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md1/`**: Material legado (PDF/Docx). **Não editar.**</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md2/`**: **Pasta de trabalho ativa.**</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`_quarto.yml`</span>: Configuração mestre (sumário e temas).</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`capXX/`</span>: Pasta de cada capítulo (**Editar** -- contém o <span class="in">`capXX.ipynb`</span> e <span class="in">`/images`</span>).</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`references.bib`</span>: Base de dados bibliográfica global.</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**`notebooks_alunos/`**: Versão processada para distribuição (gerada via script).</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>**Processo:**</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Gerado <span class="in">`si-md1/Sist_Intel_j.md`</span> de <span class="in">`si-md1/Sist_Intel_j.docx`</span> com pandoc.</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Copiado <span class="in">`si-md1/Sist_Intel_j.md`</span> para <span class="in">`si-md2/capXX/capXX.ipynb`</span> (e ajustes manuais).</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Gerado <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span> de <span class="in">`si-md1/sistemas_inteligentes_impresso.pdf`</span> com tesseract.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Pequenas correções em <span class="in">`si-md2/capXX/capXX.ipynb`</span> usando <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span>.</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Ajustes manuais para funcionar <span class="in">`quarto render`</span> em html, ipynb e pdf.</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.docx**`</span><span class="ot">"</span>] --&gt;|pandoc| B[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.md**`</span><span class="ot">"</span>]</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    C[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.pdf**`</span><span class="ot">"</span>] --&gt;|tesseract| D[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.md**`</span><span class="ot">"</span>]</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    B --&gt;|<span class="ot">"</span><span class="st">cópia + ajustes manuais</span><span class="ot">"</span>| E[<span class="ot">"</span><span class="st">`**si-md2/capXX/capXX.ipynb**`</span><span class="ot">"</span>]</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    D --&gt;|<span class="ot">"</span><span class="st">referência para correções</span><span class="ot">"</span>| E</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    E --&gt;|<span class="ot">"</span><span class="st">ajustes manuais</span><span class="ot">"</span>| F[<span class="ot">"</span><span class="st">`**quarto render**`</span><span class="ot">"</span>]</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[HTML]</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    F --&gt; H[IPYNB]</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    F --&gt; I[PDF]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📂 Estrutura Simplificada {.unnumbered}</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md1/`**: Material legado (PDF/Docx). **Não editar.**</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md2/`**: **Pasta de trabalho ativa.**</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`_quarto.yml`</span>: Configuração mestre (sumário e temas).</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`capXX/`</span>: Pasta de cada capítulo (**Editar** -- contém o <span class="in">`capXX.ipynb`</span> e <span class="in">`/images`</span>).</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`references.bib`</span>: Base de dados bibliográfica global.</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**`notebooks_alunos/`**: Versão processada para distribuição (gerada via script).</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>**Processo:**</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Gerado <span class="in">`si-md1/Sist_Intel_j.md`</span> de <span class="in">`si-md1/Sist_Intel_j.docx`</span> com pandoc.</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Copiado <span class="in">`si-md1/Sist_Intel_j.md`</span> para <span class="in">`si-md2/capXX/capXX.ipynb`</span> (e ajustes manuais).</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Gerado <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span> de <span class="in">`si-md1/sistemas_inteligentes_impresso.pdf`</span> com tesseract.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Pequenas correções em <span class="in">`si-md2/capXX/capXX.ipynb`</span> usando <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span>.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Ajustes manuais para funcionar <span class="in">`quarto render`</span> em html, ipynb, pdf e epub.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.docx**`</span><span class="ot">"</span>] --&gt;|pandoc| B[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.md**`</span><span class="ot">"</span>]</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    C[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.pdf**`</span><span class="ot">"</span>] --&gt;|tesseract| D[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.md**`</span><span class="ot">"</span>]</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    B --&gt;|<span class="ot">"</span><span class="st">cópia + ajustes manuais</span><span class="ot">"</span>| E[<span class="ot">"</span><span class="st">`**si-md2/capXX/capXX.ipynb**`</span><span class="ot">"</span>]</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    D --&gt;|<span class="ot">"</span><span class="st">referência para correções</span><span class="ot">"</span>| E</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    E --&gt;|<span class="ot">"</span><span class="st">ajustes manuais</span><span class="ot">"</span>| F[<span class="ot">"</span><span class="st">`**quarto render**`</span><span class="ot">"</span>]</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[HTML]</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    F --&gt; H[IPYNB]</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    F --&gt; I[PDF]</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    F --&gt; J[ePUB]</span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🛠️ Regras de Ouro para Autores (Padrão Quarto) {.unnumbered}</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔄 Workflow Rápido (Terminal)</span></span>
 <span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>**1. Referências Cruzadas (Obrigatório incluir o número do capítulo):**</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Figuras:** <span class="in">`![Legenda](images/fig.png){#fig-3-nome width=50%}`</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Tabelas:** <span class="in">`: Legenda {#tbl-3-nome}`</span> (após a tabela).</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Equações:** <span class="in">`$$E = mc^2$$ {#eq-3-nome}`</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Citar no texto:** Use <span class="in">`@fig-3-nome`</span>, <span class="in">`@tbl-3-nome`</span> ou <span class="in">`@eq-3-nome`</span>.</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>**2. Bibliografia:** </span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Citação indireta: <span class="in">`[@chave]`</span> $\rightarrow$ (Autor, Ano).</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Citação direta: <span class="in">`@chave`</span> $\rightarrow$ Autor (Ano).</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Atualizar:** <span class="in">`git pull origin main`</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Limpar caches:** <span class="in">`./limpar.sh`</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Gerar Versão Aluno:** <span class="in">`python gerar_notebooks_alunos.py --batch references.bib`</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Publicar Tudo (HTML+PDF+Git):** <span class="in">`./publish_all.sh`</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Manual (Git):**</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Explique sua alteração"</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>**3. Células de Download (Python):** {.unnumbered}</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Devem usar o check <span class="in">`if quarto_format in ('html', ''):`</span> para não quebrarem a geração do PDF.</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📋 Checklist de Qualidade</span></span>
 <span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔄 Workflow Rápido (Terminal)</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Atualizar:** <span class="in">`git pull origin main`</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Limpar caches:** <span class="in">`./limpar.sh`</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Gerar Versão Aluno:** <span class="in">`python gerar_notebooks_alunos.py --batch references.bib`</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Publicar Tudo (HTML+PDF+Git):** <span class="in">`./publish_all.sh`</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Manual (Git):**</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Explique sua alteração"</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📋 Checklist de Qualidade</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Imagens estão na pasta <span class="in">`images/`</span> interna do capítulo?</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Labels começam com o prefixo correto (<span class="in">`fig-`</span>, <span class="in">`tbl-`</span>, <span class="in">`eq-`</span>) e o número do capítulo?</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O arquivo <span class="in">`references.bib`</span> foi atualizado com as novas obras?</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O código do notebook executa do início ao fim sem erros?</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Imagens estão na pasta <span class="in">`images/`</span> interna do capítulo?</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Labels começam com o prefixo correto (<span class="in">`fig-`</span>, <span class="in">`tbl-`</span>, <span class="in">`eq-`</span>) e o número do capítulo?</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O arquivo <span class="in">`references.bib`</span> foi atualizado com as novas obras?</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O código do notebook executa do início ao fim sem erros?</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>---</span>
 </code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
