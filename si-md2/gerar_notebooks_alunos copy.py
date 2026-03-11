@@ -332,6 +332,18 @@ def md_table_to_html(md: str) -> str:
         f'</table>'
     )
 
+def resolve_crossrefs_to_html(text: str, elem_map: dict) -> str:
+    """Resolve @tbl-*, @fig-*, @eq-* para <a href> HTML (não Markdown)."""
+    def _replace(m):
+        elem_id = m.group(1)
+        info = elem_map.get(elem_id)
+        if not info:
+            return m.group(0)
+        kind = info.get("kind", elem_id.split('-')[0])
+        prefix = "Tabela" if kind == "tbl" else "Figura" if kind == "fig" else "Equação"
+        num = info.get("num_str", "")
+        return f'<a href="#{elem_id}">{prefix} {num}</a>'
+    return re.sub(r'@((fig|tbl|eq)-[\w-]+)', _replace, text)
 
 def convert_callouts(text: str, elem_map: dict) -> str:
     """
@@ -560,6 +572,17 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                             cap_text = ""
                             if old_m:
                                 tbl_src = tbl_src[:old_m.start()].strip()
+
+                        # info = elem_map.get(tbl_id) if tbl_id else None
+                        # if info:
+                        #     cap_label = f'<strong>{info["label_prefix"]}</strong> {cap_text}' if cap_text else f'<strong>{info["label_prefix"]}</strong>'
+                        #     anchor    = f'<a id="{tbl_id}"></a>\n'
+                        # else:
+                        #     cap_label = f'<strong>{cap_text}</strong>' if cap_text else ""
+                        #     anchor    = f'<a id="{tbl_id}"></a>\n' if tbl_id else ""
+
+                        # Resolve @tbl-* @fig-* na legenda ANTES de montar o HTML
+                        cap_text = resolve_crossrefs_to_html(cap_text, elem_map)
 
                         info = elem_map.get(tbl_id) if tbl_id else None
                         if info:

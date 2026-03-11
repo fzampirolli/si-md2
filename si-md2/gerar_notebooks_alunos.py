@@ -215,13 +215,22 @@ IMG_DEF_RE = re.compile(
 #     re.MULTILINE
 # )
 # Tabela Markdown: busca o ID {#tbl- explicitamente para não confundir com LaTeX \frac{}{}
+# TBL_MD_RE = re.compile(
+#     r'((?:[ \t]*\|[^\n]+\n)+)'           # bloco de linhas | col |
+#     r'(?:'
+#         r'\n?[ \t]*: ([^\n{]*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
+#         r'|'
+#         r'[ \t]*\{#(tbl-[\w-]+)[^}]*\}'  # antiga: {#tbl-X} direto
+#     r')',
+#     re.MULTILINE | re.DOTALL
+# )
+# Tabela Markdown: busca o ID {#tbl- explicitamente e suporta LaTeX na legenda
 TBL_MD_RE = re.compile(
-    r'((?:[ \t]*\|[^\n]+\n)+)'           # bloco de linhas | col |
-    r'(?:'
-        r'\n?[ \t]*: ([^\n{]*?)\s*\{#(tbl-[\w-]+)[^}]*\}'  # Quarto: : Legenda {#tbl-X}
-        r'|'
-        r'[ \t]*\{#(tbl-[\w-]+)[^}]*\}'  # antiga: {#tbl-X} direto
-    r')',
+    r'((?:[ \t]*\|[^\n]+\n)+)'           # 1. Bloco de linhas da tabela
+    r'(?:\n[ \t]*: (.*?)\s*\{#(tbl-[\w-]+)[^}]*\})' # 2. Legenda Quarto e 3. ID
+    r'|'                                 # OU
+    r'((?:[ \t]*\|[^\n]+\n)+)'           # 4. Bloco de linhas (caso sem legenda : )
+    r'(?:[ \t]*\{#(tbl-[\w-]+)[^}]*\})', # 5. ID (sintaxe antiga)
     re.MULTILINE | re.DOTALL
 )
 
