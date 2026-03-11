@@ -888,12 +888,16 @@ def fix_textcolor_inline(text: str) -> str:
         text
     )
 
-     # [texto]{color="X"} -> <font color="X">texto</font>  (sintaxe Pandoc multi-formato: HTML+PDF+Colab)
+    # [texto]{color="X"} -> <font color="X">texto</font>  (sintaxe Pandoc multi-formato: HTML+PDF+Colab)
     text = re.sub(
         r'\[([^\]]+)\]\{color="([^"]+)"\}',
         r'<font color="\2">\1</font>',
         text
     )
+
+    # Converte \textbf{texto} para **texto**
+    text = re.sub(r'\\textbf\{((?:[^{}]|\{[^{}]*\})*)\}', r'**\1**', text)
+
 
     for key, val in placeholders.items():
         text = text.replace(key, val)
