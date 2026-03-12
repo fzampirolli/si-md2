@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.28">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>2&nbsp; Mineração de Dados e Regras de Associação – Sistemas Inteligentes e Mineração de Dados</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -92,14 +89,15 @@ div.csl-indent {
 <link href="../cap01/cap01.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-49e51e44f424ea8c7044b429bdbbbfe2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-59cb2755e9fdc26506ad51b1a5643527.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,7 +130,7 @@ div.csl-indent {
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -319,7 +317,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="3">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="95" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -359,15 +357,15 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="4">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="4">
+<div class="cell" data-quarto-raw="true" data-execution_count="96">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="96" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </figcaption>
 <div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
-<table class="cell caption-top table table-sm table-striped small">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="96">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 9%">
 <col style="width: 12%">
@@ -449,15 +447,15 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="5">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="5">
+<div class="cell" data-quarto-raw="true" data-execution_count="97">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="97" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
 </figcaption>
 <div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
-<table class="cell caption-top table table-sm table-striped small">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="97">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Dia</th>
@@ -1297,7 +1295,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="6">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="98" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1369,7 +1367,7 @@ Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.csv</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="7">
+<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="99">
 <div id="download-csv-only" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -1458,7 +1456,7 @@ Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representa
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="8">
+<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="100">
 <div id="download-arff-only" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMQoKQGF0dHJpYnV0ZSBBIHt5LCBufQpAYXR0cmlidXRlIEIge3ksIG59CkBhdHRyaWJ1dGUgQyB7eSwgbn0KQGF0dHJpYnV0ZSBEIHt5LCBufQpAYXR0cmlidXRlIEUge3ksIG59CkBhdHRyaWJ1dGUgRiB7eSwgbn0KQGF0dHJpYnV0ZSBHIHt5LCBufQoKQGRhdGEKeSx5LG4seSxuLG4sbgpuLG4sbixuLG4seSx5CnkseSx5LHksbixuLG4KeSxuLG4sbix5LHkseQp5LHkseSx5LG4sbixuCg==" download="Transacoes_1.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1541,7 +1539,7 @@ Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representad
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_2.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="9">
+<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="101">
 <div id="download-arff-v2" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMgoKQGF0dHJpYnV0ZSBBIHt5fQpAYXR0cmlidXRlIEIge3l9CkBhdHRyaWJ1dGUgQyB7eX0KQGF0dHJpYnV0ZSBEIHt5fQpAYXR0cmlidXRlIEUge3l9CkBhdHRyaWJ1dGUgRiB7eX0KQGF0dHJpYnV0ZSBHIHt5fQoKQGRhdGEKeSx5LD8seSw/LD8sPwo/LD8sPyw/LD8seSx5CnkseSx5LHksPyw/LD8KeSw/LD8sPyx5LHkseQp5LHkseSx5LD8sPyw/Cg==" download="Transacoes_2.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1581,7 +1579,7 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <section id="prática-1-configuração-e-dados-estruturados" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="prática-1-configuração-e-dados-estruturados"><span class="header-section-number">2.7.2</span> 🔹 Prática 1 — Configuração e Dados Estruturados</h3>
 <p>Retomamos o padrão do capítulo anterior, todos os <code>import</code> no topo, verificação de versões e uso de <strong>dicionários</strong> para estruturar os dados antes de convertê-los em <code>DataFrames</code>.</p>
-<div id="cell-57" class="cell" data-execution_count="10">
+<div id="cell-57" class="cell" data-execution_count="102">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -1599,9 +1597,9 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy     : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Python    : 3.12.3
-Pandas    : 3.0.1
-NumPy     : 2.4.2
+<pre><code>Python    : 3.9.7
+Pandas    : 2.3.3
+NumPy     : 2.0.2
 ✅ Ambiente pronto!</code></pre>
 </div>
 </div>
@@ -1617,7 +1615,7 @@ NumPy     : 2.4.2
 <blockquote class="blockquote">
 <p>💡 <strong>Novo conceito Python:</strong> <code>set</code> — coleção <strong>sem ordem</strong> e <strong>sem duplicatas</strong>, ideal para operações de conjuntos (<span class="math inline">\(\cup\)</span>, <span class="math inline">\(\cap\)</span>, <span class="math inline">\(-\)</span>). Perfeitamente alinhado com a notação matemática de Regras de Associação.</p>
 </blockquote>
-<div id="cell-59" class="cell" data-execution_count="11">
+<div id="cell-59" class="cell" data-execution_count="103">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Transações: cada elemento é um frozenset (set imutável)</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos frozenset pois sets não são hasheáveis (não podem</span></span>
@@ -1636,36 +1634,38 @@ NumPy     : 2.4.2
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>},</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>transacoes <span class="op">=</span> [<span class="bu">frozenset</span>(t) <span class="cf">for</span> t <span class="kw">in</span> transacoes_raw]</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Universo de itens únicos com ORDEM CUSTOMIZADA</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Em vez de usar sorted(), definimos a ordem manualmente:</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>todos_itens <span class="op">=</span> [<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>, <span class="st">"Água"</span>, <span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>]</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(transacoes)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Transações (N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">):"</span>)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(transacoes, start<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mantemos o sorted aqui apenas para visualização da lista no print</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  T</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">sorted</span>(t)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Representação booleana com Pandas</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>df_bool <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Para cada transação, verifica a presença de cada item na ordem de todos_itens</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    [[item <span class="kw">in</span> t <span class="cf">for</span> item <span class="kw">in</span> todos_itens] <span class="cf">for</span> t <span class="kw">in</span> transacoes],</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>todos_itens,</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="ss">f"T</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N<span class="op">+</span><span class="dv">1</span>)]</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">int</span>)</span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Representação Booleana:"</span>)</span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_bool.to_string())</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Frequência por item (na ordem da tabela):"</span>)</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_bool.<span class="bu">sum</span>().to_string())</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de transações convertidas: </span><span class="sc">{</span><span class="bu">len</span>(transacoes)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Universo de itens únicos com ORDEM CUSTOMIZADA</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Em vez de usar sorted(), definimos a ordem manualmente:</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>todos_itens <span class="op">=</span> [<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>, <span class="st">"Água"</span>, <span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>]</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(transacoes)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Transações (N=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">):"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, t <span class="kw">in</span> <span class="bu">enumerate</span>(transacoes, start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mantemos o sorted aqui apenas para visualização da lista no print</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  T</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">sorted</span>(t)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Representação booleana com Pandas</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>df_bool <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Para cada transação, verifica a presença de cada item na ordem de todos_itens</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    [[item <span class="kw">in</span> t <span class="cf">for</span> item <span class="kw">in</span> todos_itens] <span class="cf">for</span> t <span class="kw">in</span> transacoes],</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>todos_itens,</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="ss">f"T</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, N<span class="op">+</span><span class="dv">1</span>)]</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">int</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Representação Booleana:"</span>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_bool.to_string())</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Frequência por item (na ordem da tabela):"</span>)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_bool.<span class="bu">sum</span>().to_string())</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Transações (N=5):
+<pre><code>Total de transações convertidas: 5
+Transações (N=5):
   T1: ['Arroz', 'Feijão', 'Óleo']
   T2: ['Queijo', 'Vinho']
   T3: ['Arroz', 'Batata', 'Feijão', 'Óleo']
@@ -1718,342 +1718,441 @@ Vinho     2</code></pre>
 </ul>
 </div>
 </div>
-<div id="cell-61" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Definição das Funções de Cálculo (Baseadas no texto teórico)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset: <span class="bu">frozenset</span>, transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula o suporte de um itemset (proporção de transações que o contêm).</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Reflete a cobertura da regra no conjunto total N.</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    contagem <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> transacoes <span class="cf">if</span> itemset.issubset(t))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contagem <span class="op">/</span> <span class="bu">len</span>(transacoes)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_confianca(antecedente: <span class="bu">frozenset</span>, consequente: <span class="bu">frozenset</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                       transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula a confiança (precisão) da regra X → Y.</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Determina a probabilidade de Y estar presente dado que X está presente.</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    sup_antec <span class="op">=</span> calcular_suporte(antecedente, transacoes)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sup_antec <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Confiança = Sup(X ∪ Y) / Sup(X)</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    sup_uniao <span class="op">=</span> calcular_suporte(antecedente <span class="op">|</span> consequente, transacoes)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sup_uniao <span class="op">/</span> sup_antec</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Configuração dos parâmetros do exemplo</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>sup_min <span class="op">=</span> <span class="fl">0.4</span>  <span class="co"># 40%</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>conf_min <span class="op">=</span> <span class="fl">0.9</span> <span class="co"># 90%</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Teste das 6 regras possíveis para o CF = {Arroz, Feijão, Batata}</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Representando o CF = {A, B, C} do texto</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>itemset_cf <span class="op">=</span> <span class="bu">frozenset</span>([<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>])</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>itens_lista <span class="op">=</span> <span class="bu">list</span>(itemset_cf)</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Análise do Conjunto Frequente: </span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">list</span>(itemset_cf))<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Suporte do CF: </span><span class="sc">{</span>calcular_suporte(itemset_cf, transacoes)<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Regra (S -&gt; CF-S)'</span><span class="sc">:&lt;30}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Conf.'</span><span class="sc">:&gt;8}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Status'</span><span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">55</span>)</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Gera todas as combinações de subconjuntos S (Etapa 2 do Apriori)</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(itens_lista)):</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> combo <span class="kw">in</span> combinations(itens_lista, r):</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>        S <span class="op">=</span> <span class="bu">frozenset</span>(combo)</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>        consequente <span class="op">=</span> itemset_cf <span class="op">-</span> S</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        conf <span class="op">=</span> calcular_confianca(S, consequente, transacoes)</span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Tradução da lógica: "apenas três das regras acima seriam aproveitadas"</span></span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"ACEITA ✅"</span> <span class="cf">if</span> conf <span class="op">&gt;=</span> conf_min <span class="cf">else</span> <span class="st">"REJEITADA ❌"</span></span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">list</span>(S))<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">list</span>(consequente))<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">:&lt;30}</span><span class="ss"> </span><span class="sc">{</span>conf<span class="sc">:&gt;8.2f}</span><span class="ss"> </span><span class="sc">{</span>status<span class="sc">:&gt;12}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-2-grafo-analise" class="cell" data-quarto-raw="true">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Funções de Cálculo</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset, transacoes):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># O uso do Generators '1 for t...' economiza memória em bases volumosas</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Garante que o itemset seja um conjunto, mesmo que o aluno passe uma lista</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(itemset, (<span class="bu">frozenset</span>, <span class="bu">set</span>)):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        itemset <span class="op">=</span> <span class="bu">frozenset</span>(itemset) <span class="cf">if</span> <span class="bu">isinstance</span>(itemset, <span class="bu">list</span>) <span class="cf">else</span> <span class="bu">frozenset</span>([itemset])</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    contagem <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> transacoes <span class="cf">if</span> itemset.issubset(t))</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contagem <span class="op">/</span> <span class="bu">len</span>(transacoes)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_confianca(antecedente: <span class="bu">frozenset</span>, consequente: <span class="bu">frozenset</span>, transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    sup_antec <span class="op">=</span> calcular_suporte(antecedente, transacoes)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sup_antec <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">0.0</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> calcular_suporte(antecedente <span class="op">|</span> consequente, transacoes) <span class="op">/</span> sup_antec</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Configuração e Dados</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>sup_min, conf_min <span class="op">=</span> <span class="fl">0.4</span>, <span class="fl">0.9</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>transacoes_raw <span class="op">=</span> [</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Óleo"</span>},</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>},</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>},</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Água"</span>, <span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>},</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>},</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>transacoes <span class="op">=</span> [<span class="bu">frozenset</span>(t) <span class="cf">for</span> t <span class="kw">in</span> transacoes_raw]</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de transações convertidas: </span><span class="sc">{</span><span class="bu">len</span>(transacoes)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co"># USO DO DEFAULTDICT: Contagem de suporte individual</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>contagem_absoluta <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> transacoes:</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> t:</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>        contagem_absoluta[item] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de uso: filtrando apenas itens que atendem ao suporte mínimo</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>itens_frequentes_l1 <span class="op">=</span> {item <span class="cf">for</span> item, count <span class="kw">in</span> contagem_absoluta.items() </span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>                       <span class="cf">if</span> (count <span class="op">/</span> <span class="bu">len</span>(transacoes)) <span class="op">&gt;=</span> sup_min}</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Itens que passaram na poda de suporte (L1): </span><span class="sc">{</span>itens_frequentes_l1<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Análise de Regras e Grafo</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>itemset_cf <span class="op">=</span> <span class="bu">frozenset</span>([<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>])</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>itens_lista <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">list</span>(itemset_cf))</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.DiGraph()</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="co"># CABEÇALHO CORRIGIDO: Alinhado com a largura das colunas de dados</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Regra (S -&gt; CF-S)'</span><span class="sc">:&lt;47}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Conf.'</span><span class="sc">:&gt;10}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Status'</span><span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">72</span>)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(itens_lista)):</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> combo <span class="kw">in</span> combinations(itens_lista, r):</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>        S <span class="op">=</span> <span class="bu">frozenset</span>(combo)</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>        consequente <span class="op">=</span> itemset_cf <span class="op">-</span> S</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>        conf <span class="op">=</span> calcular_confianca(S, consequente, transacoes)</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Formatação das strings para o print e para o grafo</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>        antec_str <span class="op">=</span> <span class="bu">str</span>(<span class="bu">sorted</span>(<span class="bu">list</span>(S)))</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>        conseq_str <span class="op">=</span> <span class="bu">str</span>(<span class="bu">sorted</span>(<span class="bu">list</span>(consequente)))</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>        label_regra <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>antec_str<span class="sc">:&lt;22}</span><span class="ss"> -&gt; </span><span class="sc">{</span>conseq_str<span class="sc">:&lt;20}</span><span class="ss">"</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> conf <span class="op">&gt;=</span> conf_min:</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>            status <span class="op">=</span> <span class="st">"ACEITA ✅"</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>            G.add_edge(<span class="st">", "</span>.join(<span class="bu">sorted</span>(S)), <span class="st">", "</span>.join(<span class="bu">sorted</span>(consequente)), weight<span class="op">=</span>conf)</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>            status <span class="op">=</span> <span class="st">"REJEITADA ❌"</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label_regra<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>conf<span class="sc">:&gt;10.2f}</span><span class="ss"> </span><span class="sc">{</span>status<span class="sc">:&gt;12}</span><span class="ss">"</span>)</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Visualização Minimalista (Sem discos, foco em setas e nomes)</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, k<span class="op">=</span><span class="fl">1.5</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">11</span>, font_weight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, arrowsize<span class="op">=</span><span class="dv">30</span>, edge_color<span class="op">=</span><span class="st">'gray'</span>, </span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>                       connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.15"</span>) </span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>labels_pesos <span class="op">=</span> {k: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.2f}</span><span class="ss">"</span> <span class="cf">for</span> k, v <span class="kw">in</span> nx.get_edge_attributes(G, <span class="st">'weight'</span>).items()}</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edge_labels(G, pos, edge_labels<span class="op">=</span>labels_pesos, font_color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Análise do Conjunto Frequente: ['Arroz', 'Batata', 'Feijão']
-Suporte do CF: 0.40
+<pre><code>Total de transações convertidas: 5
+Itens que passaram na poda de suporte (L1): {'Óleo', 'Arroz', 'Feijão', 'Queijo', 'Vinho', 'Batata'}
 
-Regra (S -&gt; CF-S)                 Conf.       Status
--------------------------------------------------------
-['Feijão'] -&gt; ['Arroz', 'Batata']     0.67  REJEITADA ❌
-['Batata'] -&gt; ['Arroz', 'Feijão']     1.00     ACEITA ✅
-['Arroz'] -&gt; ['Batata', 'Feijão']     0.50  REJEITADA ❌
-['Batata', 'Feijão'] -&gt; ['Arroz']     1.00     ACEITA ✅
-['Arroz', 'Feijão'] -&gt; ['Batata']     0.67  REJEITADA ❌
-['Arroz', 'Batata'] -&gt; ['Feijão']     1.00     ACEITA ✅</code></pre>
+Regra (S -&gt; CF-S)                                    Conf.       Status
+------------------------------------------------------------------------
+['Arroz']              -&gt; ['Batata', 'Feijão']       0.50  REJEITADA ❌
+['Batata']             -&gt; ['Arroz', 'Feijão']        1.00     ACEITA ✅
+['Feijão']             -&gt; ['Arroz', 'Batata']        0.67  REJEITADA ❌
+['Arroz', 'Batata']    -&gt; ['Feijão']                 1.00     ACEITA ✅
+['Arroz', 'Feijão']    -&gt; ['Batata']                 0.67  REJEITADA ❌
+['Batata', 'Feijão']   -&gt; ['Arroz']                  1.00     ACEITA ✅</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-2-grafo-analise" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-grafo-analise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap02_files/figure-html/fig-2-grafo-analise-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-grafo-analise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.14: Grafo de associação: setas indicam a direção da regra e valores representam a confiança (conf_min=0.9).
+</figcaption>
+</figure>
 </div>
 </div>
+</div>
+<p>A implementação apresentada automatiza a Etapa 2 do algoritmo Apriori, transformando o conjunto frequente identificado em regras de associação candidatas. O código utiliza <strong>Generators</strong> para calcular o suporte de forma eficiente em termos de memória e um <strong>defaultdict</strong> para organizar a contagem inicial dos itens (<strong>L1</strong>). Ao calcular a confiança para cada combinação gerada pela função <strong>combinations</strong>, o sistema aplica uma poda baseada no limiar <code>conf_min</code>. As regras sobreviventes são apresentadas na <a href="#fig-2-grafo-analise" class="quarto-xref">Figura&nbsp;<span>2.14</span></a>, onde a ausência de vértices circulares destaca os itens, e as setas indicam o fluxo lógico (SE <span class="math inline">\(\to\)</span> ENTÃO). Os valores em vermelho sobre as arestas representam a confiança, confirmando a precisão estatística de cada associação descoberta no dataset. Essa abordagem garante que apenas combinações de itens que superaram a poda inicial de suporte sejam processadas, otimizando a descoberta de padrões relevantes.</p>
 </section>
 <section id="prática-4-algoritmo-apriori-simplificado" class="level3" data-number="2.7.5">
 <h3 data-number="2.7.5" class="anchored" data-anchor-id="prática-4-algoritmo-apriori-simplificado"><span class="header-section-number">2.7.5</span> 🔹 Prática 4 — Algoritmo Apriori Simplificado</h3>
-<p>O algoritmo <strong>Apriori</strong> <span class="citation" data-cites="agrawal1993mining">(<a href="#ref-agrawal1993mining" role="doc-biblioref">Agrawal; Imieliński; Swami, 1993</a>)</span> é o mais clássico para mineração de regras de associação. Sua ideia central é a <strong>propriedade anti-monotônica do suporte</strong>:</p>
-<blockquote class="blockquote">
-<p>Se um itemset tem suporte <em>menor</em> que o mínimo, nenhum de seus superconjuntos pode ter suporte maior.</p>
-</blockquote>
-<p>Isso permite <strong>podar</strong> o espaço de busca exponencialmente.</p>
+<p>O algoritmo <strong>Apriori</strong> <span class="citation" data-cites="agrawal1993mining">(<a href="#ref-agrawal1993mining" role="doc-biblioref">Agrawal; Imieliński; Swami, 1993</a>)</span> é o mais clássico para mineração de regras de associação. Sua ideia central é a <strong>propriedade anti-monotônica do suporte</strong>: se um itemset tem suporte menor que o mínimo, nenhum de seus superconjuntos pode ter suporte maior. Isso permite podar o espaço de busca exponencialmente.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Dica</span>💡 Novos conceitos Python para Estruturação de Dados
+<span class="screen-reader-only">Dica</span>Novos conceitos Python para Estruturação de Dados
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Para evoluir a implementação dos algoritmos de Mineração de Dados, o Python moderno oferece estruturas que tornam o código mais legível e eficiente:</p>
 <ul>
-<li><strong><code>dataclass</code> (Python 3.7+)</strong>: Forma moderna de criar classes de dados. Gera automaticamente métodos úteis como <code>__init__</code> e <code>__repr__</code>, facilitando a visualização de transações complexas sem código repetitivo.</li>
-<li><strong><code>typing.NamedTuple</code></strong>: Uma alternativa imutável para armazenar resultados (como pares de itens e seus suportes). É mais leve que uma classe comum e permite acessar os dados por nome (ex: <code>resultado.suporte</code>) em vez de apenas índices.</li>
-<li><strong>Recursão Controlada</strong>: Técnica de programação para gerar itemsets de tamanho <span class="math inline">\(k\)</span> a partir de <span class="math inline">\(k-1\)</span>. É vital aplicar um limite de tamanho para evitar o estouro de memória ao processar combinações em bases com muitos itens diferentes.</li>
+<li><strong><code>dataclass</code> e <code>__post_init__</code></strong>: Além de gerar o construtor automaticamente, usamos o método <code>__post_init__</code> para calcular métricas derivadas (como o <strong>Lift</strong>) no momento em que a regra é criada, garantindo integridade aos dados.</li>
+<li><strong><code>itertools.combinations</code></strong>: Em vez de gerir laços manuais complexos, utilizamos esta função para gerar candidatos a conjuntos frequentes de forma exaustiva e otimizada, sendo o motor da Etapa 1 do Apriori.</li>
+<li><strong>Tipagem Estática (<code>typing</code>)</strong>: O uso de anotações como <code>list[frozenset]</code> ajuda na legibilidade e permite que ferramentas de análise identifiquem erros antes da execução, algo vital em projetos de Ciência de Dados.</li>
 </ul>
 </div>
 </div>
-<div id="cell-63" class="cell" data-execution_count="13">
+<div id="cell-fig-apriori-final" class="cell" data-quarto-raw="true" data-execution_count="105">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RegraAssociacao:</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Representa uma regra de associação com suas métricas."""</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    antecedente: <span class="bu">frozenset</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    consequente: <span class="bu">frozenset</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    suporte:    <span class="bu">float</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    confianca:  <span class="bu">float</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    lift:       <span class="bu">float</span> <span class="op">=</span> field(init<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> __post_init__(<span class="va">self</span>):</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Lift = confiança / suporte do consequente</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Lift &gt; 1: associação positiva; &lt; 1: negativa; = 1: independência</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        sup_cons <span class="op">=</span> calcular_suporte(<span class="va">self</span>.consequente, transacoes)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lift <span class="op">=</span> <span class="va">self</span>.confianca <span class="op">/</span> sup_cons <span class="cf">if</span> sup_cons <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Funções de Cálculo (Baseadas na Prática 3) ---</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset, transacoes):</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(itemset, (<span class="bu">frozenset</span>, <span class="bu">set</span>)):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        itemset <span class="op">=</span> <span class="bu">frozenset</span>(itemset) <span class="cf">if</span> <span class="bu">isinstance</span>(itemset, <span class="bu">list</span>) <span class="cf">else</span> <span class="bu">frozenset</span>([itemset])</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    contagem <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> transacoes <span class="cf">if</span> itemset.issubset(t))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contagem <span class="op">/</span> <span class="bu">len</span>(transacoes)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_confianca(antecedente, consequente, transacoes):</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    sup_ant <span class="op">=</span> calcular_suporte(antecedente, transacoes)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> calcular_suporte(antecedente <span class="op">|</span> consequente, transacoes) <span class="op">/</span> sup_ant <span class="cf">if</span> sup_ant <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        ant <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">sorted</span>(<span class="va">self</span>.antecedente))</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        con <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">sorted</span>(<span class="va">self</span>.consequente))</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (<span class="ss">f"</span><span class="sc">{</span>ant<span class="sc">}</span><span class="ss"> → </span><span class="sc">{</span>con<span class="sc">}</span><span class="ss"> "</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"[sup=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>suporte<span class="sc">:.2f}</span><span class="ss">, conf=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>confianca<span class="sc">:.2f}</span><span class="ss">, "</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"lift=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>lift<span class="sc">:.2f}</span><span class="ss">]"</span>)</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori(transacoes: <span class="bu">list</span>, sup_min: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.4</span>,</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>            conf_min: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.6</span>) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">    Implementação simplificada do algoritmo Apriori.</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">        transacoes: lista de frozensets.</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">        sup_min: suporte mínimo (0.0 – 1.0).</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">        conf_min: confiança mínima (0.0 – 1.0).</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">        Lista de RegraAssociacao ordenada por lift (decrescente).</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    itens <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>().union(<span class="op">*</span>transacoes))</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    regras: <span class="bu">list</span>[RegraAssociacao] <span class="op">=</span> []</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RegraAssociacao:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Estrutura moderna para armazenamento e cálculo de métricas."""</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    antecedente: <span class="bu">frozenset</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    consequente: <span class="bu">frozenset</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    suporte: <span class="bu">float</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    confianca: <span class="bu">float</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    lift: <span class="bu">float</span> <span class="op">=</span> field(init<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> __post_init__(<span class="va">self</span>):</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># O Lift é calculado automaticamente na criação do objeto</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        sup_cons <span class="op">=</span> calcular_suporte(<span class="va">self</span>.consequente, transacoes)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lift <span class="op">=</span> <span class="va">self</span>.confianca <span class="op">/</span> sup_cons <span class="cf">if</span> sup_cons <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        ant <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">sorted</span>(<span class="va">self</span>.antecedente))</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        con <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">sorted</span>(<span class="va">self</span>.consequente))</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"  </span><span class="sc">{</span>ant<span class="sc">:&lt;20}</span><span class="ss"> → </span><span class="sc">{</span>con<span class="sc">:&lt;20}</span><span class="ss"> [sup=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>suporte<span class="sc">:.2f}</span><span class="ss">, conf=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>confianca<span class="sc">:.2f}</span><span class="ss">, lift=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>lift<span class="sc">:.2f}</span><span class="ss">]"</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori(transacoes, sup_min<span class="op">=</span><span class="fl">0.4</span>, conf_min<span class="op">=</span><span class="fl">0.6</span>):</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    itens <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>().union(<span class="op">*</span>transacoes))</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    frequentes <span class="op">=</span> []</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    candidatos_k <span class="op">=</span> [<span class="bu">frozenset</span>([i]) <span class="cf">for</span> i <span class="kw">in</span> itens]</span>
 <span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- Passo 1: itemsets frequentes ---</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    frequentes: <span class="bu">list</span>[<span class="bu">frozenset</span>] <span class="op">=</span> []</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    candidatos_k <span class="op">=</span> [<span class="bu">frozenset</span>([i]) <span class="cf">for</span> i <span class="kw">in</span> itens]  <span class="co"># 1-itemsets</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> candidatos_k:</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>        freq_k <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> candidatos_k</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>                  <span class="cf">if</span> calcular_suporte(c, transacoes) <span class="op">&gt;=</span> sup_min]</span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>        frequentes.extend(freq_k)</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> freq_k:</span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Gera candidatos k+1 por combinação dos frequentes de tamanho k</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> <span class="bu">len</span>(freq_k[<span class="dv">0</span>]) <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>        candidatos_k <span class="op">=</span> [</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>            a <span class="op">|</span> b</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> a, b <span class="kw">in</span> combinations(freq_k, <span class="dv">2</span>)</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(a <span class="op">|</span> b) <span class="op">==</span> k</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Remove duplicatas</span></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>        candidatos_k <span class="op">=</span> <span class="bu">list</span>({c: <span class="va">None</span> <span class="cf">for</span> c <span class="kw">in</span> candidatos_k})</span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Itemsets frequentes (sup ≥ </span><span class="sc">{</span>sup_min<span class="sc">}</span><span class="ss">):"</span>)</span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">sorted</span>(frequentes, key<span class="op">=</span><span class="bu">len</span>):</span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span><span class="bu">sorted</span>(f)<span class="sc">}</span><span class="ss">  sup=</span><span class="sc">{</span>calcular_suporte(f, transacoes)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- Passo 2: geração de regras ---</span></span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> itemset <span class="kw">in</span> frequentes:</span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(itemset) <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> tam_ant <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(itemset)):</span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> ant <span class="kw">in</span> combinations(itemset, tam_ant):</span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>                ant <span class="op">=</span> <span class="bu">frozenset</span>(ant)</span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>                con <span class="op">=</span> itemset <span class="op">-</span> ant</span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>                sup  <span class="op">=</span> calcular_suporte(itemset, transacoes)</span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>                conf <span class="op">=</span> calcular_confianca(ant, con, transacoes)</span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> conf <span class="op">&gt;=</span> conf_min:</span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>                    regras.append(RegraAssociacao(ant, con, sup, conf))</span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sorted</span>(regras, key<span class="op">=</span><span class="kw">lambda</span> r: r.lift, reverse<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Execução</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">55</span>)</span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>regras_encontradas <span class="op">=</span> apriori(transacoes, sup_min<span class="op">=</span><span class="fl">0.4</span>, conf_min<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Regras encontradas (</span><span class="sc">{</span><span class="bu">len</span>(regras_encontradas)<span class="sc">}</span><span class="ss">):"</span>)</span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">55</span>)</span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_encontradas:</span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Etapa 1: Itemsets Frequentes (Poda de Suporte)</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> candidatos_k:</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>        freq_k <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> candidatos_k <span class="cf">if</span> calcular_suporte(c, transacoes) <span class="op">&gt;=</span> sup_min]</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>        frequentes.extend(freq_k)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> freq_k: <span class="cf">break</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> <span class="bu">len</span>(freq_k[<span class="dv">0</span>]) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>        candidatos_k <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(a <span class="op">|</span> b <span class="cf">for</span> a, b <span class="kw">in</span> combinations(freq_k, <span class="dv">2</span>) <span class="cf">if</span> <span class="bu">len</span>(a <span class="op">|</span> b) <span class="op">==</span> k))</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Etapa 2: Geração de Regras (Poda de Confiança)</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    regras <span class="op">=</span> []</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> itemset <span class="kw">in</span> frequentes:</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(itemset) <span class="op">&lt;</span> <span class="dv">2</span>: <span class="cf">continue</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> tam_ant <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(itemset)):</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> ant_tuple <span class="kw">in</span> combinations(itemset, tam_ant):</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>                ant <span class="op">=</span> <span class="bu">frozenset</span>(ant_tuple)</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>                con <span class="op">=</span> itemset <span class="op">-</span> ant</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>                conf <span class="op">=</span> calcular_confianca(ant, con, transacoes)</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> conf <span class="op">&gt;=</span> conf_min:</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>                    regras.append(RegraAssociacao(ant, con, calcular_suporte(itemset, transacoes), conf))</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frequentes, <span class="bu">sorted</span>(regras, key<span class="op">=</span><span class="kw">lambda</span> r: r.lift, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Configuração e Execução ---</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>transacoes <span class="op">=</span> [<span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Óleo"</span>}), <span class="bu">frozenset</span>({<span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>}), </span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>              <span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>}), <span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Vinho"</span>, <span class="st">"Queijo"</span>}), </span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>              <span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>})]</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>freqs, regras_encontradas <span class="op">=</span> apriori(transacoes)</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="co"># --- RELATÓRIO ORIGINAL ---</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">75</span>)</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RELATÓRIO DE MINERAÇÃO APRIORI (sup_min=0.4, conf_min=0.6)"</span>)</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">75</span>)</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">1. Itemsets Frequentes Descobertos (</span><span class="sc">{</span><span class="bu">len</span>(freqs)<span class="sc">}</span><span class="ss">):"</span>)</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> <span class="bu">sorted</span>(freqs, key<span class="op">=</span><span class="bu">len</span>):</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   - </span><span class="sc">{</span><span class="bu">str</span>(<span class="bu">sorted</span>(<span class="bu">list</span>(f)))<span class="sc">:&lt;40}</span><span class="ss"> sup=</span><span class="sc">{</span>calcular_suporte(f, transacoes)<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">2. Regras de Associação (Ordenadas por Lift) (</span><span class="sc">{</span><span class="bu">len</span>(regras_encontradas)<span class="sc">}</span><span class="ss">):"</span>)</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_encontradas:</span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(r)</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co"># --- VISUALIZAÇÃO DO GRAFO ---</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.DiGraph()</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_encontradas:</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>    G.add_edge(<span class="st">", "</span>.join(<span class="bu">sorted</span>(r.antecedente)), <span class="st">", "</span>.join(<span class="bu">sorted</span>(r.consequente)), weight<span class="op">=</span>r.lift)</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> G.edges():</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G, k<span class="op">=</span><span class="fl">2.5</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>    lifts <span class="op">=</span> [G[u][v][<span class="st">'weight'</span>] <span class="cf">for</span> u, v <span class="kw">in</span> G.edges()]</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G, pos, edge_color<span class="op">=</span>lifts, edge_cmap<span class="op">=</span>plt.cm.Reds, </span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>                           width<span class="op">=</span><span class="dv">2</span>, arrowsize<span class="op">=</span><span class="dv">25</span>, connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.2"</span>,</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>                           edge_vmin<span class="op">=</span><span class="bu">min</span>(lifts)<span class="op">*</span><span class="fl">0.9</span>, edge_vmax<span class="op">=</span><span class="bu">max</span>(lifts))</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>    sm <span class="op">=</span> plt.cm.ScalarMappable(cmap<span class="op">=</span>plt.cm.Reds, norm<span class="op">=</span>plt.Normalize(vmin<span class="op">=</span><span class="bu">min</span>(lifts), vmax<span class="op">=</span><span class="bu">max</span>(lifts)))</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(sm, ax<span class="op">=</span>plt.gca(), label<span class="op">=</span><span class="st">'Lift (Força da Associação)'</span>)</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>=======================================================
-Itemsets frequentes (sup ≥ 0.4):
-  ['Arroz']  sup=0.80
-  ['Batata']  sup=0.40
-  ['Feijão']  sup=0.60
-  ['Queijo']  sup=0.40
-  ['Vinho']  sup=0.40
-  ['Óleo']  sup=0.60
-  ['Arroz', 'Batata']  sup=0.40
-  ['Arroz', 'Feijão']  sup=0.60
-  ['Arroz', 'Óleo']  sup=0.60
-  ['Batata', 'Feijão']  sup=0.40
-  ['Batata', 'Óleo']  sup=0.40
-  ['Feijão', 'Óleo']  sup=0.60
-  ['Queijo', 'Vinho']  sup=0.40
-  ['Arroz', 'Batata', 'Feijão']  sup=0.40
-  ['Arroz', 'Batata', 'Óleo']  sup=0.40
-  ['Arroz', 'Feijão', 'Óleo']  sup=0.60
-  ['Batata', 'Feijão', 'Óleo']  sup=0.40
-  ['Arroz', 'Batata', 'Feijão', 'Óleo']  sup=0.40
+<pre><code>===========================================================================
+RELATÓRIO DE MINERAÇÃO APRIORI (sup_min=0.4, conf_min=0.6)
+===========================================================================
 
-Regras encontradas (48):
-=======================================================
-  Vinho → Queijo [sup=0.40, conf=1.00, lift=2.50]
-  Queijo → Vinho [sup=0.40, conf=1.00, lift=2.50]
-  Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
-  Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
-  Feijão → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Feijão → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata → Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Batata → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Óleo → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Feijão → Arroz, Óleo [sup=0.60, conf=1.00, lift=1.67]
-  Óleo → Arroz, Feijão [sup=0.60, conf=1.00, lift=1.67]
-  Arroz, Feijão → Óleo [sup=0.60, conf=1.00, lift=1.67]
-  Arroz, Óleo → Feijão [sup=0.60, conf=1.00, lift=1.67]
-  Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
-  Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Óleo → Arroz, Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Batata → Arroz, Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Feijão → Arroz, Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
-  Batata, Óleo → Arroz, Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Óleo → Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
-  Feijão, Óleo → Arroz, Batata [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata → Feijão, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Batata, Feijão → Arroz, Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Feijão → Batata, Óleo [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata, Óleo → Feijão [sup=0.40, conf=1.00, lift=1.67]
-  Arroz, Feijão, Óleo → Batata [sup=0.40, conf=0.67, lift=1.67]
-  Arroz, Batata, Feijão → Óleo [sup=0.40, conf=1.00, lift=1.67]
-  Batata → Arroz [sup=0.40, conf=1.00, lift=1.25]
-  Feijão → Arroz [sup=0.60, conf=1.00, lift=1.25]
-  Óleo → Arroz [sup=0.60, conf=1.00, lift=1.25]
-  Batata, Feijão → Arroz [sup=0.40, conf=1.00, lift=1.25]
-  Batata, Óleo → Arroz [sup=0.40, conf=1.00, lift=1.25]
-  Feijão, Óleo → Arroz [sup=0.60, conf=1.00, lift=1.25]
-  Batata, Feijão, Óleo → Arroz [sup=0.40, conf=1.00, lift=1.25]
-  Arroz → Feijão [sup=0.60, conf=0.75, lift=1.25]
-  Arroz → Óleo [sup=0.60, conf=0.75, lift=1.25]
-  Arroz → Feijão, Óleo [sup=0.60, conf=0.75, lift=1.25]</code></pre>
+1. Itemsets Frequentes Descobertos (18):
+   - ['Arroz']                                sup=0.80
+   - ['Batata']                               sup=0.40
+   - ['Feijão']                               sup=0.60
+   - ['Queijo']                               sup=0.40
+   - ['Vinho']                                sup=0.40
+   - ['Óleo']                                 sup=0.60
+   - ['Arroz', 'Batata']                      sup=0.40
+   - ['Arroz', 'Óleo']                        sup=0.60
+   - ['Batata', 'Feijão']                     sup=0.40
+   - ['Arroz', 'Feijão']                      sup=0.60
+   - ['Feijão', 'Óleo']                       sup=0.60
+   - ['Batata', 'Óleo']                       sup=0.40
+   - ['Queijo', 'Vinho']                      sup=0.40
+   - ['Arroz', 'Feijão', 'Óleo']              sup=0.60
+   - ['Arroz', 'Batata', 'Feijão']            sup=0.40
+   - ['Batata', 'Feijão', 'Óleo']             sup=0.40
+   - ['Arroz', 'Batata', 'Óleo']              sup=0.40
+   - ['Arroz', 'Batata', 'Feijão', 'Óleo']    sup=0.40
+
+2. Regras de Associação (Ordenadas por Lift) (48):
+  Queijo               → Vinho                [sup=0.40, conf=1.00, lift=2.50]
+  Vinho                → Queijo               [sup=0.40, conf=1.00, lift=2.50]
+  Feijão               → Batata               [sup=0.40, conf=0.67, lift=1.67]
+  Batata               → Feijão               [sup=0.40, conf=1.00, lift=1.67]
+  Óleo                 → Feijão               [sup=0.60, conf=1.00, lift=1.67]
+  Feijão               → Óleo                 [sup=0.60, conf=1.00, lift=1.67]
+  Óleo                 → Batata               [sup=0.40, conf=0.67, lift=1.67]
+  Batata               → Óleo                 [sup=0.40, conf=1.00, lift=1.67]
+  Óleo                 → Arroz, Feijão        [sup=0.60, conf=1.00, lift=1.67]
+  Feijão               → Arroz, Óleo          [sup=0.60, conf=1.00, lift=1.67]
+  Arroz, Óleo          → Feijão               [sup=0.60, conf=1.00, lift=1.67]
+  Arroz, Feijão        → Óleo                 [sup=0.60, conf=1.00, lift=1.67]
+  Feijão               → Arroz, Batata        [sup=0.40, conf=0.67, lift=1.67]
+  Batata               → Arroz, Feijão        [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Feijão        → Batata               [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Batata        → Feijão               [sup=0.40, conf=1.00, lift=1.67]
+  Óleo                 → Batata, Feijão       [sup=0.40, conf=0.67, lift=1.67]
+  Feijão               → Batata, Óleo         [sup=0.40, conf=0.67, lift=1.67]
+  Batata               → Feijão, Óleo         [sup=0.40, conf=1.00, lift=1.67]
+  Feijão, Óleo         → Batata               [sup=0.40, conf=0.67, lift=1.67]
+  Batata, Óleo         → Feijão               [sup=0.40, conf=1.00, lift=1.67]
+  Batata, Feijão       → Óleo                 [sup=0.40, conf=1.00, lift=1.67]
+  Óleo                 → Arroz, Batata        [sup=0.40, conf=0.67, lift=1.67]
+  Batata               → Arroz, Óleo          [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Óleo          → Batata               [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Batata        → Óleo                 [sup=0.40, conf=1.00, lift=1.67]
+  Óleo                 → Arroz, Batata, Feijão [sup=0.40, conf=0.67, lift=1.67]
+  Feijão               → Arroz, Batata, Óleo  [sup=0.40, conf=0.67, lift=1.67]
+  Batata               → Arroz, Feijão, Óleo  [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Óleo          → Batata, Feijão       [sup=0.40, conf=0.67, lift=1.67]
+  Feijão, Óleo         → Arroz, Batata        [sup=0.40, conf=0.67, lift=1.67]
+  Batata, Óleo         → Arroz, Feijão        [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Feijão        → Batata, Óleo         [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Batata        → Feijão, Óleo         [sup=0.40, conf=1.00, lift=1.67]
+  Batata, Feijão       → Arroz, Óleo          [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Feijão, Óleo  → Batata               [sup=0.40, conf=0.67, lift=1.67]
+  Arroz, Batata, Óleo  → Feijão               [sup=0.40, conf=1.00, lift=1.67]
+  Arroz, Batata, Feijão → Óleo                 [sup=0.40, conf=1.00, lift=1.67]
+  Batata               → Arroz                [sup=0.40, conf=1.00, lift=1.25]
+  Óleo                 → Arroz                [sup=0.60, conf=1.00, lift=1.25]
+  Feijão               → Arroz                [sup=0.60, conf=1.00, lift=1.25]
+  Feijão, Óleo         → Arroz                [sup=0.60, conf=1.00, lift=1.25]
+  Batata, Feijão       → Arroz                [sup=0.40, conf=1.00, lift=1.25]
+  Batata, Óleo         → Arroz                [sup=0.40, conf=1.00, lift=1.25]
+  Batata, Feijão, Óleo → Arroz                [sup=0.40, conf=1.00, lift=1.25]
+  Arroz                → Óleo                 [sup=0.60, conf=0.75, lift=1.25]
+  Arroz                → Feijão               [sup=0.60, conf=0.75, lift=1.25]
+  Arroz                → Feijão, Óleo         [sup=0.60, conf=0.75, lift=1.25]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-apriori-final" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-apriori-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap02_files/figure-html/fig-apriori-final-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-apriori-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.15: Análise completa: Relatório de regras e representação visual via Grafo de Lift.
+</figcaption>
+</figure>
 </div>
 </div>
+</div>
+<p>O objetivo central deste código é automatizar a descoberta de conhecimento em grandes bases de dados, indo além da simples contagem de frequência. Enquanto o suporte e a confiança filtram regras matematicamente válidas, o foco no <strong>Lift</strong> busca extrair a relevância prática da associação.</p>
+<p>Estatisticamente, se o suporte do consequente é muito alto (por exemplo, quase todos os clientes compram “Pão”), uma regra como “Se comprar Queijo, então compra Pão” terá uma confiança alta, mas pode ser enganosa, pois a compra do Pão ocorreria de qualquer forma. O código resolve isso ao calcular o Lift: se ele for maior que 1, temos uma associação positiva real; se for igual a 1, os itens são independentes.</p>
+<p>Na <a href="#fig-apriori-final" class="quarto-xref">Figura&nbsp;<span>2.15</span></a>, o objetivo da visualização é reduzir a carga cognitiva do analista. Em vez de ler tabelas extensas, o grafo utiliza a intensidade da cor vermelha para direcionar o olhar imediatamente para as regras onde o Lift é mais expressivo. O uso do layout expandido e a ausência de formas geométricas nos vértices garantem que os nomes dos itens (rótulos) sejam os protagonistas, permitindo identificar padrões complexos de consumo com um simples relance.</p>
 </section>
 <section id="prática-5-simulação-do-apriori-clássico-join-prune" class="level3" data-number="2.7.6">
 <h3 data-number="2.7.6" class="anchored" data-anchor-id="prática-5-simulação-do-apriori-clássico-join-prune"><span class="header-section-number">2.7.6</span> 🔹 Prática 5 — Simulação do Apriori Clássico (Join &amp; Prune)</h3>
-<p>Nesta etapa, vamos focar na <strong>Geração de Candidatos</strong> de forma eficiente, como descrito nas obras de <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> e <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>.</p>
-<div id="cell-65" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prática 5: Implementação da Lógica de "Join" do Apriori</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori_gen(freq_k_minus_1: <span class="bu">list</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Gera candidatos de tamanho k seguindo a regra do Apriori clássico:</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Une conjuntos que possuem os mesmos (k-2) primeiros itens.</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    candidatos <span class="op">=</span> []</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    lista_ordenada <span class="op">=</span> [<span class="bu">sorted</span>(<span class="bu">list</span>(i)) <span class="cf">for</span> i <span class="kw">in</span> freq_k_minus_1]</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(lista_ordenada)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, n):</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Passo de Join: verifica se os primeiros k-2 itens são iguais</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Para k=2 (itens individuais), o prefixo é vazio [], então todos se unem.</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> k <span class="op">==</span> <span class="dv">2</span>:</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                candidatos <span class="op">=</span> [<span class="bu">frozenset</span>(a) <span class="op">|</span> <span class="bu">frozenset</span>(b)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">for</span> a, b <span class="kw">in</span> combinations(freq_k_minus_1, <span class="dv">2</span>)]</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> lista_ordenada[i][:k<span class="op">-</span><span class="dv">2</span>] <span class="op">==</span> lista_ordenada[j][:k<span class="op">-</span><span class="dv">2</span>]:</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>                novo_candidato <span class="op">=</span> <span class="bu">frozenset</span>(lista_ordenada[i]) <span class="op">|</span> <span class="bu">frozenset</span>(lista_ordenada[j])</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Passo de Prune: Propriedade Anti-monotônica</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Verifica se todos os subconjuntos de tamanho k-1 são frequentes</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> todos_subconjuntos_frequentes(novo_candidato, freq_k_minus_1, k):</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                    candidatos.append(novo_candidato)</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">set</span>(candidatos))</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> todos_subconjuntos_frequentes(candidato: <span class="bu">frozenset</span>, freq_k_minus_1: <span class="bu">list</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Valida se todos os subconjuntos imediatos do candidato são frequentes."""</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    subconjuntos <span class="op">=</span> [<span class="bu">frozenset</span>(c) <span class="cf">for</span> c <span class="kw">in</span> combinations(candidato, k<span class="op">-</span><span class="dv">1</span>)]</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> subconjuntos:</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">not</span> <span class="kw">in</span> freq_k_minus_1:</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">False</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Simulação Passo a Passo ---</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"--- Gerando Candidatos L2 (tamanho 2) a partir de L1 ---"</span>)</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [<span class="bu">frozenset</span>([i]) <span class="cf">for</span> i <span class="kw">in</span> todos_itens <span class="cf">if</span> calcular_suporte(<span class="bu">frozenset</span>([i]), transacoes) <span class="op">&gt;=</span> <span class="fl">0.4</span>]</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> apriori_gen(L1, <span class="dv">2</span>)</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Candidatos C2 gerados: </span><span class="sc">{</span><span class="bu">len</span>(C2)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>([<span class="bu">sorted</span>(<span class="bu">list</span>(x)) <span class="cf">for</span> x <span class="kw">in</span> C2]): <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span>
+<p>Nesta etapa, focamos na <strong>Geração de Candidatos</strong> eficiente, como descrito nas obras de <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> e <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>. O segredo da performance do Apriori reside em não testar todas as combinações matemáticas possíveis, mas apenas aquelas cujos subconjuntos já se provaram frequentes.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Otimização por Prefixo e Poda (Pruning)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O código abaixo implementa as duas regras de ouro de <span class="citation" data-cites="agrawal1993mining">Agrawal; Imieliński; Swami (<a href="#ref-agrawal1993mining" role="doc-biblioref">1993</a>)</span> :</p>
+<ol type="1">
+<li><strong>Passo de Join</strong>: Une dois conjuntos de tamanho <span class="math inline">\(k-1\)</span> apenas se eles compartilharem os mesmos primeiros <span class="math inline">\(k-2\)</span> itens (prefixo comum).</li>
+<li><strong>Passo de Prune</strong>: Aplica a propriedade anti-monotônica: se um candidato possui qualquer subconjunto que não seja frequente, ele é descartado antes da contagem do suporte.</li>
+</ol>
+</div>
+</div>
+<div id="pratica-5-corrigida" class="cell" data-quarto-raw="true" data-execution_count="108">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Funções de Apoio</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset: <span class="bu">frozenset</span>, transacoes: <span class="bu">list</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Garante que itemset seja frozenset para usar issubset</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(itemset, <span class="bu">frozenset</span>):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        itemset <span class="op">=</span> <span class="bu">frozenset</span>(itemset)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    contagem <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> transacoes <span class="cf">if</span> itemset.issubset(t))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contagem <span class="op">/</span> <span class="bu">len</span>(transacoes)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Lógica Join e Prune</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> todos_subconjuntos_frequentes(candidato: <span class="bu">frozenset</span>, freq_k_minus_1: <span class="bu">list</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    subconjuntos <span class="op">=</span> [<span class="bu">frozenset</span>(c) <span class="cf">for</span> c <span class="kw">in</span> combinations(candidato, k<span class="op">-</span><span class="dv">1</span>)]</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">all</span>(s <span class="kw">in</span> freq_k_minus_1 <span class="cf">for</span> s <span class="kw">in</span> subconjuntos)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori_gen(freq_k_minus_1: <span class="bu">list</span>, k: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    candidatos <span class="op">=</span> []</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    lista_ordenada <span class="op">=</span> <span class="bu">sorted</span>([<span class="bu">sorted</span>(<span class="bu">list</span>(i)) <span class="cf">for</span> i <span class="kw">in</span> freq_k_minus_1])</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(lista_ordenada)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>, n):</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>            <span class="co"># O fatiamento [:k-2] funciona para qualquer k &gt;= 2.</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Se k=2, compara [] == [], o que é sempre True (Join de 1-itemsets).</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> lista_ordenada[i][:k<span class="op">-</span><span class="dv">2</span>] <span class="op">==</span> lista_ordenada[j][:k<span class="op">-</span><span class="dv">2</span>]:</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                novo_candidato <span class="op">=</span> <span class="bu">frozenset</span>(lista_ordenada[i]) <span class="op">|</span> <span class="bu">frozenset</span>(lista_ordenada[j])</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>                <span class="co"># IMPORTANTE: Passo de Prune (Poda)</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Só aceita o candidato se todos os seus subconjuntos k-1 forem frequentes</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> todos_subconjuntos_frequentes(novo_candidato, freq_k_minus_1, k):</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                    candidatos.append(novo_candidato)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(<span class="bu">set</span>(candidatos))</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Dados e Inicialização</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>transacoes <span class="op">=</span> [</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Óleo"</span>}),</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">frozenset</span>({<span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>}),</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>}),</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Vinho"</span>, <span class="st">"Queijo"</span>}),</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">frozenset</span>({<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>}),</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>sup_min <span class="op">=</span> <span class="fl">0.4</span></span>
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Gerando Candidatos L3 (tamanho 3) a partir de L2 ---"</span>)</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> C2 <span class="cf">if</span> calcular_suporte(c, transacoes) <span class="op">&gt;=</span> <span class="fl">0.4</span>]</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>C3 <span class="op">=</span> apriori_gen(L2, <span class="dv">3</span>)</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Candidatos C3 gerados (após poda): </span><span class="sc">{</span><span class="bu">len</span>(C3)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>([<span class="bu">sorted</span>(<span class="bu">list</span>(x)) <span class="cf">for</span> x <span class="kw">in</span> C3]): <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Geração do L1</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>contagem_individual <span class="op">=</span> defaultdict(<span class="bu">int</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> transacoes:</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> t:</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>        contagem_individual[<span class="bu">frozenset</span>([item])] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>L1 <span class="op">=</span> [item <span class="cf">for</span> item, count <span class="kw">in</span> contagem_individual.items() <span class="cf">if</span> (count<span class="op">/</span><span class="bu">len</span>(transacoes)) <span class="op">&gt;=</span> sup_min]</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Simulação do Fluxo</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L1 (Frequentes): </span><span class="sc">{</span>[<span class="bu">sorted</span>(<span class="bu">list</span>(x)) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">sorted</span>(L1)]<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>C2 <span class="op">=</span> apriori_gen(L1, <span class="dv">2</span>)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>L2 <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> C2 <span class="cf">if</span> calcular_suporte(c, transacoes) <span class="op">&gt;=</span> sup_min]</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L2 (Frequentes tamanho 2): </span><span class="sc">{</span><span class="bu">len</span>(L2)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> l <span class="kw">in</span> <span class="bu">sorted</span>([<span class="bu">sorted</span>(<span class="bu">list</span>(x)) <span class="cf">for</span> x <span class="kw">in</span> L2]): <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>l<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>C3 <span class="op">=</span> apriori_gen(L2, <span class="dv">3</span>)</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">C3 (Candidatos tamanho 3) gerados após PRUNAÇÃO: </span><span class="sc">{</span><span class="bu">len</span>(C3)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterar diretamente sobre os frozensets para manter o tipo correto no cálculo</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> <span class="bu">sorted</span>(C3):</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    sup <span class="op">=</span> calcular_suporte(c, transacoes)</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">list</span>(c))<span class="sc">}</span><span class="ss"> -&gt; suporte: </span><span class="sc">{</span>sup<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>--- Gerando Candidatos L2 (tamanho 2) a partir de L1 ---
-Candidatos C2 gerados: 15
+<pre><code>L1 (Frequentes): [['Óleo'], ['Arroz'], ['Feijão'], ['Queijo'], ['Vinho'], ['Batata']]
+
+L2 (Frequentes tamanho 2): 7
   ['Arroz', 'Batata']
   ['Arroz', 'Feijão']
-  ['Arroz', 'Queijo']
-  ['Arroz', 'Vinho']
   ['Arroz', 'Óleo']
   ['Batata', 'Feijão']
-  ['Batata', 'Queijo']
-  ['Batata', 'Vinho']
   ['Batata', 'Óleo']
-  ['Feijão', 'Queijo']
-  ['Feijão', 'Vinho']
   ['Feijão', 'Óleo']
   ['Queijo', 'Vinho']
-  ['Queijo', 'Óleo']
-  ['Vinho', 'Óleo']
 
---- Gerando Candidatos L3 (tamanho 3) a partir de L2 ---
-Candidatos C3 gerados (após poda): 4
-  ['Arroz', 'Batata', 'Feijão']
-  ['Arroz', 'Batata', 'Óleo']
-  ['Arroz', 'Feijão', 'Óleo']
-  ['Batata', 'Feijão', 'Óleo']</code></pre>
+C3 (Candidatos tamanho 3) gerados após PRUNAÇÃO: 4
+  ['Arroz', 'Feijão', 'Óleo'] -&gt; suporte: 0.60
+  ['Arroz', 'Batata', 'Feijão'] -&gt; suporte: 0.40
+  ['Batata', 'Feijão', 'Óleo'] -&gt; suporte: 0.40
+  ['Arroz', 'Batata', 'Óleo'] -&gt; suporte: 0.40</code></pre>
 </div>
 </div>
 <section id="explicação-conceitual-do-fluxo-clássico" class="level4" data-number="2.7.6.1">
@@ -2063,54 +2162,55 @@ Candidatos C3 gerados (após poda): 4
 <li><strong>Poda (Pruning):</strong> Se um candidato a conjunto de 3 itens (ex: <code>{Arroz, Feijão, Batata}</code>) for gerado, mas o subconjunto <code>{Feijão, Batata}</code> não estiver na lista de frequentes anterior, o candidato é descartado imediatamente, antes mesmo de olharmos para a base de dados. Isso economiza processamento computacional massivo.</li>
 <li><strong>Eficiência:</strong> Essa abordagem reduz drasticamente o número de acessos ao disco/memória para contar o suporte, focando apenas no que é estatisticamente promissor.</li>
 </ul>
-<div id="cell-67" class="cell" data-execution_count="15">
+</section>
+<section id="mapa-de-associações-visualização-final" class="level4" data-number="2.7.6.2">
+<h4 data-number="2.7.6.2" class="anchored" data-anchor-id="mapa-de-associações-visualização-final"><span class="header-section-number">2.7.6.2</span> Mapa de Associações (Visualização Final)</h4>
+<p>Após a geração de candidatos e validação das regras, o conhecimento extraído pode ser mapeado em um grafo de adjacência. Na <a href="#fig-mapa-associacoes" class="quarto-xref">Figura&nbsp;<span>2.16</span></a>, utilizamos a <strong>Confiança</strong> como peso das conexões para identificar os “núcleos” de consumo.</p>
+<div id="cell-fig-mapa-associacoes" class="cell" data-quarto-raw="true" data-execution_count="107">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando uma visualização das conexões fortes encontradas</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesos baseados nos resultados da Tabela 2.13 (cap02.ipynb)</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Os valores (1.0, 0.67, 0.75) representam a Confiança das regras</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>conexoes <span class="op">=</span> [</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="fl">1.0</span>), </span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="fl">0.67</span>), </span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arroz"</span>, <span class="st">"Óleo"</span>, <span class="fl">0.75</span>)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados extraídos da simulação acima (Tabela 2.13 do material teórico)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>conexoes <span class="op">=</span> [</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="fl">1.0</span>), </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="fl">0.67</span>), </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arroz"</span>, <span class="st">"Óleo"</span>, <span class="fl">0.75</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item1, item2, peso <span class="kw">in</span> conexoes:</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    G.add_edge(item1, item2, weight<span class="op">=</span>peso)</span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item1, item2, peso <span class="kw">in</span> conexoes:</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    G.add_edge(item1, item2, weight<span class="op">=</span>peso)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, seed<span class="op">=</span><span class="dv">42</span>, k<span class="op">=</span><span class="fl">1.2</span>) </span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 'seed' garante que o layout seja o mesmo em todas as execuções</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, seed<span class="op">=</span><span class="dv">42</span>) </span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Desenha a estrutura básica (nós e linhas)</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>nx.draw(G, pos, with_labels<span class="op">=</span><span class="va">True</span>, node_color<span class="op">=</span><span class="st">'lightgreen'</span>, </span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        node_size<span class="op">=</span><span class="dv">3000</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>, edge_color<span class="op">=</span><span class="st">'gray'</span>, </span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        width<span class="op">=</span><span class="dv">2</span>, font_size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Estética: Verde para os nós (referência institucional) e labels destacados</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_nodes(G, pos, node_color<span class="op">=</span><span class="st">'lightgreen'</span>, node_size<span class="op">=</span><span class="dv">2500</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">11</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, width<span class="op">=</span><span class="dv">2</span>, edge_color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibe os pesos (Confiança) em vermelho</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>edge_labels <span class="op">=</span> nx.get_edge_attributes(G, <span class="st">'weight'</span>)</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edge_labels(G, pos, edge_labels<span class="op">=</span>edge_labels, font_color<span class="op">=</span><span class="st">'red'</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. EXIBE OS PESOS: Obtém os atributos e desenha os labels sobre as arestas</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>edge_labels <span class="op">=</span> nx.get_edge_attributes(G, <span class="st">'weight'</span>)</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edge_labels(G, pos, edge_labels<span class="op">=</span>edge_labels, </span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                             font_color<span class="op">=</span><span class="st">'red'</span>, font_size<span class="op">=</span><span class="dv">12</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Mapa de Associações (Confiança Extraída da Tabela 2.13)"</span>)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[15]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">matplotlib</span><span class="ansi-blue-fg ansi-bold">.</span><span class="ansi-blue-fg ansi-bold">pyplot</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">as</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">plt</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">networkx</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">as</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">nx</span>
-<span class="ansi-green-fg">      4</span> <span style="font-style:italic;color:rgb(95,135,135)"># Criando uma visualização das conexões fortes encontradas</span>
-<span class="ansi-green-fg">      5</span> G = nx.Graph()
-
-<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'networkx'</pre>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Grafo de Adjacência de Itens Frequentes"</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-mapa-associacoes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mapa-associacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap02_files/figure-html/fig-mapa-associacoes-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mapa-associacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.16: Mapa de Associações: Conexões entre itens baseadas na confiança das regras.
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
+<p><strong>Conclusão da Atividade:</strong></p>
+<p>Através destas práticas, observamos que a Mineração de Regras de Associação não é apenas uma busca exaustiva por combinações. O algoritmo <strong>Apriori</strong> demonstra como a <strong>Propriedade Anti-monotônica</strong> (Poda) permite reduzir drasticamente o esforço computacional. Além disso, a visualização por meio de grafos de <strong>Lift</strong> permite que o analista ignore associações óbvias (como pão e manteiga) e foque em padrões que realmente agregam valor ao negócio.</p>
 </section>
 </section>
 </section>
