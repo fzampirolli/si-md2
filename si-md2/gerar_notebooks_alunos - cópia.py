@@ -853,81 +853,27 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
 # 8. Processa uma celula: substitui definicoes e referencias
 # ---------------------------------------------------------------------------
 
-# def fix_textcolor_inline(text: str) -> str:
-#     placeholders = {}
-#     def hide_block(m):
-#         key = f"\x00MATH{len(placeholders)}\x00"
-#         placeholders[key] = m.group(0)
-#         return key
-    
-#     # Altera para manter a cor original \1
-#     def replace_latex_color(m):
-#         body = m.group(0)
-#         return re.sub(
-#             r'\\textcolor\{([^}]+)\}\{([^}]+)\}',
-#             r'{\\color{\1}{\2}}', # \1 mantém a cor original (ex: blue)
-#             body
-#         )
-
-#     # Aplica a substituição em equações inline $...$ e blocos $$...$$
-#     text = re.sub(r'\$\$[\s\S]*?\$\$', replace_latex_color, text)
-#     text = re.sub(r'\$[^\$\n]+\$', replace_latex_color, text)
-#     # -------------------------
-
-#     # \textcolor{cor}{texto} -> <font color="cor">texto</font>
-#     text = re.sub(
-#         r'\\textcolor\{([^}]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}',
-#         r'<font color="\1">\2</font>',
-#         text
-#     )
-
-#     # [texto]{style="color: X;"} -> <font color="X">texto</font>  (sintaxe Pandoc/Quarto)
-#     text = re.sub(
-#         r'\[([^\]]+)\]\{style="color:\s*([^;}"]+);?"\}',
-#         r'<font color="\2">\1</font>',
-#         text
-#     )
-
-#     # [texto]{color="X"} -> <font color="X">texto</font>  (sintaxe Pandoc multi-formato: HTML+PDF+Colab)
-#     text = re.sub(
-#         r'\[([^\]]+)\]\{color="([^"]+)"\}',
-#         r'<font color="\2">\1</font>',
-#         text
-#     )
-
-#     # Converte \textbf{texto} para **texto**
-#     text = re.sub(r'\\textbf\{((?:[^{}]|\{[^{}]*\})*)\}', r'**\1**', text)
-
-
-#     for key, val in placeholders.items():
-#         text = text.replace(key, val)
-#     return text
-
 def fix_textcolor_inline(text: str) -> str:
-    # 1. Protege blocos de equações para não misturar Markdown/HTML lá dentro
     placeholders = {}
-    def hide_math(m):
+    def hide_block(m):
         key = f"\x00MATH{len(placeholders)}\x00"
-        body = m.group(0)
-        
-        # Dentro da equação, apenas corrigimos \textcolor para \color
-        # e garantimos que \textbf continue sendo LaTeX
-        body = re.sub(
-            r'\\textcolor\{([^}]+)\}\{([^}]+)\}',
-            r'{\\color{\1}{\2}}',
-            body
-        )
-        # Opcional: converter \textbf para \mathbf se quiser negrito matemático
-        # body = body.replace(r'\textbf', r'\mathbf')
-        
-        placeholders[key] = body
+        placeholders[key] = m.group(0)
         return key
     
-    # Esconde equações $...$ e $$...$$
-    text = re.sub(r'\$\$[\s\S]*?\$\$', hide_math, text)
-    text = re.sub(r'\$[^\$\n]+\$', hide_math, text)
+    # Altera para manter a cor original \1
+    def replace_latex_color(m):
+        body = m.group(0)
+        return re.sub(
+            r'\\textcolor\{([^}]+)\}\{([^}]+)\}',
+            r'{\\color{\1}{\2}}', # \1 mantém a cor original (ex: blue)
+            body
+        )
 
-    # 2. Agora aplica as conversões APENAS no texto Markdown (fora das equações)
+    # Aplica a substituição em equações inline $...$ e blocos $$...$$
+    text = re.sub(r'\$\$[\s\S]*?\$\$', replace_latex_color, text)
+    text = re.sub(r'\$[^\$\n]+\$', replace_latex_color, text)
+    # -------------------------
+
     # \textcolor{cor}{texto} -> <font color="cor">texto</font>
     text = re.sub(
         r'\\textcolor\{([^}]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}',
@@ -935,20 +881,26 @@ def fix_textcolor_inline(text: str) -> str:
         text
     )
 
-    # [texto]{style="color: X;"} -> <font color="X">texto</font>
+    # [texto]{style="color: X;"} -> <font color="X">texto</font>  (sintaxe Pandoc/Quarto)
     text = re.sub(
         r'\[([^\]]+)\]\{style="color:\s*([^;}"]+);?"\}',
         r'<font color="\2">\1</font>',
         text
     )
 
-    # \textbf{texto} para **texto** (APENAS fora de equações)
+    # [texto]{color="X"} -> <font color="X">texto</font>  (sintaxe Pandoc multi-formato: HTML+PDF+Colab)
+    text = re.sub(
+        r'\[([^\]]+)\]\{color="([^"]+)"\}',
+        r'<font color="\2">\1</font>',
+        text
+    )
+
+    # Converte \textbf{texto} para **texto**
     text = re.sub(r'\\textbf\{((?:[^{}]|\{[^{}]*\})*)\}', r'**\1**', text)
 
-    # 3. Restaura as equações intactas
+
     for key, val in placeholders.items():
         text = text.replace(key, val)
-        
     return text
 
 def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
