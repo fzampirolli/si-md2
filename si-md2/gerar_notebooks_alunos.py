@@ -853,56 +853,6 @@ def render_equation(eq_body: str, elem_id: str, num_str: str) -> str:
 # 8. Processa uma celula: substitui definicoes e referencias
 # ---------------------------------------------------------------------------
 
-# def fix_textcolor_inline(text: str) -> str:
-#     placeholders = {}
-#     def hide_block(m):
-#         key = f"\x00MATH{len(placeholders)}\x00"
-#         placeholders[key] = m.group(0)
-#         return key
-    
-#     # Altera para manter a cor original \1
-#     def replace_latex_color(m):
-#         body = m.group(0)
-#         return re.sub(
-#             r'\\textcolor\{([^}]+)\}\{([^}]+)\}',
-#             r'{\\color{\1}{\2}}', # \1 mantém a cor original (ex: blue)
-#             body
-#         )
-
-#     # Aplica a substituição em equações inline $...$ e blocos $$...$$
-#     text = re.sub(r'\$\$[\s\S]*?\$\$', replace_latex_color, text)
-#     text = re.sub(r'\$[^\$\n]+\$', replace_latex_color, text)
-#     # -------------------------
-
-#     # \textcolor{cor}{texto} -> <font color="cor">texto</font>
-#     text = re.sub(
-#         r'\\textcolor\{([^}]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}',
-#         r'<font color="\1">\2</font>',
-#         text
-#     )
-
-#     # [texto]{style="color: X;"} -> <font color="X">texto</font>  (sintaxe Pandoc/Quarto)
-#     text = re.sub(
-#         r'\[([^\]]+)\]\{style="color:\s*([^;}"]+);?"\}',
-#         r'<font color="\2">\1</font>',
-#         text
-#     )
-
-#     # [texto]{color="X"} -> <font color="X">texto</font>  (sintaxe Pandoc multi-formato: HTML+PDF+Colab)
-#     text = re.sub(
-#         r'\[([^\]]+)\]\{color="([^"]+)"\}',
-#         r'<font color="\2">\1</font>',
-#         text
-#     )
-
-#     # Converte \textbf{texto} para **texto**
-#     text = re.sub(r'\\textbf\{((?:[^{}]|\{[^{}]*\})*)\}', r'**\1**', text)
-
-
-#     for key, val in placeholders.items():
-#         text = text.replace(key, val)
-#     return text
-
 def fix_textcolor_inline(text: str) -> str:
     # 1. Protege blocos de equações para não misturar Markdown/HTML lá dentro
     placeholders = {}
@@ -926,6 +876,21 @@ def fix_textcolor_inline(text: str) -> str:
     # Esconde equações $...$ e $$...$$
     text = re.sub(r'\$\$[\s\S]*?\$\$', hide_math, text)
     text = re.sub(r'\$[^\$\n]+\$', hide_math, text)
+
+    # NOVO: Tratar badges/botões com links e width (ex: Colab/GitHub)
+    # Transforma [![](img){width="16%"}] -> [<img src="img" width="16%">]
+    text = re.sub(
+        r'\[\!\[\]\(([^)]+)\)\{width="([^"]+)"\}\] \(([^)]+)\)',
+        r'<a href="\3"><img src="\1" style="width:\2; vertical-align:middle;"></a>',
+        text
+    )
+    
+    # Caso o badge não tenha link, apenas limpa a sintaxe de width para HTML
+    text = re.sub(
+        r'\!\[\]\(([^)]+)\)\{width="([^"]+)"\}',
+        r'<img src="\1" style="width:\2; vertical-align:middle;">',
+        text
+    )
 
     # 2. Agora aplica as conversões APENAS no texto Markdown (fora das equações)
     # \textcolor{cor}{texto} -> <font color="cor">texto</font>
