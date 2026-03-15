@@ -272,39 +272,10 @@ def md_inline_to_html(text: str) -> str:
       **[texto](url)** ->  <strong><a href="url">texto</a></strong>
       *[texto](url)*   ->  <em><a href="url">texto</a></em>
       [texto](url)     ->  <a href="url">texto</a>
-      **texto**        ->  <strong>texto</strong>  (suporta multiline)
+      **texto**        ->  <strong>texto</strong>
       *texto*          ->  <em>texto</em>
       `codigo`         ->  <code>codigo</code>
-
-    Trechos LaTeX sao protegidos antes das substituicoes de Markdown e
-    convertidos para os delimitadores que o MathJax processa dentro de HTML:
-      $...$   ->  \\(...\\)
-      $$...$$ ->  \\[...\\]
     """
-    # ── 1. Proteger e converter delimitadores LaTeX ───────────────────────────
-    # Dentro de <blockquote> HTML o Jupyter/MathJax nao processa $...$,
-    # mas processa \(...\) e \[...\].
-    placeholders = {}
-    counter = [0]
-
-    def _stash(m):
-        key = "\x00LATEX{}\x00".format(counter[0])
-        latex = m.group(0)
-        if latex.startswith('$$'):
-            inner = latex[2:-2]
-            placeholders[key] = '\\[' + inner + '\\]'
-        else:
-            inner = latex[1:-1]
-            placeholders[key] = '\\(' + inner + '\\)'
-        counter[0] += 1
-        return key
-
-    # Display math $$...$$ (multiline, nao guloso) — deve vir antes do inline $
-    text = re.sub(r'\$\$[\s\S]*?\$\$', _stash, text)
-    # Inline math $...$ — nao cruza quebras de linha
-    text = re.sub(r'\$[^\$\n]+?\$', _stash, text)
-
-    # ── 2. Transformacoes Markdown ─────────────────────────────────────────────
     # Remove marcas de blockquote Markdown (> ) — ja estamos dentro de um <blockquote>
     text = re.sub(r'^> ?', '', text, flags=re.MULTILINE)
 
@@ -320,17 +291,12 @@ def md_inline_to_html(text: str) -> str:
     text = re.sub(
         r'\[([^\]]+)\]\(([^)]+)\)',
         r'<a href="\2">\1</a>', text)
-    # Negrito: **texto** — re.DOTALL para capturar frases que cruzam linhas
-    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text, flags=re.DOTALL)
-    # Italico: *texto* — apenas inline, sem cruzar linhas
+    # Negrito: **texto**
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    # Italico: *texto*
     text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
     # Codigo inline: `texto`
     text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
-
-    # ── 3. Restaurar LaTeX ─────────────────────────────────────────────────────
-    for key, original in placeholders.items():
-        text = text.replace(key, original)
-
     return text
 
 
@@ -459,9 +425,7 @@ def convert_callouts(text: str, elem_map: dict) -> str:
                 emoji, default_title = CALLOUT_STYLE[callout_type]
                 title = title_override or default_title
                 inner_html = md_inline_to_html(inner_text)
-                # Nao inserir <br /> — as quebras de linha dentro do <blockquote>
-                # sao tratadas pelo browser; inserir <br /> quebraria negritos
-                # e LaTeX que cruzam linhas no fonte Markdown.
+                inner_html = inner_html.replace('\n', '<br />\n')
                 block = (
                     f'<blockquote style="border-left: 4px solid #aaa; '
                     f'padding: 0.5em 1em; margin: 1em 0; background: #f9f9f9;">\n'
