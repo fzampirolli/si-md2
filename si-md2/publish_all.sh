@@ -25,46 +25,37 @@ fail() { echo -e "${RED}✘ ERRO: $*${NC}"; exit 1; }
 cd "$EDIT_DIR"
 
 # ---------------------------------------------------------------------------
-# Workflow 1: Gerar PDF Primeiro
+# Workflow: PDF + HTML (Integrado)
 # ---------------------------------------------------------------------------
-log "=== Workflow 1: Gerar PDF ==="
+log "=== Gerando PDF e HTML para Publicação ==="
+
+# 1. Gera o PDF primeiro
 if quarto render --to pdf; then
-    # O Quarto renderiza para _book, então movemos para _book_pdf conforme sua estrutura
+    # Ajusta pastas conforme sua estrutura
     rm -rf "$BOOK_PDF"
     mv "$BOOK_HTML" "$BOOK_PDF"
     
-    FILE_NAME="Sistemas-Inteligentes-e-Mineração-de-Dados.pdf"
-    SOURCE_PATH="$BOOK_PDF/$FILE_NAME"
-    
-    if [ -f "$SOURCE_PATH" ]; then
-        # Copia para a raiz do EDIT_DIR para ser capturado pelo render do HTML
-        cp "$SOURCE_PATH" "livro.pdf"
-        # Copia para a raiz do GIT_DIR para o histórico do GitHub
-        cp "$SOURCE_PATH" "$GIT_DIR/livro.pdf"
-        ok "PDF gerado e preparado."
-    else
-        fail "PDF não encontrado após renderização."
-    fi
+    # Copia o PDF com nome simples para a pasta de edição
+    # O Quarto vai "enxergar" esse arquivo durante o render do HTML
+    cp "$BOOK_PDF/Sistemas-Inteligentes-e-Mineração-de-Dados.pdf" "livro.pdf"
+    ok "PDF preparado."
 else
-    fail "Erro no render do PDF."
+    fail "Falha ao gerar o PDF."
 fi
 
-# ---------------------------------------------------------------------------
-# Workflow 2: HTML + GitHub Pages
-# ---------------------------------------------------------------------------
-log "=== Workflow 2: Publicar HTML + PDF ==="
+# 2. Gera o HTML e Publica
 {
-    # Renderiza o HTML (isso incluirá o livro.pdf se ele estiver listado no _quarto.yml)
+    # O render HTML agora vai incluir o 'livro.pdf' por causa do _quarto.yml
     quarto render --to html
     
-    # IMPORTANTE: Copia o livro.pdf para dentro da pasta que será publicada
+    # Garante que o PDF esteja fisicamente na pasta que será enviada
     cp "livro.pdf" "$BOOK_HTML/"
     
-    # Publica o conteúdo de _book (que agora contém o livro.pdf)
+    # Publica para a branch gh-pages
     quarto publish gh-pages --no-prompt --no-browser
-    ok "Site e PDF publicados no GitHub Pages."
+    ok "Site e PDF publicados com sucesso!"
 } || {
-    log "${RED}Falha na publicação das páginas.${NC}"
+    log "${RED}Falha na publicação HTML.${NC}"
 }
 
 # ---------------------------------------------------------------------------

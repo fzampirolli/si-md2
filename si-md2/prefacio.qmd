@@ -47,8 +47,8 @@ Esta edição reflete a evolução recente da área de inteligência artificial 
 
 | Formato | Ideal para | Acesso |
 |---------|-----------|--------|
-| 🌐 **HTML** *(recomendado)* | Leitura principal — navegação fluida com figuras, tabelas e fórmulas | [si-md2.github.io](https://fzampirolli.github.io/si-md2/) |
-| 📄 **PDF** | Leitura offline, impressão ou uso como fonte no NotebookLM | [PDF disponíveis](https://fzampirolli.github.io/si-md2/livro.pdf) |
+| 🌐 **HTML** *(recomendado)* | Leitura principal — navegação fluida com figuras, tabelas e fórmulas | [fzampirolli.github.io/si-md2/](https://fzampirolli.github.io/si-md2/) |
+| 📄 **PDF** | Leitura offline, impressão ou uso como fonte no NotebookLM | [fzampirolli.github.io/si-md2/livro.pdf](https://fzampirolli.github.io/si-md2/livro.pdf) |
 | 🐍 **Notebook (.ipynb)** | Prática interativa com execução de código Python | Botão *Executar Colab* no início de cada capítulo |
 
 💡 **Sugestão de uso:** estude a teoria na versão HTML, execute os notebooks para praticar e utilize o PDF como material de referência ou como fonte no NotebookLM.
