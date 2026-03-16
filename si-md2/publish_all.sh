@@ -9,7 +9,6 @@ GIT_DIR="$(cd "$EDIT_DIR/.." && pwd)"
 REPO="https://github.com/fzampirolli/si-md2.git"
 BIB="references.bib"
 ALUNOS_DIR="notebooks_alunos"
-BOOK_PDF="_book_pdf"
 BOOK_HTML="_book"
 
 # Cores
@@ -31,13 +30,9 @@ log "=== Gerando PDF e HTML para Publicação ==="
 
 # 1. Gera o PDF primeiro
 if quarto render --to pdf; then
-    # Ajusta pastas conforme sua estrutura
-    rm -rf "$BOOK_PDF"
-    mv "$BOOK_HTML" "$BOOK_PDF"
-    
     # Copia o PDF com nome simples para a pasta de edição
     # O Quarto vai "enxergar" esse arquivo durante o render do HTML
-    cp "$BOOK_PDF/Sistemas-Inteligentes-e-Mineração-de-Dados.pdf" "livro.pdf"
+    cp "$BOOK_HTML/Sistemas-Inteligentes-e-Mineração-de-Dados.pdf" "livro.pdf"
     ok "PDF preparado."
 else
     fail "Falha ao gerar o PDF."

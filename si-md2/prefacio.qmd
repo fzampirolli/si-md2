@@ -45,17 +45,19 @@ Esta edição reflete a evolução recente da área de inteligência artificial 
 
 #### 📖 Como acessar este livro {.unnumbered}
 
-| Formato | Ideal para | Acesso |
-|---------|-----------|--------|
-| 🌐 **HTML** *(recomendado)* | Leitura principal — navegação fluida com figuras, tabelas e fórmulas | [fzampirolli.github.io/si-md2/](https://fzampirolli.github.io/si-md2/) |
-| 📄 **PDF** | Leitura offline, impressão ou uso como fonte no NotebookLM | [fzampirolli.github.io/si-md2/livro.pdf](https://fzampirolli.github.io/si-md2/livro.pdf) |
-| 🐍 **Notebook (.ipynb)** | Prática interativa com execução de código Python | Botão *Executar Colab* no início de cada capítulo |
+| | Formato | Acesso |
+|--|---------|--------|
+| 🌐 | **HTML** *(recomendado)* | [fzampirolli.github.io/si-md2/](https://fzampirolli.github.io/si-md2/) |
+| 📄 | **PDF** | [fzampirolli.github.io/si-md2/livro.pdf](https://fzampirolli.github.io/si-md2/livro.pdf) |
+| 🐍 | **Notebook (.ipynb)** | Botão *Executar Colab* no início de cada capítulo |
 
-💡 **Sugestão de uso:** estude a teoria na versão HTML, execute os notebooks para praticar e utilize o PDF como material de referência ou como fonte no NotebookLM.
+💡 **Sugestão:** estude pela versão HTML, pratique em Python nos notebooks e use o PDF como referência no NotebookLM ou para impressão.
 
-⏳ **Nota (Colab):** as imagens são carregadas a partir do GitHub e podem demorar alguns segundos para aparecer. Caso alguma figura não seja exibida imediatamente, basta **recarregar a página**.
+⏳ **Nota (Colab):** imagens carregadas do GitHub podem demorar alguns segundos — se não aparecerem, **recarregue a página**.
 
 :::
+
+
 
 ### Motivação {.unnumbered}
 
