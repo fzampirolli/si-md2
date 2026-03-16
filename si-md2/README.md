@@ -278,7 +278,7 @@ if quarto_format in ('html', ''):
 
 ### Publicação Completa (todos os workflows de uma vez)
 
-Para executar todos os workflows em sequência — HTML, notebooks para alunos, PDF e push para o GitHub — use o script principal:
+Para executar todos os workflows em sequência — PDF, HTML, notebooks para alunos e push para o GitHub — use o script principal:
 
 ```bash
 chmod +x publish_all.sh   # apenas na primeira vez
@@ -287,7 +287,18 @@ chmod +x publish_all.sh   # apenas na primeira vez
 
 O script detecta automaticamente a pasta de edição e a raiz do repositório git, rodando cada ferramenta no diretório correto.
 
-> ℹ️ **O PDF é gerado por último** de forma intencional: o script limpa os outputs de células de download antes do render PDF e os restaura em seguida, garantindo que o HTML e os notebooks dos alunos sejam gerados com os botões intactos.
+A ordem de execução do script é:
+
+1. **PDF** — gerado primeiro via `quarto render --to pdf`; o arquivo resultante é copiado como `livro.pdf` na pasta de edição.
+2. **HTML + GitHub Pages** — o `livro.pdf` gerado na etapa anterior é referenciado pelo `_quarto.yml` e copiado para `_book/` antes da publicação, garantindo que o link de download esteja disponível no site.
+3. **Notebooks para alunos** — gerados pelo script `gerar_notebooks_alunos.py`.
+4. **Git push** — commit automático com data/hora e push para o repositório principal; o PDF também é versionado nessa etapa.
+
+Ao final, o script exibe a URL direta do PDF publicado:
+
+```
+URL do PDF: https://fzampirolli.github.io/si-md2/livro.pdf
+```
 
 ---
 
@@ -323,7 +334,7 @@ jupyter lab notebooks_alunos/cap01/cap01_aluno.ipynb
 
 ---
 
-### Workflow C: Renderizar PDF (sempre por último)
+### Workflow C: Renderizar PDF (sempre primeiro)
 
 
 ```bash
@@ -331,7 +342,7 @@ jupyter lab notebooks_alunos/cap01/cap01_aluno.ipynb
 quarto render --to pdf
 ```
 
-Ou simplesmente execute `./publish_all.sh`, que cuida de tudo na ordem correta.
+O PDF gerado é salvo em `_book/` pelo Quarto. O script `publish_all.sh` copia-o automaticamente como `livro.pdf` na pasta de edição antes de iniciar o render HTML, de modo que o site já inclua o link de download atualizado.
 
 ---
 

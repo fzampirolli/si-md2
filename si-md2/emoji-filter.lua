@@ -127,6 +127,7 @@ local emojis = {
   ["🗃️"] = "\\emoji{card-file-box}",
   ["🗄️"] = "\\emoji{file-cabinet}",
   ["🗂️"] = "\\emoji{card-index-dividers}",
+  ["🐍"] = "\\emoji{snake}",
 
   -- ⚠️ SÍMBOLOS E SINAIS
   ["✅"] = "\\emoji{check-mark-button}",
