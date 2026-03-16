@@ -455,19 +455,20 @@ def convert_callouts(text: str, elem_map: dict) -> str:
 
             # Lógica de Renderização:
             if callout_type:
-                # Renderiza como Blockquote (Callout)
+                # Renderiza como blockquote Markdown nativo (> )
+                # Compativel com VSCode, JupyterLab e Colab: aceita $...$ e $$...$$
                 emoji, default_title = CALLOUT_STYLE[callout_type]
                 title = title_override or default_title
-                inner_html = md_inline_to_html(inner_text)
-                # Nao inserir <br /> — as quebras de linha dentro do <blockquote>
-                # sao tratadas pelo browser; inserir <br /> quebraria negritos
-                # e LaTeX que cruzam linhas no fonte Markdown.
+                # Prefixa cada linha do conteudo interno com "> "
+                inner_lines = inner_text.splitlines()
+                inner_quoted = '\n'.join(
+                    ('> ' + l) if l.strip() else '>'
+                    for l in inner_lines
+                )
                 block = (
-                    f'<blockquote style="border-left: 4px solid #aaa; '
-                    f'padding: 0.5em 1em; margin: 1em 0; background: #f9f9f9;">\n'
-                    f'<strong>{emoji} {title}</strong><br />\n'
-                    f'{inner_html}\n'
-                    f'</blockquote>'
+                    f'> ### {emoji} {title}\n'
+                    f'>\n'
+                    f'{inner_quoted}'
                 )
                 out.append(block)
 
