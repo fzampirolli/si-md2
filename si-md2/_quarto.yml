@@ -2,6 +2,7 @@ project:
   type: book
   resources: 
     - styles.css
+    - livro.pdf
 
 book:
   title: "Sistemas Inteligentes e Mineração de Dados"
