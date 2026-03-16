@@ -30,13 +30,16 @@ Roberto de Alencar Lotufo, professor titular
 Faculdade de Engenharia Elétrica e de Computação\
 Universidade Estadual de Campinas -- Unicamp
 
+Segue uma versão **menos repetitiva, mais direta e com melhor fluxo de leitura**, mantendo o mesmo conteúdo essencial. Também reduzi redundâncias entre seções e simplifiquei algumas explicações.
+
+
 
 
 ## Prefácio da Segunda Edição {.unnumbered}
 
 Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.
 
-Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.
+Esta edição reflete a evolução recente da área de inteligência artificial e mineração de dados, incorporando novas práticas, ferramentas e abordagens utilizadas tanto na academia quanto na indústria. Em especial, o material foi atualizado para integrar o ecossistema Python, hoje amplamente utilizado para análise de dados e aprendizado de máquina.
 
 ::: {.callout-note appearance="simple"}
 
@@ -44,67 +47,69 @@ Esta obra representa a evolução natural de nossa experiência no ensino de int
 
 | Formato | Ideal para | Acesso |
 |---------|-----------|--------|
-| 🌐 **HTML** *(recomendado)* | Leitura principal — navegação fluida, figuras nítidas, fórmulas renderizadas | [si-md2.github.io](https://fzampirolli.github.io/si-md2/) |
-| 📄 **PDF** | Leitura offline, impressão e uso como fonte no NotebookLM | [PDF disponíveis](https://github.com/fzampirolli/si-md2/blob/main/si-md2/_book_pdf/Sistemas-Inteligentes-e-Minera%C3%A7%C3%A3o-de-Dados.pdf) |
-| 🐍 **Notebook (.ipynb)** | Prática interativa — execute, modifique e experimente o código Python | Botão *Executar Colab* no início de cada capítulo |
+| 🌐 **HTML** *(recomendado)* | Leitura principal — navegação fluida com figuras, tabelas e fórmulas | [si-md2.github.io](https://fzampirolli.github.io/si-md2/) |
+| 📄 **PDF** | Leitura offline, impressão ou uso como fonte no NotebookLM | [PDF disponíveis](https://github.com/fzampirolli/si-md2/blob/main/si-md2/_book_pdf/Sistemas-Inteligentes-e-Minera%C3%A7%C3%A3o-de-Dados.pdf) |
+| 🐍 **Notebook (.ipynb)** | Prática interativa com execução de código Python | Botão *Executar Colab* no início de cada capítulo |
 
-> 💡 **Dica**: comece pela versão HTML para estudar a teoria, abra o notebook ao lado para praticar, e use o PDF como referência no NotebookLM.
->
-> ⏳ **Atenção (Colab)**: as imagens dos notebooks são carregadas do GitHub e podem demorar alguns segundos para aparecer. Se alguma figura não exibir, **recarregue a página** — elas aparecerão normalmente na sequência.
+💡 **Sugestão de uso:** estude a teoria na versão HTML, execute os notebooks para praticar e utilize o PDF como material de referência ou como fonte no NotebookLM.
+
+⏳ **Nota (Colab):** as imagens são carregadas a partir do GitHub e podem demorar alguns segundos para aparecer. Caso alguma figura não seja exibida imediatamente, basta **recarregar a página**.
 
 :::
 
 ### Motivação {.unnumbered}
 
-A primeira edição deste livro focava principalmente no uso da ferramenta Weka. Com o crescimento exponencial do ecossistema Python e suas bibliotecas especializadas (scikit-learn, pandas, NumPy, entre outras), tornou-se essencial atualizar o material didático para refletir as práticas atuais da indústria e da academia.
+A primeira edição deste livro tinha como foco principal a ferramenta **Weka**. Com o crescimento do ecossistema **Python** e de bibliotecas como *pandas*, *NumPy* e *scikit-learn*, tornou-se necessário atualizar o material didático para acompanhar as práticas contemporâneas da área.
+
+Esta segunda edição mantém os fundamentos conceituais da mineração de dados, mas apresenta exemplos e atividades práticas utilizando Python, favorecendo uma experiência mais atual e integrada com ferramentas amplamente utilizadas.
 
 ### Estrutura do Livro {.unnumbered}
 
-O livro está organizado em seis capítulos fundamentais:
+O conteúdo está organizado em seis capítulos:
 
-* **Capítulo 1**: Introdução aos Sistemas Inteligentes
-* **Capítulo 2**: Fundamentos de Mineração de Dados
-* **Capítulo 3**: Aprendizado de Máquina Supervisionado
-* **Capítulo 4**: Aprendizado Não Supervisionado
-* **Capítulo 5**: Avaliação e Validação de Modelos
-* **Capítulo 6**: Aplicações Práticas e Estudos de Caso
+- **Capítulo 1:** Introdução aos Sistemas Inteligentes  
+- **Capítulo 2:** Fundamentos de Mineração de Dados  
+- **Capítulo 3:** Aprendizado de Máquina Supervisionado  
+- **Capítulo 4:** Aprendizado Não Supervisionado  
+- **Capítulo 5:** Avaliação e Validação de Modelos  
+- **Capítulo 6:** Aplicações Práticas e Estudos de Caso  
 
 ### Como Estudar Este Material {.unnumbered}
 
-Para garantir o máximo aproveitamento, este material foi projetado para ser consumido de forma híbrida:
+Este livro foi projetado para combinar **leitura teórica, experimentação prática e apoio de ferramentas de IA**.
 
-#### 1. Prática Interativa (Notebooks)  {.unnumbered}
+#### Prática Interativa com Notebooks {.unnumbered}
 
-Cada capítulo possui uma parte prática que pode ser executada via **Google Colab** (clicando no botão "Open In Colab" no início do capítulo) ou localmente via **Jupyter Lab**. Recomendamos que você execute os códigos, como o exemplo de cálculo de IMC e geração de gráficos, enquanto estuda a teoria.
+Cada capítulo possui exemplos práticos que podem ser executados no **Google Colab** (pelo botão *Executar Colab* no início do capítulo) ou localmente via **Jupyter Lab**. Recomenda-se executar e modificar os códigos apresentados, explorando diferentes parâmetros e observando seus efeitos nos resultados.
 
-#### 2. Tutor Inteligente (NotebookLM)  {.unnumbered}
+#### Tutor Inteligente com NotebookLM {.unnumbered}
 
-Incentivamos o uso do **NotebookLM** como um tutor personalizado. Como a ferramenta ainda não processa arquivos `.ipynb` nativamente, você deve utilizar a **versão em PDF de cada capítulo** (gerada pelo Quarto) como fonte de dados para a IA.
+O **NotebookLM** pode ser utilizado como um tutor auxiliar para revisão, geração de resumos e esclarecimento de dúvidas. Como a ferramenta ainda não processa arquivos `.ipynb` diretamente, utilize a **versão em PDF de cada capítulo** como fonte.
 
 ::: {.callout-tip appearance="simple"}
 
-#### 🚀 Acesse o Tutor de IA do Livro  {.unnumbered}
+#### 🚀 Tutor de IA do Livro {.unnumbered}
 
-Para cada capítulo, utilize o projeto configurado para tirar dúvidas, gerar resumos e ouvir o *Audio Overview* ou assistir o *Resumo em Vídeo*:
+Cada capítulo possui um projeto configurado no NotebookLM.  
+Exemplo para o Capítulo 1:
 
 **[Link do Projeto NotebookLM do Capítulo 1](https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635)**
 
 :::
 
-#### Dicas para o Leitor {.unnumbered}
+### Sugestões ao Leitor {.unnumbered}
 
-* **Experimente**: Altere os parâmetros das funções e observe como os gráficos de barras e dispersão reagem.
-* **Questione a IA**: Use o NotebookLM para perguntar, por exemplo: *"Neste código de IMC que acabamos de executar, onde o dado bruto se transforma em informação?"*.
-* **Sincronização**: Mantenha as pastas `data/` e `images/` sempre junto aos seus notebooks para garantir a execução correta.
+- **Experimente:** modifique parâmetros e explore variações dos exemplos apresentados.  
+- **Investigue:** utilize ferramentas de IA para aprofundar conceitos e revisar conteúdos.  
+- **Conecte teoria e prática:** observe como os conceitos discutidos se refletem nos resultados obtidos nos experimentos.
 
 ### Agradecimentos {.unnumbered}
 
-Agradecemos aos alunos e instituições que apoiaram o desenvolvimento deste conteúdo.
+Agradecemos aos alunos e instituições que contribuíram para o desenvolvimento e aprimoramento deste material.
 
 ---
 
 *Quilici-Gonzalez, Zampirolli e Souza, 2026*
-
 
 
 

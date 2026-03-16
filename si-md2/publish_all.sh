@@ -47,20 +47,52 @@ log "=== Workflow C: Notebooks Alunos ==="
     log "${RED}Falha no Workflow C (Alunos).${NC}"
 }
 
+# # ---------------------------------------------------------------------------
+# # Workflow D: PDF (Simplificado e Seguro)
+# # ---------------------------------------------------------------------------
+# log "=== Workflow D: PDF ==="
+
+# if quarto render --to pdf; then
+#     # O Quarto gera o PDF baseado na configuração do _quarto.yml
+#     # Geralmente ele já sai no destino correto, mas se precisar mover:
+#     rm -rf "$BOOK_PDF" 
+#     mv "$BOOK_HTML" "$BOOK_PDF" 
+#     cp "$BOOK_PDF/Sistemas-Inteligentes-e-Mineração-de-Dados.pdf" "../livro.pdf" 
+#     ok "PDF gerado com sucesso."
+# else
+#     log "${RED}Erro durante o render do PDF.${NC}"
+# fi
+
 # ---------------------------------------------------------------------------
 # Workflow D: PDF (Simplificado e Seguro)
 # ---------------------------------------------------------------------------
 log "=== Workflow D: PDF ==="
 
+# 1. Executa o render
 if quarto render --to pdf; then
-    # O Quarto gera o PDF baseado na configuração do _quarto.yml
-    # Geralmente ele já sai no destino correto, mas se precisar mover:
-    rm -rf "$BOOK_PDF" 
-    mv "$BOOK_HTML" "$BOOK_PDF" 
-    ok "PDF gerado com sucesso."
+    
+    # Supondo que BOOK_PDF seja o diretório de saída definido no seu _quarto.yml (ex: _book_pdf)
+    # E que o arquivo gerado tenha o nome longo original.
+    
+    FILE_NAME="Sistemas-Inteligentes-e-Mineração-de-Dados.pdf"
+    SOURCE_PATH="$BOOK_PDF/$FILE_NAME"
+    TARGET_PATH="livro.pdf"
+
+    # 2. Verifica se o arquivo realmente foi gerado antes de mover
+    if [ -f "$SOURCE_PATH" ]; then
+        # Copia para a raiz/destino com nome simplificado
+        rm -rf "$BOOK_PDF" 
+        mv "$BOOK_HTML" "$BOOK_PDF" 
+        cp "$SOURCE_PATH" "$TARGET_PATH"
+        ok "PDF gerado e copiado para: $TARGET_PATH"
+    else
+        log "${RED}Erro: O arquivo PDF não foi encontrado em $SOURCE_PATH${NC}"
+    fi
 else
     log "${RED}Erro durante o render do PDF.${NC}"
 fi
+
+
 
 # ---------------------------------------------------------------------------
 # Workflow E: Git Push
