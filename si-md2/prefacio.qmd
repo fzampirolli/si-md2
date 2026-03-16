@@ -32,14 +32,27 @@ Universidade Estadual de Campinas -- Unicamp
 
 
 
-
-
-
 ## Prefácio da Segunda Edição {.unnumbered}
 
 Bem-vindo à segunda edição do livro **Sistemas Inteligentes e Mineração de Dados: Do Weka ao Python**.
 
 Esta obra representa a evolução natural de nossa experiência no ensino de inteligência artificial e mineração de dados, refletindo as mudanças significativas que ocorreram no campo nos últimos anos.
+
+::: {.callout-note appearance="simple"}
+
+#### 📖 Como acessar este livro {.unnumbered}
+
+| Formato | Ideal para | Acesso |
+|---------|-----------|--------|
+| 🌐 **HTML** *(recomendado)* | Leitura principal — navegação fluida, figuras nítidas, fórmulas renderizadas | [si-md2.github.io](https://fzampirolli.github.io/si-md2/) |
+| 📄 **PDF** | Leitura offline, impressão e uso como fonte no NotebookLM | [PDF disponíveis](https://github.com/fzampirolli/si-md2/blob/main/si-md2/_book_pdf/Sistemas-Inteligentes-e-Minera%C3%A7%C3%A3o-de-Dados.pdf) |
+| 🐍 **Notebook (.ipynb)** | Prática interativa — execute, modifique e experimente o código Python | Botão *Executar Colab* no início de cada capítulo |
+
+> 💡 **Dica**: comece pela versão HTML para estudar a teoria, abra o notebook ao lado para praticar, e use o PDF como referência no NotebookLM.
+>
+> ⏳ **Atenção (Colab)**: as imagens dos notebooks são carregadas do GitHub e podem demorar alguns segundos para aparecer. Se alguma figura não exibir, **recarregue a página** — elas aparecerão normalmente na sequência.
+
+:::
 
 ### Motivação {.unnumbered}
 
@@ -90,19 +103,7 @@ Agradecemos aos alunos e instituições que apoiaram o desenvolvimento deste con
 
 ---
 
-*Os Autores* *Fevereiro de 2026*
-
----
-
-### Nota para os Autores (Trecho em Construção)  {.unnumbered}
-
-::: {.callout-warning}
-
-## Atenção Autores  {.unnumbered}
-
-Sempre que finalizarem a edição de um capítulo, lembrem-se de gerar o PDF atualizado via Quarto. Este PDF é a fonte que os alunos devem subir no NotebookLM, já que os arquivos `.ipynb` não são aceitos pela plataforma.
-:::
-
+*Quilici-Gonzalez, Zampirolli e Souza, 2026*
 
 
 
