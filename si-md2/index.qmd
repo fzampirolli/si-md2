@@ -27,23 +27,30 @@ Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto**
 2. Copiado `si-md1/Sist_Intel_j.md` para `si-md2/capXX/capXX.ipynb` (e ajustes manuais).
 3. Gerado `si-md1/sistemas_inteligentes_impresso.md` de `si-md1/sistemas_inteligentes_impresso.pdf` com tesseract.
 4. Pequenas correções em `si-md2/capXX/capXX.ipynb` usando `si-md1/sistemas_inteligentes_impresso.md`.
-5. Ajustes manuais para funcionar `quarto render` em html, ipynb, pdf e epub.
+5. Ajustes manuais para funcionar `quarto render` em html, pdf e epub.
+6. O formato ipynb renderizado ocorre através do método `gerar_notebooks_alunos.py`.
 
 ```{mermaid}
 flowchart TD
-
+    %% Fontes Iniciais
     A["`**si-md1/Sist_Intel.docx**`"] -->|pandoc| B["`**si-md1/Sist_Intel.md**`"]
     C["`**si-md1/sistemas_inteligentes_impresso.pdf**`"] -->|tesseract| D["`**si-md1/sistemas_inteligentes_impresso.md**`"]
 
+    %% Construção do Notebook Principal
     B -->|"cópia + ajustes manuais"| E["`**si-md2/capXX/capXX.ipynb**`"]
     D -->|"referência para correções"| E
 
-    E -->|"ajustes manuais"| F["`**quarto render**`"]
-
+    %% Fluxo de Publicação (Quarto)
+    E -->|"quarto render"| F{Formatos Finalizados}
     F --> G[HTML]
-    F --> H[IPYNB]
     F --> I[PDF]
     F --> J[ePUB]
+
+    %% Fluxo do Aluno (Script Python)
+    E -->|gerar_notebooks_alunos.py| H["`**capXX_aluno.ipynb**`"]
+    
+    style H fill:#f9f,stroke:#333,stroke-width:2px
+    style F fill:#e1f5fe,stroke:#01579b
 ```
 
 ---
