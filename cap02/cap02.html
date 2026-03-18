@@ -321,7 +321,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="70">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="106">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -361,14 +361,14 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="71">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="71">
+<div class="cell" data-quarto-raw="true" data-execution_count="107">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="107">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </figcaption>
 <div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="71">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="107">
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 9%">
@@ -451,14 +451,14 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="72">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="72">
+<div class="cell" data-quarto-raw="true" data-execution_count="108">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="108">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
 </figcaption>
 <div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="72">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="108">
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1312,7 +1312,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="73">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="109">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1384,7 +1384,7 @@ Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.csv</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="74">
+<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="110">
 <div id="download-csv-only" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -1472,7 +1472,7 @@ Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representa
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="75">
+<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="111">
 <div id="download-arff-only" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMQoKQGF0dHJpYnV0ZSBBIHt5LCBufQpAYXR0cmlidXRlIEIge3ksIG59CkBhdHRyaWJ1dGUgQyB7eSwgbn0KQGF0dHJpYnV0ZSBEIHt5LCBufQpAYXR0cmlidXRlIEUge3ksIG59CkBhdHRyaWJ1dGUgRiB7eSwgbn0KQGF0dHJpYnV0ZSBHIHt5LCBufQoKQGRhdGEKeSx5LG4seSxuLG4sbgpuLG4sbixuLG4seSx5CnkseSx5LHksbixuLG4KeSxuLG4sbix5LHkseQp5LHkseSx5LG4sbixuCg==" download="Transacoes_1.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1555,7 +1555,7 @@ Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representad
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_2.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="76">
+<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="112">
 <div id="download-arff-v2" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMgoKQGF0dHJpYnV0ZSBBIHt5fQpAYXR0cmlidXRlIEIge3l9CkBhdHRyaWJ1dGUgQyB7eX0KQGF0dHJpYnV0ZSBEIHt5fQpAYXR0cmlidXRlIEUge3l9CkBhdHRyaWJ1dGUgRiB7eX0KQGF0dHJpYnV0ZSBHIHt5fQoKQGRhdGEKeSx5LD8seSw/LD8sPwo/LD8sPyw/LD8seSx5CnkseSx5LHksPyw/LD8KeSw/LD8sPyx5LHkseQp5LHkseSx5LD8sPyw/Cg==" download="Transacoes_2.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1595,7 +1595,7 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <section id="configuração-do-ambiente" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="configuração-do-ambiente"><span class="header-section-number">2.7.2</span> 🔹 Configuração do Ambiente</h3>
 <p>Retomamos o padrão do capítulo anterior, todos os <code>import</code> no topo, verificação de versões e uso de <strong>dicionários</strong> para estruturar os dados antes de convertê-los em <code>DataFrames</code>.</p>
-<div id="cell-58" class="cell" data-execution_count="77">
+<div id="cell-58" class="cell" data-execution_count="113">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -1618,10 +1618,6 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Networkx  : </span><span class="sc">{</span>nx<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib: </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/usr/lib/python3.12/pty.py:95: DeprecationWarning: This process (pid=7282) is multi-threaded, use of forkpty() may lead to deadlocks in the child.
-  pid, fd = os.forkpty()</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Requirement already satisfied: networkx in /home/fz/VSCode/si-md2/.venv/lib/python3.12/site-packages (3.6.1)
 Python    : 3.12.3
@@ -1649,7 +1645,7 @@ Matplotlib: 3.10.8
 <li><strong>Suporte:</strong> Mede a <strong>cobertura</strong> (popularidade). Indica quão representativo aquele item é na base de dados.</li>
 </ul>
 <p>O resultado da análise de frequência e a aplicação do critério de poda para itens individuais podem ser observados na <a href="#tbl-2-pratica1" class="quarto-xref">Tabela&nbsp;<span>2.14</span></a>, que detalha o suporte de cada item e seu status de aceitação.</p>
-<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="78">
+<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="114">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
@@ -1721,7 +1717,7 @@ Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
 <li><strong>Confiança (<span class="math inline">\(\mathbf{Conf}\)</span>):</strong> Indica a <strong>precisão</strong> ou assertividade. É a probabilidade de o item <span class="math inline">\(Y\)</span> estar presente, dado que o item <span class="math inline">\(X\)</span> já foi adquirido.</li>
 </ul>
 <p>Após a filtragem dos itens individuais, geramos as combinações de pares e calculamos sua precisão, conforme apresentado na <a href="#tbl-2-pratica2" class="quarto-xref">Tabela&nbsp;<span>2.15</span></a>, que lista as regras candidatas e seu respectivo suporte e confiança.</p>
-<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="79">
+<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="115">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro de Confiança.
@@ -1835,7 +1831,7 @@ Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro d
 </blockquote>
 <p>À medida que aumentamos o tamanho dos conjuntos para trios (<span class="math inline">\(L_3\)</span>), a análise torna-se mais rica: buscamos regras onde a presença de dois itens “puxa” um terceiro. Introduzimos aqui o <strong>Grafo de Associação</strong>, uma ferramenta visual indispensável quando as tabelas começam a ficar extensas, permitindo identificar o fluxo lógico das decisões de compra.</p>
 <p>A evolução para conjuntos de três itens e a validação de regras compostas são apresentadas na <a href="#tbl-2-pratica3" class="quarto-xref">Tabela&nbsp;<span>2.16</span></a>.</p>
-<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="80">
+<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="116">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos Antecedentes.
@@ -1950,33 +1946,33 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 </figure>
 </div>
 <p>Para facilitar a compreensão das interdependências entre esses trios, as regras aceitas são mapeadas visualmente no grafo da <a href="#fig-2-pratica3" class="quarto-xref">Figura&nbsp;<span>2.14</span></a>.</p>
-<div id="cell-fig-2-pratica3" class="cell" data-quarto-raw="true" data-execution_count="81">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Visualização do Grafo (Apenas para as Regras ACEITAS)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_L3.edges():</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra L3 atingiu os critérios para exibição no grafo."</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seed fixo para garantir que o layout seja reproduzível</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_L3, k<span class="op">=</span><span class="fl">1.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho dos nós e labels</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_L3, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho das arestas com curvatura para evitar sobreposição de regras bidirecionais</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_L3, pos, arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, arrowsize<span class="op">=</span><span class="dv">30</span>, edge_color<span class="op">=</span><span class="st">'skyblue'</span>, </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                        connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.1"</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Labels de Confiança (em vermelho) sobre as arestas</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    edge_labels <span class="op">=</span> {k: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.2f}</span><span class="ss">"</span> <span class="cf">for</span> k, v <span class="kw">in</span> nx.get_edge_attributes(G_L3, <span class="st">'weight'</span>).items()}</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edge_labels(G_L3, pos, </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                                 edge_labels<span class="op">=</span>edge_labels, font_color<span class="op">=</span><span class="st">'red'</span>, font_size<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Mapa de Fluxo L3 (Regras de Trios ACEITAS)"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-2-pratica3" class="cell" data-quarto-raw="true" data-execution_count="117">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Visualização do Grafo (Apenas para as Regras ACEITAS)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_L3.edges():</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra L3 atingiu os critérios para exibição no grafo."</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seed fixo para garantir que o layout seja reproduzível</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_L3, k<span class="op">=</span><span class="fl">1.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho dos nós e labels</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_L3, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho das arestas com curvatura para evitar sobreposição de regras bidirecionais</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_L3, pos, arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, arrowsize<span class="op">=</span><span class="dv">30</span>, edge_color<span class="op">=</span><span class="st">'skyblue'</span>, </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                        connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.1"</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Labels de Confiança (em vermelho) sobre as arestas</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    edge_labels <span class="op">=</span> {k: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.2f}</span><span class="ss">"</span> <span class="cf">for</span> k, v <span class="kw">in</span> nx.get_edge_attributes(G_L3, <span class="st">'weight'</span>).items()}</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edge_labels(G_L3, pos, </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                                 edge_labels<span class="op">=</span>edge_labels, font_color<span class="op">=</span><span class="st">'red'</span>, font_size<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Mapa de Fluxo L3 (Regras de Trios ACEITAS)"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-2-pratica3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2036,7 +2032,7 @@ Figura&nbsp;2.14: Representação visual (Grafo) das regras de associação de n
 <h4 data-number="2.7.6.2" class="anchored" data-anchor-id="implementação-automação-total-e-relatório-de-inteligência"><span class="header-section-number">2.7.6.2</span> Implementação: Automação Total e Relatório de Inteligência</h4>
 <p>O código abaixo integra a descoberta iterativa de itemsets (<em>loop</em> <span class="math inline">\(L_1, L_2, L_3, \dots, L_n\)</span>), a validação de confiança e o cálculo de <span class="math inline">\(\mathbf{Lift}\)</span>, exibindo o status final de cada regra.</p>
 <p>O relatório consolidado de todas as regras encontradas pelo algoritmo, priorizadas pela força de associação, é exibido <a href="#tbl-2-pratica4" class="quarto-xref">Tabela&nbsp;<span>2.17</span></a>.</p>
-<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="118">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Apriori Completo).
@@ -2431,35 +2427,35 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 </figure>
 </div>
 <p>Por fim, a <a href="#fig-2-pratica4" class="quarto-xref">Figura&nbsp;<span>2.15</span></a> apresenta o grafo de influência final, onde a graduação de cores destaca o valor estratégico (<span class="math inline">\(\mathbf{Lift}\)</span>) de cada associação descoberta.</p>
-<div id="cell-fig-2-pratica4" class="cell" data-quarto-raw="true" data-execution_count="83">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Grafo de Lift (Apenas regras ACEITAS) ---</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>G_final <span class="op">=</span> nx.DiGraph()</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_finais:</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    G_final.add_edge(<span class="st">", "</span>.join(<span class="bu">sorted</span>(r.antecedente)), </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">", "</span>.join(<span class="bu">sorted</span>(r.consequente)), weight<span class="op">=</span>r.lift)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_final.edges():</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra atingiu os critérios para exibição no grafo."</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_final, k<span class="op">=</span><span class="fl">2.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    lifts <span class="op">=</span> [G_final[u][v][<span class="st">'weight'</span>] <span class="cf">for</span> u, v <span class="kw">in</span> G_final.edges()]</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_final, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mapeamento de cores baseado no Lift</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    sm <span class="op">=</span> plt.cm.ScalarMappable(cmap<span class="op">=</span>plt.cm.Reds, </span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                               norm<span class="op">=</span>plt.Normalize(vmin<span class="op">=</span><span class="bu">min</span>(lifts), vmax<span class="op">=</span><span class="bu">max</span>(lifts)))</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_final, pos, edge_color<span class="op">=</span>lifts, edge_cmap<span class="op">=</span>plt.cm.Reds, width<span class="op">=</span><span class="dv">2</span>, </span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                           arrowsize<span class="op">=</span><span class="dv">25</span>, connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.2"</span>)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(sm, ax<span class="op">=</span>plt.gca(), label<span class="op">=</span><span class="st">'Lift (Força da Associação)'</span>)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-2-pratica4" class="cell" data-quarto-raw="true" data-execution_count="119">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Grafo de Lift (Apenas regras ACEITAS) ---</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>G_final <span class="op">=</span> nx.DiGraph()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_finais:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    G_final.add_edge(<span class="st">", "</span>.join(<span class="bu">sorted</span>(r.antecedente)), </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">", "</span>.join(<span class="bu">sorted</span>(r.consequente)), weight<span class="op">=</span>r.lift)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_final.edges():</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra atingiu os critérios para exibição no grafo."</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_final, k<span class="op">=</span><span class="fl">2.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    lifts <span class="op">=</span> [G_final[u][v][<span class="st">'weight'</span>] <span class="cf">for</span> u, v <span class="kw">in</span> G_final.edges()]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_final, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mapeamento de cores baseado no Lift</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    sm <span class="op">=</span> plt.cm.ScalarMappable(cmap<span class="op">=</span>plt.cm.Reds, </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                               norm<span class="op">=</span>plt.Normalize(vmin<span class="op">=</span><span class="bu">min</span>(lifts), vmax<span class="op">=</span><span class="bu">max</span>(lifts)))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_final, pos, edge_color<span class="op">=</span>lifts, edge_cmap<span class="op">=</span>plt.cm.Reds, width<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                           arrowsize<span class="op">=</span><span class="dv">25</span>, connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.2"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(sm, ax<span class="op">=</span>plt.gca(), label<span class="op">=</span><span class="st">'Lift (Força da Associação)'</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-2-pratica4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2480,17 +2476,13 @@ Figura&nbsp;2.15: Grafo de Influência: A intensidade da cor (Reds) indica o val
 <h3 data-number="2.7.7" class="anchored" data-anchor-id="prática-5-biblioteca-mlxtend"><span class="header-section-number">2.7.7</span> 🔹 Prática 5 — Biblioteca MLxtend</h3>
 <p>A biblioteca <strong>MLxtend</strong> contém implementações otimizadas do <strong>Apriori</strong> e também do <strong>FP-Growth</strong> (que é ainda mais rápido).</p>
 <p><strong>Instalação:</strong></p>
-<div id="cell-76" class="cell" data-execution_count="84">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install mlxtend <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/usr/lib/python3.12/pty.py:95: DeprecationWarning: This process (pid=7282) is multi-threaded, use of forkpty() may lead to deadlocks in the child.
-  pid, fd = os.forkpty()</code></pre>
-</div>
+<div id="cell-76" class="cell" data-execution_count="120">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install mlxtend <span class="op">-</span>q <span class="op">--</span>no<span class="op">-</span>cache<span class="op">-</span><span class="bu">dir</span> <span class="dv">2</span><span class="op">&gt;/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="implementação-direta" class="level4" data-number="2.7.7.1">
 <h4 data-number="2.7.7.1" class="anchored" data-anchor-id="implementação-direta"><span class="header-section-number">2.7.7.1</span> Implementação Direta</h4>
 <p>O uso dessas bibliotecas requer um pré-processamento para converter a lista de transações em uma matriz booleana (<em>One-Hot Encoding</em>). A <a href="#tbl-2-pratica5" class="quarto-xref">Tabela&nbsp;<span>2.18</span></a> apresenta o resultado gerado pelo código a seguir. Caso esteja utilizando o Colab ou Jupyter Notebook, execute o código abaixo e, em uma nova célula, imprima a variável <code>te_ary</code> para visualizar a estrutura da matriz lógica.</p>
-<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="121">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
