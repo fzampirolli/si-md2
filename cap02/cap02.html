@@ -321,7 +321,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="106">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="106" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -362,7 +362,7 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
 <div class="cell" data-quarto-raw="true" data-execution_count="107">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="107">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="107" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
@@ -452,7 +452,7 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
 <div class="cell" data-quarto-raw="true" data-execution_count="108">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="108">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="108" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
@@ -1312,7 +1312,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="109">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="109" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1645,12 +1645,55 @@ Matplotlib: 3.10.8
 <li><strong>Suporte:</strong> Mede a <strong>cobertura</strong> (popularidade). Indica quão representativo aquele item é na base de dados.</li>
 </ul>
 <p>O resultado da análise de frequência e a aplicação do critério de poda para itens individuais podem ser observados na <a href="#tbl-2-pratica1" class="quarto-xref">Tabela&nbsp;<span>2.14</span></a>, que detalha o suporte de cada item e seu status de aceitação.</p>
-<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="114">
+<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
 </figcaption>
 <div aria-describedby="tbl-2-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dados e Representação</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>transacoes_raw <span class="op">=</span> [</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Óleo"</span>}, {<span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>}, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>}, {<span class="st">"Arroz"</span>, <span class="st">"Água"</span>, <span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>}, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>transacoes <span class="op">=</span> [<span class="bu">frozenset</span>(t) <span class="cf">for</span> t <span class="kw">in</span> transacoes_raw]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>todos_itens <span class="op">=</span> [<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>, <span class="st">"Água"</span>, <span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Função de Suporte (Base para as próximas práticas)</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_suporte(itemset, transacoes):</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(itemset, (<span class="bu">frozenset</span>, <span class="bu">set</span>)):</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        itemset <span class="op">=</span> <span class="bu">frozenset</span>([itemset]) <span class="cf">if</span> <span class="bu">isinstance</span>(itemset, <span class="bu">str</span>) <span class="cf">else</span> <span class="bu">frozenset</span>(itemset)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    contagem <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> transacoes <span class="cf">if</span> itemset.issubset(t))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contagem <span class="op">/</span> <span class="bu">len</span>(transacoes)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Análise do L1 e Poda</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>SUP_MIN <span class="op">=</span> <span class="fl">0.4</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>l1_frequentes <span class="op">=</span> []</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>resultados_l1 <span class="op">=</span> []</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> todos_itens:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    sup <span class="op">=</span> calcular_suporte(item, transacoes)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">"ACEITO"</span> <span class="cf">if</span> sup <span class="op">&gt;=</span> SUP_MIN <span class="cf">else</span> <span class="st">"PODADO"</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sup <span class="op">&gt;=</span> SUP_MIN: </span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        l1_frequentes.append(item)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Armazena os dados para o DataFrame</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    resultados_l1.append({</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Item"</span>: item,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Suporte"</span>: <span class="ss">f"</span><span class="sc">{</span>sup<span class="sc">:.1%}</span><span class="ss">"</span>,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Status"</span>: status</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Exibição Tabular</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>df_l1 <span class="op">=</span> pd.DataFrame(resultados_l1)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Configuração: Suporte Mínimo = </span><span class="sc">{</span>SUP_MIN<span class="sc">:.0%}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>Markdown(df_l1.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_l1.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Configuração: Suporte Mínimo = 40%</p>
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
@@ -1717,12 +1760,59 @@ Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
 <li><strong>Confiança (<span class="math inline">\(\mathbf{Conf}\)</span>):</strong> Indica a <strong>precisão</strong> ou assertividade. É a probabilidade de o item <span class="math inline">\(Y\)</span> estar presente, dado que o item <span class="math inline">\(X\)</span> já foi adquirido.</li>
 </ul>
 <p>Após a filtragem dos itens individuais, geramos as combinações de pares e calculamos sua precisão, conforme apresentado na <a href="#tbl-2-pratica2" class="quarto-xref">Tabela&nbsp;<span>2.15</span></a>, que lista as regras candidatas e seu respectivo suporte e confiança.</p>
-<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="115">
+<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro de Confiança.
 </figcaption>
 <div aria-describedby="tbl-2-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Função de Confiança</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_confianca(antecedente, consequente, transacoes):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    sup_total <span class="op">=</span> calcular_suporte(<span class="bu">frozenset</span>(antecedente) <span class="op">|</span> <span class="bu">frozenset</span>(consequente), transacoes)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    sup_ant <span class="op">=</span> calcular_suporte(antecedente, transacoes)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sup_total <span class="op">/</span> sup_ant <span class="cf">if</span> sup_ant <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="fl">0.0</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Configuração de Limiares</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>CONF_MIN <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>resultados_l2 <span class="op">=</span> []</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>conexoes_grafo <span class="op">=</span> []</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Geração de Regras e Poda</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Geramos pares apenas com itens que sobreviveram à poda no L1</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> combo <span class="kw">in</span> combinations(l1_frequentes, <span class="dv">2</span>):</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    itemset_par <span class="op">=</span> <span class="bu">frozenset</span>(combo)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    sup_par <span class="op">=</span> calcular_suporte(itemset_par, transacoes)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filtro 1: O par deve ser frequente (Suporte)</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sup_par <span class="op">&gt;=</span> SUP_MIN:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        itens <span class="op">=</span> <span class="bu">list</span>(itemset_par)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Testamos as duas direções da regra: A -&gt; B e B -&gt; A</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> ant, cons <span class="kw">in</span> [(itens[<span class="dv">0</span>], itens[<span class="dv">1</span>]), (itens[<span class="dv">1</span>], itens[<span class="dv">0</span>])]:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>            conf <span class="op">=</span> calcular_confianca([ant], [cons], transacoes)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Filtro 2: A regra deve ser precisa (Confiança)</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> conf <span class="op">&gt;=</span> CONF_MIN:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                status <span class="op">=</span> <span class="st">"ACEITO"</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Guardamos a conexão para o grafo final</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                conexoes_grafo.append((ant, cons, conf))</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                status <span class="op">=</span> <span class="st">"PODADO"</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>            resultados_l2.append({</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Regra"</span>: <span class="ss">f"</span><span class="sc">{</span>ant<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>cons<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Suporte"</span>: <span class="ss">f"</span><span class="sc">{</span>sup_par<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Confiança"</span>: <span class="ss">f"</span><span class="sc">{</span>conf<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Status"</span>: status</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Exibição Tabular</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>df_l2 <span class="op">=</span> pd.DataFrame(resultados_l2)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Configuração: Confiança Mínima = </span><span class="sc">{</span>CONF_MIN<span class="sc">:.0%}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>Markdown(df_l2.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_l2.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Configuração: Confiança Mínima = 90%</p>
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
@@ -1831,12 +1921,53 @@ Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro d
 </blockquote>
 <p>À medida que aumentamos o tamanho dos conjuntos para trios (<span class="math inline">\(L_3\)</span>), a análise torna-se mais rica: buscamos regras onde a presença de dois itens “puxa” um terceiro. Introduzimos aqui o <strong>Grafo de Associação</strong>, uma ferramenta visual indispensável quando as tabelas começam a ficar extensas, permitindo identificar o fluxo lógico das decisões de compra.</p>
 <p>A evolução para conjuntos de três itens e a validação de regras compostas são apresentadas na <a href="#tbl-2-pratica3" class="quarto-xref">Tabela&nbsp;<span>2.16</span></a>.</p>
-<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="116">
+<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos Antecedentes.
 </figcaption>
 <div aria-describedby="tbl-2-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Configuração de Candidatos</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>trios_candidatos <span class="op">=</span> [<span class="bu">frozenset</span>(c) <span class="cf">for</span> c <span class="kw">in</span> combinations(l1_frequentes, <span class="dv">3</span>)]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>resultados_l3 <span class="op">=</span> []</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>G_L3 <span class="op">=</span> nx.DiGraph() <span class="co"># Grafo auxiliar para o próximo bloco</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Mineração de Trios e Regras</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> trio <span class="kw">in</span> trios_candidatos:</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    sup_trio <span class="op">=</span> calcular_suporte(trio, transacoes)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sup_trio <span class="op">&gt;=</span> SUP_MIN:</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        itens <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">list</span>(trio))</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> combo <span class="kw">in</span> combinations(itens, <span class="dv">2</span>):</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            ant <span class="op">=</span> <span class="bu">frozenset</span>(combo)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            cons <span class="op">=</span> trio <span class="op">-</span> ant</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>            conf <span class="op">=</span> calcular_confianca(ant, cons, transacoes)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>            ant_str <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">sorted</span>(<span class="bu">list</span>(ant)))</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>            cons_str <span class="op">=</span> <span class="st">", "</span>.join(<span class="bu">sorted</span>(<span class="bu">list</span>(cons)))</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> conf <span class="op">&gt;=</span> CONF_MIN:</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                status <span class="op">=</span> <span class="st">"ACEITO"</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>                G_L3.add_edge(ant_str, cons_str, weight<span class="op">=</span>conf)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                status <span class="op">=</span> <span class="st">"PODADO"</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>            resultados_l3.append({</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Itemset (L3)"</span>: <span class="bu">sorted</span>(<span class="bu">list</span>(trio)),</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Regra"</span>: <span class="ss">f"</span><span class="ch">{{</span><span class="sc">{</span>ant_str<span class="sc">}</span><span class="ch">}}</span><span class="ss"> -&gt; </span><span class="ch">{{</span><span class="sc">{</span>cons_str<span class="sc">}</span><span class="ch">}}</span><span class="ss">"</span>,</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Suporte"</span>: <span class="ss">f"</span><span class="sc">{</span>sup_trio<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Confiança"</span>: <span class="ss">f"</span><span class="sc">{</span>conf<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Status"</span>: status</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Exibição Tabular</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>df_l3 <span class="op">=</span> pd.DataFrame(resultados_l3)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Configuração: SUP_MIN </span><span class="sc">{</span>SUP_MIN<span class="sc">:.0%}</span><span class="ss"> | CONF_MIN: </span><span class="sc">{</span>CONF_MIN<span class="sc">:.0%}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>Markdown(df_l3.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_l3.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Configuração: SUP_MIN 40% | CONF_MIN: 90%</p>
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
@@ -1947,32 +2078,32 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 </div>
 <p>Para facilitar a compreensão das interdependências entre esses trios, as regras aceitas são mapeadas visualmente no grafo da <a href="#fig-2-pratica3" class="quarto-xref">Figura&nbsp;<span>2.14</span></a>.</p>
 <div id="cell-fig-2-pratica3" class="cell" data-quarto-raw="true" data-execution_count="117">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Visualização do Grafo (Apenas para as Regras ACEITAS)</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_L3.edges():</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra L3 atingiu os critérios para exibição no grafo."</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seed fixo para garantir que o layout seja reproduzível</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_L3, k<span class="op">=</span><span class="fl">1.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho dos nós e labels</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_L3, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho das arestas com curvatura para evitar sobreposição de regras bidirecionais</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_L3, pos, arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, arrowsize<span class="op">=</span><span class="dv">30</span>, edge_color<span class="op">=</span><span class="st">'skyblue'</span>, </span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                        connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.1"</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Labels de Confiança (em vermelho) sobre as arestas</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    edge_labels <span class="op">=</span> {k: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.2f}</span><span class="ss">"</span> <span class="cf">for</span> k, v <span class="kw">in</span> nx.get_edge_attributes(G_L3, <span class="st">'weight'</span>).items()}</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edge_labels(G_L3, pos, </span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                                 edge_labels<span class="op">=</span>edge_labels, font_color<span class="op">=</span><span class="st">'red'</span>, font_size<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Mapa de Fluxo L3 (Regras de Trios ACEITAS)"</span>)</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Visualização do Grafo (Apenas para as Regras ACEITAS)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_L3.edges():</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra L3 atingiu os critérios para exibição no grafo."</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seed fixo para garantir que o layout seja reproduzível</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_L3, k<span class="op">=</span><span class="fl">1.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho dos nós e labels</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_L3, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Desenho das arestas com curvatura para evitar sobreposição de regras bidirecionais</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_L3, pos, arrowstyle<span class="op">=</span><span class="st">'-&gt;'</span>, arrowsize<span class="op">=</span><span class="dv">30</span>, edge_color<span class="op">=</span><span class="st">'skyblue'</span>, </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                        connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.1"</span>, width<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Labels de Confiança (em vermelho) sobre as arestas</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    edge_labels <span class="op">=</span> {k: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.2f}</span><span class="ss">"</span> <span class="cf">for</span> k, v <span class="kw">in</span> nx.get_edge_attributes(G_L3, <span class="st">'weight'</span>).items()}</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edge_labels(G_L3, pos, </span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                                 edge_labels<span class="op">=</span>edge_labels, font_color<span class="op">=</span><span class="st">'red'</span>, font_size<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Mapa de Fluxo L3 (Regras de Trios ACEITAS)"</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-2-pratica3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2032,12 +2163,96 @@ Figura&nbsp;2.14: Representação visual (Grafo) das regras de associação de n
 <h4 data-number="2.7.6.2" class="anchored" data-anchor-id="implementação-automação-total-e-relatório-de-inteligência"><span class="header-section-number">2.7.6.2</span> Implementação: Automação Total e Relatório de Inteligência</h4>
 <p>O código abaixo integra a descoberta iterativa de itemsets (<em>loop</em> <span class="math inline">\(L_1, L_2, L_3, \dots, L_n\)</span>), a validação de confiança e o cálculo de <span class="math inline">\(\mathbf{Lift}\)</span>, exibindo o status final de cada regra.</p>
 <p>O relatório consolidado de todas as regras encontradas pelo algoritmo, priorizadas pela força de associação, é exibido <a href="#tbl-2-pratica4" class="quarto-xref">Tabela&nbsp;<span>2.17</span></a>.</p>
-<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="118">
+<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Apriori Completo).
 </figcaption>
 <div aria-describedby="tbl-2-pratica4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass, field</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RegraAssociacao:</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    antecedente: <span class="bu">frozenset</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    consequente: <span class="bu">frozenset</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    suporte: <span class="bu">float</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    confianca: <span class="bu">float</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    lift: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Calculado externamente para evitar dependências globais</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apriori(transacoes, sup_min, conf_min):</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dicionário para armazenar suportes já calculados: {itemset: valor}</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    suportes_cache <span class="op">=</span> {}</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    n_transacoes <span class="op">=</span> <span class="bu">len</span>(transacoes)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_suporte(itemset):</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> itemset <span class="kw">not</span> <span class="kw">in</span> suportes_cache:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>            count <span class="op">=</span> <span class="bu">sum</span>(<span class="dv">1</span> <span class="cf">for</span> t <span class="kw">in</span> transacoes <span class="cf">if</span> itemset.issubset(t))</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>            suportes_cache[itemset] <span class="op">=</span> count <span class="op">/</span> n_transacoes</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> suportes_cache[itemset]</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    itens <span class="op">=</span> <span class="bu">sorted</span>(<span class="bu">set</span>().union(<span class="op">*</span>transacoes))</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    frequentes <span class="op">=</span> []</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    candidatos_k <span class="op">=</span> [<span class="bu">frozenset</span>([i]) <span class="cf">for</span> i <span class="kw">in</span> itens]</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Etapa 1: Itemsets Frequentes</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> candidatos_k:</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>        freq_k <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> candidatos_k <span class="cf">if</span> get_suporte(c) <span class="op">&gt;=</span> sup_min]</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        frequentes.extend(freq_k)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> freq_k: <span class="cf">break</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>        k <span class="op">=</span> <span class="bu">len</span>(freq_k[<span class="dv">0</span>]) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>        proximos <span class="op">=</span> {a <span class="op">|</span> b <span class="cf">for</span> a, b <span class="kw">in</span> combinations(freq_k, <span class="dv">2</span>) <span class="cf">if</span> <span class="bu">len</span>(a <span class="op">|</span> b) <span class="op">==</span> k}</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>        candidatos_k <span class="op">=</span> <span class="bu">list</span>(proximos)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Etapa 2: Regras de Associação</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    regras_aceitas <span class="op">=</span> []</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    dados_relatorio <span class="op">=</span> []</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> itemset <span class="kw">in</span> frequentes:</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(itemset) <span class="op">&lt;</span> <span class="dv">2</span>: <span class="cf">continue</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Para cada subconjunto do itemset frequente</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> tam_ant <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(itemset)):</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> ant_tuple <span class="kw">in</span> combinations(itemset, tam_ant):</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>                ant <span class="op">=</span> <span class="bu">frozenset</span>(ant_tuple)</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>                con <span class="op">=</span> itemset <span class="op">-</span> ant</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>                sup_total <span class="op">=</span> get_suporte(itemset)</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>                sup_ant <span class="op">=</span> get_suporte(ant)</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>                sup_con <span class="op">=</span> get_suporte(con)</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>                conf <span class="op">=</span> sup_total <span class="op">/</span> sup_ant</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>                lift <span class="op">=</span> conf <span class="op">/</span> sup_con</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>                status <span class="op">=</span> <span class="st">"ACEITO"</span> <span class="cf">if</span> conf <span class="op">&gt;=</span> conf_min <span class="cf">else</span> <span class="st">"PODADO"</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>                regra <span class="op">=</span> RegraAssociacao(ant, con, sup_total, conf, lift)</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> conf <span class="op">&gt;=</span> conf_min:</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>                    regras_aceitas.append(regra)</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>                dados_relatorio.append({</span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Regra"</span>: <span class="ss">f"</span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">list</span>(ant))<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span><span class="bu">sorted</span>(<span class="bu">list</span>(con))<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Suporte"</span>: <span class="ss">f"</span><span class="sc">{</span>regra<span class="sc">.</span>suporte<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Confiança"</span>: <span class="ss">f"</span><span class="sc">{</span>regra<span class="sc">.</span>confianca<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Lift"</span>: <span class="ss">f"</span><span class="sc">{</span>regra<span class="sc">.</span>lift<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Status"</span>: status</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>                })</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> regras_aceitas, dados_relatorio</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Execução ---</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>regras_finais, relatorio_lista <span class="op">=</span> apriori(transacoes, SUP_MIN, CONF_MIN)</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar DataFrame e ordenar decrescentemente pelo Lift</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>df_final <span class="op">=</span> pd.DataFrame(relatorio_lista)</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>df_final[<span class="st">'Lift_Num'</span>] <span class="op">=</span> df_final[<span class="st">'Lift'</span>].astype(<span class="bu">float</span>)</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>df_final <span class="op">=</span> df_final.sort_values(by<span class="op">=</span><span class="st">'Lift_Num'</span>, ascending<span class="op">=</span><span class="va">False</span>).drop(columns<span class="op">=</span>[<span class="st">'Lift_Num'</span>])</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RELATÓRIO APRIORI COMPLETO (N=</span><span class="sc">{</span><span class="bu">len</span>(transacoes)<span class="sc">}</span><span class="ss">, CONF_MIN=</span><span class="sc">{</span>CONF_MIN<span class="sc">}</span><span class="ss">)</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>Markdown(df_final.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_final.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>RELATÓRIO APRIORI COMPLETO (N=5, CONF_MIN=0.9)</p>
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
@@ -2428,34 +2643,34 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 </div>
 <p>Por fim, a <a href="#fig-2-pratica4" class="quarto-xref">Figura&nbsp;<span>2.15</span></a> apresenta o grafo de influência final, onde a graduação de cores destaca o valor estratégico (<span class="math inline">\(\mathbf{Lift}\)</span>) de cada associação descoberta.</p>
 <div id="cell-fig-2-pratica4" class="cell" data-quarto-raw="true" data-execution_count="119">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Grafo de Lift (Apenas regras ACEITAS) ---</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>G_final <span class="op">=</span> nx.DiGraph()</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_finais:</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    G_final.add_edge(<span class="st">", "</span>.join(<span class="bu">sorted</span>(r.antecedente)), </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">", "</span>.join(<span class="bu">sorted</span>(r.consequente)), weight<span class="op">=</span>r.lift)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_final.edges():</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra atingiu os critérios para exibição no grafo."</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_final, k<span class="op">=</span><span class="fl">2.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    lifts <span class="op">=</span> [G_final[u][v][<span class="st">'weight'</span>] <span class="cf">for</span> u, v <span class="kw">in</span> G_final.edges()]</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_final, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mapeamento de cores baseado no Lift</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    sm <span class="op">=</span> plt.cm.ScalarMappable(cmap<span class="op">=</span>plt.cm.Reds, </span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                               norm<span class="op">=</span>plt.Normalize(vmin<span class="op">=</span><span class="bu">min</span>(lifts), vmax<span class="op">=</span><span class="bu">max</span>(lifts)))</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_final, pos, edge_color<span class="op">=</span>lifts, edge_cmap<span class="op">=</span>plt.cm.Reds, width<span class="op">=</span><span class="dv">2</span>, </span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                           arrowsize<span class="op">=</span><span class="dv">25</span>, connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.2"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(sm, ax<span class="op">=</span>plt.gca(), label<span class="op">=</span><span class="st">'Lift (Força da Associação)'</span>)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Grafo de Lift (Apenas regras ACEITAS) ---</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>G_final <span class="op">=</span> nx.DiGraph()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_finais:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    G_final.add_edge(<span class="st">", "</span>.join(<span class="bu">sorted</span>(r.antecedente)), </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">", "</span>.join(<span class="bu">sorted</span>(r.consequente)), weight<span class="op">=</span>r.lift)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_final.edges():</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra atingiu os critérios para exibição no grafo."</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    pos <span class="op">=</span> nx.spring_layout(G_final, k<span class="op">=</span><span class="fl">2.5</span>, seed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    lifts <span class="op">=</span> [G_final[u][v][<span class="st">'weight'</span>] <span class="cf">for</span> u, v <span class="kw">in</span> G_final.edges()]</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_labels(G_final, pos, font_size<span class="op">=</span><span class="dv">10</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mapeamento de cores baseado no Lift</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    sm <span class="op">=</span> plt.cm.ScalarMappable(cmap<span class="op">=</span>plt.cm.Reds, </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>                               norm<span class="op">=</span>plt.Normalize(vmin<span class="op">=</span><span class="bu">min</span>(lifts), vmax<span class="op">=</span><span class="bu">max</span>(lifts)))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    nx.draw_networkx_edges(G_final, pos, edge_color<span class="op">=</span>lifts, edge_cmap<span class="op">=</span>plt.cm.Reds, width<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                           arrowsize<span class="op">=</span><span class="dv">25</span>, connectionstyle<span class="op">=</span><span class="st">"arc3,rad=0.2"</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(sm, ax<span class="op">=</span>plt.gca(), label<span class="op">=</span><span class="st">'Lift (Força da Associação)'</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-2-pratica4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2477,17 +2692,55 @@ Figura&nbsp;2.15: Grafo de Influência: A intensidade da cor (Reds) indica o val
 <p>A biblioteca <strong>MLxtend</strong> contém implementações otimizadas do <strong>Apriori</strong> e também do <strong>FP-Growth</strong> (que é ainda mais rápido).</p>
 <p><strong>Instalação:</strong></p>
 <div id="cell-76" class="cell" data-execution_count="120">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install mlxtend <span class="op">-</span>q <span class="op">--</span>no<span class="op">-</span>cache<span class="op">-</span><span class="bu">dir</span> <span class="dv">2</span><span class="op">&gt;/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install mlxtend <span class="op">-</span>q <span class="op">--</span>no<span class="op">-</span>cache<span class="op">-</span><span class="bu">dir</span> <span class="dv">2</span><span class="op">&gt;/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="implementação-direta" class="level4" data-number="2.7.7.1">
 <h4 data-number="2.7.7.1" class="anchored" data-anchor-id="implementação-direta"><span class="header-section-number">2.7.7.1</span> Implementação Direta</h4>
 <p>O uso dessas bibliotecas requer um pré-processamento para converter a lista de transações em uma matriz booleana (<em>One-Hot Encoding</em>). A <a href="#tbl-2-pratica5" class="quarto-xref">Tabela&nbsp;<span>2.18</span></a> apresenta o resultado gerado pelo código a seguir. Caso esteja utilizando o Colab ou Jupyter Notebook, execute o código abaixo e, em uma nova célula, imprima a variável <code>te_ary</code> para visualizar a estrutura da matriz lógica.</p>
-<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="121">
+<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 </figcaption>
 <div aria-describedby="tbl-2-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlxtend.frequent_patterns <span class="im">import</span> apriori, association_rules</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlxtend.preprocessing <span class="im">import</span> TransactionEncoder</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dados de exemplo</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> [[<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Óleo"</span>], [<span class="st">"Queijo"</span>, <span class="st">"Vinho"</span>], </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>           [<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>], [<span class="st">"Arroz"</span>, <span class="st">"Água"</span>, <span class="st">"Vinho"</span>, <span class="st">"Queijo"</span>], </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>           [<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Batata"</span>, <span class="st">"Óleo"</span>]]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Processamento MLxtend</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>te <span class="op">=</span> TransactionEncoder()</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>te_ary <span class="op">=</span> te.fit(dataset).transform(dataset)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(te_ary, columns<span class="op">=</span>te.columns_)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>frequent_itemsets <span class="op">=</span> apriori(df, min_support<span class="op">=</span><span class="fl">0.4</span>, use_colnames<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>regras <span class="op">=</span> association_rules(frequent_itemsets, metric<span class="op">=</span><span class="st">"confidence"</span>, min_threshold<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># --- RELATÓRIO ---</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Preparação do DataFrame Final</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>df_final <span class="op">=</span> regras[[<span class="st">'antecedents'</span>, <span class="st">'consequents'</span>, <span class="st">'support'</span>, <span class="st">'confidence'</span>, <span class="st">'lift'</span>]].copy()</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordenar pelo Lift</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>df_final <span class="op">=</span> df_final.sort_values(by<span class="op">=</span><span class="st">'lift'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Limpeza de strings (remover frozenset)</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>df_final[<span class="st">'antecedents'</span>] <span class="op">=</span> df_final[<span class="st">'antecedents'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">', '</span>.join(<span class="bu">list</span>(x)))</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>df_final[<span class="st">'consequents'</span>] <span class="op">=</span> df_final[<span class="st">'consequents'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">', '</span>.join(<span class="bu">list</span>(x)))</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co"># --- FORMATAÇÃO DAS CASAS DECIMAIS ---</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Força 2 casas decimais no Lift e 3 no suporte/confiança para melhor leitura</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>df_final[<span class="st">'lift'</span>] <span class="op">=</span> df_final[<span class="st">'lift'</span>].<span class="bu">map</span>(<span class="st">'</span><span class="sc">{:.2f}</span><span class="st">'</span>.<span class="bu">format</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>df_final[<span class="st">'support'</span>] <span class="op">=</span> df_final[<span class="st">'support'</span>].<span class="bu">map</span>(<span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>.<span class="bu">format</span>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>df_final[<span class="st">'confidence'</span>] <span class="op">=</span> df_final[<span class="st">'confidence'</span>].<span class="bu">map</span>(<span class="st">'</span><span class="sc">{:.3f}</span><span class="st">'</span>.<span class="bu">format</span>)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Exibição do Relatório</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>Markdown(df_final.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_final.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 29%">
