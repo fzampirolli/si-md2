@@ -30,8 +30,6 @@ Roberto de Alencar Lotufo, professor titular
 Faculdade de Engenharia Elétrica e de Computação\
 Universidade Estadual de Campinas -- Unicamp
 
-Segue uma versão **menos repetitiva, mais direta e com melhor fluxo de leitura**, mantendo o mesmo conteúdo essencial. Também reduzi redundâncias entre seções e simplifiquei algumas explicações.
-
 
 
 
