@@ -1474,32 +1474,8 @@ def process_notebook(nb_path: Path, bib: dict, out_path: Path) -> list:
                         "source":    str_to_source(legenda)
                     }
                     if info.get("kind") == "tbl":
-                        # tbl: injeta legenda logo antes do output da tabela,
-                        # preservando prints anteriores acima da legenda.
-                        # A tabela é identificada como o primeiro output com
-                        # text/html ou text/markdown (pandas Markdown via Markdown()).
-                        outputs = cell.get("outputs", [])
-                        tbl_idx = next(
-                            (i for i, o in enumerate(outputs)
-                             if "text/html" in o.get("data", {})
-                             or "text/markdown" in o.get("data", {})
-                             or o.get("output_type") == "display_data"),
-                            None
-                        )
-                        legend_output = {
-                            "output_type": "display_data",
-                            "metadata": {},
-                            "data": {
-                                "text/markdown": [legenda + "\n"],
-                                "text/plain":    [legenda]
-                            }
-                        }
-                        if tbl_idx is not None:
-                            outputs.insert(tbl_idx, legend_output)
-                        else:
-                            outputs.insert(0, legend_output)
-                        cell["outputs"] = outputs
-                        legend_cell = None  # já inserida nos outputs
+                        new_cells.append(legend_cell)
+                        legend_cell = None  # já inserida antes
                     else:
                         # fig: injeta legenda como output logo após o output de imagem
                         outputs = cell.get("outputs", [])
