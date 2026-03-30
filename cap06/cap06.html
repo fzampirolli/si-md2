@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="José Artur Quilici-Gonzalez, Francisco de Assis Zampirolli e Fábio Rezende de Souza">
 
-<title>Sistemas Inteligentes e Mineração de Dados</title>
+<title>6&nbsp; Aplicações Práticas e Estudos de Caso – Sistemas Inteligentes e Mineração de Dados</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -59,27 +58,50 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./prefacio.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-49e51e44f424ea8c7044b429bdbbbfe2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ca5f78b6db56a2920d9734ab057b0172.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../cap05/cap05.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-49e51e44f424ea8c7044b429bdbbbfe2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ca5f78b6db56a2920d9734ab057b0172.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,12 +129,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Procurar"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -124,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cap06/cap06.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aplicações Práticas e Estudos de Caso</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -139,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Sistemas Inteligentes e Mineração de Dados</a> 
+      <a href="../">Sistemas Inteligentes e Mineração de Dados</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -151,49 +199,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prefacio.html" class="sidebar-item-text sidebar-link">
+  <a href="../prefacio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prefácio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cap01/cap01.html" class="sidebar-item-text sidebar-link">
+  <a href="../cap01/cap01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Sistemas Inteligentes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cap02/cap02.html" class="sidebar-item-text sidebar-link">
+  <a href="../cap02/cap02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mineração de Dados e Regras de Associação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cap03/cap03.html" class="sidebar-item-text sidebar-link">
+  <a href="../cap03/cap03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Classificação e Árvores de Decisão</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cap04/cap04.html" class="sidebar-item-text sidebar-link">
+  <a href="../cap04/cap04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Classificação e Regras de Classificação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cap05/cap05.html" class="sidebar-item-text sidebar-link">
+  <a href="../cap05/cap05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cap06/cap06.html" class="sidebar-item-text sidebar-link">
+  <a href="../cap06/cap06.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aplicações Práticas e Estudos de Caso</span></span></a>
   </div>
 </li>
@@ -207,13 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição" id="toc-projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição" class="nav-link active" data-scroll-target="#projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</a>
-  <ul class="collapse">
-  <li><a href="#status-do-projeto" id="toc-status-do-projeto" class="nav-link" data-scroll-target="#status-do-projeto">🚧 Status do Projeto</a></li>
-  <li><a href="#estrutura-simplificada" id="toc-estrutura-simplificada" class="nav-link" data-scroll-target="#estrutura-simplificada">📂 Estrutura Simplificada</a></li>
-  <li><a href="#workflow-rápido-terminal" id="toc-workflow-rápido-terminal" class="nav-link" data-scroll-target="#workflow-rápido-terminal">🔄 Workflow Rápido (Terminal)</a></li>
-  <li><a href="#checklist-de-qualidade" id="toc-checklist-de-qualidade" class="nav-link" data-scroll-target="#checklist-de-qualidade">📋 Checklist de Qualidade</a></li>
-  </ul></li>
+  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link active" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">6.1</span> Referências do Capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -222,27 +264,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Sistemas Inteligentes e Mineração de Dados</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
-<p class="subtitle lead">2ª Edição: Do Weka ao Python</p>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aplicações Práticas e Estudos de Caso</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor</div>
-    <div class="quarto-title-meta-contents">
-             <p>José Artur Quilici-Gonzalez, Francisco de Assis Zampirolli e Fábio Rezende de Souza </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Data de Publicação</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">30 de março de 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -252,101 +281,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-
-<section id="projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="projeto-de-construção-do-livro-de-sistemas-inteligentes-e-mineração-de-dados-2ª-edição">📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição)</h2><p><img src="images/capa.png" title="Sistemas Inteligentes e Mineração de Dados" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>Bem-vindo ao material didático em construção! Este livro utiliza o <strong>Quarto</strong> para integrar teoria e prática.</p>
-<section id="status-do-projeto" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="status-do-projeto">🚧 Status do Projeto</h3>
-<ul>
-<li><strong>Capítulos 1 e 2:</strong> Em fase de revisão final e melhorias nos exemplos em Python.</li>
-<li><strong>Capítulos 3, 4 e 5:</strong> Falta incluir exemplos em Python.</li>
-<li><strong>Capítulo 6:</strong> Em construção.</li>
-<li><strong>Foco:</strong> Simplificar os laboratórios em Python para criar exemplos curtos, práticos e <strong>extremamente motivacionais</strong>.</li>
-</ul>
-</section>
-<section id="estrutura-simplificada" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="estrutura-simplificada">📂 Estrutura Simplificada</h3>
-<ul>
-<li><strong><code>si-md1/</code></strong>: Material legado (PDF/Docx). <strong>Não editar.</strong></li>
-<li><strong><code>si-md2/</code></strong>: <strong>Pasta de trabalho ativa.</strong>
-<ul>
-<li><code>_quarto.yml</code>: Configuração mestre (sumário e temas).</li>
-<li><code>capXX/</code>: Pasta de cada capítulo (<strong>Editar</strong> – contém o <code>capXX.ipynb</code> e <code>/images</code>).</li>
-<li><code>references.bib</code>: Base de dados bibliográfica global.</li>
-<li><strong><code>notebooks_alunos/</code></strong>: Versão processada para distribuição (gerada via script).</li>
-</ul></li>
-</ul>
-<p><strong>Processo:</strong></p>
-<ol type="1">
-<li>Gerado <code>si-md1/Sist_Intel_j.md</code> de <code>si-md1/Sist_Intel_j.docx</code> com pandoc.</li>
-<li>Copiado <code>si-md1/Sist_Intel_j.md</code> para <code>si-md2/capXX/capXX.ipynb</code> (e ajustes manuais).</li>
-<li>Gerado <code>si-md1/sistemas_inteligentes_impresso.md</code> de <code>si-md1/sistemas_inteligentes_impresso.pdf</code> com tesseract.</li>
-<li>Pequenas correções em <code>si-md2/capXX/capXX.ipynb</code> usando <code>si-md1/sistemas_inteligentes_impresso.md</code>.</li>
-<li>Ajustes manuais para funcionar <code>quarto render</code> em html, pdf e epub.</li>
-<li>O formato ipynb renderizado ocorre através do método <code>gerar_notebooks_alunos.py</code>.</li>
-</ol>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    %% Fontes Iniciais
-    A["`**si-md1/Sist_Intel.docx**`"] --&gt;|pandoc| B["`**si-md1/Sist_Intel.md**`"]
-    C["`**si-md1/sistemas_inteligentes_impresso.pdf**`"] --&gt;|tesseract| D["`**si-md1/sistemas_inteligentes_impresso.md**`"]
-
-    %% Construção do Notebook Principal
-    B --&gt;|"cópia + ajustes manuais"| E["`**si-md2/capXX/capXX.ipynb**`"]
-    D --&gt;|"referência para correções"| E
-
-    %% Fluxo de Publicação (Quarto)
-    E --&gt;|"quarto render"| F{Formatos Finalizados}
-    F --&gt; G[HTML]
-    F --&gt; I[PDF]
-    F --&gt; J[ePUB]
-
-    %% Fluxo do Aluno (Script Python)
-    E --&gt;|gerar_notebooks_alunos.py| H["`**capXX_aluno.ipynb**`"]
-    
-    style H fill:#f9f,stroke:#333,stroke-width:2px
-    style F fill:#e1f5fe,stroke:#01579b
-</pre>
+<p><a href="https://colab.research.google.com/github/fzampirolli/si-md2/blob/main/si-md2/notebooks_alunos/cap06/cap06_aluno.ipynb"><img src="images/colab-badge.png" class="img-fluid" style="width:16.0%"></a> <a href="https://github.com/fzampirolli/si-md2"><img src="images/github-badge.png" class="img-fluid" style="width:20.0%"></a></p>
+<p>For a demonstration of a line plot, see <a href="#fig-line-plot" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>.</p>
+<div id="fig-line-plot" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>,<span class="dv">23</span>,<span class="dv">2</span>,<span class="dv">4</span>])</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p></p></figure><p></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-line-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.1
+</figcaption>
+</figure>
 </div>
+<p>Exemplo de figura <a href="#fig-2-1" class="quarto-xref">Figura&nbsp;<span>6.2</span></a>.</p>
+<div id="fig-2-1" class="lightbox quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="A drawing of an elephant.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/fig1_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figura&nbsp;6.2: Relação entre Dados, Informação e Conhecimento"><img src="images/fig1_1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:20.0%" alt="A drawing of an elephant."></a>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.2: Relação entre Dados, Informação e Conhecimento
+</figcaption>
+</figure>
 </div>
-<hr>
-</section>
-<section id="workflow-rápido-terminal" class="level3">
-<h3 class="anchored" data-anchor-id="workflow-rápido-terminal">🔄 Workflow Rápido (Terminal)</h3>
-<ol type="1">
-<li><strong>Atualizar:</strong> <code>git pull origin main</code></li>
-<li><strong>Limpar caches:</strong> <code>./limpar.sh</code></li>
-<li><strong>Gerar Versão Aluno:</strong> <code>python gerar_notebooks_alunos.py --batch references.bib</code></li>
-<li><strong>Publicar Tudo (HTML+PDF+Git):</strong> <code>./publish_all.sh</code></li>
-<li><strong>Manual (Git):</strong></li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Explique sua alteração"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
-</section>
-<section id="checklist-de-qualidade" class="level3">
-<h3 class="anchored" data-anchor-id="checklist-de-qualidade">📋 Checklist de Qualidade</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">Imagens estão na pasta <code>images/</code> interna do capítulo?</label></li>
-<li><label><input type="checkbox">Labels começam com o prefixo correto (<code>fig-</code>, <code>tbl-</code>, <code>eq-</code>) e o número do capítulo?</label></li>
-<li><label><input type="checkbox">O arquivo <code>references.bib</code> foi atualizado com as novas obras?</label></li>
-<li><label><input type="checkbox">O código do notebook executa do início ao fim sem erros?</label></li>
-</ul>
-<hr>
+<p>Exemplo de tabela-imagem <a href="#tbl-2-1" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a>.</p>
+<div id="tbl-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.1: Relação entre Dados, Informação e Conhecimento
+</figcaption>
+<div aria-describedby="tbl-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/fig1_1.png" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
+<p>A tabela <a href="#tbl-1-X" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>.</p>
+<div id="tbl-1-X" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-1-X-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.2: Legenda da tabela
+</figcaption>
+<div aria-describedby="tbl-1-X-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>x</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>A equação <a href="#eq-1-1" class="quarto-xref">Equação&nbsp;<span>6.1</span></a>.</p>
+<p><span id="eq-1-1"><span class="math display">\[
+x^3
+\tag{6.1}\]</span></span></p>
+<section id="referências-do-capítulo" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">6.1</span> Referências do Capítulo</h2>
+<p>Tem que citar neste capítulo: <span class="citation" data-cites="han2008">Han; Kamber (<a href="#ref-han2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span>, <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="goldschmidt2005">Goldschmidt; Passos (<a href="#ref-goldschmidt2005" role="doc-biblioref">2005</a>)</span></p>
 
 
-<!-- -->
-
-</section>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
+<div id="ref-goldschmidt2005" class="csl-entry" role="listitem">
+GOLDSCHMIDT, R.; PASSOS, E. <strong>Data Mining: Um Guia Prático</strong>. <em>[S.l.]</em>: Elsevier, 2005.
+</div>
+<div id="ref-han2008" class="csl-entry" role="listitem">
+HAN, J.; KAMBER, M. <strong>Data Mining: Concepts and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2008.
+</div>
+<div id="ref-tan2009" class="csl-entry" role="listitem">
+TAN, P. N.; STEINBACH, M.; KUMAR, V. <strong>Introdução ao Data Mining Mineração de Dados</strong>. <em>[S.l.]</em>: Editora Ciência Moderna Ltda., 2009.
+</div>
+<div id="ref-witten2005" class="csl-entry" role="listitem">
+WITTEN, I. H.; FRANK, E. <strong>Data Mining: Practical Machine Learning Tools and Techniques</strong>. <em>[S.l.]</em>: Morgan Kaufmann Publishers, 2005.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -803,96 +820,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../cap05/cap05.html" class="pagination-link" aria-label="Máquina de Vetores de Suporte ou *Support Vector Machine*">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Máquina de Vetores de Suporte ou <em>Support Vector Machine</em></span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prefacio.html" class="pagination-link" aria-label="Prefácio">
-        <span class="nav-page-text">Prefácio</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📘 Projeto de construção do livro de Sistemas Inteligentes e Mineração de Dados (2ª Edição) {.unnumbered}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto** para integrar teoria e prática.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🚧 Status do Projeto {.unnumbered}</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 1 e 2:** Em fase de revisão final e melhorias nos exemplos em Python.</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulos 3, 4 e 5:** Falta incluir exemplos em Python.</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Capítulo 6:** Em construção.</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Foco:** Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📂 Estrutura Simplificada {.unnumbered}</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md1/`**: Material legado (PDF/Docx). **Não editar.**</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**`si-md2/`**: **Pasta de trabalho ativa.**</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`_quarto.yml`</span>: Configuração mestre (sumário e temas).</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`capXX/`</span>: Pasta de cada capítulo (**Editar** -- contém o <span class="in">`capXX.ipynb`</span> e <span class="in">`/images`</span>).</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="in">`references.bib`</span>: Base de dados bibliográfica global.</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>**`notebooks_alunos/`**: Versão processada para distribuição (gerada via script).</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>**Processo:**</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Gerado <span class="in">`si-md1/Sist_Intel_j.md`</span> de <span class="in">`si-md1/Sist_Intel_j.docx`</span> com pandoc.</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Copiado <span class="in">`si-md1/Sist_Intel_j.md`</span> para <span class="in">`si-md2/capXX/capXX.ipynb`</span> (e ajustes manuais).</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Gerado <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span> de <span class="in">`si-md1/sistemas_inteligentes_impresso.pdf`</span> com tesseract.</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Pequenas correções em <span class="in">`si-md2/capXX/capXX.ipynb`</span> usando <span class="in">`si-md1/sistemas_inteligentes_impresso.md`</span>.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Ajustes manuais para funcionar <span class="in">`quarto render`</span> em html, pdf e epub.</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>O formato ipynb renderizado ocorre através do método <span class="in">`gerar_notebooks_alunos.py`</span>.</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    %% Fontes Iniciais</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.docx**`</span><span class="ot">"</span>] --&gt;|pandoc| B[<span class="ot">"</span><span class="st">`**si-md1/Sist_Intel.md**`</span><span class="ot">"</span>]</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    C[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.pdf**`</span><span class="ot">"</span>] --&gt;|tesseract| D[<span class="ot">"</span><span class="st">`**si-md1/sistemas_inteligentes_impresso.md**`</span><span class="ot">"</span>]</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    %% Construção <span class="kw">do</span> Notebook Principal</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    B --&gt;|<span class="ot">"</span><span class="st">cópia + ajustes manuais</span><span class="ot">"</span>| E[<span class="ot">"</span><span class="st">`**si-md2/capXX/capXX.ipynb**`</span><span class="ot">"</span>]</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    D --&gt;|<span class="ot">"</span><span class="st">referência para correções</span><span class="ot">"</span>| E</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    %% Fluxo de Publicação (Quarto)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    E --&gt;|<span class="ot">"</span><span class="st">quarto render</span><span class="ot">"</span>| F{Formatos Finalizados}</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[HTML]</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    F --&gt; I[PDF]</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    F --&gt; J[ePUB]</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    %% Fluxo <span class="kw">do</span> Aluno (Script Python)</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    E --&gt;|gerar_notebooks_alunos.py| H[<span class="ot">"</span><span class="st">`**capXX_aluno.ipynb**`</span><span class="ot">"</span>]</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    style H fill:<span class="co">#f9f,stroke:#333,stroke-width:2px</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    style F fill:<span class="co">#e1f5fe,stroke:#01579b</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔄 Workflow Rápido (Terminal)</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Atualizar:** <span class="in">`git pull origin main`</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Limpar caches:** <span class="in">`./limpar.sh`</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Gerar Versão Aluno:** <span class="in">`python gerar_notebooks_alunos.py --batch references.bib`</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Publicar Tudo (HTML+PDF+Git):** <span class="in">`./publish_all.sh`</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Manual (Git):**</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Explique sua alteração"</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📋 Checklist de Qualidade</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Imagens estão na pasta <span class="in">`images/`</span> interna do capítulo?</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> Labels começam com o prefixo correto (<span class="in">`fig-`</span>, <span class="in">`tbl-`</span>, <span class="in">`eq-`</span>) e o número do capítulo?</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O arquivo <span class="in">`references.bib`</span> foi atualizado com as novas obras?</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="va">[ ]</span> O código do notebook executa do início ao fim sem erros?</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>---</span>
-</code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -919,6 +853,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
