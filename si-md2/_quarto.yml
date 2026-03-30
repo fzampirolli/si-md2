@@ -19,7 +19,7 @@ book:
     - cap03/cap03.ipynb  
     - cap04/cap04.ipynb
     - cap05/cap05.ipynb
-    # - cap06/cap06.ipynb
+    - cap06/cap06.ipynb
 
   page-footer: 
     left: |
@@ -44,6 +44,10 @@ filters:
 
 format:
   html:
+    grid:
+      body-width: 940px
+      sidebar-width: 250px
+      margin-width: 250px
     reference-location: margin
     theme: cosmo
     css: styles.css        
