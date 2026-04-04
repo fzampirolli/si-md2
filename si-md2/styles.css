@@ -1,0 +1,38 @@
+/* 1. Cor do Cabeçalho da Tabela */
+table.table thead th {
+  background-color: #C0413A !important; /* Vermelho headerRed */
+  color: white !important;
+  border-bottom: 2px solid #C0413A;
+  text-align: center;
+}
+
+/* 2. Linhas Intercaladas (Zebra) */
+/* Aplicamos nas linhas pares (even) */
+table.table tbody tr:nth-child(even) {
+  background-color: #F4C2C2 !important; /* Rosa rowPink */
+}
+
+/* Garantir que as linhas ímpares fiquem brancas */
+table.table tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* 3. Bordas da Tabela */
+table.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+  border: 1px solid #C0413A; /* Cor das bordas lineRed */
+}
+
+table.table td {
+  padding: 8px;
+  border: 1px solid #C0413A;
+}
+
+/* 4. Ajuste para legendas de tabelas */
+caption, .table-caption {
+  color: #333;
+  font-weight: bold;
+  margin-top: 0.5em;
+}

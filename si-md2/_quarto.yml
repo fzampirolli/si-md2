@@ -19,7 +19,7 @@ book:
     - cap03/cap03.ipynb  
     - cap04/cap04.ipynb
     - cap05/cap05.ipynb
-    - cap06/cap06.ipynb
+    # - cap06/cap06.ipynb
 
   page-footer: 
     left: |
@@ -51,6 +51,9 @@ format:
     reference-location: margin
     theme: cosmo
     css: styles.css        
+    df-print: paged 
+    # Ou use classes de tabela diretamente se estiver usando markdown puro:
+    table-striped: true
     cite-method: citeproc
     code-tools: true
     toc: true
