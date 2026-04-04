@@ -55,7 +55,6 @@ format:
     code-tools: true
     toc: true
   pdf:
-    
     footnotes-hover: true
     pdf-engine: lualatex
     cite-method: biblatex

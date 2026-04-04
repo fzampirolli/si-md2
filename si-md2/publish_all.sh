@@ -29,14 +29,14 @@ cd "$EDIT_DIR"
 log "=== Gerando PDF e HTML para Publicação ==="
 
 # 1. Gera o PDF primeiro
-if quarto render --to pdf; then
-    # Copia o PDF com nome simples para a pasta de edição
-    # O Quarto vai "enxergar" esse arquivo durante o render do HTML
-    cp "$BOOK_HTML/Sistemas-Inteligentes-e-Mineração-de-Dados.pdf" "livro.pdf"
-    ok "PDF preparado."
-else
-    fail "Falha ao gerar o PDF."
-fi
+# if quarto render --to pdf; then
+#     # Copia o PDF com nome simples para a pasta de edição
+#     # O Quarto vai "enxergar" esse arquivo durante o render do HTML
+#     cp "$BOOK_HTML/Sistemas-Inteligentes-e-Mineração-de-Dados.pdf" "livro.pdf"
+#     ok "PDF preparado."
+# else
+#     fail "Falha ao gerar o PDF."
+# fi
 
 # 2. Gera o HTML e Publica
 {
