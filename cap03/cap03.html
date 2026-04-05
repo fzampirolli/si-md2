@@ -1850,7 +1850,7 @@ Figura&nbsp;3.14: Arquivo Tabela_do_Tempo: (a) formato “.csv” com Palavras-C
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Tabela_do_Tempo.csv</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-tempo-csv" class="cell" data-quarto-raw="true" data-execution_count="86">
+<div id="cell-download-tempo-csv" class="cell" data-quarto-raw="false">
 <div id="download-tempo-csv" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -1865,7 +1865,7 @@ Figura&nbsp;3.14: Arquivo Tabela_do_Tempo: (a) formato “.csv” com Palavras-C
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Tabela_do_Tempo.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-tempo-arff" class="cell" data-execution_count="87">
+<div id="cell-download-tempo-arff" class="cell" data-quarto-raw="false">
 <div id="download-tempo-arff" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -2015,35 +2015,51 @@ Figura&nbsp;3.21: Tabela do Tempo Ordenada pelos Valores de “Umidade”.
 <p>O conteúdo deste capítulo é sequencial. As funções e variáveis definidas aqui são requisitos para as práticas seguintes. Execute as células em ordem; caso contrário, aparecerão erros de “variável não definida” (<code>NameError</code>).</p>
 </div>
 </div>
-<div id="cell-55" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Python    : </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">.</span>split()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pandas    : </span><span class="sc">{</span>pd<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy     : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib: </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="setup-ambiente" class="cell" data-execution_count="172">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Instalação de dependências (Silenciosa)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install graphviz scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Supressão de Avisos</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Importações da Biblioteca Padrão</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Bibliotecas de Terceiros (Data Science &amp; Viz)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphviz</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Ferramentas de Exibição e Jupyter</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, display</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Submódulos Específicos do Scikit-Learn</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier, plot_tree</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Verificação de Versões</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Python      : </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">.</span>split()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pandas      : </span><span class="sc">{</span>pd<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy       : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Graphviz    : </span><span class="sc">{</span>graphviz<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib  : </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Scikit-learn: </span><span class="sc">{</span>sklearn<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Python    : 3.9.7
-Pandas    : 2.3.3
-NumPy     : 2.0.2
-Matplotlib: 3.9.4
+<pre><code>Python      : 3.9.7
+Pandas      : 2.3.3
+NumPy       : 2.0.2
+Graphviz    : 0.21
+Matplotlib  : 3.9.4
+Scikit-learn: 1.6.1
 ✅ Ambiente pronto!</code></pre>
 </div>
 </div>
@@ -2056,7 +2072,7 @@ Matplotlib: 3.9.4
 <p>Onde:</p>
 <ul>
 <li><span class="math inline">\(S\)</span> é o conjunto de dados atual.</li>
-<li><span class="math inline">\(C\)</span> é o conjunto de classes alvo.</li>
+<li><span class="math inline">\(C\)</span> é o conjunto de classes alvo (ex: {Sim, Não}).</li>
 <li><span class="math inline">\(p_c\)</span> é a proporção de exemplos pertencentes à classe <span class="math inline">\(c\)</span> em <span class="math inline">\(S\)</span>.</li>
 </ul>
 <p><strong>Ganho de Informação</strong> mede a redução esperada na entropia ao particionar o conjunto <span class="math inline">\(S\)</span> com base em um atributo <span class="math inline">\(A\)</span>:</p>
@@ -2068,92 +2084,92 @@ Matplotlib: 3.9.4
 <li><span class="math inline">\(|S|\)</span> e <span class="math inline">\(|S_v|\)</span> indicam o número de elementos nos respectivos conjuntos.</li>
 </ul>
 <p>O atributo com <strong>maior Ganho</strong> é escolhido como nó de decisão — exatamente o critério que aplicamos intuitivamente ao selecionar o atributo como raiz na teoria.</p>
+<p>A <a href="#fig-curva-entropia" class="quarto-xref">Figura&nbsp;<span>3.22</span></a> ilustra a relação entre a proporção de exemplos positivos (<span class="math inline">\(p\)</span>) e a desordem de um conjunto de dados, representada pela <strong>curva de entropia binária</strong>. Note que a incerteza é máxima (<span class="math inline">\(H = 1,0\)</span> bit) quando as classes estão em perfeito equilíbrio (<span class="math inline">\(p = 0,5\)</span>), e nula quando o conjunto é homogêneo (<span class="math inline">\(p = 0\)</span> ou <span class="math inline">\(p = 1\)</span>). O ponto destacado indica que, para a nossa amostra atual com <span class="math inline">\(p = 9/14 \approx 0,643\)</span>, a entropia é de aproximadamente <strong><span class="math inline">\(0,940\)</span> bits</strong>, sinalizando que, embora haja uma leve tendência para uma das classes, o conjunto ainda mantém um alto nível de impureza para o algoritmo <strong>ID3</strong> processar.</p>
+<div id="cell-fig-curva-entropia" class="cell" data-quarto-raw="false" data-execution_count="173">
+<div class="cell-output cell-output-display">
+<div id="fig-curva-entropia" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curva-entropia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap03_files/figure-html/fig-curva-entropia-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curva-entropia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3.22: Curva de Entropia Binária e o Ponto H(S) calculado.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>O resultado desta análise é apresentado na <a href="#tbl-3-pratica1" class="quarto-xref">Tabela&nbsp;<span>3.18</span></a>, gerada pelo código a seguir.</p>
-<div class="cell" data-quarto-raw="false" data-execution_count="89">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base de Dados: Tabela do Tempo</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dados_tempo <span class="op">=</span> [</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Ensolarado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Elevada"</span>, <span class="st">"Umidade"</span>: <span class="st">"Alta"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Não"</span>},</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Ensolarado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Elevada"</span>, <span class="st">"Umidade"</span>: <span class="st">"Alta"</span>, <span class="st">"Vento"</span>: <span class="st">"Verdadeiro"</span>, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Não"</span>},</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Nublado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Elevada"</span>, <span class="st">"Umidade"</span>: <span class="st">"Alta"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Chuvoso"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Amena"</span>, <span class="st">"Umidade"</span>: <span class="st">"Alta"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Chuvoso"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Baixa"</span>, <span class="st">"Umidade"</span>: <span class="st">"Normal"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Chuvoso"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Baixa"</span>, <span class="st">"Umidade"</span>: <span class="st">"Normal"</span>, <span class="st">"Vento"</span>: <span class="st">"Verdadeiro"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Não"</span>},</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Nublado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Baixa"</span>, <span class="st">"Umidade"</span>: <span class="st">"Normal"</span>, <span class="st">"Vento"</span>: <span class="st">"Verdadeiro"</span>, </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Ensolarado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Amena"</span>, <span class="st">"Umidade"</span>: <span class="st">"Alta"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Não"</span>},</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Ensolarado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Baixa"</span>, <span class="st">"Umidade"</span>: <span class="st">"Normal"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Chuvoso"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Amena"</span>, <span class="st">"Umidade"</span>: <span class="st">"Normal"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Ensolarado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Amena"</span>, <span class="st">"Umidade"</span>: <span class="st">"Normal"</span>, <span class="st">"Vento"</span>: <span class="st">"Verdadeiro"</span>, </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Nublado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Amena"</span>, <span class="st">"Umidade"</span>: <span class="st">"Alta"</span>, <span class="st">"Vento"</span>: <span class="st">"Verdadeiro"</span>, </span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Nublado"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Elevada"</span>, <span class="st">"Umidade"</span>: <span class="st">"Normal"</span>, <span class="st">"Vento"</span>: <span class="st">"Falso"</span>, </span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Sim"</span>},</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a> {<span class="st">"Dia"</span>: <span class="st">"Chuvoso"</span>, <span class="st">"Temperatura"</span>: <span class="st">"Amena"</span>, <span class="st">"Umidade"</span>: <span class="st">"Alta"</span>, <span class="st">"Vento"</span>: <span class="st">"Verdadeiro"</span>, </span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Partida"</span>: <span class="st">"Não"</span>},</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>df_tempo <span class="op">=</span> pd.DataFrame(dados_tempo)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>ATRIBUTOS <span class="op">=</span> [<span class="st">"Dia"</span>, <span class="st">"Temperatura"</span>, <span class="st">"Umidade"</span>, <span class="st">"Vento"</span>]</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>CLASSE <span class="op">=</span> <span class="st">"Partida"</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Funções de Entropia e Ganho de Informação</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropia(subset, classe<span class="op">=</span>CLASSE):</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcula a Entropia H(S) de um subconjunto de exemplos."""</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    contagens <span class="op">=</span> Counter(ex[classe] <span class="cf">for</span> ex <span class="kw">in</span> subset)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(subset)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> total <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">0.0</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c <span class="op">/</span> total) <span class="op">*</span> math.log2(c <span class="op">/</span> total) <span class="cf">for</span> c <span class="kw">in</span> contagens.values() <span class="cf">if</span> c <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<div class="cell" data-quarto-raw="false" data-execution_count="174">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base de Dados: Tabela do Tempo (via String Bruta)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>csv_raw <span class="op">=</span> <span class="st">"""Dia,Temperatura,Umidade,Vento,Partida</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Elevada,Alta,Falso,Não</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Elevada,Alta,Verdadeiro,Não</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Elevada,Alta,Falso,Sim</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Amena,Alta,Falso,Sim</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Baixa,Normal,Falso,Sim</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Baixa,Normal,Verdadeiro,Não</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Baixa,Normal,Verdadeiro,Sim</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Amena,Alta,Falso,Não</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Baixa,Normal,Falso,Sim</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Amena,Normal,Falso,Sim</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Amena,Normal,Verdadeiro,Sim</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Amena,Alta,Verdadeiro,Sim</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Elevada,Normal,Falso,Sim</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Amena,Alta,Verdadeiro,Não"""</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>df_tempo <span class="op">=</span> pd.read_csv(io.StringIO(csv_raw))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ATRIBUTOS <span class="op">=</span> [<span class="st">"Dia"</span>, <span class="st">"Temperatura"</span>, <span class="st">"Umidade"</span>, <span class="st">"Vento"</span>]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>CLASSE <span class="op">=</span> <span class="st">"Partida"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Funções de Entropia e Ganho de Informação</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> entropia(subset, classe<span class="op">=</span>CLASSE):</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    contagens <span class="op">=</span> Counter(ex[classe] <span class="cf">for</span> ex <span class="kw">in</span> subset)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(subset)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> total <span class="op">==</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">0.0</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="bu">sum</span>((c<span class="op">/</span>total) <span class="op">*</span> math.log2(c<span class="op">/</span>total) <span class="cf">for</span> c <span class="kw">in</span> contagens.values() <span class="cf">if</span> c <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ganho_informacao(subset, atributo, classe<span class="op">=</span>CLASSE):</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    h_s <span class="op">=</span> entropia(subset, classe)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(subset)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    valores <span class="op">=</span> <span class="bu">set</span>(ex[atributo] <span class="cf">for</span> ex <span class="kw">in</span> subset)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    soma_p <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> v <span class="kw">in</span> valores:</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        s_v <span class="op">=</span> [ex <span class="cf">for</span> ex <span class="kw">in</span> subset <span class="cf">if</span> ex[atributo] <span class="op">==</span> v]</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        soma_p <span class="op">+=</span> (<span class="bu">len</span>(s_v) <span class="op">/</span> total) <span class="op">*</span> entropia(s_v, classe)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h_s <span class="op">-</span> soma_p</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Processamento</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Converter para lista de registros apenas para as funções de cálculo puras</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>dados_lista <span class="op">=</span> df_tempo.to_dict(orient<span class="op">=</span><span class="st">"records"</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>h_total <span class="op">=</span> entropia(dados_lista)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>resultados_p1 <span class="op">=</span> []</span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ganho_informacao(subset, atributo, classe<span class="op">=</span>CLASSE):</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcula o Ganho de Informação de um atributo."""</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    h_s <span class="op">=</span> entropia(subset, classe)</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(subset)</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    valores <span class="op">=</span> <span class="bu">set</span>(ex[atributo] <span class="cf">for</span> ex <span class="kw">in</span> subset)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    soma_ponderada <span class="op">=</span> <span class="bu">sum</span>(</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        (<span class="bu">len</span>([ex <span class="cf">for</span> ex <span class="kw">in</span> subset <span class="cf">if</span> ex[atributo] <span class="op">==</span> v]) <span class="op">/</span> total) <span class="op">*</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        entropia([ex <span class="cf">for</span> ex <span class="kw">in</span> subset <span class="cf">if</span> ex[atributo] <span class="op">==</span> v], classe)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> v <span class="kw">in</span> valores</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h_s <span class="op">-</span> soma_ponderada</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> attr <span class="kw">in</span> ATRIBUTOS:</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    gain <span class="op">=</span> ganho_informacao(dados_lista, attr)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    resultados_p1.append({</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Atributo"</span>: attr, </span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Entropia Ponderada"</span>: <span class="ss">f"</span><span class="sc">{</span>h_total <span class="op">-</span> gain<span class="sc">:.4f}</span><span class="ss"> bits"</span>,</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Ganho de Informação"</span>: <span class="ss">f"</span><span class="sc">{</span>gain<span class="sc">:.4f}</span><span class="ss"> bits"</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>df_p1 <span class="op">=</span> pd.DataFrame(resultados_p1).sort_values(</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Ganho de Informação"</span>, ascending<span class="op">=</span><span class="va">False</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>df_p1[<span class="st">"Ranking"</span>] <span class="op">=</span> [<span class="st">"🥇 Melhor (raiz)"</span>, <span class="st">"🥈"</span>, <span class="st">"🥉"</span>, <span class="st">"4º"</span>]</span>
 <span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Cálculo para todos os atributos</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>dados_lista <span class="op">=</span> df_tempo.to_dict(orient<span class="op">=</span><span class="st">"records"</span>)</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>h_total <span class="op">=</span> entropia(dados_lista)</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>resultados_p1 <span class="op">=</span> []</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> attr <span class="kw">in</span> ATRIBUTOS:</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    gain <span class="op">=</span> ganho_informacao(dados_lista, attr)</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    resultados_p1.append({<span class="st">"Atributo"</span>: attr, </span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Entropia Ponderada"</span>: <span class="ss">f"</span><span class="sc">{</span>h_total <span class="op">-</span> gain<span class="sc">:.4f}</span><span class="ss"> bits"</span>,</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Ganho de Informação"</span>: <span class="ss">f"</span><span class="sc">{</span>gain<span class="sc">:.4f}</span><span class="ss"> bits"</span>,</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Ranking"</span>: <span class="st">""</span>})</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>df_p1 <span class="op">=</span> pd.DataFrame(resultados_p1).sort_values(<span class="st">"Ganho de Informação"</span>, </span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>                                                ascending<span class="op">=</span><span class="va">False</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>df_p1[<span class="st">"Ranking"</span>] <span class="op">=</span> [<span class="st">"🥇 Melhor (raiz)"</span>, <span class="st">"🥈"</span>, <span class="st">"🥉"</span>, <span class="st">"4º"</span>]</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Entropia total do conjunto S: H(S) = </span><span class="sc">{</span>h_total<span class="sc">:.4f}</span><span class="ss"> bits</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>Markdown(df_p1.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_p1.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Entropia total do conjunto S: H(S) = </span><span class="sc">{</span>h_total<span class="sc">:.4f}</span><span class="ss"> bits</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>Markdown(df_p1.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_p1.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Entropia total do conjunto S: H(S) = 0.9403 bits
 </code></pre>
 </div>
-<div id="tbl-3-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="89">
+<div id="tbl-3-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="174">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;3.18: Ganho de Informação por Atributo — Base Tabela do Tempo.
 </figcaption>
 <div aria-describedby="tbl-3-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="89">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="174">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 17%">
@@ -2224,7 +2240,7 @@ Tabela&nbsp;3.18: Ganho de Informação por Atributo — Base Tabela do Tempo.
 <p>Esta prática depende do <strong>dataset</strong> e das <strong>funções</strong> definidas na Prática 1.</p>
 </div>
 </div>
-<div class="cell" data-quarto-raw="false" data-execution_count="90">
+<div class="cell" data-quarto-raw="false" data-execution_count="175">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Algoritmo ID3 recursivo</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> id3(subset, atributos_disponiveis, classe, profundidade<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Constrói recursivamente a Árvore de Decisão pelo critério ID3."""</span></span>
@@ -2284,13 +2300,13 @@ Tabela&nbsp;3.18: Ganho de Informação por Atributo — Base Tabela do Tempo.
 Total de regras extraídas: 5
 </code></pre>
 </div>
-<div id="tbl-3-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="90">
+<div id="tbl-3-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="175">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;3.19: Regras de Classificação Extraídas da Árvore de Decisão ID3.
 </figcaption>
 <div aria-describedby="tbl-3-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="90">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="175">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 45%">
@@ -2364,7 +2380,7 @@ Tabela&nbsp;3.19: Regras de Classificação Extraídas da Árvore de Decisão ID
 </tbody>
 </table>
 <p><span class="math display">\[\text{Acurácia} = \frac{VP + VN}{VP + VN + FP + FN}\]</span></p>
-<p>A <a href="#fig-3-pratica3a" class="quarto-xref">Figura&nbsp;<span>3.22</span></a> mostra a árvore induzida e a <a href="#fig-3-pratica3b" class="quarto-xref">Figura&nbsp;<span>3.23</span></a> a Matriz de Confusão sobre o conjunto de treinamento, ambas geradas pelo código a seguir.</p>
+<p>A <a href="#fig-3-pratica3a" class="quarto-xref">Figura&nbsp;<span>3.23</span></a> mostra a árvore induzida e a <a href="#fig-3-pratica3b" class="quarto-xref">Figura&nbsp;<span>3.24</span></a> a Matriz de Confusão sobre o conjunto de treinamento, ambas geradas pelo código a seguir.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2378,49 +2394,41 @@ Tabela&nbsp;3.19: Regras de Classificação Extraídas da Árvore de Decisão ID
 <p>Esta prática depende da variável <code>arvore</code>, do <code>df_tempo</code> e das funções das Práticas 1 e 2.</p>
 </div>
 </div>
-<div id="cell-61" class="cell" data-execution_count="91">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install graphviz <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphviz</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"versão do graphviz:"</span>, graphviz.__version__)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>versão do graphviz: 0.21</code></pre>
-</div>
-</div>
-<div id="cell-fig-3-pratica3a" class="cell" data-quarto-raw="true" data-execution_count="92">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Visualização da Árvore ────────────────────────────────────────────────</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> construir_arvore_viz(no, dot<span class="op">=</span><span class="va">None</span>, pai<span class="op">=</span><span class="va">None</span>, edge_label<span class="op">=</span><span class="st">""</span>):</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dot <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Correção: O nome correto da classe é Digraph</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        dot <span class="op">=</span> graphviz.Digraph(comment<span class="op">=</span><span class="st">'Árvore de Decisão ID3'</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        dot.attr(rankdir<span class="op">=</span><span class="st">'TB'</span>, size<span class="op">=</span><span class="st">'8,5'</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        dot.attr(<span class="st">'node'</span>, shape<span class="op">=</span><span class="st">'rectangle'</span>, style<span class="op">=</span><span class="st">'filled'</span>, fontname<span class="op">=</span><span class="st">'Helvetica'</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Identificador único para o nó baseado na posição de memória</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    no_id <span class="op">=</span> <span class="bu">str</span>(<span class="bu">id</span>(no))</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> no[<span class="st">'folha'</span>]:</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estilização para Folhas (Nó de Classe)</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">'#90ee90'</span> <span class="cf">if</span> no[<span class="st">'classe'</span>] <span class="op">==</span> <span class="st">'Sim'</span> <span class="cf">else</span> <span class="st">'#ffcccb'</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="ss">f"CLASSE: </span><span class="sc">{</span>no[<span class="st">'classe'</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">(n=</span><span class="sc">{</span>no[<span class="st">'exemplos'</span>]<span class="sc">}</span><span class="ss">)"</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        dot.node(no_id, label, shape<span class="op">=</span><span class="st">'ellipse'</span>, fillcolor<span class="op">=</span>cor)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estilização para Nós de Decisão (Atributos)</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>no[<span class="st">'atributo'</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">Gain: </span><span class="sc">{</span>no[<span class="st">'gain'</span>]<span class="sc">:.3f}</span><span class="ch">\n</span><span class="ss">(n=</span><span class="sc">{</span>no[<span class="st">'exemplos'</span>]<span class="sc">}</span><span class="ss">)"</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        dot.node(no_id, label, fillcolor<span class="op">=</span><span class="st">'#e1f5fe'</span>)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pai:</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        dot.edge(pai, no_id, label<span class="op">=</span>edge_label)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recursão para processar os filhos</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> no[<span class="st">'folha'</span>]:</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> valor, filho <span class="kw">in</span> no[<span class="st">'filhos'</span>].items():</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>            construir_arvore_viz(filho, dot, no_id, valor)</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar e exibir no Jupyter/Quarto</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>viz <span class="op">=</span> construir_arvore_viz(arvore)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>display(viz)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-3-pratica3a" class="cell" data-quarto-raw="false" data-execution_count="176">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Visualização da Árvore ────────────────────────────────────────────────</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> construir_arvore_viz(no, dot<span class="op">=</span><span class="va">None</span>, pai<span class="op">=</span><span class="va">None</span>, edge_label<span class="op">=</span><span class="st">""</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dot <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Correção: O nome correto da classe é Digraph</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        dot <span class="op">=</span> graphviz.Digraph(comment<span class="op">=</span><span class="st">'Árvore de Decisão ID3'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        dot.attr(rankdir<span class="op">=</span><span class="st">'TB'</span>, size<span class="op">=</span><span class="st">'8,5'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        dot.attr(<span class="st">'node'</span>, shape<span class="op">=</span><span class="st">'rectangle'</span>, style<span class="op">=</span><span class="st">'filled'</span>, fontname<span class="op">=</span><span class="st">'Helvetica'</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Identificador único para o nó baseado na posição de memória</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    no_id <span class="op">=</span> <span class="bu">str</span>(<span class="bu">id</span>(no))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> no[<span class="st">'folha'</span>]:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estilização para Folhas (Nó de Classe)</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">'#90ee90'</span> <span class="cf">if</span> no[<span class="st">'classe'</span>] <span class="op">==</span> <span class="st">'Sim'</span> <span class="cf">else</span> <span class="st">'#ffcccb'</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="ss">f"CLASSE: </span><span class="sc">{</span>no[<span class="st">'classe'</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">(n=</span><span class="sc">{</span>no[<span class="st">'exemplos'</span>]<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        dot.node(no_id, label, shape<span class="op">=</span><span class="st">'ellipse'</span>, fillcolor<span class="op">=</span>cor)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Estilização para Nós de Decisão (Atributos)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>no[<span class="st">'atributo'</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">Gain: </span><span class="sc">{</span>no[<span class="st">'gain'</span>]<span class="sc">:.3f}</span><span class="ch">\n</span><span class="ss">(n=</span><span class="sc">{</span>no[<span class="st">'exemplos'</span>]<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        dot.node(no_id, label, fillcolor<span class="op">=</span><span class="st">'#e1f5fe'</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pai:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        dot.edge(pai, no_id, label<span class="op">=</span>edge_label)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Recursão para processar os filhos</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> no[<span class="st">'folha'</span>]:</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> valor, filho <span class="kw">in</span> no[<span class="st">'filhos'</span>].items():</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            construir_arvore_viz(filho, dot, no_id, valor)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar e exibir no Jupyter/Quarto</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>viz <span class="op">=</span> construir_arvore_viz(arvore)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>display(viz)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-3-pratica3a" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2428,72 +2436,72 @@ Tabela&nbsp;3.19: Regras de Classificação Extraídas da Árvore de Decisão ID
 <img src="cap03_files/figure-html/fig-3-pratica3a-output-1.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-pratica3a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.22: Árvore de Decisão ID3 construída sobre a Tabela do Tempo.
+Figura&nbsp;3.23: Árvore de Decisão ID3 construída sobre a Tabela do Tempo.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-fig-3-pratica3b" class="cell" data-quarto-raw="true">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Classificador e Matriz de Confusão ────────────────────────────────────</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar(exemplo, no):</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Classifica um exemplo percorrendo a árvore recursivamente."""</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> no[<span class="st">"folha"</span>]:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> no[<span class="st">"classe"</span>]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    atributo <span class="op">=</span> no[<span class="st">"atributo"</span>]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    valor <span class="op">=</span> exemplo.get(atributo)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="kw">in</span> no[<span class="st">"filhos"</span>]:</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> classificar(exemplo, no[<span class="st">"filhos"</span>][valor])</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fallback: classe majoritária (não ocorre neste dataset, mas é boa prática)</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    contagens <span class="op">=</span> Counter()</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> coletar_classes(n):</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n[<span class="st">"folha"</span>]:</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            contagens[n[<span class="st">"classe"</span>]] <span class="op">+=</span> n[<span class="st">"exemplos"</span>]</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> f <span class="kw">in</span> n[<span class="st">"filhos"</span>].values():</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                coletar_classes(f)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    coletar_classes(no)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contagens.most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação de todos os exemplos de treinamento</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>predicoes <span class="op">=</span> [classificar(ex, arvore) <span class="cf">for</span> ex <span class="kw">in</span> dados_lista]</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>reais     <span class="op">=</span> [ex[CLASSE] <span class="cf">for</span> ex <span class="kw">in</span> dados_lista]</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>classes   <span class="op">=</span> [<span class="st">"Sim"</span>, <span class="st">"Não"</span>]</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção da matriz</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>matriz <span class="op">=</span> {c_real: {c_pred: <span class="dv">0</span> <span class="cf">for</span> c_pred <span class="kw">in</span> classes} <span class="cf">for</span> c_real <span class="kw">in</span> classes}</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> real, pred <span class="kw">in</span> <span class="bu">zip</span>(reais, predicoes):</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    matriz[real][pred] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados para o heatmap</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([[matriz[c_real][c_pred] <span class="cf">for</span> c_pred <span class="kw">in</span> classes] <span class="cf">for</span> c_real <span class="kw">in</span> classes])</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>acuracia <span class="op">=</span> <span class="bu">sum</span>(z[i][i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes))) <span class="op">/</span> <span class="bu">len</span>(reais)</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(z, cmap<span class="op">=</span><span class="st">"Blues"</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span>z.<span class="bu">max</span>())</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes)):</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes)):</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>        cor_txt <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> z[i, j] <span class="op">&gt;</span> z.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(z[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor_txt)</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(classes)))<span class="op">;</span> ax.set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(classes)))</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Previsto: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> classes], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> classes], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Matriz de Confusão</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>acuracia<span class="sc">:.0%}</span><span class="ss"> </span><span class="op">\</span></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="ss">             (</span><span class="sc">{</span><span class="bu">int</span>(acuracia<span class="op">*</span><span class="bu">len</span>(reais))<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(reais)<span class="sc">}</span><span class="ss"> corretos)"</span>,</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Resumo da Avaliação:"</span>)</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia     : </span><span class="sc">{</span>acuracia<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   VP (Sim→Sim) : </span><span class="sc">{</span>matriz[<span class="st">'Sim'</span>][<span class="st">'Sim'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   VN (Não→Não) : </span><span class="sc">{</span>matriz[<span class="st">'Não'</span>][<span class="st">'Não'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   FP (Não→Sim) : </span><span class="sc">{</span>matriz[<span class="st">'Não'</span>][<span class="st">'Sim'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   FN (Sim→Não) : </span><span class="sc">{</span>matriz[<span class="st">'Sim'</span>][<span class="st">'Não'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-3-pratica3b" class="cell" data-quarto-raw="false" data-execution_count="177">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ─── Classificador e Matriz de Confusão ────────────────────────────────────</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar(exemplo, no):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Classifica um exemplo percorrendo a árvore recursivamente."""</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> no[<span class="st">"folha"</span>]:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> no[<span class="st">"classe"</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    atributo <span class="op">=</span> no[<span class="st">"atributo"</span>]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    valor <span class="op">=</span> exemplo.get(atributo)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> valor <span class="kw">in</span> no[<span class="st">"filhos"</span>]:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> classificar(exemplo, no[<span class="st">"filhos"</span>][valor])</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fallback: classe majoritária (não ocorre neste dataset, mas é boa prática)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    contagens <span class="op">=</span> Counter()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> coletar_classes(n):</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n[<span class="st">"folha"</span>]:</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            contagens[n[<span class="st">"classe"</span>]] <span class="op">+=</span> n[<span class="st">"exemplos"</span>]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> f <span class="kw">in</span> n[<span class="st">"filhos"</span>].values():</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                coletar_classes(f)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    coletar_classes(no)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> contagens.most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação de todos os exemplos de treinamento</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>predicoes <span class="op">=</span> [classificar(ex, arvore) <span class="cf">for</span> ex <span class="kw">in</span> dados_lista]</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>reais     <span class="op">=</span> [ex[CLASSE] <span class="cf">for</span> ex <span class="kw">in</span> dados_lista]</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>classes   <span class="op">=</span> [<span class="st">"Sim"</span>, <span class="st">"Não"</span>]</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção da matriz</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>matriz <span class="op">=</span> {c_real: {c_pred: <span class="dv">0</span> <span class="cf">for</span> c_pred <span class="kw">in</span> classes} <span class="cf">for</span> c_real <span class="kw">in</span> classes}</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> real, pred <span class="kw">in</span> <span class="bu">zip</span>(reais, predicoes):</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    matriz[real][pred] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados para o heatmap</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([[matriz[c_real][c_pred] <span class="cf">for</span> c_pred <span class="kw">in</span> classes] <span class="cf">for</span> c_real <span class="kw">in</span> classes])</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>acuracia <span class="op">=</span> <span class="bu">sum</span>(z[i][i] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes))) <span class="op">/</span> <span class="bu">len</span>(reais)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(z, cmap<span class="op">=</span><span class="st">"Blues"</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span>z.<span class="bu">max</span>())</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes)):</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes)):</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>        cor_txt <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> z[i, j] <span class="op">&gt;</span> z.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(z[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor_txt)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(classes)))<span class="op">;</span> ax.set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(classes)))</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Previsto: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> classes], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> classes], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Matriz de Confusão</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>acuracia<span class="sc">:.0%}</span><span class="ss"> </span><span class="op">\</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="ss">             (</span><span class="sc">{</span><span class="bu">int</span>(acuracia<span class="op">*</span><span class="bu">len</span>(reais))<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(reais)<span class="sc">}</span><span class="ss"> corretos)"</span>,</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Resumo da Avaliação:"</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia     : </span><span class="sc">{</span>acuracia<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   VP (Sim→Sim) : </span><span class="sc">{</span>matriz[<span class="st">'Sim'</span>][<span class="st">'Sim'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   VN (Não→Não) : </span><span class="sc">{</span>matriz[<span class="st">'Não'</span>][<span class="st">'Não'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   FP (Não→Sim) : </span><span class="sc">{</span>matriz[<span class="st">'Não'</span>][<span class="st">'Sim'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   FN (Sim→Não) : </span><span class="sc">{</span>matriz[<span class="st">'Sim'</span>][<span class="st">'Não'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-3-pratica3b" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2501,7 +2509,7 @@ Figura&nbsp;3.22: Árvore de Decisão ID3 construída sobre a Tabela do Tempo.
 <img src="cap03_files/figure-html/fig-3-pratica3b-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-pratica3b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.23: Matriz de Confusão — Avaliação sobre o Conjunto de Treinamento.
+Figura&nbsp;3.24: Matriz de Confusão — Avaliação sobre o Conjunto de Treinamento.
 </figcaption>
 </figure>
 </div>
@@ -2526,7 +2534,7 @@ Figura&nbsp;3.23: Matriz de Confusão — Avaliação sobre o Conjunto de Treina
 <li>Visualizar a árvore aprendida.</li>
 <li>Avaliar o modelo com <strong>validação cruzada</strong> (<em>k-fold cross-validation</em>) — uma técnica mais robusta do que usar apenas o conjunto de treinamento.</li>
 </ol>
-<p>A <a href="#fig-3-pratica4a" class="quarto-xref">Figura&nbsp;<span>3.24</span></a> apresenta a árvore gerada e a <a href="#fig-3-pratica4b" class="quarto-xref">Figura&nbsp;<span>3.25</span></a> a acurácia por fold da validação cruzada.</p>
+<p>A <a href="#fig-3-pratica4a" class="quarto-xref">Figura&nbsp;<span>3.25</span></a> apresenta a árvore gerada e a <a href="#fig-3-pratica4b" class="quarto-xref">Figura&nbsp;<span>3.26</span></a> a acurácia por fold da validação cruzada.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2540,45 +2548,33 @@ Figura&nbsp;3.23: Matriz de Confusão — Avaliação sobre o Conjunto de Treina
 <p>Esta prática é independente das anteriores. Certifique-se de ter executado o <strong>Bloco de Importações</strong> antes de prosseguir.</p>
 </div>
 </div>
-<div id="cell-65" class="cell" data-execution_count="94">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Versão do scikit-learn:"</span>, sklearn.__version__)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Versão do scikit-learn: 1.6.1</code></pre>
-</div>
-</div>
-<div id="cell-fig-3-pratica4a" class="cell" data-quarto-raw="true">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier, plot_tree</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Carregamento e seleção de atributos (pétalas apenas — igual ao exercício do capítulo)</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>X_iris <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]   <span class="co"># petallength, petalwidth</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>y_iris <span class="op">=</span> iris.target</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>nomes_features <span class="op">=</span> [<span class="st">"Comp. Pétala (cm)"</span>, <span class="st">"Larg. Pétala (cm)"</span>]</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>nomes_classes  <span class="op">=</span> iris.target_names</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Treinamento</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> DecisionTreeClassifier(criterion<span class="op">=</span><span class="st">"entropy"</span>, max_depth<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>clf.fit(X_iris, y_iris)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>acuracia_treino <span class="op">=</span> clf.score(X_iris, y_iris)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Visualização da Árvore</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>plot_tree(clf, feature_names<span class="op">=</span>nomes_features, class_names<span class="op">=</span>nomes_classes,</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>          filled<span class="op">=</span><span class="va">True</span>, rounded<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">9</span>, ax<span class="op">=</span>ax,</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>          impurity<span class="op">=</span><span class="va">True</span>, proportion<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Árvore de Decisão — Dataset Iris (2 atributos de pétala)</span><span class="ch">\n</span><span class="ss">"</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>             <span class="ss">f"Critério: Entropia | Acurácia no Treinamento: </span><span class="sc">{</span>acuracia_treino<span class="sc">:.1%}</span><span class="ss">"</span>,</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Profundidade da Árvore : </span><span class="sc">{</span>clf<span class="sc">.</span>get_depth()<span class="sc">}</span><span class="ss"> níveis"</span>)</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"🍃 Número de Nós Folha    : </span><span class="sc">{</span>clf<span class="sc">.</span>get_n_leaves()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"📈 Acurácia (Treinamento) : </span><span class="sc">{</span>acuracia_treino<span class="sc">:.2%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-3-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="178">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Carregamento e seleção de atributos (pétalas apenas — igual ao exercício do capítulo)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X_iris <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]   <span class="co"># petallength, petalwidth</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y_iris <span class="op">=</span> iris.target</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>nomes_features <span class="op">=</span> [<span class="st">"Comp. Pétala (cm)"</span>, <span class="st">"Larg. Pétala (cm)"</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>nomes_classes  <span class="op">=</span> iris.target_names</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Treinamento</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> DecisionTreeClassifier(criterion<span class="op">=</span><span class="st">"entropy"</span>, max_depth<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>clf.fit(X_iris, y_iris)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>acuracia_treino <span class="op">=</span> clf.score(X_iris, y_iris)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Visualização da Árvore</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plot_tree(clf, feature_names<span class="op">=</span>nomes_features, class_names<span class="op">=</span>nomes_classes,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>          filled<span class="op">=</span><span class="va">True</span>, rounded<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">9</span>, ax<span class="op">=</span>ax,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>          impurity<span class="op">=</span><span class="va">True</span>, proportion<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Árvore de Decisão — Dataset Iris (2 atributos de pétala)</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>             <span class="ss">f"Critério: Entropia | Acurácia no Treinamento: </span><span class="sc">{</span>acuracia_treino<span class="sc">:.1%}</span><span class="ss">"</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Profundidade da Árvore : </span><span class="sc">{</span>clf<span class="sc">.</span>get_depth()<span class="sc">}</span><span class="ss"> níveis"</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"🍃 Número de Nós Folha    : </span><span class="sc">{</span>clf<span class="sc">.</span>get_n_leaves()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"📈 Acurácia (Treinamento) : </span><span class="sc">{</span>acuracia_treino<span class="sc">:.2%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-3-pratica4a" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2586,7 +2582,7 @@ Figura&nbsp;3.23: Matriz de Confusão — Avaliação sobre o Conjunto de Treina
 <img src="cap03_files/figure-html/fig-3-pratica4a-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-pratica4a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.24: Árvore de Decisão treinada com Scikit-learn no dataset Iris (apenas pétalas).
+Figura&nbsp;3.25: Árvore de Decisão treinada com Scikit-learn no dataset Iris (apenas pétalas).
 </figcaption>
 </figure>
 </div>
@@ -2598,40 +2594,38 @@ Figura&nbsp;3.24: Árvore de Decisão treinada com Scikit-learn no dataset Iris 
 📈 Acurácia (Treinamento) : 97.33%</code></pre>
 </div>
 </div>
-<div id="cell-fig-3-pratica4b" class="cell" data-quarto-raw="true">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Validação Cruzada (clf e X_iris, y_iris definidos na célula anterior)</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(clf, X_iris, y_iris, cv<span class="op">=</span>K, scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>media  <span class="op">=</span> scores.mean()</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>desvio <span class="op">=</span> scores.std()</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Gráfico de barras por fold</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">"#27ae60"</span> <span class="cf">if</span> s <span class="op">&gt;=</span> media <span class="cf">else</span> <span class="st">"#e74c3c"</span> <span class="cf">for</span> s <span class="kw">in</span> scores]</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>), scores <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span>cores, edgecolor<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>ax.axhline(media <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#2c3e50"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Média: </span><span class="sc">{</span>media<span class="sc">:.2%}</span><span class="ss"> ± </span><span class="sc">{</span>desvio<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Fold (Partição)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Validação Cruzada </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-Fold — Árvore de Decisão no Dataset Iris"</span>,</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">80</span>, <span class="dv">105</span>])</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar, score <span class="kw">in</span> <span class="bu">zip</span>(bars, scores):</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, bar.get_height() <span class="op">+</span> <span class="fl">0.5</span>,</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>score<span class="sc">:.0%}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Validação Cruzada </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-Fold:"</span>)</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia Média : </span><span class="sc">{</span>media<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Desvio Padrão  : </span><span class="sc">{</span>desvio<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Melhor Fold    : </span><span class="sc">{</span>scores<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>scores<span class="sc">.</span>argmax()<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Pior Fold      : </span><span class="sc">{</span>scores<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>scores<span class="sc">.</span>argmin()<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-3-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="179">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Validação Cruzada (clf e X_iris, y_iris definidos na célula anterior)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(clf, X_iris, y_iris, cv<span class="op">=</span>K, scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>media  <span class="op">=</span> scores.mean()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>desvio <span class="op">=</span> scores.std()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Gráfico de barras por fold</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">"#27ae60"</span> <span class="cf">if</span> s <span class="op">&gt;=</span> media <span class="cf">else</span> <span class="st">"#e74c3c"</span> <span class="cf">for</span> s <span class="kw">in</span> scores]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>), scores <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span>cores, edgecolor<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>ax.axhline(media <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#2c3e50"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Média: </span><span class="sc">{</span>media<span class="sc">:.2%}</span><span class="ss"> ± </span><span class="sc">{</span>desvio<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Fold (Partição)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Validação Cruzada </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-Fold — Árvore de Decisão no Dataset Iris"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">80</span>, <span class="dv">105</span>])</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar, score <span class="kw">in</span> <span class="bu">zip</span>(bars, scores):</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, bar.get_height() <span class="op">+</span> <span class="fl">0.5</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>score<span class="sc">:.0%}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Validação Cruzada </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-Fold:"</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia Média : </span><span class="sc">{</span>media<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Desvio Padrão  : </span><span class="sc">{</span>desvio<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Melhor Fold    : </span><span class="sc">{</span>scores<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>scores<span class="sc">.</span>argmax()<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Pior Fold      : </span><span class="sc">{</span>scores<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>scores<span class="sc">.</span>argmin()<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-3-pratica4b" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2639,7 +2633,7 @@ Figura&nbsp;3.24: Árvore de Decisão treinada com Scikit-learn no dataset Iris 
 <img src="cap03_files/figure-html/fig-3-pratica4b-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-pratica4b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.25: Validação Cruzada (10-fold) — Acurácia por Partição.
+Figura&nbsp;3.26: Validação Cruzada (10-fold) — Acurácia por Partição.
 </figcaption>
 </figure>
 </div>
@@ -2663,7 +2657,7 @@ Figura&nbsp;3.25: Validação Cruzada (10-fold) — Acurácia por Partição.
 <li>Como a <strong>acurácia na validação cruzada</strong> atinge um pico e depois <strong>piora</strong> — sinal claro de overfitting.</li>
 <li>Qual a <strong>profundidade ótima</strong> que equilibra complexidade e generalização.</li>
 </ul>
-<p>A <a href="#fig-3-pratica5" class="quarto-xref">Figura&nbsp;<span>3.26</span></a> mostra este comportamento, gerada pelo código a seguir.</p>
+<p>A <a href="#fig-3-pratica5" class="quarto-xref">Figura&nbsp;<span>3.27</span></a> mostra este comportamento, gerada pelo código a seguir.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2678,58 +2672,54 @@ Figura&nbsp;3.25: Validação Cruzada (10-fold) — Acurácia por Partição.
 </div>
 </div>
 <p><strong>Desafio:</strong> Observe o gráfico e responda: a partir de qual profundidade ocorre overfitting no dataset Iris? Como a <strong>poda</strong> poderia ser aplicada para evitá-lo?</p>
-<div id="cell-fig-3-pratica5" class="cell" data-quarto-raw="true">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>X_full <span class="op">=</span> iris.data   <span class="co"># Todos os 4 atributos</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>y_full <span class="op">=</span> iris.target</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>profundidades <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">12</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>acuracias_treino <span class="op">=</span> []</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>acuracias_cv     <span class="op">=</span> []</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> profundidades:</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    modelo <span class="op">=</span> DecisionTreeClassifier(criterion<span class="op">=</span><span class="st">"entropy"</span>, max_depth<span class="op">=</span>depth, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    modelo.fit(X_full, y_full)</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    acuracias_treino.append(modelo.score(X_full, y_full))</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    cv_scores <span class="op">=</span> cross_val_score(modelo, X_full, y_full, cv<span class="op">=</span><span class="dv">10</span>, scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    acuracias_cv.append(cv_scores.mean())</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Melhor profundidade pela CV</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>melhor_depth <span class="op">=</span> <span class="bu">list</span>(profundidades)[np.argmax(acuracias_cv)]</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>ax.plot(profundidades, [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_treino],</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"#e74c3c"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">7</span>, label<span class="op">=</span><span class="st">"Acurácia (Treinamento)"</span>)</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>ax.plot(profundidades, [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_cv],</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"s--"</span>, color<span class="op">=</span><span class="st">"#2980b9"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">7</span>, label<span class="op">=</span><span class="st">"Acurácia (Validação Cruzada 10-fold)"</span>)</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>ax.axvline(melhor_depth, color<span class="op">=</span><span class="st">"#27ae60"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, linestyle<span class="op">=</span><span class="st">":"</span>,</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Profundidade Ótima = </span><span class="sc">{</span>melhor_depth<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>ax.fill_between(profundidades,</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>                [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_treino],</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>                [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_cv],</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>                alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">"#e74c3c"</span>, label<span class="op">=</span><span class="st">"Região de Overfitting"</span>)</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Profundidade Máxima da Árvore"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Overfitting em Árvore de Decisão</span><span class="ch">\n</span><span class="st">Dataset Iris — 4 Atributos"</span>,</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">list</span>(profundidades))</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">88</span>, <span class="dv">102</span>])</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🎯 Resultados por Profundidade:"</span>)</span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Depth'</span><span class="sc">:&gt;6}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Treino'</span><span class="sc">:&gt;8}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'CV (10-fold)'</span><span class="sc">:&gt;13}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Gap (Overfit)'</span><span class="sc">:&gt;14}</span><span class="ss">"</span>)</span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, tr, cv <span class="kw">in</span> <span class="bu">zip</span>(profundidades, acuracias_treino, acuracias_cv):</span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>    marca <span class="op">=</span> <span class="st">" ← ótima"</span> <span class="cf">if</span> d <span class="op">==</span> melhor_depth <span class="cf">else</span> <span class="st">""</span></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>d<span class="sc">:&gt;6}</span><span class="ss"> | </span><span class="sc">{</span>tr<span class="sc">:&gt;8.2%}</span><span class="ss"> | </span><span class="sc">{</span>cv<span class="sc">:&gt;13.2%}</span><span class="ss"> | </span><span class="sc">{</span>(tr<span class="op">-</span>cv)<span class="sc">:&gt;13.2%}{</span>marca<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-3-pratica5" class="cell" data-quarto-raw="false" data-execution_count="180">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>X_full <span class="op">=</span> iris.data   <span class="co"># Todos os 4 atributos</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>y_full <span class="op">=</span> iris.target</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>profundidades <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">12</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>acuracias_treino <span class="op">=</span> []</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>acuracias_cv     <span class="op">=</span> []</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> depth <span class="kw">in</span> profundidades:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    modelo <span class="op">=</span> DecisionTreeClassifier(criterion<span class="op">=</span><span class="st">"entropy"</span>, max_depth<span class="op">=</span>depth, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    modelo.fit(X_full, y_full)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    acuracias_treino.append(modelo.score(X_full, y_full))</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    cv_scores <span class="op">=</span> cross_val_score(modelo, X_full, y_full, cv<span class="op">=</span><span class="dv">10</span>, scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    acuracias_cv.append(cv_scores.mean())</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Melhor profundidade pela CV</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>melhor_depth <span class="op">=</span> <span class="bu">list</span>(profundidades)[np.argmax(acuracias_cv)]</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>ax.plot(profundidades, [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_treino],</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"o-"</span>, color<span class="op">=</span><span class="st">"#e74c3c"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">7</span>, label<span class="op">=</span><span class="st">"Acurácia (Treinamento)"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>ax.plot(profundidades, [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_cv],</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"s--"</span>, color<span class="op">=</span><span class="st">"#2980b9"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">7</span>, label<span class="op">=</span><span class="st">"Acurácia (Validação Cruzada 10-fold)"</span>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>ax.axvline(melhor_depth, color<span class="op">=</span><span class="st">"#27ae60"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, linestyle<span class="op">=</span><span class="st">":"</span>,</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Profundidade Ótima = </span><span class="sc">{</span>melhor_depth<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>ax.fill_between(profundidades,</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>                [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_treino],</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>                [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_cv],</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>                alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">"#e74c3c"</span>, label<span class="op">=</span><span class="st">"Região de Overfitting"</span>)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Profundidade Máxima da Árvore"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Overfitting em Árvore de Decisão</span><span class="ch">\n</span><span class="st">Dataset Iris — 4 Atributos"</span>,</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">list</span>(profundidades))</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">88</span>, <span class="dv">102</span>])</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🎯 Resultados por Profundidade:"</span>)</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Depth'</span><span class="sc">:&gt;6}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Treino'</span><span class="sc">:&gt;8}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'CV (10-fold)'</span><span class="sc">:&gt;13}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Gap (Overfit)'</span><span class="sc">:&gt;14}</span><span class="ss">"</span>)</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d, tr, cv <span class="kw">in</span> <span class="bu">zip</span>(profundidades, acuracias_treino, acuracias_cv):</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    marca <span class="op">=</span> <span class="st">" ← ótima"</span> <span class="cf">if</span> d <span class="op">==</span> melhor_depth <span class="cf">else</span> <span class="st">""</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>d<span class="sc">:&gt;6}</span><span class="ss"> | </span><span class="sc">{</span>tr<span class="sc">:&gt;8.2%}</span><span class="ss"> | </span><span class="sc">{</span>cv<span class="sc">:&gt;13.2%}</span><span class="ss"> | </span><span class="sc">{</span>(tr<span class="op">-</span>cv)<span class="sc">:&gt;13.2%}{</span>marca<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-3-pratica5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2737,7 +2727,7 @@ Figura&nbsp;3.25: Validação Cruzada (10-fold) — Acurácia por Partição.
 <img src="cap03_files/figure-html/fig-3-pratica5-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.26: Overfitting: Acurácia de Treinamento vs.&nbsp;Validação Cruzada por Profundidade.
+Figura&nbsp;3.27: Overfitting: Acurácia de Treinamento vs.&nbsp;Validação Cruzada por Profundidade.
 </figcaption>
 </figure>
 </div>

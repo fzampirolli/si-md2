@@ -8,110 +8,110 @@
  viewBox="0.00 0.00 576.00 248.27" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(0.907827 0.907827) rotate(0) translate(4 269.48)">
 <polygon fill="white" stroke="none" points="-4,4 -4,-269.48 630.48,-269.48 630.48,4 -4,4"/>
-<!-- 140558040582784 -->
+<!-- 140558096125760 -->
 <g id="node1" class="node">
-<title>140558040582784</title>
+<title>140558096125760</title>
 <polygon fill="#e1f5fe" stroke="black" points="437.49,-265.48 350.99,-265.48 350.99,-212.48 437.49,-212.48 437.49,-265.48"/>
 <text text-anchor="middle" x="394.24" y="-248.18" font-family="Helvetica,sans-Serif" font-size="14.00">Dia</text>
 <text text-anchor="middle" x="394.24" y="-233.18" font-family="Helvetica,sans-Serif" font-size="14.00">Gain: 0.247</text>
 <text text-anchor="middle" x="394.24" y="-218.18" font-family="Helvetica,sans-Serif" font-size="14.00">(n=14)</text>
 </g>
-<!-- 140558040581376 -->
+<!-- 140558096122560 -->
 <g id="node2" class="node">
-<title>140558040581376</title>
+<title>140558096122560</title>
 <polygon fill="#e1f5fe" stroke="black" points="275.49,-159.61 188.99,-159.61 188.99,-106.61 275.49,-106.61 275.49,-159.61"/>
 <text text-anchor="middle" x="232.24" y="-142.31" font-family="Helvetica,sans-Serif" font-size="14.00">Vento</text>
 <text text-anchor="middle" x="232.24" y="-127.31" font-family="Helvetica,sans-Serif" font-size="14.00">Gain: 0.971</text>
 <text text-anchor="middle" x="232.24" y="-112.31" font-family="Helvetica,sans-Serif" font-size="14.00">(n=5)</text>
 </g>
-<!-- 140558040582784&#45;&gt;140558040581376 -->
+<!-- 140558096125760&#45;&gt;140558096122560 -->
 <g id="edge1" class="edge">
-<title>140558040582784&#45;&gt;140558040581376</title>
+<title>140558096125760&#45;&gt;140558096122560</title>
 <path fill="none" stroke="black" d="M353.78,-212.04C332.13,-198.16 305.28,-180.94 282.32,-166.22"/>
 <polygon fill="black" stroke="black" points="284.33,-163.35 274.02,-160.9 280.55,-169.24 284.33,-163.35"/>
 <text text-anchor="middle" x="346.94" y="-181.18" font-family="Times,serif" font-size="14.00">Chuvoso</text>
 </g>
-<!-- 140558040582912 -->
+<!-- 140558096121920 -->
 <g id="node5" class="node">
-<title>140558040582912</title>
+<title>140558096121920</title>
 <polygon fill="#e1f5fe" stroke="black" points="437.49,-159.61 350.99,-159.61 350.99,-106.61 437.49,-106.61 437.49,-159.61"/>
 <text text-anchor="middle" x="394.24" y="-142.31" font-family="Helvetica,sans-Serif" font-size="14.00">Umidade</text>
 <text text-anchor="middle" x="394.24" y="-127.31" font-family="Helvetica,sans-Serif" font-size="14.00">Gain: 0.971</text>
 <text text-anchor="middle" x="394.24" y="-112.31" font-family="Helvetica,sans-Serif" font-size="14.00">(n=5)</text>
 </g>
-<!-- 140558040582784&#45;&gt;140558040582912 -->
+<!-- 140558096125760&#45;&gt;140558096121920 -->
 <g id="edge4" class="edge">
-<title>140558040582784&#45;&gt;140558040582912</title>
+<title>140558096125760&#45;&gt;140558096121920</title>
 <path fill="none" stroke="black" d="M394.24,-212.04C394.24,-199.77 394.24,-184.89 394.24,-171.44"/>
 <polygon fill="black" stroke="black" points="397.74,-171.6 394.24,-161.6 390.74,-171.6 397.74,-171.6"/>
 <text text-anchor="middle" x="424.62" y="-181.18" font-family="Times,serif" font-size="14.00">Ensolarado</text>
 </g>
-<!-- 140558040582016 -->
+<!-- 140558096124352 -->
 <g id="node8" class="node">
-<title>140558040582016</title>
+<title>140558096124352</title>
 <ellipse fill="#90ee90" stroke="black" cx="526.24" cy="-133.11" rx="71.24" ry="26.87"/>
 <text text-anchor="middle" x="526.24" y="-134.81" font-family="Helvetica,sans-Serif" font-size="14.00">CLASSE: Sim</text>
 <text text-anchor="middle" x="526.24" y="-119.81" font-family="Helvetica,sans-Serif" font-size="14.00">(n=4)</text>
 </g>
-<!-- 140558040582784&#45;&gt;140558040582016 -->
+<!-- 140558096125760&#45;&gt;140558096124352 -->
 <g id="edge7" class="edge">
-<title>140558040582784&#45;&gt;140558040582016</title>
+<title>140558096125760&#45;&gt;140558096124352</title>
 <path fill="none" stroke="black" d="M434.75,-212.18C443.01,-206.56 451.53,-200.49 459.24,-194.48 470.44,-185.76 482.1,-175.65 492.5,-166.23"/>
 <polygon fill="black" stroke="black" points="494.79,-168.88 499.79,-159.54 490.05,-163.72 494.79,-168.88"/>
 <text text-anchor="middle" x="501.6" y="-181.18" font-family="Times,serif" font-size="14.00">Nublado</text>
 </g>
-<!-- 140558040583424 -->
+<!-- 140558092549504 -->
 <g id="node3" class="node">
-<title>140558040583424</title>
+<title>140558092549504</title>
 <ellipse fill="#90ee90" stroke="black" cx="71.24" cy="-26.87" rx="71.24" ry="26.87"/>
 <text text-anchor="middle" x="71.24" y="-28.57" font-family="Helvetica,sans-Serif" font-size="14.00">CLASSE: Sim</text>
 <text text-anchor="middle" x="71.24" y="-13.57" font-family="Helvetica,sans-Serif" font-size="14.00">(n=3)</text>
 </g>
-<!-- 140558040581376&#45;&gt;140558040583424 -->
+<!-- 140558096122560&#45;&gt;140558092549504 -->
 <g id="edge2" class="edge">
-<title>140558040581376&#45;&gt;140558040583424</title>
+<title>140558096122560&#45;&gt;140558092549504</title>
 <path fill="none" stroke="black" d="M192.44,-106.34C169.28,-91.35 140.02,-72.4 116.05,-56.88"/>
 <polygon fill="black" stroke="black" points="118.04,-54 107.75,-51.51 114.24,-59.88 118.04,-54"/>
 <text text-anchor="middle" x="176.01" y="-74.94" font-family="Times,serif" font-size="14.00">Falso</text>
 </g>
-<!-- 140558040582656 -->
+<!-- 140558096122688 -->
 <g id="node4" class="node">
-<title>140558040582656</title>
+<title>140558096122688</title>
 <ellipse fill="#ffcccb" stroke="black" cx="232.24" cy="-26.87" rx="71.77" ry="26.87"/>
 <text text-anchor="middle" x="232.24" y="-28.57" font-family="Helvetica,sans-Serif" font-size="14.00">CLASSE: Não</text>
 <text text-anchor="middle" x="232.24" y="-13.57" font-family="Helvetica,sans-Serif" font-size="14.00">(n=2)</text>
 </g>
-<!-- 140558040581376&#45;&gt;140558040582656 -->
+<!-- 140558096122560&#45;&gt;140558096122688 -->
 <g id="edge3" class="edge">
-<title>140558040581376&#45;&gt;140558040582656</title>
+<title>140558096122560&#45;&gt;140558096122688</title>
 <path fill="none" stroke="black" d="M232.24,-106.34C232.24,-94.03 232.24,-79.06 232.24,-65.51"/>
 <polygon fill="black" stroke="black" points="235.74,-65.58 232.24,-55.58 228.74,-65.58 235.74,-65.58"/>
 <text text-anchor="middle" x="261.87" y="-74.94" font-family="Times,serif" font-size="14.00">Verdadeiro</text>
 </g>
-<!-- 140558089436672 -->
+<!-- 140558096121984 -->
 <g id="node6" class="node">
-<title>140558089436672</title>
+<title>140558096121984</title>
 <ellipse fill="#ffcccb" stroke="black" cx="394.24" cy="-26.87" rx="71.77" ry="26.87"/>
 <text text-anchor="middle" x="394.24" y="-28.57" font-family="Helvetica,sans-Serif" font-size="14.00">CLASSE: Não</text>
 <text text-anchor="middle" x="394.24" y="-13.57" font-family="Helvetica,sans-Serif" font-size="14.00">(n=3)</text>
 </g>
-<!-- 140558040582912&#45;&gt;140558089436672 -->
+<!-- 140558096121920&#45;&gt;140558096121984 -->
 <g id="edge5" class="edge">
-<title>140558040582912&#45;&gt;140558089436672</title>
+<title>140558096121920&#45;&gt;140558096121984</title>
 <path fill="none" stroke="black" d="M394.24,-106.34C394.24,-94.03 394.24,-79.06 394.24,-65.51"/>
 <polygon fill="black" stroke="black" points="397.74,-65.58 394.24,-55.58 390.74,-65.58 397.74,-65.58"/>
 <text text-anchor="middle" x="405.87" y="-74.94" font-family="Times,serif" font-size="14.00">Alta</text>
 </g>
-<!-- 140558089436544 -->
+<!-- 140558096122112 -->
 <g id="node7" class="node">
-<title>140558089436544</title>
+<title>140558096122112</title>
 <ellipse fill="#90ee90" stroke="black" cx="555.24" cy="-26.87" rx="71.24" ry="26.87"/>
 <text text-anchor="middle" x="555.24" y="-28.57" font-family="Helvetica,sans-Serif" font-size="14.00">CLASSE: Sim</text>
 <text text-anchor="middle" x="555.24" y="-13.57" font-family="Helvetica,sans-Serif" font-size="14.00">(n=2)</text>
 </g>
-<!-- 140558040582912&#45;&gt;140558089436544 -->
+<!-- 140558096121920&#45;&gt;140558096122112 -->
 <g id="edge6" class="edge">
-<title>140558040582912&#45;&gt;140558089436544</title>
+<title>140558096121920&#45;&gt;140558096122112</title>
 <path fill="none" stroke="black" d="M434.04,-106.34C457.2,-91.35 486.46,-72.4 510.43,-56.88"/>
 <polygon fill="black" stroke="black" points="512.24,-59.88 518.74,-51.51 508.44,-54 512.24,-59.88"/>
 <text text-anchor="middle" x="505.38" y="-74.94" font-family="Times,serif" font-size="14.00">Normal</text>
