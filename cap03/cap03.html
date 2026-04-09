@@ -963,6 +963,7 @@ Tabela&nbsp;3.8: Vento
 </div>
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 <p>A <a href="#fig-3-4" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> ilustra a segunda iteração do algoritmo com mais dois nós folhas, dando por completa esta região da Árvore de Decisão.</p>
 <div id="fig-3-4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1116,7 +1117,7 @@ Figura&nbsp;3.5: Árvore de Decisão para os Dados da Tabela do Tempo.
 <section id="árvore-de-decisão-não-compacta" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="árvore-de-decisão-não-compacta"><span class="header-section-number">3.5</span> Árvore de Decisão Não Compacta</h2>
 <p>Para efeito comparativo, vamos supor que algum critério arbitrário de escolha da ordem dos atributos tenha sido utilizado e que o nó raiz contenha o atributo “Umidade”. A <a href="#tbl-3-11" class="quarto-xref">Tabela&nbsp;<span>3.11</span></a> mostra que este atributo possui Exemplos misturados pertencentes a classes distintas, portanto é necessário um novo teste, i.e., escolher um novo atributo para teste. A <a href="#fig-3-6" class="quarto-xref">Figura&nbsp;<span>3.6</span></a> mostra o resultado dessa escolha arbitrária.</p>
-<div class="quarto-layout-panel" data-layout="[[1, 1]]" data-valign="center">
+<div class="quarto-layout-panel" data-valign="center" data-layout="[[1, 1]]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div id="tbl-3-11" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1210,7 +1211,7 @@ Figura&nbsp;3.6: Árvore de Decisão com Nó Raiz Arbitrário.
 </div>
 </div>
 <p>O atributo escolhido arbitrariamente agora foi “Dia” e as combinações possíveis com “Umidade” são mostradas na <a href="#tbl-3-12" class="quarto-xref">Tabela&nbsp;<span>3.12</span></a>. A segunda iteração do algoritmo para a construção da Árvore de Decisão Alternativa é mostrada na <a href="#fig-3-7" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>.</p>
-<div class="quarto-layout-panel" data-layout="[[1, 1]]" data-valign="center">
+<div class="quarto-layout-panel" data-valign="center" data-layout="[[1, 1]]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div id="tbl-3-12" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1327,6 +1328,7 @@ Figura&nbsp;3.8: Árvore de Decisão sem Otimização.
 </figcaption>
 </figure>
 </div>
+<div style="page-break-after: always;"></div>
 <p>A <a href="#tbl-3-13" class="quarto-xref">Tabela&nbsp;<span>3.13</span></a> mostra que esta região da Árvore de Decisão está encerrada, com dois novos nós folhas. Vamos agora considerar a aresta correspondente a “Umidade=Normal” (<a href="#tbl-3-14" class="quarto-xref">Tabela&nbsp;<span>3.14</span></a>) e supor que o novo teste escolhido será o atributo “Dia”. O resultado da escolha do atributo “Dia” para a aresta de “Umidade=Normal” é mostrado na <a href="#fig-3-9" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>.</p>
 <div id="tbl-3-14" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2163,7 +2165,7 @@ Figura&nbsp;3.22: Curva de Entropia Binária e o Ponto H(S) calculado.
 <pre><code>Entropia total do conjunto S: H(S) = 0.9403 bits
 </code></pre>
 </div>
-<div id="tbl-3-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="174">
+<div id="tbl-3-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="174" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;3.18: Ganho de Informação por Atributo — Base Tabela do Tempo.
@@ -2300,7 +2302,7 @@ Tabela&nbsp;3.18: Ganho de Informação por Atributo — Base Tabela do Tempo.
 Total de regras extraídas: 5
 </code></pre>
 </div>
-<div id="tbl-3-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="175">
+<div id="tbl-3-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="175" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-3-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;3.19: Regras de Classificação Extraídas da Árvore de Decisão ID3.
@@ -2532,7 +2534,7 @@ Figura&nbsp;3.24: Matriz de Confusão — Avaliação sobre o Conjunto de Treina
 <ol type="1">
 <li>Treinar uma Árvore de Decisão (<code>DecisionTreeClassifier</code>) com o critério de <strong>Entropia</strong> (equivalente ao ID3).</li>
 <li>Visualizar a árvore aprendida.</li>
-<li>Avaliar o modelo com <strong>validação cruzada</strong> (<em>k-fold cross-validation</em>) — uma técnica mais robusta do que usar apenas o conjunto de treinamento.</li>
+<li>Avaliar o modelo com <strong>validação cruzada</strong> (<em>k-fold cross-validation</em>). Esta é uma técnica de validação estatística muito mais robusta do que a simples avaliação sobre o conjunto de treinamento, e será detalhada no próximo capítulo.”</li>
 </ol>
 <p>A <a href="#fig-3-pratica4a" class="quarto-xref">Figura&nbsp;<span>3.25</span></a> apresenta a árvore gerada e a <a href="#fig-3-pratica4b" class="quarto-xref">Figura&nbsp;<span>3.26</span></a> a acurácia por fold da validação cruzada.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -2548,7 +2550,7 @@ Figura&nbsp;3.24: Matriz de Confusão — Avaliação sobre o Conjunto de Treina
 <p>Esta prática é independente das anteriores. Certifique-se de ter executado o <strong>Bloco de Importações</strong> antes de prosseguir.</p>
 </div>
 </div>
-<div id="cell-fig-3-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="178">
+<div id="cell-fig-3-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="185">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Carregamento e seleção de atributos (pétalas apenas — igual ao exercício do capítulo)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X_iris <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]   <span class="co"># petallength, petalwidth</span></span>
@@ -2562,13 +2564,13 @@ Figura&nbsp;3.24: Matriz de Confusão — Avaliação sobre o Conjunto de Treina
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>acuracia_treino <span class="op">=</span> clf.score(X_iris, y_iris)</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Visualização da Árvore</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">10</span>))</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plot_tree(clf, feature_names<span class="op">=</span>nomes_features, class_names<span class="op">=</span>nomes_classes,</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>          filled<span class="op">=</span><span class="va">True</span>, rounded<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">9</span>, ax<span class="op">=</span>ax,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>          filled<span class="op">=</span><span class="va">True</span>, rounded<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">12</span>, ax<span class="op">=</span>ax,</span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>          impurity<span class="op">=</span><span class="va">True</span>, proportion<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Árvore de Decisão — Dataset Iris (2 atributos de pétala)</span><span class="ch">\n</span><span class="ss">"</span></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>             <span class="ss">f"Critério: Entropia | Acurácia no Treinamento: </span><span class="sc">{</span>acuracia_treino<span class="sc">:.1%}</span><span class="ss">"</span>,</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
