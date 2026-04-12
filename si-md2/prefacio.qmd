@@ -86,14 +86,14 @@ Cada capítulo possui exemplos práticos que podem ser executados no **Google Co
 
 O **NotebookLM** pode ser utilizado como um tutor auxiliar para revisão, geração de resumos e esclarecimento de dúvidas. Como a ferramenta ainda não processa arquivos `.ipynb` diretamente, utilize a **versão em PDF de cada capítulo** como fonte.
 
-::: {.callout-tip appearance="simple"}
+::: {.callout-important appearance="default" icon=false}
 
-#### 🚀 Tutor de IA do Livro {.unnumbered}
+#### 🎓 Estude com o Tutor Inteligente
 
 Cada capítulo possui um projeto configurado no NotebookLM.  
 Exemplo para o Capítulo 1:
 
-**[Link do Projeto NotebookLM do Capítulo 1](https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635)**
+[🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 01](https://notebooklm.google.com/notebook/aca1138a-02aa-4f98-b777-1e25795ca635)
 
 :::
 
