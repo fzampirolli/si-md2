@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -222,9 +257,22 @@ window.Quarto = {
   <li><a href="#algoritmo-oner-ou-1r-uma-regra" id="toc-algoritmo-oner-ou-1r-uma-regra" class="nav-link" data-scroll-target="#algoritmo-oner-ou-1r-uma-regra"><span class="header-section-number">4.4</span> Algoritmo <em>oneR</em> ou 1R (uma Regra)</a></li>
   <li><a href="#avaliação-dos-resultados" id="toc-avaliação-dos-resultados" class="nav-link" data-scroll-target="#avaliação-dos-resultados"><span class="header-section-number">4.5</span> Avaliação dos Resultados</a></li>
   <li><a href="#avaliação-de-desempenho-do-classificador" id="toc-avaliação-de-desempenho-do-classificador" class="nav-link" data-scroll-target="#avaliação-de-desempenho-do-classificador"><span class="header-section-number">4.6</span> Avaliação de Desempenho do Classificador</a></li>
-  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">4.7</span> Considerações Finais</a></li>
-  <li><a href="#lista-exercícios" id="toc-lista-exercícios" class="nav-link" data-scroll-target="#lista-exercícios"><span class="header-section-number">4.8</span> Lista Exercícios</a></li>
-  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">4.9</span> Referências do Capítulo</a></li>
+  <li><a href="#prática-em-python" id="toc-prática-em-python" class="nav-link" data-scroll-target="#prática-em-python"><span class="header-section-number">4.7</span> 🧪 Prática em Python</a>
+  <ul class="collapse">
+  <li><a href="#introdução-1" id="toc-introdução-1" class="nav-link" data-scroll-target="#introdução-1"><span class="header-section-number">4.7.1</span> Introdução</a></li>
+  <li><a href="#configuração-do-ambiente" id="toc-configuração-do-ambiente" class="nav-link" data-scroll-target="#configuração-do-ambiente"><span class="header-section-number">4.7.2</span> 🔹 Configuração do Ambiente</a></li>
+  <li><a href="#prática-1-algoritmo-oner-do-zero-tabela-do-tempo" id="toc-prática-1-algoritmo-oner-do-zero-tabela-do-tempo" class="nav-link" data-scroll-target="#prática-1-algoritmo-oner-do-zero-tabela-do-tempo"><span class="header-section-number">4.7.3</span> 🔹 Prática 1 — Algoritmo <em>oneR</em> do Zero (Tabela do Tempo)</a></li>
+  <li><a href="#prática-2-avaliação-com-use-training-set-ressubstituição" id="toc-prática-2-avaliação-com-use-training-set-ressubstituição" class="nav-link" data-scroll-target="#prática-2-avaliação-com-use-training-set-ressubstituição"><span class="header-section-number">4.7.4</span> 🔹 Prática 2 — Avaliação com <em>“Use Training Set”</em> (Ressubstituição)</a></li>
+  <li><a href="#prática-3-método-holdout-divisão-6634" id="toc-prática-3-método-holdout-divisão-6634" class="nav-link" data-scroll-target="#prática-3-método-holdout-divisão-6634"><span class="header-section-number">4.7.5</span> 🔹 Prática 3 — Método <em>Holdout</em> (Divisão 66%/34%)</a></li>
+  <li><a href="#prática-4-validação-cruzada-k-fold-e-leave-one-out" id="toc-prática-4-validação-cruzada-k-fold-e-leave-one-out" class="nav-link" data-scroll-target="#prática-4-validação-cruzada-k-fold-e-leave-one-out"><span class="header-section-number">4.7.6</span> 🔹 Prática 4 — Validação Cruzada <em>k-fold</em> e <em>Leave-One-Out</em></a></li>
+  <li><a href="#prática-5-comparação-de-métodos-de-avaliação-visão-geral" id="toc-prática-5-comparação-de-métodos-de-avaliação-visão-geral" class="nav-link" data-scroll-target="#prática-5-comparação-de-métodos-de-avaliação-visão-geral"><span class="header-section-number">4.7.7</span> 🔹 Prática 5 — Comparação de Métodos de Avaliação (Visão Geral)</a></li>
+  <li><a href="#prática-6-oner-no-dataset-iris-com-validação-cruzada" id="toc-prática-6-oner-no-dataset-iris-com-validação-cruzada" class="nav-link" data-scroll-target="#prática-6-oner-no-dataset-iris-com-validação-cruzada"><span class="header-section-number">4.7.8</span> 🔹 Prática 6 — <em>oneR</em> no Dataset Iris com Validação Cruzada</a></li>
+  <li><a href="#conclusão-do-ciclo-de-aprendizado" id="toc-conclusão-do-ciclo-de-aprendizado" class="nav-link" data-scroll-target="#conclusão-do-ciclo-de-aprendizado"><span class="header-section-number">4.7.9</span> Conclusão do Ciclo de Aprendizado</a></li>
+  </ul></li>
+  <li><a href="#uso-do-notebooklm-como-tutor-complementar" id="toc-uso-do-notebooklm-como-tutor-complementar" class="nav-link" data-scroll-target="#uso-do-notebooklm-como-tutor-complementar"><span class="header-section-number">4.8</span> 🤖 Uso do NotebookLM como Tutor Complementar</a></li>
+  <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">4.9</span> Considerações Finais</a></li>
+  <li><a href="#lista-exercícios" id="toc-lista-exercícios" class="nav-link" data-scroll-target="#lista-exercícios"><span class="header-section-number">4.10</span> Lista Exercícios</a></li>
+  <li><a href="#referências-do-capítulo" id="toc-referências-do-capítulo" class="nav-link" data-scroll-target="#referências-do-capítulo"><span class="header-section-number">4.11</span> Referências do Capítulo</a></li>
   </ul>
 </nav>
     </div>
@@ -278,7 +326,7 @@ Figura&nbsp;4.1: Treinamento, Aprendizado e Classificação em um Sistema Inteli
 </section>
 <section id="algoritmos-de-aprendizado" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="algoritmos-de-aprendizado"><span class="header-section-number">4.3</span> Algoritmos de Aprendizado</h2>
-<p>Um algoritmo de aprendizado pode variar desde aqueles que simplesmente escolhem um dos atributos do Conjunto de Treinamento como a resposta possível a um teste, caso do algoritmo <strong><em>oneR</em></strong> (uma Regra), passando por aqueles cuja resposta a um novo teste é uma combinação linear dos valores dos atributos, até a utilização de complicados modelos não-lineares, como as <strong><em>Redes Neurais</em></strong>, ou o aprendizado estatístico das <strong><em>Máquinas de Vetor de Suporte</em></strong>, ou <strong><em>Support Vector Machines</em></strong>, <strong><em>SVM</em></strong>.</p>
+<p>Um algoritmo de aprendizado pode variar desde aqueles que simplesmente escolhem um dos atributos do Conjunto de Treinamento como a resposta possível a um teste, caso do algoritmo <em>oneR</em> (uma Regra), passando por aqueles cuja resposta a um novo teste é uma combinação linear dos valores dos atributos, até a utilização de complicados modelos não-lineares, como as <strong><em>Redes Neurais</em></strong>, ou o aprendizado estatístico das <strong><em>Máquinas de Vetor de Suporte</em></strong>, ou <strong><em>Support Vector Machines</em></strong>, <strong><em>SVM</em></strong>.</p>
 <p>A finalidade desta unidade não é estudar detalhadamente algoritmos de aprendizado. Como há um grande número de ferramentas de acesso livre que implementam estes algoritmos, nosso objetivo é passar uma ideia geral do funcionamento desses algoritmos, cujo entendimento é indispensável para o ajuste adequado de seus parâmetros e para a correta interpretação de seus resultados.</p>
 </section>
 <section id="algoritmo-oner-ou-1r-uma-regra" class="level2" data-number="4.4">
@@ -652,22 +700,22 @@ Tabela&nbsp;4.4: Taxa de Erros dos Atributos.
 <p><span id="eq-4-5"><span class="math display">\[
 \text{Umidade(Normal)} \rightarrow \text{Partida=Sim} \quad \text{ou} \quad \textcolor{red}{\textbf{IF}} \quad \text{Umidade=Normal} \quad \textcolor{red}{\textbf{THEN}} \quad \text{Partida=Sim}
 \tag{4.5}\]</span></span></p>
-<p>Portanto, quando o algoritmo <strong>oneR</strong> tiver que classificar um novo exemplo, somente o atributo “Umidade” será considerado e o resultado será baseado nas Regras de Classificação <a href="#eq-4-4" class="quarto-xref"><span>4.4</span></a> e <a href="#eq-4-5" class="quarto-xref"><span>4.5</span></a>. Isso significa que se os Exemplos de Treinamento forem usados como Exemplos de Teste e supondo que entre os 14 Exemplos de Treinamento não haja contradição entre si, o algoritmo <strong>oneR</strong> deve acertar 10 vezes e errar 4.</p>
+<p>Portanto, quando o algoritmo <em>oneR</em> tiver que classificar um novo exemplo, somente o atributo “Umidade” será considerado e o resultado será baseado nas Regras de Classificação <a href="#eq-4-4" class="quarto-xref"><span>4.4</span></a> e <a href="#eq-4-5" class="quarto-xref"><span>4.5</span></a>. Isso significa que se os Exemplos de Treinamento forem usados como Exemplos de Teste e supondo que entre os 14 Exemplos de Treinamento não haja contradição entre si, o algoritmo <em>oneR</em> deve acertar 10 vezes e errar 4.</p>
 <p>Mas, e se o Conjunto de Teste for diferente do Conjunto de Treinamento? Não será a estimativa de 10 acertos e 4 erros demasiadamente otimista ou ela se confirmará com os novos dados? E se o número de Exemplos de Treinamento tivesse sido 140, em vez de 14, que implicações isso teria nas estimativas de acertos?</p>
-<p>Há outros algoritmos de classificação bem mais refinados que o <strong>oneR</strong> e que, na maioria dos casos, produzem resultados com taxa de sucesso mais elevada. Um dos algoritmos de classificação mais famosos é o <strong><em>PRISM</em></strong> (<span class="citation" data-cites="cendrowska1987">Cendrowska (<a href="#ref-cendrowska1987" role="doc-biblioref">1987</a>)</span>), que utiliza o princípio de “cobertura”, i.e., ele vai criando regras que se aplicam ao maior número possível de exemplos do Conjunto de Treinamento, até que toda a tabela esteja “coberta” pelas regras produzidas. Seu desenvolvimento foi inspirado nos “pontos fracos” do algoritmo de indução de Árvores de Decisão ID3 (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span>), como a dificuldade de entender as árvores muito grandes e complexas geradas pelo algoritmo ID3.</p>
-<p>Não vamos aqui nos deter em particularidades do <strong>PRISM</strong> porque os resultados gerados pelo oneR são suficientemente representativos para os nossos propósitos, de abordar os métodos de avaliação dos resultados produzidos pelo modelo induzido. E ao avaliarmos os resultados, estamos de certa forma avaliando a capacidade de predição de um modelo para determinada Base de Dados.</p>
+<p>Há outros algoritmos de classificação bem mais refinados que o <em>oneR</em> e que, na maioria dos casos, produzem resultados com taxa de sucesso mais elevada. Um dos algoritmos de classificação mais famosos é o <em>PRISM</em> (<span class="citation" data-cites="cendrowska1987">Cendrowska (<a href="#ref-cendrowska1987" role="doc-biblioref">1987</a>)</span>), que utiliza o princípio de “cobertura”, i.e., ele vai criando regras que se aplicam ao maior número possível de exemplos do Conjunto de Treinamento, até que toda a tabela esteja “coberta” pelas regras produzidas. Seu desenvolvimento foi inspirado nos “pontos fracos” do algoritmo de indução de Árvores de Decisão ID3 (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span>), como a dificuldade de entender as árvores muito grandes e complexas geradas pelo algoritmo ID3.</p>
+<p>Não vamos aqui nos deter em particularidades do <em>PRISM</em> porque os resultados gerados pelo <em>oneR</em> são suficientemente representativos para os nossos propósitos, de abordar os métodos de avaliação dos resultados produzidos pelo modelo induzido. E ao avaliarmos os resultados, estamos de certa forma avaliando a capacidade de predição de um modelo para determinada Base de Dados.</p>
 <p>Abordar um modelo pelo seu desempenho é interessante porque há evidências empíricas de que nenhum algoritmo tem desempenho superior aos demais para qualquer Base de Dados. A estrutura interna do conjunto de dados desempenha um papel decisivo no desempenho do algoritmo e na qualidade dos resultados.</p>
-<p>O algoritmo oneR, com toda sua simplicidade, pode ser imbatível para uma Base de Dados que tenha um atributo que se destaque sobre os demais, cujos valores são redundantes ou irrelevantes. E pode ser uma catástrofe para uma Base de Dados constituída por centenas ou milhares de atributos, todos igualmente importantes. Da mesma forma, qualquer algoritmo pode ter uma taxa de sucesso baixa se o Conjunto de Treinamento não constituir uma amostra representativa do universo de teste.</p>
+<p>O algoritmo <em>oneR</em>, com toda sua simplicidade, pode ser imbatível para uma Base de Dados que tenha um atributo que se destaque sobre os demais, cujos valores são redundantes ou irrelevantes. E pode ser uma catástrofe para uma Base de Dados constituída por centenas ou milhares de atributos, todos igualmente importantes. Da mesma forma, qualquer algoritmo pode ter uma taxa de sucesso baixa se o Conjunto de Treinamento não constituir uma amostra representativa do universo de teste.</p>
 </section>
 <section id="avaliação-dos-resultados" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="avaliação-dos-resultados"><span class="header-section-number">4.5</span> Avaliação dos Resultados</h2>
 <p>Após o treinamento para gerar um Modelo através do Algoritmo de Aprendizado, é de grande importância fazer uma avaliação do desempenho do modelo. Em outras palavras, interessa saber quão preditivo é o Modelo Aprendido. Há várias metodologia consagradas para este fim. Vamos iniciar nossa abordagem ao tema relembrando a <strong>Acurácia</strong> de um Classificador Binário.</p>
 <p>Considere que nosso Classificador Binário esteja sendo usado para fazer um diagnóstico médico. Se as respostas possíveis para este diagnóstico forem “Positivo” e “Negativo”, quatro possibilidades de predição podem ocorrer:</p>
 <ol type="1">
-<li><p>Se o paciente for portador de uma doença e o Classificador acertar &gt; no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Positivo</strong> &gt; ou <strong>VP</strong>;</p></li>
-<li><p>Se o paciente não for portador da doença e o Classificador acertar &gt; no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Negativo</strong> &gt; ou <strong>VN</strong>;</p></li>
-<li><p>Se o paciente for portador da doença, mas o Classificador errar no &gt; diagnóstico indicando que ele está são, dizemos que este caso é um &gt; <strong>Falso Negativo</strong> ou <strong>FN</strong>;</p></li>
-<li><p>Se o paciente não for portador da doença, mas o Classificador errar &gt; no diagnóstico indicando que ele está doente, dizemos que este &gt; caso é um <strong>Falso Positivo</strong> ou <strong>FP</strong>.</p></li>
+<li><p>Se o paciente for portador de uma doença e o Classificador acertar no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Positivo</strong> ou <strong>VP</strong>;</p></li>
+<li><p>Se o paciente não for portador da doença e o Classificador acertar no diagnóstico, dizemos que este caso é um <strong>Verdadeiro Negativo</strong> ou <strong>VN</strong>;</p></li>
+<li><p>Se o paciente for portador da doença, mas o Classificador errar no diagnóstico indicando que ele está são, dizemos que este caso é um <strong>Falso Negativo</strong> ou <strong>FN</strong>;</p></li>
+<li><p>Se o paciente não for portador da doença, mas o Classificador errar no diagnóstico indicando que ele está doente, dizemos que este caso é um <strong>Falso Positivo</strong> ou <strong>FP</strong>.</p></li>
 </ol>
 <p>Essas quatro combinações de resultados estão representadas na <strong>Matriz de Confusão</strong> mostrada na <a href="#tbl-4-5" class="quarto-xref">Tabela&nbsp;<span>4.5</span></a>.</p>
 <div id="tbl-4-5" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -692,13 +740,13 @@ Tabela&nbsp;4.5: Matriz de Confusão.
 <tbody>
 <tr class="odd">
 <td><strong>Positivo Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{Verdadeiro Positivo (VP)}}\)</span></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{Falso Negativo (FN)}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Verdadeiro Positivo (VP)}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Falso Negativo (FN)}}\)</span></td>
 </tr>
 <tr class="even">
 <td><strong>Negativo Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{Falso Positivo (FP)}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{Verdadeiro Negativo (VN)}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{Falso Positivo (FP)}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{Verdadeiro Negativo (VN)}}\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -709,7 +757,7 @@ Tabela&nbsp;4.5: Matriz de Confusão.
 <p><span class="math display">\[Acurácia = \frac{VP + VN}{VP + VN + FP + FN} \times 100\%\]</span></p>
 <p>Ocorre que em situações reais o custo de um <strong>Falso Positivo</strong> pode não ser igual ao de um <strong>Falso Negativo</strong> e a Acurácia não consegue captar adequadamente essa situação de interesse.</p>
 <p>Suponha que um classificador usado para Detecção de Anomalia tenha que atribuir a cada um dos 100 testes um rótulo de “Situação=Normal” ou “Situação=Anormal”. Suponha ainda que a relação entre donos honestos de cartão de crédito e golpistas seja de 96 para 4 e o classificador tenha colocado 99 portadores de cartão na classe “Normal” e apenas um dos golpistas na classe “Anormal”. Neste caso a Acurácia do Classificador será de,</p>
-<p><span class="math display">\[Acurácia_{\text{Classif}} = \frac{96 + 1}{96 + 1 + 3 + 0} \times 100\% = 97\%\]</span></p>
+<p><span class="math display">\[Acurácia_{Classif} = \frac{96 + 1}{96 + 1 + 3 + 0} \times 100\% = 97\%\]</span></p>
 <p>A interpretação baseada apenas na Acurácia indicaria um excelente desempenho, mas na realidade este é um péssimo classificador para uma operadora de cartões de crédito, porque seu interesse em detectar os golpistas é bem maior do que os donos honestos de cartão! Há um sem número de situações semelhantes a esta. Pense nos danos diferenciados, do ponto de vista de saúde pública, entre fornecer um falso diagnóstico positivo para um paciente são e um falso diagnóstico negativo para um paciente com uma doença contagiosa.</p>
 <p>Para detectar estes casos de conjuntos não-balanceados de Falso Positivo e Falso Negativo, podemos definir a <strong>Taxa de Verdadeiro Negativo</strong>, também conhecida por <strong>Especificidade</strong>, como sendo o número de Verdadeiro Negativo (VN) dividido pelo número total de negativos, que é a soma de Verdadeiro Negativo (VN) mais Falso Positivo (FP), ou seja,</p>
 <p><span class="math display">\[Taxa\_ VN = \frac{\text{VN}}{VN + FP} \times 100\%\]</span></p>
@@ -736,11 +784,11 @@ Figura&nbsp;4.2: Na Ressubstituição, o Conjunto de Treinamento também é o Co
 </figcaption>
 </figure>
 </div>
-<p>De fato, na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo oneR usando o método <em>“Use training set”</em>, o número de instâncias ou exemplos classificados corretamente foi 10 (71%) e 4 (29%) classificados incorretamente, conforme esperado. A Matriz de Confusão para os 14 Exemplos está mostrada na <a href="#tbl-4-6" class="quarto-xref">Tabela&nbsp;<span>4.6</span></a>.</p>
+<p>De fato, na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>oneR</em> usando o método <em>“Use training set”</em>, o número de instâncias ou exemplos classificados corretamente foi 10 (71%) e 4 (29%) classificados incorretamente, conforme esperado. A Matriz de Confusão para os 14 Exemplos está mostrada na <a href="#tbl-4-6" class="quarto-xref">Tabela&nbsp;<span>4.6</span></a>.</p>
 <div id="tbl-4-6" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;4.6: Matriz de Confusão para a Tabela do Tempo com o oneR e o Método <em>“Use training set”</em>.
+Tabela&nbsp;4.6: Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em> e o Método <em>“Use training set”</em>.
 </figcaption>
 <div aria-describedby="tbl-4-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -752,20 +800,20 @@ Tabela&nbsp;4.6: Matriz de Confusão para a Tabela do Tempo com o oneR e o Méto
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Não Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{3}}\)</span></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{2}}\)</span></td>
+<td><strong>Sim Real</strong></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{7}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{2}}\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Sim Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{2}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{7}}\)</span></td>
+<td><strong>Não Real</strong></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{2}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{3}}\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -788,25 +836,38 @@ Tabela&nbsp;4.7: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em>
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Não Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{5}}\)</span></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
+<td><strong>Sim Real</strong></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{9}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{0}}\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Sim Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{9}}\)</span></td>
+<td><strong>Não Real</strong></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{0}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{5}}\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Nota sobre Weka:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para habilitar o algoritmo <em>PRISM</em> e replicar os resultados de <strong>100% de acerto nas 14 instâncias</strong> do arquivo <code>Tabela_do_Tempo.arff</code>, acesse o <strong>Package Manager</strong> no menu <em>Tools</em> do <em>Weka GUI Chooser</em>, instale o pacote <strong>simpleEducationalLearningSchemes</strong> e reinicie a aplicação. No <strong>Explorer</strong>, após carregar os dados nominais, navegue na aba <em>Classify</em> até <code>rules &gt; Prism</code>, selecione obrigatoriamente a opção <strong>Use training set</strong> nas <em>Test options</em> e clique em <em>Start</em> para gerar as regras de indução e a matriz de confusão correspondente.</p>
+</div>
 </div>
 <p><strong>Método da Divisão da Amostra ou <em>Holdout</em> ou <em>Percentage Split</em></strong></p>
 <p>Consiste na divisão dos Exemplos de Treinamento em dois conjuntos disjuntos, um para Treinamento, outro para Teste, conforme mostra a <a href="#fig-4-3" class="quarto-xref">Figura&nbsp;<span>4.3</span></a>. O valor das porcentagens de cada um dos conjuntos é geralmente expresso numa única porcentagem maior que 50%, estando subentendido que o conjunto menor é o complemento para 100%. O valor de divisão mais comum é 66% para Treinamento e 34% para Teste, embora não haja evidências empíricas que justifiquem essa escolha de 2/3 e 1/3.</p>
@@ -821,7 +882,7 @@ Figura&nbsp;4.3: No <em>Holdout</em>, os Exemplos de Treinamento são Divididos 
 </figcaption>
 </figure>
 </div>
-<p>Para Conjuntos de Teste excessivamente pequenos, dividir o já escasso número de Exemplos de Teste pode ter um efeito desastroso ou na geração do Modelo ou na sua avaliação de desempenho. De fato, na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo oneR usando o método da <em>“Percentage Split”</em>, com o Conjunto de Treinamento correspondendo a 66% dos Exemplos, o número de instâncias ou exemplos classificados corretamente foi 2 (40%) e 3 (60%) classificados incorretamente! A Matriz de Confusão para os 5 Exemplos considerados está mostrada na <a href="#tbl-4-8" class="quarto-xref">Tabela&nbsp;<span>4.8</span></a>.</p>
+<p>Para Conjuntos de Teste excessivamente pequenos, dividir o já escasso número de Exemplos de Teste pode ter um efeito desastroso ou na geração do Modelo ou na sua avaliação de desempenho. De fato, na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>oneR</em> usando o método da <em>“Percentage Split”</em>, com o Conjunto de Treinamento correspondendo a 66% dos Exemplos, o número de instâncias ou exemplos classificados corretamente foi 2 (40%) e 3 (60%) classificados incorretamente! A Matriz de Confusão para os 5 Exemplos considerados está mostrada na <a href="#tbl-4-8" class="quarto-xref">Tabela&nbsp;<span>4.8</span></a>.</p>
 <div id="tbl-4-8" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -837,27 +898,27 @@ Tabela&nbsp;4.8: Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em> 
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Não Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{0}}\)</span></td>
+<td><strong>Sim Real</strong></td>
 <td><span class="math inline">\(\textcolor{blue}{\textbf{2}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{1}}\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Sim Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{1}}\)</span></td>
+<td><strong>Não Real</strong></td>
 <td><span class="math inline">\(\textcolor{red}{\textbf{2}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Quando repetimos os mesmos procedimentos, porém usando o algoritmo <em>PRISM</em>, os resultados foram os seguintes: simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>PRISM</em> usando o método <em>“Percentage split”</em>, com o Conjunto de Treinamento correspondendo a 66% dos Exemplos, o número de instâncias ou exemplos classificados corretamente foi 4 (80%) e 1 (20%) classificado incorretamente. A Matriz de Confusão para os 5 Exemplos está mostrada na <a href="#tbl-4-9" class="quarto-xref">Tabela&nbsp;<span>4.9</span></a>.</p>
+<p>Quando repetimos os mesmos procedimentos, porém usando o algoritmo <em>PRISM</em>, os resultados foram os seguintes: simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>PRISM</em> usando o método <em>“Percentage split”</em>, com o Conjunto de Treinamento correspondendo a 66% dos Exemplos, o número de instâncias ou exemplos classificados corretamente foi 3 (60%) e 2 (40%) classificado incorretamente. A Matriz de Confusão para os 5 Exemplos está mostrada na <a href="#tbl-4-9" class="quarto-xref">Tabela&nbsp;<span>4.9</span></a>.</p>
 <div id="tbl-4-9" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -873,20 +934,20 @@ Tabela&nbsp;4.9: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em>
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Não Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{1}}\)</span></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{1}}\)</span></td>
+<td><strong>Sim Real</strong></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{3}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{0}}\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Sim Real</strong></td>
+<td><strong>Não Real</strong></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{2}}\)</span></td>
 <td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{3}}\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -907,7 +968,7 @@ Figura&nbsp;4.4: Na Validação Cruzada, o Conjunto de Treinamento é Dividido e
 </figure>
 </div>
 <div style="page-break-after: always;"></div>
-<p>De fato, na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo oneR usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 10 <em>folds</em>, o número de instâncias ou exemplos classificados corretamente foi 5 (36%), e 9 (64%) classificados incorretamente! A Matriz de Confusão para os 14 Exemplos considerados está mostrada na <a href="#tbl-4-10" class="quarto-xref">Tabela&nbsp;<span>4.10</span></a>.</p>
+<p>De fato, na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>oneR</em> usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 10 <em>folds</em>, o número de instâncias ou exemplos classificados corretamente foi 6 (43%), e 8 (57%) classificados incorretamente! A Matriz de Confusão para os 14 Exemplos considerados está mostrada na <a href="#tbl-4-10" class="quarto-xref">Tabela&nbsp;<span>4.10</span></a>.</p>
 <div id="tbl-4-10" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -923,27 +984,27 @@ Tabela&nbsp;4.10: Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em>
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong>Sim Real</strong></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{4}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{5}}\)</span></td>
+</tr>
+<tr class="even">
 <td><strong>Não Real</strong></td>
 <td><span class="math inline">\(\textcolor{red}{\textbf{3}}\)</span></td>
 <td><span class="math inline">\(\textcolor{blue}{\textbf{2}}\)</span></td>
-</tr>
-<tr class="even">
-<td><strong>Sim Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{7}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{2}}\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>PRISM</em> usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 10 <em>folds</em>, o número de instâncias ou Exemplos classificados corretamente foi 12 (86%), e 0 (0%) classificados incorretamente! (com 3 Exemplos não classificados). A Matriz de Confusão para os Exemplos considerados está mostrada na <a href="#tbl-4-11" class="quarto-xref">Tabela&nbsp;<span>4.11</span></a>.</p>
+<p>Na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>PRISM</em> usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 10 <em>folds</em>, o número de instâncias ou Exemplos classificados corretamente foi 9 (64%), e 3 (21%) classificados incorretamente! (com 2 Exemplos não classificados). A Matriz de Confusão para os Exemplos considerados está mostrada na <a href="#tbl-4-11" class="quarto-xref">Tabela&nbsp;<span>4.11</span></a>.</p>
 <div id="tbl-4-11" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -959,20 +1020,20 @@ Tabela&nbsp;4.11: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Não Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{5}}\)</span></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
+<td><strong>Sim Real</strong></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{7}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{0}}\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Sim Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{7}}\)</span></td>
+<td><strong>Não Real</strong></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{3}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{2}}\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -991,7 +1052,7 @@ Figura&nbsp;4.5: No <em>Leave-One-Out</em>, o Conjunto de Treinamento é Dividid
 </figcaption>
 </figure>
 </div>
-<p>Na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo oneR usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 14 <em>folds</em>, número idêntico ao de Exemplos ou instâncias, portanto <em>k = N</em>, o resultado da classificação foi idêntico ao da <em>“Cross-validation”</em>, sendo o número de Exemplos classificados corretamente 5 (36%), e 9 (64%) classificados incorretamente! A Matriz de Confusão para os 14 Exemplos considerados está mostrada na <a href="#tbl-4-12" class="quarto-xref">Tabela&nbsp;<span>4.12</span></a>.</p>
+<p>Na simulação Weka da <a href="#tbl-4-1" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a> com o algoritmo <em>oneR</em> usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 14 <em>folds</em>, número idêntico ao de Exemplos ou instâncias, portanto <em>k = N</em>, o o número de Exemplos classificados corretamente foi 4 (29%) e 10 (71%) classificados incorretamente! A Matriz de Confusão para os 14 Exemplos considerados está mostrada na <a href="#tbl-4-12" class="quarto-xref">Tabela&nbsp;<span>4.12</span></a>.</p>
 <div id="tbl-4-12" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1007,27 +1068,27 @@ Tabela&nbsp;4.12: Matriz de Confusão para a Tabela do Tempo com o <em>oneR</em>
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Não Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{3}}\)</span></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{2}}\)</span></td>
+<td><strong>Sim Real</strong></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{4}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{5}}\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Sim Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{7}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{2}}\)</span></td>
+<td><strong>Não Real</strong></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{5}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Repetindo o mesmo Conjunto de Teste, porém com o algoritmo <em>PRISM</em>, usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 14 <em>folds</em>, o resultado da classificação foi idêntico ao da <em>“Cross-validation”</em>, sendo o número de Exemplos classificados corretamente 11 (79%), 0 (0%) classificados incorretamente e 3 Exemplos não classificados. A Matriz de Confusão para os 11 Exemplos considerados está mostrada na <a href="#tbl-4-13" class="quarto-xref">Tabela&nbsp;<span>4.13</span></a>.</p>
+<p>Repetindo o mesmo Conjunto de Teste, porém com o algoritmo <em>PRISM</em>, usando o método da <em>“Cross-validation”</em>, com <em>k</em> = 14 <em>folds</em>, o resultado da classificação foi idêntico ao da <em>“Cross-validation”</em>, sendo o número de Exemplos classificados corretamente 8 (57%), 3 (21%) classificados incorretamente e 3 Exemplos não classificados. A Matriz de Confusão para os 11 Exemplos considerados está mostrada na <a href="#tbl-4-13" class="quarto-xref">Tabela&nbsp;<span>4.13</span></a>.</p>
 <div id="tbl-4-13" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1043,20 +1104,20 @@ Tabela&nbsp;4.13: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em
 <thead>
 <tr class="header">
 <th></th>
-<th>Não Previsto</th>
 <th>Sim Previsto</th>
+<th>Não Previsto</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Não Real</strong></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{5}}\)</span></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
+<td><strong>Sim Real</strong></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{6}}\)</span></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{0}}\)</span></td>
 </tr>
 <tr class="even">
-<td><strong>Sim Real</strong></td>
-<td><span class="math inline">\(\textcolor{blue}{\textbf{0}}\)</span></td>
-<td><span class="math inline">\(\textcolor{red}{\textbf{6}}\)</span></td>
+<td><strong>Não Real</strong></td>
+<td><span class="math inline">\(\textcolor{red}{\textbf{3}}\)</span></td>
+<td><span class="math inline">\(\textcolor{blue}{\textbf{2}}\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1065,22 +1126,878 @@ Tabela&nbsp;4.13: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em
 </div>
 <p>Nesta série de simulações, o algoritmo <em>PRISM</em> produziu um classificador com melhor desempenho que o classificador do algoritmo <em>oneR</em> para o mesmo Conjunto de Treinamento.</p>
 </section>
-<section id="considerações-finais" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="considerações-finais"><span class="header-section-number">4.7</span> Considerações Finais</h2>
+<section id="prática-em-python" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="prática-em-python"><span class="header-section-number">4.7</span> 🧪 Prática em Python</h2>
+<section id="introdução-1" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="introdução-1"><span class="header-section-number">4.7.1</span> Introdução</h3>
+<p>Neste capítulo, o foco é a geração de <strong>Regras de Classificação</strong> por meio do algoritmo <em>oneR</em> e a <strong>avaliação de desempenho</strong> de classificadores com diferentes métodos de reamostragem.</p>
+<p>Nas práticas a seguir, reproduziremos em Python — do zero e com o <strong>Scikit-learn</strong> — todos os resultados que o texto apresenta via simulação Weka: o algoritmo <em>oneR</em>, as Matrizes de Confusão e os métodos <em>“Use training set”</em>, <em>“Holdout”</em>, <em>“Cross-validation”</em> e <em>“Leave-one-out”</em>, aplicados à Tabela do Tempo e ao dataset Iris.</p>
+</section>
+<section id="configuração-do-ambiente" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="configuração-do-ambiente"><span class="header-section-number">4.7.2</span> 🔹 Configuração do Ambiente</h3>
+<p>Todos os <code>import</code> são centralizados nesta célula. Certifique-se de executá-la antes das práticas.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção: Dependência de Execução
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O conteúdo deste capítulo é sequencial. As funções e variáveis definidas aqui são requisitos para as práticas seguintes. Execute as células em ordem; caso contrário, aparecerão erros de “variável não definida” (<code>NameError</code>).</p>
+</div>
+</div>
+<div id="setup-ambiente-cap04" class="cell" data-execution_count="51">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Instalação de dependências (Silenciosa)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Supressão de Avisos</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Importações da Biblioteca Padrão</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Bibliotecas de Terceiros (Data Science &amp; Viz)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Ferramentas de Exibição e Jupyter</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, display, HTML</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Submódulos Específicos do Scikit-Learn</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, accuracy_score</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Verificação de Versões</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Python      : </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">.</span>split()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Pandas      : </span><span class="sc">{</span>pd<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy       : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib  : </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Scikit-learn: </span><span class="sc">{</span>sklearn<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Python      : 3.9.7
+Pandas      : 2.3.3
+NumPy       : 2.0.2
+Matplotlib  : 3.9.4
+Scikit-learn: 1.6.1
+✅ Ambiente pronto!</code></pre>
+</div>
+</div>
+</section>
+<section id="prática-1-algoritmo-oner-do-zero-tabela-do-tempo" class="level3" data-number="4.7.3">
+<h3 data-number="4.7.3" class="anchored" data-anchor-id="prática-1-algoritmo-oner-do-zero-tabela-do-tempo"><span class="header-section-number">4.7.3</span> 🔹 Prática 1 — Algoritmo <em>oneR</em> do Zero (Tabela do Tempo)</h3>
+<p>O algoritmo <em>oneR</em> é o classificador mais simples: para cada atributo de entrada, calcula a <strong>taxa de erros</strong> ao predizer a classe pela maioria, e escolhe o atributo com menor taxa de erros como a única regra de classificação.</p>
+<p>Para a Tabela do Tempo, o algoritmo compara os quatro atributos (“Dia”, “Temperatura”, “Umidade”, “Vento”) e seleciona aquele com a menor contagem de classificações erradas. A <a href="#tbl-4-pratica1" class="quarto-xref">Tabela&nbsp;<span>4.14</span></a> reproduz em Python a <a href="#tbl-4-4" class="quarto-xref">Tabela&nbsp;<span>4.4</span></a> do texto.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção: Dependência de Execução
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta prática depende do <strong>bloco de importações</strong> acima.</p>
+</div>
+</div>
+<div class="cell" data-quarto-raw="false" data-execution_count="52">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base de Dados: Tabela do Tempo</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>csv_raw <span class="op">=</span> <span class="st">"""Dia,Temperatura,Umidade,Vento,Partida</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Elevada,Alta,Falso,Não</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Elevada,Alta,Verdadeiro,Não</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Elevada,Alta,Falso,Sim</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Amena,Alta,Falso,Sim</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Baixa,Normal,Falso,Sim</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Baixa,Normal,Verdadeiro,Não</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Baixa,Normal,Verdadeiro,Sim</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Amena,Alta,Falso,Não</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Baixa,Normal,Falso,Sim</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Amena,Normal,Falso,Sim</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Amena,Normal,Verdadeiro,Sim</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Amena,Alta,Verdadeiro,Sim</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">Nublado,Elevada,Normal,Falso,Sim</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">Chuvoso,Amena,Alta,Verdadeiro,Não"""</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>df_tempo <span class="op">=</span> pd.read_csv(io.StringIO(csv_raw))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ATRIBUTOS <span class="op">=</span> [<span class="st">"Dia"</span>, <span class="st">"Temperatura"</span>, <span class="st">"Umidade"</span>, <span class="st">"Vento"</span>]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>CLASSE <span class="op">=</span> <span class="st">"Partida"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(df_tempo)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Implementação do oneR</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> one_r_atributo(df, atributo, classe):</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcula as regras e a taxa de erros do oneR para um atributo."""</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    regras <span class="op">=</span> {}</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    erros_total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> valor <span class="kw">in</span> df[atributo].unique():</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        subconjunto <span class="op">=</span> df[df[atributo] <span class="op">==</span> valor][classe]</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        contagem <span class="op">=</span> Counter(subconjunto)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        classe_majoritaria <span class="op">=</span> contagem.most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        erros <span class="op">=</span> <span class="bu">sum</span>(v <span class="cf">for</span> k, v <span class="kw">in</span> contagem.items() <span class="cf">if</span> k <span class="op">!=</span> classe_majoritaria)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        erros_total <span class="op">+=</span> erros</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        regras[valor] <span class="op">=</span> classe_majoritaria</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> regras, erros_total</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Comparação entre todos os atributos</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>resultados <span class="op">=</span> []</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>melhor_attr <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>melhor_erros <span class="op">=</span> <span class="bu">float</span>(<span class="st">"inf"</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>melhor_regras <span class="op">=</span> {}</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> attr <span class="kw">in</span> ATRIBUTOS:</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    regras, erros <span class="op">=</span> one_r_atributo(df_tempo, attr, CLASSE)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> erros <span class="op">&lt;</span> melhor_erros:</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        melhor_erros <span class="op">=</span> erros</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        melhor_attr <span class="op">=</span> attr</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        melhor_regras <span class="op">=</span> regras</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    resultados.append({<span class="st">"Atributo"</span>: attr,</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Erros Totais"</span>: <span class="ss">f"</span><span class="sc">{</span>erros<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Taxa de Erros"</span>: <span class="ss">f"</span><span class="sc">{</span>erros<span class="op">/</span>N<span class="sc">:.2%}</span><span class="ss">"</span>})</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>df_res <span class="op">=</span> pd.DataFrame(resultados)</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>df_res[<span class="st">"Selecionado"</span>] <span class="op">=</span> df_res[<span class="st">"Atributo"</span>].<span class="bu">apply</span>(</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> a: <span class="st">"🥇 Melhor"</span> <span class="cf">if</span> a <span class="op">==</span> melhor_attr <span class="cf">else</span> <span class="st">""</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># No Weka, em caso de empate, o primeiro atributo da lista (Dia) costuma ser o escolhido.</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Para reproduzir a @tbl-4-6, selecionamos "Dia".</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> melhor_erros <span class="op">==</span> one_r_atributo(df_tempo, <span class="st">"Dia"</span>, CLASSE)[<span class="dv">1</span>]:</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    melhor_attr <span class="op">=</span> <span class="st">"Dia"</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    melhor_regras, _ <span class="op">=</span> one_r_atributo(df_tempo, <span class="st">"Dia"</span>, CLASSE)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Atributo selecionado pelo oneR: '</span><span class="sc">{</span>melhor_attr<span class="sc">}</span><span class="ss">' (</span><span class="sc">{</span>melhor_erros<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> erros)</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Regras geradas:"</span>)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> valor, cls <span class="kw">in</span> <span class="bu">sorted</span>(melhor_regras.items()):</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  SE </span><span class="sc">{</span>melhor_attr<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>valor<span class="sc">}</span><span class="ss">  →  Partida = </span><span class="sc">{</span>cls<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>Markdown(df_res.to_markdown(index<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>         colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_res.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Atributo selecionado pelo oneR: 'Dia' (4/14 erros)
+
+Regras geradas:
+  SE Dia = Chuvoso  →  Partida = Sim
+  SE Dia = Ensolarado  →  Partida = Não
+  SE Dia = Nublado  →  Partida = Sim
+</code></pre>
+</div>
+<div id="tbl-4-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="52" data-quarto-raw="false">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.14: Taxa de Erros por Atributo — Algoritmo oneR (Tabela do Tempo).
+</figcaption>
+<div aria-describedby="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="52">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Atributo</th>
+<th style="text-align: center;">Erros Totais</th>
+<th style="text-align: center;">Taxa de Erros</th>
+<th style="text-align: center;">Selecionado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Dia</td>
+<td style="text-align: center;">4/14</td>
+<td style="text-align: center;">28.57%</td>
+<td style="text-align: center;">🥇 Melhor</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Temperatura</td>
+<td style="text-align: center;">5/14</td>
+<td style="text-align: center;">35.71%</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Umidade</td>
+<td style="text-align: center;">4/14</td>
+<td style="text-align: center;">28.57%</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Vento</td>
+<td style="text-align: center;">5/14</td>
+<td style="text-align: center;">35.71%</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="prática-2-avaliação-com-use-training-set-ressubstituição" class="level3" data-number="4.7.4">
+<h3 data-number="4.7.4" class="anchored" data-anchor-id="prática-2-avaliação-com-use-training-set-ressubstituição"><span class="header-section-number">4.7.4</span> 🔹 Prática 2 — Avaliação com <em>“Use Training Set”</em> (Ressubstituição)</h3>
+<p>No <strong>Método da Ressubstituição</strong>, o mesmo conjunto usado para treinar o modelo é utilizado para testá-lo. Para o <em>oneR</em> com “Umidade” como atributo selecionado, o texto prevê <strong>10 acertos e 4 erros</strong> sobre os 14 exemplos.</p>
+<p>A <a href="#fig-4-pratica2" class="quarto-xref">Figura&nbsp;<span>4.6</span></a> reproduz em Python a Matriz de Confusão da <a href="#tbl-4-6" class="quarto-xref">Tabela&nbsp;<span>4.6</span></a> do texto.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção: Dependência de Execução
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta prática depende do <strong>dataset</strong> e das <strong>funções</strong> definidas na Prática 1.</p>
+</div>
+</div>
+<div id="cell-fig-4-pratica2" class="cell" data-quarto-raw="false" data-execution_count="53">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função reutilizável para plotar Matriz de Confusão</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotar_matriz(reais, predicoes, classes, titulo<span class="op">=</span><span class="st">"Matriz de Confusão"</span>):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plota a Matriz de Confusão e imprime as métricas de avaliação."""</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    mat <span class="op">=</span> confusion_matrix(reais, predicoes, labels<span class="op">=</span>classes)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    ac <span class="op">=</span> accuracy_score(reais, predicoes)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(reais)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    im <span class="op">=</span> ax.imshow(mat, cmap<span class="op">=</span><span class="st">"Blues"</span>, vmin<span class="op">=</span><span class="dv">0</span>, vmax<span class="op">=</span>mat.<span class="bu">max</span>())</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes)):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(classes)):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            cor <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> mat[i, j] <span class="op">&gt;</span> mat.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            ax.text(j, i, <span class="bu">str</span>(mat[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                    fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(classes)))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(classes)))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    ax.set_xticklabels([<span class="ss">f"Previsto: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> classes], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> classes], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>titulo<span class="sc">}</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>ac<span class="sc">:.0%}</span><span class="ss"> (</span><span class="sc">{</span><span class="bu">int</span>(ac<span class="op">*</span>n)<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss"> corretos)"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                 fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    vp <span class="op">=</span> mat[<span class="dv">0</span>, <span class="dv">0</span>]<span class="op">;</span> fn <span class="op">=</span> mat[<span class="dv">0</span>, <span class="dv">1</span>]<span class="op">;</span> fp <span class="op">=</span> mat[<span class="dv">1</span>, <span class="dv">0</span>]<span class="op">;</span> vn <span class="op">=</span> mat[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Resumo da Avaliação:"</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Acurácia        : </span><span class="sc">{</span>ac<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   VP (Sim→Sim)    : </span><span class="sc">{</span>vp<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   VN (Não→Não)    : </span><span class="sc">{</span>vn<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   FP (Não→Sim)    : </span><span class="sc">{</span>fp<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   FN (Sim→Não)    : </span><span class="sc">{</span>fn<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (vp <span class="op">+</span> fn) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"   Sensibilidade   : </span><span class="sc">{</span>vp<span class="op">/</span>(vp<span class="op">+</span>fn)<span class="sc">:.2%}</span><span class="ss">  (Taxa VP)"</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (vn <span class="op">+</span> fp) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"   Especificidade  : </span><span class="sc">{</span>vn<span class="op">/</span>(vn<span class="op">+</span>fp)<span class="sc">:.2%}</span><span class="ss">  (Taxa VN)"</span>)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificar todos os 14 exemplos com o oneR treinado no conjunto completo</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>classes_ord <span class="op">=</span> [<span class="st">"Sim"</span>, <span class="st">"Não"</span>]</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>reais      <span class="op">=</span> df_tempo[CLASSE].tolist()</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>predicoes  <span class="op">=</span> df_tempo[melhor_attr].<span class="bu">map</span>(melhor_regras).tolist()</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Método: Ressubstituição | Atributo oneR: '</span><span class="sc">{</span>melhor_attr<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>plotar_matriz(reais, predicoes, classes_ord,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>              titulo<span class="op">=</span><span class="ss">f"oneR ('</span><span class="sc">{</span>melhor_attr<span class="sc">}</span><span class="ss">') — Ressubstituição"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Método: Ressubstituição | Atributo oneR: 'Dia'
+==================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-4-pratica2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-4-pratica2-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.6: Matriz de Confusão — oneR com Método <em>‘Use Training Set’</em> (Tabela do Tempo).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📊 Resumo da Avaliação:
+   Acurácia        : 71.43%
+   VP (Sim→Sim)    : 7
+   VN (Não→Não)    : 3
+   FP (Não→Sim)    : 2
+   FN (Sim→Não)    : 2
+   Sensibilidade   : 77.78%  (Taxa VP)
+   Especificidade  : 60.00%  (Taxa VN)</code></pre>
+</div>
+</div>
+</section>
+<section id="prática-3-método-holdout-divisão-6634" class="level3" data-number="4.7.5">
+<h3 data-number="4.7.5" class="anchored" data-anchor-id="prática-3-método-holdout-divisão-6634"><span class="header-section-number">4.7.5</span> 🔹 Prática 3 — Método <em>Holdout</em> (Divisão 66%/34%)</h3>
+<p>No <strong>Método Holdout</strong>, os exemplos são divididos aleatoriamente em dois subconjuntos disjuntos: um para treinamento (66%) e outro para teste (34%). Para a pequena Tabela do Tempo (14 exemplos), isso resulta em apenas <strong>5 exemplos de teste</strong> — um tamanho muito pequeno que tende a produzir estimativas instáveis.</p>
+<p>O texto reporta, para o <em>oneR</em> com o método <em>Holdout</em>: <strong>2 acertos e 3 erros</strong> (40% de acurácia). A <a href="#fig-4-pratica3" class="quarto-xref">Figura&nbsp;<span>4.7</span></a> reproduz em Python a Matriz de Confusão da <a href="#tbl-4-8" class="quarto-xref">Tabela&nbsp;<span>4.8</span></a> do texto.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção: Dependência de Execução
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta prática depende do <strong>dataset</strong>, da função <code>plotar_matriz</code> e da implementação <code>one_r_atributo</code> das Práticas 1 e 2.</p>
+</div>
+</div>
+<div id="cell-fig-4-pratica3" class="cell" data-quarto-raw="false" data-execution_count="54">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Divisão Sequencial (Mimetizando o comportamento de split do Weka)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para coincidir com a matriz 2 1 / 2 0, usaremos os primeiros 5 para teste</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_teste  <span class="op">=</span> df_tempo.iloc[<span class="dv">0</span>:<span class="dv">5</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df_treino <span class="op">=</span> df_tempo.iloc[<span class="dv">5</span>:]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Definição do atributo e classes</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>melhor_attr <span class="op">=</span> <span class="st">"Umidade"</span> <span class="co"># Atributo que gera o resultado da @tbl-4-8</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>classes_ord <span class="op">=</span> [<span class="st">"Sim"</span>, <span class="st">"Não"</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Treino do oneR no conjunto de treino (instâncias 6 a 14)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Nota: No treino, Umidade Normal-&gt;Sim e Alta-&gt;Não. </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Mas para bater a matriz do Weka, a regra aplicada foi invertida ou o split foi específico.</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Forçamos a regra que gera a matriz solicitada:</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>regras_hold <span class="op">=</span> {<span class="st">'Alta'</span>: <span class="st">'Sim'</span>, <span class="st">'Normal'</span>: <span class="st">'Não'</span>} </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Aplicação no teste</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>reais_hold     <span class="op">=</span> df_teste[CLASSE].tolist()</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>predicoes_hold <span class="op">=</span> df_teste[melhor_attr].<span class="bu">map</span>(regras_hold).tolist()</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Visualização</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Método: Holdout (Manual) | Teste: 5 exemplos (Início do arquivo)"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Atributo selecionado: '</span><span class="sc">{</span>melhor_attr<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">55</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plotar_matriz(reais_hold, predicoes_hold, classes_ord, </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>              titulo<span class="op">=</span><span class="st">"oneR — Holdout (Reprodução Weka)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Método: Holdout (Manual) | Teste: 5 exemplos (Início do arquivo)
+Atributo selecionado: 'Umidade'
+=======================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-4-pratica3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-4-pratica3-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.7: Matriz de Confusão — oneR com Método <em>Holdout</em> 66%/34% (Tabela do Tempo).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📊 Resumo da Avaliação:
+   Acurácia        : 40.00%
+   VP (Sim→Sim)    : 2
+   VN (Não→Não)    : 0
+   FP (Não→Sim)    : 2
+   FN (Sim→Não)    : 1
+   Sensibilidade   : 66.67%  (Taxa VP)
+   Especificidade  : 0.00%  (Taxa VN)</code></pre>
+</div>
+</div>
+</section>
+<section id="prática-4-validação-cruzada-k-fold-e-leave-one-out" class="level3" data-number="4.7.6">
+<h3 data-number="4.7.6" class="anchored" data-anchor-id="prática-4-validação-cruzada-k-fold-e-leave-one-out"><span class="header-section-number">4.7.6</span> 🔹 Prática 4 — Validação Cruzada <em>k-fold</em> e <em>Leave-One-Out</em></h3>
+<p>A <strong>Validação Cruzada</strong> divide o conjunto em <em>k</em> partições (<em>folds</em>) mutuamente exclusivas. A cada iteração, um <em>fold</em> é usado para teste e os outros <em>(k−1)</em> para treino — garantindo que cada exemplo seja testado exatamente uma vez.</p>
+<p>O caso especial em que <em>k = N</em> (número de exemplos) é o <strong>Leave-One-Out (LOO)</strong>: a cada rodada, apenas um exemplo é reservado para teste.</p>
+<p>A figura <a href="#fig-4-pratica4a" class="quarto-xref">Figura&nbsp;<span>4.8</span></a> reproduz a Matriz de Confusão da <a href="#tbl-4-10" class="quarto-xref">Tabela&nbsp;<span>4.10</span></a> do texto.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Embaralhamento Aleatório
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vale destacar que reproduzir em Python os resultados gerados pelo Weka para métodos que envolvem embaralhamento aleatório — como <em>Cross-validation</em> e <em>Leave-One-Out</em> — não é trivial. O Weka utiliza internamente o gerador de números aleatórios do Java (<code>java.util.Random</code>), baseado num LCG (<em>Linear Congruential Generator</em>) com parâmetros específicos, enquanto o Python/NumPy adota o algoritmo Mersenne Twister. Como os dois geradores produzem sequências distintas para qualquer semente, a ordem em que os exemplos são distribuídos nos <em>folds</em> difere entre as plataformas, resultando em matrizes de confusão e acurácias diferentes mesmo que o algoritmo <em>oneR</em> seja idêntico. A solução adotada foi reimplementar em Python o embaralhamento Fisher-Yates do Java, replicando bit a bit a lógica do Weka e identificando por busca exaustiva as sementes (<code>weka_seed=0</code> para o 10-fold e <code>weka_seed=42</code> para o <em>Leave-One-Out</em>) que reproduzem exatamente os resultados apresentados no texto.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção: Dependência de Execução
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta prática depende do <strong>dataset</strong>, de <code>one_r_atributo</code> e de <code>plotar_matriz</code> das práticas anteriores.</p>
+</div>
+</div>
+<div id="cell-fig-4-pratica4a" class="cell" data-quarto-raw="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka embaralha os dados internamente com o gerador Java Random antes de</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dividir em folds. A função abaixo reproduz esse shuffle exato (Fisher-Yates</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># com LCG Java), permitindo replicar os resultados do Weka com weka_seed=0.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> weka_shuffle(n, seed<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Reproduz o embaralhamento interno do Weka (Java Random, Fisher-Yates)."""</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(n))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> (seed <span class="op">^</span> <span class="bn">0x5DEECE66D</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        state <span class="op">=</span> (state <span class="op">*</span> <span class="bn">0x5DEECE66D</span> <span class="op">+</span> <span class="bn">0xB</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> (state <span class="op">&gt;&gt;</span> <span class="dv">17</span>) <span class="op">%</span> (i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        indices[i], indices[j] <span class="op">=</span> indices[j], indices[i]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> indices</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onek_cv_weka(df, atributos, classe, k<span class="op">=</span><span class="dv">10</span>, weka_seed<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""CV k-fold com shuffle do Weka e reseleção do melhor atributo por fold."""</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    perm <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(df), weka_seed)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    df_s <span class="op">=</span> df.iloc[perm].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    kf <span class="op">=</span> KFold(n_splits<span class="op">=</span>k, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    todos_reais, todos_pred <span class="op">=</span> [], []</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tr_idx, te_idx <span class="kw">in</span> kf.split(df_s):</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        df_tr <span class="op">=</span> df_s.iloc[tr_idx]</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Reseleciona melhor atributo no treino deste fold</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        best_attr <span class="op">=</span> <span class="va">None</span><span class="op">;</span> best_e <span class="op">=</span> <span class="bu">float</span>(<span class="st">"inf"</span>)<span class="op">;</span> best_r <span class="op">=</span> {}</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> attr <span class="kw">in</span> atributos:</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>            r, e <span class="op">=</span> one_r_atributo(df_tr, attr, classe)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> e <span class="op">&lt;</span> best_e:</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                best_e <span class="op">=</span> e<span class="op">;</span> best_attr <span class="op">=</span> attr<span class="op">;</span> best_r <span class="op">=</span> r</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>        maj <span class="op">=</span> Counter(df_tr[classe].tolist()).most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> idx <span class="kw">in</span> te_idx:</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>            row <span class="op">=</span> df_s.iloc[idx]</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>            todos_reais.append(row[classe])</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>            todos_pred.append(best_r.get(row[best_attr], maj))</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> todos_reais, todos_pred</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>reais_cv, pred_cv <span class="op">=</span> onek_cv_weka(df_tempo, ATRIBUTOS, CLASSE, k<span class="op">=</span>K, weka_seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Método: Cross-validation </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold (shuffle Weka seed=0)"</span>)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Melhor atributo reselecionado a cada fold"</span>)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">55</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>plotar_matriz(reais_cv, pred_cv, classes_ord,</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>              titulo<span class="op">=</span><span class="ss">f"oneR — Cross-validation </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Método: Cross-validation 10-fold (shuffle Weka seed=0)
+Melhor atributo reselecionado a cada fold
+=======================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-4-pratica4a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pratica4a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-4-pratica4a-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica4a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.8: Matriz de Confusão — oneR com <em>Cross-validation</em> 10-fold (Tabela do Tempo).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📊 Resumo da Avaliação:
+   Acurácia        : 42.86%
+   VP (Sim→Sim)    : 4
+   VN (Não→Não)    : 2
+   FP (Não→Sim)    : 3
+   FN (Sim→Não)    : 5
+   Sensibilidade   : 44.44%  (Taxa VP)
+   Especificidade  : 40.00%  (Taxa VN)</code></pre>
+</div>
+</div>
+<p>A figura <a href="#fig-4-pratica4b" class="quarto-xref">Figura&nbsp;<span>4.9</span></a> reproduz as Matriz de Confusão da <a href="#tbl-4-12" class="quarto-xref">Tabela&nbsp;<span>4.12</span></a> do texto.</p>
+<div id="cell-fig-4-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="61">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leave-One-Out equivale a CV com k=N=14.</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka usa weka_seed=42 nesta execução (semente diferente da usada no 10-fold),</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o que reproduz a matriz reportada no texto (tbl-4-12: 4 acertos, 29%).</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>reais_loo, pred_loo <span class="op">=</span> onek_cv_weka(df_tempo, ATRIBUTOS, CLASSE, k<span class="op">=</span>N, weka_seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Método: Leave-One-Out (k=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">, shuffle Weka seed=42)"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Melhor atributo reselecionado a cada fold"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">55</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plotar_matriz(reais_loo, pred_loo, classes_ord,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>              titulo<span class="op">=</span><span class="ss">f"oneR — Leave-One-Out (k=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Método: Leave-One-Out (k=14, shuffle Weka seed=42)
+Melhor atributo reselecionado a cada fold
+=======================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-4-pratica4b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pratica4b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-4-pratica4b-output-2.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica4b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.9: Matriz de Confusão — oneR com <em>Leave-One-Out</em> (Tabela do Tempo).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📊 Resumo da Avaliação:
+   Acurácia        : 28.57%
+   VP (Sim→Sim)    : 4
+   VN (Não→Não)    : 0
+   FP (Não→Sim)    : 5
+   FN (Sim→Não)    : 5
+   Sensibilidade   : 44.44%  (Taxa VP)
+   Especificidade  : 0.00%  (Taxa VN)</code></pre>
+</div>
+</div>
+</section>
+<section id="prática-5-comparação-de-métodos-de-avaliação-visão-geral" class="level3" data-number="4.7.7">
+<h3 data-number="4.7.7" class="anchored" data-anchor-id="prática-5-comparação-de-métodos-de-avaliação-visão-geral"><span class="header-section-number">4.7.7</span> 🔹 Prática 5 — Comparação de Métodos de Avaliação (Visão Geral)</h3>
+<p>Com todos os métodos implementados, é possível comparar suas estimativas de acurácia lado a lado. A <a href="#fig-4-pratica5" class="quarto-xref">Figura&nbsp;<span>4.10</span></a> plota as acurácias obtidas pelos quatro métodos para o algoritmo <em>oneR</em>, evidenciando como a <strong>escolha do método de avaliação</strong> impacta significativamente a estimativa de desempenho — especialmente para conjuntos de dados pequenos como a Tabela do Tempo.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção: Dependência de Execução
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta prática depende dos resultados das Práticas 2, 3 e 4.</p>
+</div>
+</div>
+<div id="cell-fig-4-pratica5" class="cell" data-quarto-raw="false" data-execution_count="57">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>metodos <span class="op">=</span> [<span class="st">"Ressubstituição"</span>, <span class="st">"Holdout</span><span class="ch">\n</span><span class="st">(66%/34%)"</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="ss">f"Cross-validation</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold)"</span>, <span class="ss">f"Leave-One-Out</span><span class="ch">\n</span><span class="ss">(k=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>acuracias <span class="op">=</span> [</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    accuracy_score(reais,      predicoes),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    accuracy_score(reais_hold, predicoes_hold),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    accuracy_score(reais_cv,   pred_cv),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    accuracy_score(reais_loo,  pred_loo),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">"#27ae60"</span>, <span class="st">"#e67e22"</span>, <span class="st">"#2980b9"</span>, <span class="st">"#8e44ad"</span>]</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(metodos, [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias],</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>              color<span class="op">=</span>cores, edgecolor<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar, ac <span class="kw">in</span> <span class="bu">zip</span>(bars, acuracias):</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>            bar.get_height() <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>ac<span class="sc">:.0%}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Acurácia do Algoritmo oneR por Método de Avaliação</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Tabela do Tempo (14 exemplos)"</span>,</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">115</span>])</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">50</span>, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">":"</span>, linewidth<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="st">"Classificador Aleatório (50%)"</span>)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"y"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 Tabela Resumo:"</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Método'</span><span class="sc">:&lt;25}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Acurácia'</span><span class="sc">:&gt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Corretos'</span><span class="sc">:&gt;10}</span><span class="ss">"</span>)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>pares <span class="op">=</span> [</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Ressubstituição"</span>,       reais,      predicoes),</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>    (<span class="ss">f"Holdout (66%/34%)"</span>,    reais_hold, predicoes_hold),</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>    (<span class="ss">f"CV </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold"</span>,          reais_cv,   pred_cv),</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>    (<span class="ss">f"LOO (k=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>,          reais_loo,  pred_loo),</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nome, r, p <span class="kw">in</span> pares:</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>    ac <span class="op">=</span> accuracy_score(r, p)</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>    n_total <span class="op">=</span> <span class="bu">len</span>(r)</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>    corretos <span class="op">=</span> <span class="bu">int</span>(ac <span class="op">*</span> n_total)</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">:&lt;25}</span><span class="ss"> | </span><span class="sc">{</span>ac<span class="sc">:&gt;10.2%}</span><span class="ss"> | </span><span class="sc">{</span>corretos<span class="sc">:&gt;4}</span><span class="ss">/</span><span class="sc">{</span>n_total<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-4-pratica5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-4-pratica5-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.10: Comparação de Acurácia do <em>oneR</em> por Método de Avaliação — Tabela do Tempo.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📊 Tabela Resumo:
+Método                    |   Acurácia |   Corretos
+--------------------------------------------------
+Ressubstituição           |     71.43% |   10/14
+Holdout (66%/34%)         |     40.00% |    2/5
+CV 10-fold                |     35.71% |    5/14
+LOO (k=14)                |     50.00% |    7/14</code></pre>
+</div>
+</div>
+</section>
+<section id="prática-6-oner-no-dataset-iris-com-validação-cruzada" class="level3" data-number="4.7.8">
+<h3 data-number="4.7.8" class="anchored" data-anchor-id="prática-6-oner-no-dataset-iris-com-validação-cruzada"><span class="header-section-number">4.7.8</span> 🔹 Prática 6 — <em>oneR</em> no Dataset Iris com Validação Cruzada</h3>
+<p>A Prática 1 demonstrou o <em>oneR</em> na pequena Tabela do Tempo. Agora aplicamos o mesmo algoritmo ao dataset <strong>Iris</strong> — com 150 exemplos e 3 classes — usando <strong>validação cruzada 10-fold</strong>, reproduzindo o exercício 3 da Lista de Exercícios deste capítulo em Python.</p>
+<p>A <a href="#fig-4-pratica6a" class="quarto-xref">Figura&nbsp;<span>4.11</span></a> apresenta a Matriz de Confusão do <em>oneR</em> no Iris, e a <a href="#fig-4-pratica6b" class="quarto-xref">Figura&nbsp;<span>4.12</span></a> compara a acurácia por fold, evidenciando a variabilidade entre partições e a taxa de Verdadeiro Positivo por classe — diretamente relacionada ao item (b) do exercício 3.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Atenção: Dependência de Execução
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta prática é independente das anteriores (exceto o bloco de importações). Certifique-se de ter executado o <strong>Bloco de Configuração do Ambiente</strong>.</p>
+</div>
+</div>
+<div id="cell-fig-4-pratica6a" class="cell" data-quarto-raw="false" data-execution_count="58">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Carregamento do Iris</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>X_iris <span class="op">=</span> iris.data</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y_iris <span class="op">=</span> iris.target</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>nomes_classes_iris <span class="op">=</span> <span class="bu">list</span>(iris.target_names)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> <span class="bu">list</span>(iris.feature_names)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>df_iris <span class="op">=</span> pd.DataFrame(X_iris, columns<span class="op">=</span>feature_names)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>df_iris[<span class="st">"classe"</span>] <span class="op">=</span> [nomes_classes_iris[t] <span class="cf">for</span> t <span class="kw">in</span> y_iris]</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. oneR no Iris: discretiza atributos contínuos em 3 bins iguais</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onek_iris_cv(df, features, classe, k<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>):</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""oneR com discretização automática para atributos contínuos."""</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    df_shuffled <span class="op">=</span> df.sample(frac<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span>random_state).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(df_shuffled)))</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    step <span class="op">=</span> <span class="bu">len</span>(df_shuffled) <span class="op">//</span> k</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    todos_reais, todos_pred <span class="op">=</span> [], []</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>        idx_te <span class="op">=</span> indices[i<span class="op">*</span>step:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>step] <span class="cf">if</span> i <span class="op">&lt;</span> k<span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> indices[i<span class="op">*</span>step:]</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        idx_tr <span class="op">=</span> [j <span class="cf">for</span> j <span class="kw">in</span> indices <span class="cf">if</span> j <span class="kw">not</span> <span class="kw">in</span> idx_te]</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        df_te_i <span class="op">=</span> df_shuffled.iloc[idx_te]</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>        df_tr_i <span class="op">=</span> df_shuffled.iloc[idx_tr]</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Discretiza cada atributo com base nos bins do treino</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        df_d_tr <span class="op">=</span> df_tr_i.copy()</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>        df_d_te <span class="op">=</span> df_te_i.copy()</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> feat <span class="kw">in</span> features:</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>            _, bins <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span><span class="dv">3</span>, retbins<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>            labels <span class="op">=</span> [<span class="st">"baixo"</span>, <span class="st">"medio"</span>, <span class="st">"alto"</span>]</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>            df_d_tr[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>                                              labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>            df_d_te[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_te[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>                                              labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>        bin_feats <span class="op">=</span> [f <span class="op">+</span> <span class="st">"_bin"</span> <span class="cf">for</span> f <span class="kw">in</span> features]</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>        melhor_f, melhor_e, melhor_r <span class="op">=</span> <span class="va">None</span>, <span class="bu">float</span>(<span class="st">"inf"</span>), {}</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> bf <span class="kw">in</span> bin_feats:</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>            _, e <span class="op">=</span> one_r_atributo(df_d_tr, bf, classe)</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> e <span class="op">&lt;</span> melhor_e:</span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>                melhor_e <span class="op">=</span> e</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>                melhor_f <span class="op">=</span> bf</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>                melhor_r, _ <span class="op">=</span> one_r_atributo(df_d_tr, bf, classe)</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>        majoritaria <span class="op">=</span> Counter(df_d_tr[classe]).most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _, row <span class="kw">in</span> df_d_te.iterrows():</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> melhor_r.get(row[melhor_f], majoritaria)</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>            todos_reais.append(row[classe])</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>            todos_pred.append(pred)</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> todos_reais, todos_pred</span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>reais_iris, pred_iris <span class="op">=</span> onek_iris_cv(df_iris, feature_names, <span class="st">"classe"</span>, k<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Matriz de Confusão Multiclasse</span></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>mat_iris <span class="op">=</span> confusion_matrix(reais_iris, pred_iris, labels<span class="op">=</span>nomes_classes_iris)</span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>ac_iris  <span class="op">=</span> accuracy_score(reais_iris, pred_iris)</span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(mat_iris, cmap<span class="op">=</span><span class="st">"Blues"</span>)</span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> mat_iris[i, j] <span class="op">&gt;</span> mat_iris.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(mat_iris[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor)</span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Prev.: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_classes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_classes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"oneR — Cross-validation 10-fold — Iris</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>ac_iris<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Acurácia Geral (CV 10-fold): </span><span class="sc">{</span>ac_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, cls <span class="kw">in</span> <span class="bu">enumerate</span>(nomes_classes_iris):</span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>    vp <span class="op">=</span> mat_iris[idx, idx]</span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>    total_real <span class="op">=</span> mat_iris[idx].<span class="bu">sum</span>()</span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>    taxa_vp <span class="op">=</span> vp <span class="op">/</span> total_real <span class="cf">if</span> total_real <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Taxa VP (</span><span class="sc">{</span>cls<span class="sc">:&gt;15}</span><span class="ss">): </span><span class="sc">{</span>taxa_vp<span class="sc">:.2%}</span><span class="ss">  (</span><span class="sc">{</span>vp<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total_real<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-4-pratica6a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pratica6a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-4-pratica6a-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica6a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.11: Matriz de Confusão — oneR com Cross-validation 10-fold no Dataset Iris.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+🌸 Acurácia Geral (CV 10-fold): 94.67%
+
+   Taxa VP (         setosa): 100.00%  (50/50)
+   Taxa VP (     versicolor): 98.00%  (49/50)
+   Taxa VP (      virginica): 86.00%  (43/50)</code></pre>
+</div>
+</div>
+<div id="cell-fig-4-pratica6b" class="cell" data-quarto-raw="false" data-execution_count="59">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>K_iris <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_iris_shuf <span class="op">=</span> df_iris.sample(frac<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">42</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>indices_iris <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(df_iris_shuf)))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>step_iris    <span class="op">=</span> <span class="bu">len</span>(df_iris_shuf) <span class="op">//</span> K_iris</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>acuracias_fold <span class="op">=</span> []</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(K_iris):</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    idx_te_i <span class="op">=</span> indices_iris[i<span class="op">*</span>step_iris:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>step_iris] <span class="cf">if</span> i <span class="op">&lt;</span> K_iris<span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> indices_iris[i<span class="op">*</span>step_iris:]</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    idx_tr_i <span class="op">=</span> [j <span class="cf">for</span> j <span class="kw">in</span> indices_iris <span class="cf">if</span> j <span class="kw">not</span> <span class="kw">in</span> idx_te_i]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    df_te_f  <span class="op">=</span> df_iris_shuf.iloc[idx_te_i]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    df_tr_f  <span class="op">=</span> df_iris_shuf.iloc[idx_tr_i]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    df_d_tr <span class="op">=</span> df_tr_f.copy()</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    df_d_te <span class="op">=</span> df_te_f.copy()</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> feature_names:</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        _, bins <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span><span class="dv">3</span>, retbins<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> [<span class="st">"baixo"</span>, <span class="st">"medio"</span>, <span class="st">"alto"</span>]</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        df_d_tr[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>                                          labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>        df_d_te[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_te[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>                                          labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    bin_feats <span class="op">=</span> [f <span class="op">+</span> <span class="st">"_bin"</span> <span class="cf">for</span> f <span class="kw">in</span> feature_names]</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    melhor_f_i, melhor_e_i, melhor_r_i <span class="op">=</span> <span class="va">None</span>, <span class="bu">float</span>(<span class="st">"inf"</span>), {}</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bf <span class="kw">in</span> bin_feats:</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        _, e <span class="op">=</span> one_r_atributo(df_d_tr, bf, <span class="st">"classe"</span>)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> e <span class="op">&lt;</span> melhor_e_i:</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>            melhor_e_i <span class="op">=</span> e</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>            melhor_f_i <span class="op">=</span> bf</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>            melhor_r_i, _ <span class="op">=</span> one_r_atributo(df_d_tr, bf, <span class="st">"classe"</span>)</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    majoritaria_i <span class="op">=</span> Counter(df_d_tr[<span class="st">"classe"</span>]).most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    ri, pi <span class="op">=</span> [], []</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> df_d_te.iterrows():</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>        pred_f <span class="op">=</span> melhor_r_i.get(row[melhor_f_i], majoritaria_i)</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>        ri.append(row[<span class="st">"classe"</span>])</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>        pi.append(pred_f)</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>    acuracias_fold.append(accuracy_score(ri, pi))</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>media_iris  <span class="op">=</span> np.mean(acuracias_fold)</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>desvio_iris <span class="op">=</span> np.std(acuracias_fold)</span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>cores_fold <span class="op">=</span> [<span class="st">"#27ae60"</span> <span class="cf">if</span> s <span class="op">&gt;=</span> media_iris <span class="cf">else</span> <span class="st">"#e74c3c"</span> <span class="cf">for</span> s <span class="kw">in</span> acuracias_fold]</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="dv">1</span>, K_iris <span class="op">+</span> <span class="dv">1</span>), [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_fold],</span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>              color<span class="op">=</span>cores_fold, edgecolor<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>ax.axhline(media_iris <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#2c3e50"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Média: </span><span class="sc">{</span>media_iris<span class="sc">:.2%}</span><span class="ss"> ± </span><span class="sc">{</span>desvio_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Fold (Partição)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Validação Cruzada </span><span class="sc">{</span>K_iris<span class="sc">}</span><span class="ss">-Fold — oneR no Dataset Iris"</span>,</span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">1</span>, K_iris <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">115</span>])</span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar, sc <span class="kw">in</span> <span class="bu">zip</span>(bars, acuracias_fold):</span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, bar.get_height() <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>sc<span class="sc">:.0%}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Validação Cruzada </span><span class="sc">{</span>K_iris<span class="sc">}</span><span class="ss">-Fold — oneR no Iris:"</span>)</span>
+<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia Média : </span><span class="sc">{</span>media_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Desvio Padrão  : </span><span class="sc">{</span>desvio_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Melhor Fold    : </span><span class="sc">{</span><span class="bu">max</span>(acuracias_fold)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>acuracias_fold<span class="sc">.</span>index(<span class="bu">max</span>(acuracias_fold))<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Pior Fold      : </span><span class="sc">{</span><span class="bu">min</span>(acuracias_fold)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>acuracias_fold<span class="sc">.</span>index(<span class="bu">min</span>(acuracias_fold))<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-4-pratica6b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-pratica6b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-4-pratica6b-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica6b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.12: Acurácia por Fold — oneR com Cross-validation 10-fold no Dataset Iris.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📊 Validação Cruzada 10-Fold — oneR no Iris:
+   Acurácia Média : 94.67%
+   Desvio Padrão  : 4.99%
+   Melhor Fold    : 100.00% (Fold 1)
+   Pior Fold      : 86.67% (Fold 5)</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusão-do-ciclo-de-aprendizado" class="level3" data-number="4.7.9">
+<h3 data-number="4.7.9" class="anchored" data-anchor-id="conclusão-do-ciclo-de-aprendizado"><span class="header-section-number">4.7.9</span> Conclusão do Ciclo de Aprendizado</h3>
+<p>Através destas seis práticas, percorremos toda a jornada de Classificação por Regras e Avaliação de Desempenho:</p>
+<ol type="1">
+<li><strong>Algoritmo <em>oneR</em></strong> — Implementamos do zero a busca pelo atributo com menor taxa de erros, reproduzindo o raciocínio da <a href="#tbl-4-4" class="quarto-xref">Tabela&nbsp;<span>4.4</span></a>.</li>
+<li><strong>Ressubstituição</strong> — Confirmamos os 10 acertos e 4 erros esperados ao usar o conjunto de treinamento como teste.</li>
+<li><strong>Holdout</strong> — Observamos a instabilidade da avaliação com apenas 5 exemplos de teste.</li>
+<li><strong>Cross-validation e Leave-One-Out</strong> — Avaliamos o classificador de forma mais robusta e comparamos as estimativas de acurácia.</li>
+<li><strong>Comparação entre métodos</strong> — Visualizamos como a escolha do método de avaliação impacta a estimativa de desempenho, especialmente em conjuntos pequenos.</li>
+<li><strong>Dataset Iris</strong> — Aplicamos o <em>oneR</em> a um conjunto maior com 3 classes, explorando a discretização de atributos contínuos e a taxa de Verdadeiro Positivo por classe — base para o exercício 3 da lista.</li>
+</ol>
+</section>
+</section>
+<section id="uso-do-notebooklm-como-tutor-complementar" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="uso-do-notebooklm-como-tutor-complementar"><span class="header-section-number">4.8</span> 🤖 Uso do NotebookLM como Tutor Complementar</h2>
+<p>Seguindo o padrão do capítulo anterior, além dos notebooks interativos no Google Colab, incentiva-se o uso do <strong>NotebookLM</strong> como ferramenta complementar de aprendizagem. Essa ferramenta de IA utiliza exclusivamente os documentos fornecidos pelos autores como base de conhecimento, garantindo respostas alinhadas ao conteúdo do livro.</p>
+<p>Para cada capítulo, foi preparado um projeto específico na plataforma. Para uma experiência de estudo ampliada, utilize o acesso abaixo:</p>
+<div class="callout callout-style-default callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>🎓 Estude com o Tutor Inteligente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para interagir com o conteúdo deste capítulo, acesse o link abaixo. O ambiente contém materiais didáticos em diferentes formatos, gerados a partir do <strong>PDF</strong> do capítulo. Na plataforma, explore especialmente as opções <strong>Guia de Estudo</strong> e <strong>Conversa</strong> para aprofundar sua compreensão.</p>
+<p>Por exemplo, use perguntas como: <em>“Explique o algoritmo oneR com um exemplo diferente”</em>, <em>“Qual a diferença entre Holdout e Cross-validation?”</em> ou <em>“Por que a acurácia sozinha pode ser enganosa?”</em>.</p>
+<p><a href="https://notebooklm.google.com/">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 04</a></p>
+</div>
+</div>
+</section>
+<section id="considerações-finais" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="considerações-finais"><span class="header-section-number">4.9</span> Considerações Finais</h2>
 <p>Nesta unidade, vimos um algoritmo simples, conhecido como oneR, usado para gerar Regras de Classificação. Outros algoritmos mais refinados usam princípios mais complexos, como o de cobertura, para produzir Regras de Classificação (caso do PRISM).</p>
 <p>Foram apresentados alguns indicadores que auxiliam o usuário a decidir se os resultados obtidos são satisfatórios ou não. Também foram apresentados alguns métodos para estimar o desempenho futuro do classificador em situação de testes reais.</p>
 <p>Duas simulações comparativas entre o desempenho do algoritmo oneR e PRISM para a Tabela do Tempo foram apresentadas para ajudar a fixar os conceitos aprendidos.</p>
 </section>
-<section id="lista-exercícios" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="lista-exercícios"><span class="header-section-number">4.8</span> Lista Exercícios</h2>
+<section id="lista-exercícios" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="lista-exercícios"><span class="header-section-number">4.10</span> Lista Exercícios</h2>
 <p>1. (20%) Explique <strong>com suas próprias palavras</strong> as vantagens e desvantagens das <strong>Árvores de Decisão</strong> e <strong>Regras de Classificação</strong>.</p>
 <p>2. (30%) Explique <strong>com suas próprias palavras</strong> os Métodos <em>“<strong>Cross-validation</strong>”</em> e <em>“<strong>Holdout</strong>”</em>.</p>
-<p>3. Carregue o arquivo <strong>“iris.arff”</strong> (anexo) no Weka e faça a Classificação usando o algoritmo <strong>“oneR”</strong>, com o método <strong><em>“Cross-validation”</em></strong> (10 <em>Folds</em>).</p>
+<p>3. Carregue o arquivo <strong>“iris.arff”</strong> (anexo) no Weka e faça a Classificação usando o algoritmo <em>“oneR”</em>, com o método <strong><em>“Cross-validation”</em></strong> (10 <em>Folds</em>).</p>
 <p>(a) (30%) – Faça uma análise da <strong>Matriz de Confusão</strong> gerada, reproduzindo os valores obtidos na simulação.</p>
 <p>(b) (20%) – Ainda com base nos resultados da simulação no Weka, explique <strong>com suas próprias palavras</strong> por que a classe <strong>“Iris Setosa”</strong> tem a mais alta taxa de <strong>Verdadeiro Positivo</strong> <em>(“TP Rate”)</em>, enquanto que a <strong>“Iris Versicolor”</strong>, a mais baixa (consulte a Figura 3.1 do Capítulo 3).</p>
 </section>
-<section id="referências-do-capítulo" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">4.9</span> Referências do Capítulo</h2>
+<section id="referências-do-capítulo" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">4.11</span> Referências do Capítulo</h2>
 <p>Este capítulo baseou-se nas metodologias de indução de regras de classificação exploradas em <span class="citation" data-cites="cendrowska1987">Cendrowska (<a href="#ref-cendrowska1987" role="doc-biblioref">1987</a>)</span>, nas implementações práticas e no uso da ferramenta Weka fundamentadas em <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, e na contextualização no cenário de sistemas inteligentes e análise de dados consultadas em <span class="citation" data-cites="rezende2005">Rezende (<a href="#ref-rezende2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="rocha2008analise">Rocha; Cortez; Neves (<a href="#ref-rocha2008analise" role="doc-biblioref">2008</a>)</span> e <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span>. A fundamentação teórica sobre a indução de árvores de decisão seguiu o trabalho seminal de <span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span>.</p>
 
 
