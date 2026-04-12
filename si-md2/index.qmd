@@ -6,8 +6,7 @@ Bem-vindo ao material didático em construção! Este livro utiliza o **Quarto**
 
 ### 🚧 Status do Projeto {.unnumbered}
 
-- **Capítulos 1 e 2:** Em fase de revisão final e melhorias nos exemplos em Python.
-- **Capítulos 3, 4 e 5:** Falta incluir exemplos em Python.
+- **Capítulos 1 ao 5:** Em fase de revisão final e melhorias nos exemplos em Python.
 - **Capítulo 6:** Em construção.
 - **Foco:** Simplificar os laboratórios em Python para criar exemplos curtos, práticos e **extremamente motivacionais**.
 
