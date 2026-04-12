@@ -1118,6 +1118,8 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     def replace_direct(m):
         """@key isolado (fora de colchetes) -> Autor (ano)"""
         key = m.group(1)
+        if key.upper() in ["RELATION", "ATTRIBUTE", "DATA"]:
+            return "@" + key
         if CROSSREF_RE.match(key):
             return m.group(0)   # deixa para o passo 4 tratar
         return _fmt_key(key, "direct")
