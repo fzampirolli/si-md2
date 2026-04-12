@@ -1149,7 +1149,7 @@ Tabela&nbsp;4.13: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em
 <p>O conteúdo deste capítulo é sequencial. As funções e variáveis definidas aqui são requisitos para as práticas seguintes. Execute as células em ordem; caso contrário, aparecerão erros de “variável não definida” (<code>NameError</code>).</p>
 </div>
 </div>
-<div id="setup-ambiente-cap04" class="cell" data-execution_count="51">
+<div id="setup-ambiente-cap04" class="cell" data-execution_count="120">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Instalação de dependências (Silenciosa)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1211,7 +1211,7 @@ Scikit-learn: 1.6.1
 <p>Esta prática depende do <strong>bloco de importações</strong> acima.</p>
 </div>
 </div>
-<div class="cell" data-quarto-raw="false" data-execution_count="52">
+<div class="cell" data-quarto-raw="false" data-execution_count="121">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base de Dados: Tabela do Tempo</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>csv_raw <span class="op">=</span> <span class="st">"""Dia,Temperatura,Umidade,Vento,Partida</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Elevada,Alta,Falso,Não</span></span>
@@ -1291,13 +1291,13 @@ Regras geradas:
   SE Dia = Nublado  →  Partida = Sim
 </code></pre>
 </div>
-<div id="tbl-4-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="52" data-quarto-raw="false">
+<div id="tbl-4-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="121">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;4.14: Taxa de Erros por Atributo — Algoritmo oneR (Tabela do Tempo).
 </figcaption>
 <div aria-describedby="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="52">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="121">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1357,7 +1357,7 @@ Tabela&nbsp;4.14: Taxa de Erros por Atributo — Algoritmo oneR (Tabela do Tempo
 <p>Esta prática depende do <strong>dataset</strong> e das <strong>funções</strong> definidas na Prática 1.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica2" class="cell" data-quarto-raw="false" data-execution_count="53">
+<div id="cell-fig-4-pratica2" class="cell" data-quarto-raw="false" data-execution_count="122">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função reutilizável para plotar Matriz de Confusão</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotar_matriz(reais, predicoes, classes, titulo<span class="op">=</span><span class="st">"Matriz de Confusão"</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plota a Matriz de Confusão e imprime as métricas de avaliação."""</span></span>
@@ -1449,7 +1449,7 @@ Figura&nbsp;4.6: Matriz de Confusão — oneR com Método <em>‘Use Training Se
 <p>Esta prática depende do <strong>dataset</strong>, da função <code>plotar_matriz</code> e da implementação <code>one_r_atributo</code> das Práticas 1 e 2.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica3" class="cell" data-quarto-raw="false" data-execution_count="54">
+<div id="cell-fig-4-pratica3" class="cell" data-quarto-raw="false" data-execution_count="123">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Divisão Sequencial (Mimetizando o comportamento de split do Weka)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para coincidir com a matriz 2 1 / 2 0, usaremos os primeiros 5 para teste</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_teste  <span class="op">=</span> df_tempo.iloc[<span class="dv">0</span>:<span class="dv">5</span>]</span>
@@ -1510,13 +1510,13 @@ Figura&nbsp;4.7: Matriz de Confusão — oneR com Método <em>Holdout</em> 66%/3
 <p>A <strong>Validação Cruzada</strong> divide o conjunto em <em>k</em> partições (<em>folds</em>) mutuamente exclusivas. A cada iteração, um <em>fold</em> é usado para teste e os outros <em>(k−1)</em> para treino — garantindo que cada exemplo seja testado exatamente uma vez.</p>
 <p>O caso especial em que <em>k = N</em> (número de exemplos) é o <strong>Leave-One-Out (LOO)</strong>: a cada rodada, apenas um exemplo é reservado para teste.</p>
 <p>A figura <a href="#fig-4-pratica4a" class="quarto-xref">Figura&nbsp;<span>4.8</span></a> reproduz a Matriz de Confusão da <a href="#tbl-4-10" class="quarto-xref">Tabela&nbsp;<span>4.10</span></a> do texto.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Importante</span>Embaralhamento Aleatório
+<span class="screen-reader-only">Nota</span>Embaralhamento Aleatório
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1536,7 +1536,7 @@ Figura&nbsp;4.7: Matriz de Confusão — oneR com Método <em>Holdout</em> 66%/3
 <p>Esta prática depende do <strong>dataset</strong>, de <code>one_r_atributo</code> e de <code>plotar_matriz</code> das práticas anteriores.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica4a" class="cell" data-quarto-raw="false">
+<div id="cell-fig-4-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="124">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka embaralha os dados internamente com o gerador Java Random antes de</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dividir em folds. A função abaixo reproduz esse shuffle exato (Fisher-Yates</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># com LCG Java), permitindo replicar os resultados do Weka com weka_seed=0.</span></span>
@@ -1610,7 +1610,7 @@ Figura&nbsp;4.8: Matriz de Confusão — oneR com <em>Cross-validation</em> 10-f
 </div>
 </div>
 <p>A figura <a href="#fig-4-pratica4b" class="quarto-xref">Figura&nbsp;<span>4.9</span></a> reproduz as Matriz de Confusão da <a href="#tbl-4-12" class="quarto-xref">Tabela&nbsp;<span>4.12</span></a> do texto.</p>
-<div id="cell-fig-4-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="61">
+<div id="cell-fig-4-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="125">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leave-One-Out equivale a CV com k=N=14.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka usa weka_seed=42 nesta execução (semente diferente da usada no 10-fold),</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o que reproduz a matriz reportada no texto (tbl-4-12: 4 acertos, 29%).</span></span>
@@ -1666,7 +1666,7 @@ Figura&nbsp;4.9: Matriz de Confusão — oneR com <em>Leave-One-Out</em> (Tabela
 <p>Esta prática depende dos resultados das Práticas 2, 3 e 4.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica5" class="cell" data-quarto-raw="false" data-execution_count="57">
+<div id="cell-fig-4-pratica5" class="cell" data-quarto-raw="false" data-execution_count="126">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>metodos <span class="op">=</span> [<span class="st">"Ressubstituição"</span>, <span class="st">"Holdout</span><span class="ch">\n</span><span class="st">(66%/34%)"</span>,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="ss">f"Cross-validation</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold)"</span>, <span class="ss">f"Leave-One-Out</span><span class="ch">\n</span><span class="ss">(k=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1734,15 +1734,16 @@ Método                    |   Acurácia |   Corretos
 --------------------------------------------------
 Ressubstituição           |     71.43% |   10/14
 Holdout (66%/34%)         |     40.00% |    2/5
-CV 10-fold                |     35.71% |    5/14
-LOO (k=14)                |     50.00% |    7/14</code></pre>
+CV 10-fold                |     42.86% |    6/14
+LOO (k=14)                |     28.57% |    4/14</code></pre>
 </div>
 </div>
+<p>Os resultados obtidos nas quatro práticas do <em>oneR</em> ilustram bem como a escolha do método de avaliação impacta a estimativa de desempenho do classificador. A <strong>Ressubstituição</strong> produziu a acurácia mais alta (71%, 10/14 acertos), porém de forma artificialmente otimista, pois o modelo é avaliado nos mesmos dados em que foi treinado. O <strong>Holdout</strong> (66%/34%) retornou 40% de acurácia (2/5 acertos) — resultado instável e pouco confiável dado o tamanho reduzido do conjunto de teste (apenas 5 exemplos). A <strong>Validação Cruzada 10-fold</strong> ofereceu uma estimativa mais equilibrada de 43% (6/14 acertos), distribuindo melhor os exemplos entre treino e teste ao longo das iterações. Por fim, o <strong>Leave-One-Out</strong> (k=14) registrou a menor acurácia: 29% (4/14 acertos), evidenciando que, com conjuntos tão pequenos, retirar um único exemplo por vez pode prejudicar significativamente a qualidade do modelo treinado em cada <em>fold</em>. Em conjunto, esses resultados confirmam a advertência do texto: para bases de dados pequenas como a Tabela do Tempo, qualquer estimativa de desempenho deve ser interpretada com cautela.</p>
 </section>
 <section id="prática-6-oner-no-dataset-iris-com-validação-cruzada" class="level3" data-number="4.7.8">
 <h3 data-number="4.7.8" class="anchored" data-anchor-id="prática-6-oner-no-dataset-iris-com-validação-cruzada"><span class="header-section-number">4.7.8</span> 🔹 Prática 6 — <em>oneR</em> no Dataset Iris com Validação Cruzada</h3>
-<p>A Prática 1 demonstrou o <em>oneR</em> na pequena Tabela do Tempo. Agora aplicamos o mesmo algoritmo ao dataset <strong>Iris</strong> — com 150 exemplos e 3 classes — usando <strong>validação cruzada 10-fold</strong>, reproduzindo o exercício 3 da Lista de Exercícios deste capítulo em Python.</p>
-<p>A <a href="#fig-4-pratica6a" class="quarto-xref">Figura&nbsp;<span>4.11</span></a> apresenta a Matriz de Confusão do <em>oneR</em> no Iris, e a <a href="#fig-4-pratica6b" class="quarto-xref">Figura&nbsp;<span>4.12</span></a> compara a acurácia por fold, evidenciando a variabilidade entre partições e a taxa de Verdadeiro Positivo por classe — diretamente relacionada ao item (b) do exercício 3.</p>
+<p>As práticas anteriores demonstraram o <em>oneR</em> na pequena Tabela do Tempo. Agora aplicamos o mesmo algoritmo ao dataset <strong>Iris</strong> — com 150 exemplos e 3 classes — usando <strong>validação cruzada 10-fold</strong>, reproduzindo o exercício 3 da Lista de Exercícios deste capítulo em Python.</p>
+<p>A <a href="#fig-4-pratica6a" class="quarto-xref">Figura&nbsp;<span>4.11</span></a> apresenta a Matriz de Confusão do <em>oneR</em> no Iris, e a <a href="#fig-4-pratica6b" class="quarto-xref">Figura&nbsp;<span>4.12</span></a> compara a acurácia por <em>fold</em>, evidenciando a variabilidade entre partições e a taxa de Verdadeiro Positivo por classe — diretamente relacionada ao item (b) do Exercício 3.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1756,7 +1757,7 @@ LOO (k=14)                |     50.00% |    7/14</code></pre>
 <p>Esta prática é independente das anteriores (exceto o bloco de importações). Certifique-se de ter executado o <strong>Bloco de Configuração do Ambiente</strong>.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica6a" class="cell" data-quarto-raw="false" data-execution_count="58">
+<div id="cell-fig-4-pratica6a" class="cell" data-quarto-raw="false" data-execution_count="127">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Carregamento do Iris</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>X_iris <span class="op">=</span> iris.data</span>
@@ -1767,78 +1768,77 @@ LOO (k=14)                |     50.00% |    7/14</code></pre>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>df_iris <span class="op">=</span> pd.DataFrame(X_iris, columns<span class="op">=</span>feature_names)</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>df_iris[<span class="st">"classe"</span>] <span class="op">=</span> [nomes_classes_iris[t] <span class="cf">for</span> t <span class="kw">in</span> y_iris]</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. oneR no Iris: discretiza atributos contínuos em 3 bins iguais</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onek_iris_cv(df, features, classe, k<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">42</span>):</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""oneR com discretização automática para atributos contínuos."""</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    df_shuffled <span class="op">=</span> df.sample(frac<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span>random_state).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(df_shuffled)))</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    step <span class="op">=</span> <span class="bu">len</span>(df_shuffled) <span class="op">//</span> k</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    todos_reais, todos_pred <span class="op">=</span> [], []</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(k):</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>        idx_te <span class="op">=</span> indices[i<span class="op">*</span>step:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>step] <span class="cf">if</span> i <span class="op">&lt;</span> k<span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> indices[i<span class="op">*</span>step:]</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        idx_tr <span class="op">=</span> [j <span class="cf">for</span> j <span class="kw">in</span> indices <span class="cf">if</span> j <span class="kw">not</span> <span class="kw">in</span> idx_te]</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        df_te_i <span class="op">=</span> df_shuffled.iloc[idx_te]</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>        df_tr_i <span class="op">=</span> df_shuffled.iloc[idx_tr]</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Discretiza cada atributo com base nos bins do treino</span></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        df_d_tr <span class="op">=</span> df_tr_i.copy()</span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>        df_d_te <span class="op">=</span> df_te_i.copy()</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> feat <span class="kw">in</span> features:</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>            _, bins <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span><span class="dv">3</span>, retbins<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>            labels <span class="op">=</span> [<span class="st">"baixo"</span>, <span class="st">"medio"</span>, <span class="st">"alto"</span>]</span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>            df_d_tr[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span>bins,</span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>                                              labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>            df_d_te[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_te[feat], bins<span class="op">=</span>bins,</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>                                              labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>        bin_feats <span class="op">=</span> [f <span class="op">+</span> <span class="st">"_bin"</span> <span class="cf">for</span> f <span class="kw">in</span> features]</span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>        melhor_f, melhor_e, melhor_r <span class="op">=</span> <span class="va">None</span>, <span class="bu">float</span>(<span class="st">"inf"</span>), {}</span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> bf <span class="kw">in</span> bin_feats:</span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>            _, e <span class="op">=</span> one_r_atributo(df_d_tr, bf, classe)</span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> e <span class="op">&lt;</span> melhor_e:</span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>                melhor_e <span class="op">=</span> e</span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>                melhor_f <span class="op">=</span> bf</span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>                melhor_r, _ <span class="op">=</span> one_r_atributo(df_d_tr, bf, classe)</span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>        majoritaria <span class="op">=</span> Counter(df_d_tr[classe]).most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _, row <span class="kw">in</span> df_d_te.iterrows():</span>
-<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> melhor_r.get(row[melhor_f], majoritaria)</span>
-<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>            todos_reais.append(row[classe])</span>
-<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>            todos_pred.append(pred)</span>
-<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> todos_reais, todos_pred</span>
-<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>reais_iris, pred_iris <span class="op">=</span> onek_iris_cv(df_iris, feature_names, <span class="st">"classe"</span>, k<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Matriz de Confusão Multiclasse</span></span>
-<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>mat_iris <span class="op">=</span> confusion_matrix(reais_iris, pred_iris, labels<span class="op">=</span>nomes_classes_iris)</span>
-<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>ac_iris  <span class="op">=</span> accuracy_score(reais_iris, pred_iris)</span>
-<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
-<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(mat_iris, cmap<span class="op">=</span><span class="st">"Blues"</span>)</span>
-<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> mat_iris[i, j] <span class="op">&gt;</span> mat_iris.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
-<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(mat_iris[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
-<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor)</span>
-<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
-<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
-<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Prev.: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_classes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_classes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"oneR — Cross-validation 10-fold — Iris</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>ac_iris<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
-<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Acurácia Geral (CV 10-fold): </span><span class="sc">{</span>ac_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, cls <span class="kw">in</span> <span class="bu">enumerate</span>(nomes_classes_iris):</span>
-<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>    vp <span class="op">=</span> mat_iris[idx, idx]</span>
-<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>    total_real <span class="op">=</span> mat_iris[idx].<span class="bu">sum</span>()</span>
-<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>    taxa_vp <span class="op">=</span> vp <span class="op">/</span> total_real <span class="cf">if</span> total_real <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Taxa VP (</span><span class="sc">{</span>cls<span class="sc">:&gt;15}</span><span class="ss">): </span><span class="sc">{</span>taxa_vp<span class="sc">:.2%}</span><span class="ss">  (</span><span class="sc">{</span>vp<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total_real<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. oneR no Iris com CV usando o mesmo shuffle do Weka (Java Random)</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onek_iris_cv_weka(df, features, classe, k<span class="op">=</span><span class="dv">10</span>, weka_seed<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""oneR com discretização de atributos contínuos e shuffle idêntico ao Weka."""</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    perm <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(df), weka_seed)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    df_s <span class="op">=</span> df.iloc[perm].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    kf <span class="op">=</span> KFold(n_splits<span class="op">=</span>k, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    todos_reais, todos_pred <span class="op">=</span> [], []</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tr_idx, te_idx <span class="kw">in</span> kf.split(df_s):</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        df_tr_i <span class="op">=</span> df_s.iloc[tr_idx]</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>        df_te_i <span class="op">=</span> df_s.iloc[te_idx]</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Discretiza cada atributo com base nos bins do treino</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        df_d_tr <span class="op">=</span> df_tr_i.copy()</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        df_d_te <span class="op">=</span> df_te_i.copy()</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> feat <span class="kw">in</span> features:</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>            _, bins <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span><span class="dv">3</span>, retbins<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>            labels <span class="op">=</span> [<span class="st">"baixo"</span>, <span class="st">"medio"</span>, <span class="st">"alto"</span>]</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>            df_d_tr[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>                                             labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>            df_d_te[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_te[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>                                             labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>        bin_feats <span class="op">=</span> [f <span class="op">+</span> <span class="st">"_bin"</span> <span class="cf">for</span> f <span class="kw">in</span> features]</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>        melhor_f, melhor_e, melhor_r <span class="op">=</span> <span class="va">None</span>, <span class="bu">float</span>(<span class="st">"inf"</span>), {}</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> bf <span class="kw">in</span> bin_feats:</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>            _, e <span class="op">=</span> one_r_atributo(df_d_tr, bf, classe)</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> e <span class="op">&lt;</span> melhor_e:</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>                melhor_e <span class="op">=</span> e</span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>                melhor_f <span class="op">=</span> bf</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>                melhor_r, _ <span class="op">=</span> one_r_atributo(df_d_tr, bf, classe)</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>        majoritaria <span class="op">=</span> Counter(df_d_tr[classe]).most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _, row <span class="kw">in</span> df_d_te.iterrows():</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> melhor_r.get(row[melhor_f], majoritaria)</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>            todos_reais.append(row[classe])</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>            todos_pred.append(pred)</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> todos_reais, todos_pred</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>reais_iris, pred_iris <span class="op">=</span> onek_iris_cv_weka(df_iris, feature_names, <span class="st">"classe"</span>, k<span class="op">=</span><span class="dv">10</span>, weka_seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Matriz de Confusão Multiclasse</span></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>mat_iris <span class="op">=</span> confusion_matrix(reais_iris, pred_iris, labels<span class="op">=</span>nomes_classes_iris)</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>ac_iris  <span class="op">=</span> accuracy_score(reais_iris, pred_iris)</span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(mat_iris, cmap<span class="op">=</span><span class="st">"Blues"</span>)</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> mat_iris[i, j] <span class="op">&gt;</span> mat_iris.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(mat_iris[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor)</span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Prev.: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_classes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_classes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"oneR — Cross-validation 10-fold — Iris</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>ac_iris<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Acurácia Geral (CV 10-fold): </span><span class="sc">{</span>ac_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, cls <span class="kw">in</span> <span class="bu">enumerate</span>(nomes_classes_iris):</span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a>    vp <span class="op">=</span> mat_iris[idx, idx]</span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>    total_real <span class="op">=</span> mat_iris[idx].<span class="bu">sum</span>()</span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>    taxa_vp <span class="op">=</span> vp <span class="op">/</span> total_real <span class="cf">if</span> total_real <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Taxa VP (</span><span class="sc">{</span>cls<span class="sc">:&gt;15}</span><span class="ss">): </span><span class="sc">{</span>taxa_vp<span class="sc">:.2%}</span><span class="ss">  (</span><span class="sc">{</span>vp<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total_real<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-4-pratica6a" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1853,80 +1853,79 @@ Figura&nbsp;4.11: Matriz de Confusão — oneR com Cross-validation 10-fold no D
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-🌸 Acurácia Geral (CV 10-fold): 94.67%
+🌸 Acurácia Geral (CV 10-fold): 93.33%
 
    Taxa VP (         setosa): 100.00%  (50/50)
-   Taxa VP (     versicolor): 98.00%  (49/50)
+   Taxa VP (     versicolor): 94.00%  (47/50)
    Taxa VP (      virginica): 86.00%  (43/50)</code></pre>
 </div>
 </div>
-<div id="cell-fig-4-pratica6b" class="cell" data-quarto-raw="false" data-execution_count="59">
+<div id="cell-fig-4-pratica6b" class="cell" data-quarto-raw="false" data-execution_count="128">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>K_iris <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_iris_shuf <span class="op">=</span> df_iris.sample(frac<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">42</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>indices_iris <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(df_iris_shuf)))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>step_iris    <span class="op">=</span> <span class="bu">len</span>(df_iris_shuf) <span class="op">//</span> K_iris</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>perm_iris    <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(df_iris), <span class="dv">0</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_iris_shuf <span class="op">=</span> df_iris.iloc[perm_iris].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>kf_iris      <span class="op">=</span> KFold(n_splits<span class="op">=</span>K_iris, shuffle<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>acuracias_fold <span class="op">=</span> []</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(K_iris):</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    idx_te_i <span class="op">=</span> indices_iris[i<span class="op">*</span>step_iris:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>step_iris] <span class="cf">if</span> i <span class="op">&lt;</span> K_iris<span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> indices_iris[i<span class="op">*</span>step_iris:]</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    idx_tr_i <span class="op">=</span> [j <span class="cf">for</span> j <span class="kw">in</span> indices_iris <span class="cf">if</span> j <span class="kw">not</span> <span class="kw">in</span> idx_te_i]</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    df_te_f  <span class="op">=</span> df_iris_shuf.iloc[idx_te_i]</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    df_tr_f  <span class="op">=</span> df_iris_shuf.iloc[idx_tr_i]</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    df_d_tr <span class="op">=</span> df_tr_f.copy()</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    df_d_te <span class="op">=</span> df_te_f.copy()</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> feature_names:</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        _, bins <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span><span class="dv">3</span>, retbins<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> [<span class="st">"baixo"</span>, <span class="st">"medio"</span>, <span class="st">"alto"</span>]</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        df_d_tr[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span>bins,</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>                                          labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>        df_d_te[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_te[feat], bins<span class="op">=</span>bins,</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>                                          labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    bin_feats <span class="op">=</span> [f <span class="op">+</span> <span class="st">"_bin"</span> <span class="cf">for</span> f <span class="kw">in</span> feature_names]</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    melhor_f_i, melhor_e_i, melhor_r_i <span class="op">=</span> <span class="va">None</span>, <span class="bu">float</span>(<span class="st">"inf"</span>), {}</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bf <span class="kw">in</span> bin_feats:</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        _, e <span class="op">=</span> one_r_atributo(df_d_tr, bf, <span class="st">"classe"</span>)</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> e <span class="op">&lt;</span> melhor_e_i:</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>            melhor_e_i <span class="op">=</span> e</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>            melhor_f_i <span class="op">=</span> bf</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>            melhor_r_i, _ <span class="op">=</span> one_r_atributo(df_d_tr, bf, <span class="st">"classe"</span>)</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    majoritaria_i <span class="op">=</span> Counter(df_d_tr[<span class="st">"classe"</span>]).most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    ri, pi <span class="op">=</span> [], []</span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> df_d_te.iterrows():</span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>        pred_f <span class="op">=</span> melhor_r_i.get(row[melhor_f_i], majoritaria_i)</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>        ri.append(row[<span class="st">"classe"</span>])</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>        pi.append(pred_f)</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>    acuracias_fold.append(accuracy_score(ri, pi))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tr_idx, te_idx <span class="kw">in</span> kf_iris.split(df_iris_shuf):</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    df_tr_f <span class="op">=</span> df_iris_shuf.iloc[tr_idx]</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    df_te_f <span class="op">=</span> df_iris_shuf.iloc[te_idx]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    df_d_tr <span class="op">=</span> df_tr_f.copy()</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    df_d_te <span class="op">=</span> df_te_f.copy()</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feat <span class="kw">in</span> feature_names:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        _, bins <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span><span class="dv">3</span>, retbins<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> [<span class="st">"baixo"</span>, <span class="st">"medio"</span>, <span class="st">"alto"</span>]</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        df_d_tr[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_tr[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>                                         labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        df_d_te[feat <span class="op">+</span> <span class="st">"_bin"</span>] <span class="op">=</span> pd.cut(df_d_te[feat], bins<span class="op">=</span>bins,</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>                                         labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    bin_feats <span class="op">=</span> [f <span class="op">+</span> <span class="st">"_bin"</span> <span class="cf">for</span> f <span class="kw">in</span> feature_names]</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    melhor_f_i, melhor_e_i, melhor_r_i <span class="op">=</span> <span class="va">None</span>, <span class="bu">float</span>(<span class="st">"inf"</span>), {}</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bf <span class="kw">in</span> bin_feats:</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        _, e <span class="op">=</span> one_r_atributo(df_d_tr, bf, <span class="st">"classe"</span>)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> e <span class="op">&lt;</span> melhor_e_i:</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>            melhor_e_i <span class="op">=</span> e</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>            melhor_f_i <span class="op">=</span> bf</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>            melhor_r_i, _ <span class="op">=</span> one_r_atributo(df_d_tr, bf, <span class="st">"classe"</span>)</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    majoritaria_i <span class="op">=</span> Counter(df_d_tr[<span class="st">"classe"</span>]).most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    ri, pi <span class="op">=</span> [], []</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> df_d_te.iterrows():</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>        ri.append(row[<span class="st">"classe"</span>])</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>        pi.append(melhor_r_i.get(row[melhor_f_i], majoritaria_i))</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    acuracias_fold.append(accuracy_score(ri, pi))</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>media_iris  <span class="op">=</span> np.mean(acuracias_fold)</span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>desvio_iris <span class="op">=</span> np.std(acuracias_fold)</span>
 <span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>media_iris  <span class="op">=</span> np.mean(acuracias_fold)</span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>desvio_iris <span class="op">=</span> np.std(acuracias_fold)</span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>cores_fold <span class="op">=</span> [<span class="st">"#27ae60"</span> <span class="cf">if</span> s <span class="op">&gt;=</span> media_iris <span class="cf">else</span> <span class="st">"#e74c3c"</span> <span class="cf">for</span> s <span class="kw">in</span> acuracias_fold]</span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="dv">1</span>, K_iris <span class="op">+</span> <span class="dv">1</span>), [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_fold],</span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>              color<span class="op">=</span>cores_fold, edgecolor<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>ax.axhline(media_iris <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#2c3e50"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
-<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Média: </span><span class="sc">{</span>media_iris<span class="sc">:.2%}</span><span class="ss"> ± </span><span class="sc">{</span>desvio_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Fold (Partição)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Validação Cruzada </span><span class="sc">{</span>K_iris<span class="sc">}</span><span class="ss">-Fold — oneR no Dataset Iris"</span>,</span>
-<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">1</span>, K_iris <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">115</span>])</span>
-<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar, sc <span class="kw">in</span> <span class="bu">zip</span>(bars, acuracias_fold):</span>
-<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, bar.get_height() <span class="op">+</span> <span class="dv">1</span>,</span>
-<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>sc<span class="sc">:.0%}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Validação Cruzada </span><span class="sc">{</span>K_iris<span class="sc">}</span><span class="ss">-Fold — oneR no Iris:"</span>)</span>
-<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia Média : </span><span class="sc">{</span>media_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Desvio Padrão  : </span><span class="sc">{</span>desvio_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Melhor Fold    : </span><span class="sc">{</span><span class="bu">max</span>(acuracias_fold)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>acuracias_fold<span class="sc">.</span>index(<span class="bu">max</span>(acuracias_fold))<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Pior Fold      : </span><span class="sc">{</span><span class="bu">min</span>(acuracias_fold)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>acuracias_fold<span class="sc">.</span>index(<span class="bu">min</span>(acuracias_fold))<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>cores_fold <span class="op">=</span> [<span class="st">"#27ae60"</span> <span class="cf">if</span> s <span class="op">&gt;=</span> media_iris <span class="cf">else</span> <span class="st">"#e74c3c"</span> <span class="cf">for</span> s <span class="kw">in</span> acuracias_fold]</span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="dv">1</span>, K_iris <span class="op">+</span> <span class="dv">1</span>), [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> acuracias_fold],</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>              color<span class="op">=</span>cores_fold, edgecolor<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>ax.axhline(media_iris <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#2c3e50"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Média: </span><span class="sc">{</span>media_iris<span class="sc">:.2%}</span><span class="ss"> ± </span><span class="sc">{</span>desvio_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Fold (Partição)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Validação Cruzada </span><span class="sc">{</span>K_iris<span class="sc">}</span><span class="ss">-Fold — oneR no Dataset Iris"</span>,</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">1</span>, K_iris <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">115</span>])</span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar, sc <span class="kw">in</span> <span class="bu">zip</span>(bars, acuracias_fold):</span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, bar.get_height() <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>sc<span class="sc">:.0%}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>a_f <span class="op">=</span> acuracias_fold</span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Validação Cruzada </span><span class="sc">{</span>K_iris<span class="sc">}</span><span class="ss">-Fold — oneR no Iris:"</span>)</span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia Média : </span><span class="sc">{</span>media_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Desvio Padrão  : </span><span class="sc">{</span>desvio_iris<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Melhor Fold    : </span><span class="sc">{</span><span class="bu">max</span>(a_f)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>a_f<span class="sc">.</span>index(<span class="bu">max</span>(a_f))<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Pior Fold      : </span><span class="sc">{</span><span class="bu">min</span>(a_f)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>a_f<span class="sc">.</span>index(<span class="bu">min</span>(a_f))<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-4-pratica6b" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1934,7 +1933,7 @@ Figura&nbsp;4.11: Matriz de Confusão — oneR com Cross-validation 10-fold no D
 <img src="cap04_files/figure-html/fig-4-pratica6b-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-pratica6b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.12: Acurácia por Fold — oneR com Cross-validation 10-fold no Dataset Iris.
+Figura&nbsp;4.12: Acurácia por Fold — <em>oneR</em> com Cross-validation 10-fold no Dataset Iris.
 </figcaption>
 </figure>
 </div>
@@ -1942,10 +1941,10 @@ Figura&nbsp;4.12: Acurácia por Fold — oneR com Cross-validation 10-fold no Da
 <div class="cell-output cell-output-stdout">
 <pre><code>
 📊 Validação Cruzada 10-Fold — oneR no Iris:
-   Acurácia Média : 94.67%
-   Desvio Padrão  : 4.99%
-   Melhor Fold    : 100.00% (Fold 1)
-   Pior Fold      : 86.67% (Fold 5)</code></pre>
+   Acurácia Média : 93.33%
+   Desvio Padrão  : 7.30%
+   Melhor Fold    : 100.00% (Fold 3)
+   Pior Fold      : 80.00% (Fold 2)</code></pre>
 </div>
 </div>
 </section>
@@ -1978,7 +1977,7 @@ Figura&nbsp;4.12: Acurácia por Fold — oneR com Cross-validation 10-fold no Da
 <div class="callout-body-container callout-body">
 <p>Para interagir com o conteúdo deste capítulo, acesse o link abaixo. O ambiente contém materiais didáticos em diferentes formatos, gerados a partir do <strong>PDF</strong> do capítulo. Na plataforma, explore especialmente as opções <strong>Guia de Estudo</strong> e <strong>Conversa</strong> para aprofundar sua compreensão.</p>
 <p>Por exemplo, use perguntas como: <em>“Explique o algoritmo oneR com um exemplo diferente”</em>, <em>“Qual a diferença entre Holdout e Cross-validation?”</em> ou <em>“Por que a acurácia sozinha pode ser enganosa?”</em>.</p>
-<p><a href="https://notebooklm.google.com/">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 04</a></p>
+<p><a href="https://notebooklm.google.com/notebook/25b49ad2-a2ad-4c04-b03c-2efeff1d2294">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 04</a></p>
 </div>
 </div>
 </section>
@@ -1993,8 +1992,27 @@ Figura&nbsp;4.12: Acurácia por Fold — oneR com Cross-validation 10-fold no Da
 <p>1. (20%) Explique <strong>com suas próprias palavras</strong> as vantagens e desvantagens das <strong>Árvores de Decisão</strong> e <strong>Regras de Classificação</strong>.</p>
 <p>2. (30%) Explique <strong>com suas próprias palavras</strong> os Métodos <em>“<strong>Cross-validation</strong>”</em> e <em>“<strong>Holdout</strong>”</em>.</p>
 <p>3. Carregue o arquivo <strong>“iris.arff”</strong> (anexo) no Weka e faça a Classificação usando o algoritmo <em>“oneR”</em>, com o método <strong><em>“Cross-validation”</em></strong> (10 <em>Folds</em>).</p>
-<p>(a) (30%) – Faça uma análise da <strong>Matriz de Confusão</strong> gerada, reproduzindo os valores obtidos na simulação.</p>
-<p>(b) (20%) – Ainda com base nos resultados da simulação no Weka, explique <strong>com suas próprias palavras</strong> por que a classe <strong>“Iris Setosa”</strong> tem a mais alta taxa de <strong>Verdadeiro Positivo</strong> <em>(“TP Rate”)</em>, enquanto que a <strong>“Iris Versicolor”</strong>, a mais baixa (consulte a Figura 3.1 do Capítulo 3).</p>
+<ul>
+<li><p>(a) (30%) – Faça uma análise da <strong>Matriz de Confusão</strong> gerada, reproduzindo os valores obtidos na simulação.</p></li>
+<li><p>(b) (20%) – Ainda com base nos resultados da simulação no Weka, explique <strong>com suas próprias palavras</strong> por que a classe <strong>“Iris Setosa”</strong> tem a mais alta taxa de <strong>Verdadeiro Positivo</strong> <em>(“TP Rate”)</em>, enquanto que a <strong>“Iris Versicolor”</strong>, a mais baixa (consulte a Figura 3.1 do Capítulo 3).</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>📂 Acesso ao Dataset Iris
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O arquivo <code>iris.arff</code> utilizado neste capítulo pode ser encontrado de duas formas:</p>
+<ol type="1">
+<li><strong>Localmente:</strong> Na pasta <code>/cap04</code> do repositório deste livro.</li>
+<li><strong>Online:</strong> <a href="https://github.com/fzampirolli/si-md2/blob/main/si-md2/cap04/iris.arff">Clique aqui para visualizar ou baixar via GitHub</a>.</li>
+</ol>
+</div>
+</div>
 </section>
 <section id="referências-do-capítulo" class="level2" data-number="4.11">
 <h2 data-number="4.11" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">4.11</span> Referências do Capítulo</h2>

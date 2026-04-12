@@ -316,7 +316,7 @@ window.Quarto = {
 <div id="fig-2-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+<img src="images/fig-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Correlatas.
@@ -325,7 +325,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="68" data-quarto-raw="true">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -365,14 +365,14 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </figure>
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="69">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="69" data-quarto-raw="true">
+<div class="cell" data-quarto-raw="true" data-execution_count="2">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </figcaption>
 <div aria-describedby="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="69">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 9%">
@@ -455,14 +455,14 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
-<div class="cell" data-quarto-raw="true" data-execution_count="70">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="70" data-quarto-raw="true">
+<div class="cell" data-quarto-raw="true" data-execution_count="3">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
 </figcaption>
 <div aria-describedby="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="70">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1316,7 +1316,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="71" data-quarto-raw="true">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1388,7 +1388,7 @@ Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.csv</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="72">
+<div id="cell-download-csv-only" class="cell" data-quarto-raw="true" data-execution_count="5">
 <div id="download-csv-only" class="cell-output cell-output-display">
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -1477,7 +1477,7 @@ Figura&nbsp;2.6: Arquivo ARFF (Transacoes_1.arff), com Itens Ausentes Representa
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_1.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="73">
+<div id="cell-download-arff-only" class="cell" data-quarto-raw="true" data-execution_count="6">
 <div id="download-arff-only" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMQoKQGF0dHJpYnV0ZSBBIHt5LCBufQpAYXR0cmlidXRlIEIge3ksIG59CkBhdHRyaWJ1dGUgQyB7eSwgbn0KQGF0dHJpYnV0ZSBEIHt5LCBufQpAYXR0cmlidXRlIEUge3ksIG59CkBhdHRyaWJ1dGUgRiB7eSwgbn0KQGF0dHJpYnV0ZSBHIHt5LCBufQoKQGRhdGEKeSx5LG4seSxuLG4sbgpuLG4sbixuLG4seSx5CnkseSx5LHksbixuLG4KeSxuLG4sbix5LHkseQp5LHkseSx5LG4sbixuCg==" download="Transacoes_1.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1550,7 +1550,7 @@ Figura&nbsp;2.11: Algumas Regras de Associação Geradas com o Arquivo “Transa
 <div id="fig-2-12" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-2-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/fig-2-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+<img src="images/fig-2-12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representados por “?”.
@@ -1560,7 +1560,7 @@ Figura&nbsp;2.12: Arquivo “Transacoes_2.arff” com Itens Ausentes Representad
 <blockquote class="blockquote">
 <p><strong>Instrução:</strong> Utilize o botão abaixo para baixar o arquivo <code>Transacoes_2.arff</code> e utilizá-lo no tutorial do Weka.</p>
 </blockquote>
-<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="74">
+<div id="cell-download-arff-v2" class="cell" data-quarto-raw="true" data-execution_count="7">
 <div id="download-arff-v2" class="cell-output cell-output-display">
 <div style="margin-top:20px; margin-bottom:20px;">
         <a href="data:application/octet-stream;base64,QHJlbGF0aW9uIFRyYW5zYWNvZXNfMgoKQGF0dHJpYnV0ZSBBIHt5fQpAYXR0cmlidXRlIEIge3l9CkBhdHRyaWJ1dGUgQyB7eX0KQGF0dHJpYnV0ZSBEIHt5fQpAYXR0cmlidXRlIEUge3l9CkBhdHRyaWJ1dGUgRiB7eX0KQGF0dHJpYnV0ZSBHIHt5fQoKQGRhdGEKeSx5LD8seSw/LD8sPwo/LD8sPyw/LD8seSx5CnkseSx5LHksPyw/LD8KeSw/LD8sPyx5LHkseQp5LHkseSx5LD8sPyw/Cg==" download="Transacoes_2.arff" style="background-color:#1b5e20; color:white; padding:10px 18px; text-decoration:none; 
@@ -1614,7 +1614,7 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <p>Certifique-se de executar as células de forma sequencial; caso contrário, as células posteriores apresentarão erros de “variável não definida” (<code>NameError</code>).</p>
 </div>
 </div>
-<div id="cell-61" class="cell" data-execution_count="75">
+<div id="cell-62" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BLOCO DE IMPORTAÇÕES</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
@@ -1642,11 +1642,11 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib: </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Python    : 3.12.3
-Pandas    : 3.0.1
-NumPy     : 2.4.2
-Networkx  : 3.6.1
-Matplotlib: 3.10.8
+<pre><code>Python    : 3.9.7
+Pandas    : 2.3.3
+NumPy     : 2.0.2
+Networkx  : 3.2.1
+Matplotlib: 3.9.4
 ✅ Ambiente pronto!</code></pre>
 </div>
 </div>
@@ -1667,7 +1667,7 @@ Matplotlib: 3.10.8
 <li><strong>Suporte:</strong> Mede a <strong>cobertura</strong> (popularidade). Indica quão representativo aquele item é na base de dados.</li>
 </ul>
 <p>O resultado da análise de frequência e a aplicação do critério de poda para itens individuais podem ser observados na <a href="#tbl-2-pratica1" class="quarto-xref">Tabela&nbsp;<span>2.14</span></a>, gerada pelo código a seguir, que detalha o suporte de cada item e seu status de aceitação.</p>
-<div class="cell" data-quarto-raw="false" data-execution_count="76">
+<div class="cell" data-quarto-raw="false" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dados e Representação</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>transacoes_raw <span class="op">=</span> [</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"Arroz"</span>, <span class="st">"Feijão"</span>, <span class="st">"Óleo"</span>}, </span>
@@ -1719,13 +1719,13 @@ Matplotlib: 3.10.8
 <pre><code>Configuração: Suporte Mínimo = 40%
 </code></pre>
 </div>
-<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="76" data-quarto-raw="false">
+<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="9" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
 </figcaption>
 <div aria-describedby="tbl-2-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="76">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1803,7 +1803,7 @@ Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
 <p>Esta prática é incremental e depende da execução da <strong>Prática 1</strong> (função <code>calcular_suporte</code>, lista <code>l1_frequentes</code> e <code>SUP_MIN</code>) e das bibliotecas já importadas.</p>
 </div>
 </div>
-<div class="cell" data-quarto-raw="false" data-execution_count="77">
+<div class="cell" data-quarto-raw="false" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Função de Confiança</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_confianca(antecedente, consequente, transacoes):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    sup_total <span class="op">=</span> calcular_suporte(<span class="bu">frozenset</span>(antecedente) <span class="op">|</span> <span class="bu">frozenset</span>(consequente), transacoes)</span>
@@ -1859,7 +1859,7 @@ Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
 <pre><code>Configuração: Suporte Mínimo = 40%, Confiança Mínima = 90%
 </code></pre>
 </div>
-<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="77" data-quarto-raw="false">
+<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="10" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro de Confiança.
@@ -1901,13 +1901,13 @@ Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro d
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Óleo → Feijão</td>
+<td style="text-align: center;">Feijão → Óleo</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Feijão → Óleo</td>
+<td style="text-align: center;">Óleo → Feijão</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">ACEITO</td>
@@ -1985,7 +1985,7 @@ Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro d
 <p>Esta prática depende das funções e das listas de itens frequentes geradas nas <strong>Práticas 1 e 2</strong> e das bibliotecas já importadas.</p>
 </div>
 </div>
-<div class="cell" data-quarto-raw="false" data-execution_count="78">
+<div class="cell" data-quarto-raw="false" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Configuração de Candidatos</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># trios_candidatos = [frozenset(c) for c in combinations(l1_frequentes, 3)]</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>trios_candidatos <span class="op">=</span> []</span>
@@ -2051,17 +2051,17 @@ Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro d
 <div class="cell-output cell-output-stdout">
 <pre><code>Trios de candidatos gerados via L1: 20
 Trios de candidatos gerados via L2 (com poda): 4
-['Arroz, Feijão, Óleo', 'Arroz, Batata, Feijão', 'Batata, Feijão, Óleo', 'Arroz, Batata, Óleo']
+['Arroz, Feijão, Óleo', 'Batata, Feijão, Óleo', 'Arroz, Batata, Óleo', 'Arroz, Batata, Feijão']
 Configuração: SUP_MIN 40% | CONF_MIN: 90%
 </code></pre>
 </div>
-<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="78" data-quarto-raw="false">
+<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="11" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos Antecedentes.
 </figcaption>
 <div aria-describedby="tbl-2-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="78">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="11">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 27%">
@@ -2102,20 +2102,6 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Arroz, Batata, Feijão</td>
-<td style="text-align: center;">{Arroz, Batata} → {Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Arroz, Batata, Feijão</td>
-<td style="text-align: center;">{Batata, Feijão} → {Arroz}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
 <td style="text-align: center;">Batata, Feijão, Óleo</td>
 <td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
 <td style="text-align: center;">40%</td>
@@ -2145,21 +2131,35 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 </tr>
 <tr class="even">
 <td style="text-align: center;">Arroz, Batata, Feijão</td>
-<td style="text-align: center;">{Arroz, Feijão} → {Batata}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Feijão}</td>
 <td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">PODADO</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">Arroz, Batata, Feijão</td>
+<td style="text-align: center;">{Batata, Feijão} → {Arroz}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
 <td style="text-align: center;">Batata, Feijão, Óleo</td>
 <td style="text-align: center;">{Feijão, Óleo} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;">Arroz, Batata, Óleo</td>
 <td style="text-align: center;">{Arroz, Óleo} → {Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Arroz, Batata, Feijão</td>
+<td style="text-align: center;">{Arroz, Feijão} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">PODADO</td>
@@ -2172,7 +2172,7 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 </div>
 </div>
 <p>Para facilitar a compreensão das interdependências entre esses trios, as regras aceitas são mapeadas visualmente no grafo da <a href="#fig-2-pratica3" class="quarto-xref">Figura&nbsp;<span>2.14</span></a>, gerado com a execução do código a seguir.</p>
-<div id="cell-fig-2-pratica3" class="cell" data-quarto-raw="true" data-execution_count="79">
+<div id="cell-fig-2-pratica3" class="cell" data-quarto-raw="true" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Visualização do Grafo (Apenas para as Regras ACEITAS)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> G_L3.edges():</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Nenhuma regra L3 atingiu os critérios para exibição no grafo."</span>)</span>
@@ -2254,7 +2254,7 @@ Figura&nbsp;2.14: Representação visual (Grafo) das regras de associação de n
 <p>Esta prática é dependente das funções <code>calcular_suporte</code>, <code>calcular_confianca</code> e da variável <code>transacoes</code> definidas nas <strong>Práticas 1 e 2</strong>, além das bibliotecas importadas na configuração do ambiente. Certifique-se de ter executado as células anteriores.</p>
 </div>
 </div>
-<div class="cell" data-quarto-raw="false" data-execution_count="80">
+<div class="cell" data-quarto-raw="false" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RegraAssociacao:</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    antecedente: <span class="bu">frozenset</span></span>
@@ -2355,19 +2355,20 @@ Figura&nbsp;2.14: Representação visual (Grafo) das regras de associação de n
 <span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a>    df_final[<span class="st">'Lift_Num'</span>] <span class="op">=</span> df_final[<span class="st">'Lift'</span>].astype(<span class="bu">float</span>)</span>
 <span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a>    df_final <span class="op">=</span> df_final.sort_values(by<span class="op">=</span><span class="st">'Lift_Num'</span>, ascending<span class="op">=</span><span class="va">False</span>).drop(columns<span class="op">=</span>[<span class="st">'Lift_Num'</span>])</span>
 <span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RELATÓRIO APRIORI COMPLETO (N=</span><span class="sc">{</span><span class="bu">len</span>(transacoes)<span class="sc">}</span><span class="ss">, SUP_MIN=</span><span class="sc">{</span>SUP_MIN<span class="sc">}</span><span class="ss">, CONF_MIN=</span><span class="sc">{</span>CONF_MIN<span class="sc">}</span><span class="ss">)</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a>Markdown(df_final.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_final.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RELATÓRIO APRIORI COMPLETO (N=</span><span class="sc">{</span><span class="bu">len</span>(transacoes)<span class="sc">}</span><span class="ss">, SUP_MIN=</span><span class="sc">{</span>SUP_MIN<span class="sc">}</span><span class="ss">, </span><span class="op">\</span></span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="ss">      CONF_MIN=</span><span class="sc">{</span>CONF_MIN<span class="sc">}</span><span class="ss">)</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a>Markdown(df_final.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_final.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>RELATÓRIO APRIORI COMPLETO (N=5, SUP_MIN=0.4, CONF_MIN=0.9)
+<pre><code>RELATÓRIO APRIORI COMPLETO (N=5, SUP_MIN=0.4,       CONF_MIN=0.9)
 </code></pre>
 </div>
-<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="80" data-quarto-raw="false">
+<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="18" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Apriori Completo).
 </figcaption>
 <div aria-describedby="tbl-2-pratica4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="80">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 44%">
@@ -2387,57 +2388,57 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">{Queijo} → {Vinho}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2.5</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
 <td style="text-align: center;">{Vinho} → {Queijo}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">2.5</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata} → {Óleo}</td>
+<tr class="even">
+<td style="text-align: center;">{Queijo} → {Vinho}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">2.5</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">{Óleo} → {Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz, Óleo} → {Feijão}</td>
+<td style="text-align: center;">{Feijão} → {Óleo}</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Feijão} → {Arroz, Óleo}</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
 <td style="text-align: center;">{Óleo} → {Feijão}</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">{Feijão} → {Óleo}</td>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Feijão} → {Óleo}</td>
 <td style="text-align: center;">60%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Arroz, Óleo} → {Feijão}</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Óleo} → {Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata} → {Óleo}</td>
+<td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
@@ -2457,7 +2458,7 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz, Feijão} → {Óleo}</td>
+<td style="text-align: center;">{Feijão} → {Arroz, Óleo}</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -2471,6 +2472,20 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">{Batata} → {Feijão, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão, Óleo} → {Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">{Feijão} → {Batata, Óleo}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
@@ -2478,105 +2493,21 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata, Óleo} → {Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
 <td style="text-align: center;">{Óleo} → {Batata, Feijão}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">{Batata} → {Feijão, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Feijão}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Arroz, Óleo} → {Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata} → {Arroz, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Óleo} → {Arroz, Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Batata, Óleo} → {Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz, Feijão, Óleo} → {Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Batata} → {Feijão, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Feijão} → {Arroz, Batata, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Feijão, Óleo} → {Arroz, Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata, Óleo} → {Arroz, Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata, Feijão} → {Arroz, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz, Óleo} → {Batata, Feijão}</td>
+<td style="text-align: center;">{Arroz, Feijão} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">1.67</td>
@@ -2597,25 +2528,95 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão, Óleo} → {Batata}</td>
+<td style="text-align: center;">{Arroz, Feijão, Óleo} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
+<td style="text-align: center;">{Arroz, Batata, Feijão} → {Óleo}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz, Batata} → {Feijão}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Feijão, Óleo}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Óleo} → {Arroz, Batata, Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Feijão} → {Batata, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão, Óleo} → {Arroz, Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Óleo} → {Batata, Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata, Feijão} → {Arroz, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Óleo} → {Arroz, Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata} → {Arroz, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata, Óleo} → {Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Óleo} → {Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">{Batata} → {Arroz, Feijão, Óleo}</td>
@@ -2625,46 +2626,46 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Óleo} → {Arroz, Batata, Feijão}</td>
+<td style="text-align: center;">{Feijão} → {Arroz, Batata, Óleo}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Arroz, Feijão} → {Batata}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
 <td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
+<td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz, Batata, Feijão} → {Óleo}</td>
+<td style="text-align: center;">{Arroz, Batata, Óleo} → {Feijão}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Arroz, Feijão} → {Batata, Óleo}</td>
+<td style="text-align: center;">{Batata, Óleo} → {Arroz, Feijão}</td>
 <td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Óleo} → {Arroz}</td>
-<td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz} → {Feijão, Óleo}</td>
+<tr class="odd">
+<td style="text-align: center;">{Arroz} → {Feijão}</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">0.75</td>
 <td style="text-align: center;">1.25</td>
 <td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão} → {Arroz}</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">{Batata} → {Arroz}</td>
@@ -2681,21 +2682,7 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão} → {Arroz}</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.25</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz} → {Feijão}</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">0.75</td>
-<td style="text-align: center;">1.25</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Feijão, Óleo} → {Arroz}</td>
+<td style="text-align: center;">{Óleo} → {Arroz}</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>
@@ -2709,15 +2696,15 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz} → {Batata, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">{Arroz} → {Feijão, Óleo}</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">0.75</td>
 <td style="text-align: center;">1.25</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata, Óleo} → {Arroz}</td>
-<td style="text-align: center;">40%</td>
+<td style="text-align: center;">{Feijão, Óleo} → {Arroz}</td>
+<td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>
 <td style="text-align: center;">ACEITO</td>
@@ -2737,11 +2724,25 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">{Arroz} → {Batata, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
 <td style="text-align: center;">{Arroz} → {Batata, Feijão, Óleo}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.5</td>
 <td style="text-align: center;">1.25</td>
 <td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Batata, Óleo} → {Arroz}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">{Batata, Feijão, Óleo} → {Arroz}</td>
@@ -2758,7 +2759,7 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 </div>
 </div>
 <p>Por fim, a <a href="#fig-2-pratica4" class="quarto-xref">Figura&nbsp;<span>2.15</span></a> apresenta o grafo de influência final, onde a graduação de cores destaca o valor estratégico (<span class="math inline">\(\mathbf{Lift}\)</span>) de cada associação descoberta.</p>
-<div id="cell-fig-2-pratica4" class="cell" data-quarto-raw="true" data-execution_count="81">
+<div id="cell-fig-2-pratica4" class="cell" data-quarto-raw="true" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Grafo de Lift (Apenas regras ACEITAS) ---</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>G_final <span class="op">=</span> nx.DiGraph()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> regras_finais:</span>
@@ -2804,7 +2805,7 @@ Figura&nbsp;2.15: Grafo de Influência: A intensidade da cor (Reds) indica o val
 <h3 data-number="2.7.7" class="anchored" data-anchor-id="prática-5-biblioteca-mlxtend"><span class="header-section-number">2.7.7</span> 🔹 Prática 5 — Biblioteca MLxtend</h3>
 <p>A biblioteca <strong>MLxtend</strong> contém implementações otimizadas do <strong>Apriori</strong> e também do <strong>FP-Growth</strong> (que é ainda mais rápido).</p>
 <p><strong>Instalação:</strong></p>
-<div id="cell-80" class="cell" data-execution_count="82">
+<div id="cell-81" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install mlxtend <span class="op">-</span>q <span class="op">--</span>no<span class="op">-</span>cache<span class="op">-</span><span class="bu">dir</span> <span class="dv">2</span><span class="op">&gt;/</span>dev<span class="op">/</span>null</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="implementação-direta" class="level4" data-number="2.7.7.1">
@@ -2814,7 +2815,7 @@ Figura&nbsp;2.15: Grafo de Influência: A intensidade da cor (Reds) indica o val
 <li><p><strong><code>apriori()</code></strong>: Identifica os <strong>itemsets frequentes</strong> (combinações de produtos). O parâmetro <code>min_support=0.4</code> define que apenas combinações que aparecem em pelo menos <strong>40%</strong> das transações serão consideradas. O <code>use_colnames=True</code> é fundamental para que o resultado exiba os nomes dos produtos (ex: “Arroz”) em vez de índices numéricos, facilitando a interpretação.</p></li>
 <li><p><strong><code>association_rules()</code></strong>: Gera as <strong>regras de associação</strong> (Se A, então B) a partir dos itemsets encontrados anteriormente. O uso de <code>metric="confidence"</code> com <code>min_threshold=0.9</code> atua como um filtro de qualidade rigoroso: apenas regras com <strong>90% de precisão</strong> (confiança) ou mais são mantidas no relatório final, garantindo que a associação seja estatisticamente confiável.</p></li>
 </ul>
-<div class="cell" data-quarto-raw="false" data-execution_count="83">
+<div class="cell" data-quarto-raw="false" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlxtend.frequent_patterns <span class="im">import</span> apriori, association_rules</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlxtend.preprocessing <span class="im">import</span> TransactionEncoder</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2859,13 +2860,13 @@ Figura&nbsp;2.15: Grafo de Influência: A intensidade da cor (Reds) indica o val
 <span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Exibição do Relatório</span></span>
 <span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>Markdown(df_final.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_final.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="83" data-quarto-raw="false">
+<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="16" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 </figcaption>
 <div aria-describedby="tbl-2-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="83">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 56%">
@@ -2895,13 +2896,13 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">2.5</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Óleo} → {Feijão}</td>
+<td style="text-align: center;">{Feijão} → {Óleo}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Feijão} → {Óleo}</td>
+<td style="text-align: center;">{Óleo} → {Feijão}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -2919,13 +2920,13 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata} → {Arroz, Feijão}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
+<td style="text-align: center;">{Batata} → {Feijão, Arroz}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -2937,85 +2938,85 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">{Feijão, Batata} → {Óleo}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Óleo} → {Feijão, Arroz}</td>
+<td style="text-align: center;">60.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão, Arroz} → {Óleo}</td>
+<td style="text-align: center;">60.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Óleo, Arroz} → {Feijão}</td>
+<td style="text-align: center;">60.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata} → {Óleo, Arroz}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Batata} → {Feijão, Óleo}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Óleo, Batata, Arroz} → {Feijão}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Feijão, Arroz, Batata} → {Óleo}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Óleo, Batata} → {Feijão, Arroz}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Batata} → {Feijão, Óleo, Arroz}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão} → {Óleo, Arroz}</td>
+<td style="text-align: center;">60.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">{Óleo, Batata} → {Feijão}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">{Óleo} → {Arroz, Feijão}</td>
-<td style="text-align: center;">60.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
 <tr class="even">
-<td style="text-align: center;">{Arroz, Feijão} → {Óleo}</td>
-<td style="text-align: center;">60.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Óleo} → {Feijão}</td>
-<td style="text-align: center;">60.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata} → {Arroz, Óleo}</td>
+<td style="text-align: center;">{Batata} → {Feijão, Óleo}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata, Feijão} → {Arroz, Óleo}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz, Óleo, Batata} → {Feijão}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Batata, Feijão} → {Óleo}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz, Batata} → {Óleo, Feijão}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata} → {Arroz, Óleo, Feijão}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Feijão} → {Arroz, Óleo}</td>
-<td style="text-align: center;">60.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata} → {Óleo, Feijão}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Óleo, Batata} → {Arroz, Feijão}</td>
+<td style="text-align: center;">{Feijão, Batata} → {Óleo, Arroz}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -3045,19 +3046,19 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">1.25</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata, Feijão} → {Arroz}</td>
+<td style="text-align: center;">{Feijão, Batata} → {Arroz}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Óleo, Feijão} → {Arroz}</td>
+<td style="text-align: center;">{Feijão, Óleo} → {Arroz}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Óleo, Batata, Feijão} → {Arroz}</td>
+<td style="text-align: center;">{Feijão, Óleo, Batata} → {Arroz}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>
