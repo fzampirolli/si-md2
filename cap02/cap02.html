@@ -327,7 +327,7 @@ Figura&nbsp;2.1: A Relação da Mineração de Dados com Algumas Disciplinas Cor
 </div>
 <p>Para que parte de toda essa informação não estruturada possa ser utilizada na Mineração de Dados, geralmente é feita uma seleção e um pré-processamento visando transformar dados brutos em coleções estruturadas de dados. Em termos práticos, para nossas considerações iniciais, a estrutura de representação de uma Base de Dados pode ser semelhante a uma tabela de dados, sendo cada linha dessa tabela uma <strong>transação</strong> ou um <strong>exemplo</strong>. Cada <strong>transação</strong> é composta por um ou mais <strong>itens</strong> ou, visto de outra forma, cada <strong>exemplo</strong> é caracterizado por seus <strong>atributos</strong>.</p>
 <p>As Tabelas <a href="#tbl-2-cestas" class="quarto-xref"><span>2.1</span></a>, <a href="#tbl-2-booleana" class="quarto-xref"><span>2.2</span></a> e <a href="#tbl-2-tempo" class="quarto-xref"><span>2.3</span></a> ilustram formas de dados estruturados convenientes para a Mineração de Dados.</p>
-<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="1">
+<div id="tbl-2-cestas" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-cestas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.1: Cestas de Compras.
@@ -368,7 +368,7 @@ Tabela&nbsp;2.1: Cestas de Compras.
 </div>
 <p>Na <a href="#tbl-2-cestas" class="quarto-xref">Tabela&nbsp;<span>2.1</span></a> cada uma das Transações possui uma IDentificação (TID), e seus itens representam artigos vendidos em um supermercado. Se a tabela de itens for muito extensa, como costuma ser em casos reais, pode ser ainda mais conveniente representar cada um de seus itens na forma de um atributo associado a um valor booleano, como mostra a <a href="#tbl-2-booleana" class="quarto-xref">Tabela&nbsp;<span>2.2</span></a>.</p>
 <div class="cell" data-quarto-raw="true" data-execution_count="2">
-<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="2">
+<div id="tbl-2-booleana" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-booleana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
@@ -458,7 +458,7 @@ Tabela&nbsp;2.2: Representação Booleana de Cestas de Compras.
 </div>
 <p>Um exemplo clássico de uma Base de Dados usada em artigos sobre Mineração de Dados é apresentada na <a href="#tbl-2-tempo" class="quarto-xref">Tabela&nbsp;<span>2.3</span></a> (<span class="citation" data-cites="quinlan1986">Quinlan (<a href="#ref-quinlan1986" role="doc-biblioref">1986</a>)</span> <em>apud</em> <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>), composta por dados fictícios sobre as condições de tempo para que ocorra ou não a partida de um esporte não especificado. A tabela é composta por 14 exemplos (linhas), cada um com cinco atributos (colunas): Dia, Temperatura, Umidade, Vento e Partida. A tabela pode também ser interpretada de outra forma, como sendo composta por quatro atributos (Dia, Temperatura, Umidade e Vento) e uma classe (Partida), que representa o resultado da combinação dos quatro atributos.</p>
 <div class="cell" data-quarto-raw="true" data-execution_count="3">
-<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="3">
+<div id="tbl-2-tempo" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-tempo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.3: Tabela do Tempo.
@@ -1318,7 +1318,7 @@ Figura&nbsp;2.2: A Base de Dados Transacoes_1 na Forma (a) Planilha “.xls” e
 <p>Como o Weka tem um conversor interno do formato “.csv” para “.arff”, vamos primeiramente usar este recurso. Depois vamos mostrar como transformar manualmente o arquivo “.csv” para “.arff”.</p>
 <p>Obs.: Certifique-se que em seu arquivo “.csv” o separador de células seja efetivamente a vírgula “,” e não “;”. Se o arquivo “.csv” gerado pela sua planilha utilizar “;”, faça a substituição para “,”. Caso contrário, ocorrerá um erro de leitura no Weka e o arquivo será interpretado de forma completamente diferente do esperado.</p>
 <p>A <a href="#tbl-2-weka-db" class="quarto-xref">Tabela&nbsp;<span>2.13</span></a> apresenta a representação booleana das cestas de compras, em que cada coluna (A, B, C, …) indica a presença (<code>y</code>) ou ausência (<code>n</code>) de um item em cada transação. Esse formato é amplamente utilizado em tarefas de mineração de dados, como a extração de regras de associação.</p>
-<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="4">
+<div id="tbl-2-weka-db" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4" data-quarto-raw="true">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-weka-db-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.13: Representação Booleana de Cestas de Compras para utilizar no Weka.
@@ -1721,7 +1721,7 @@ Matplotlib: 3.10.8
 <pre><code>Configuração: Suporte Mínimo = 40%
 </code></pre>
 </div>
-<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="9">
+<div id="tbl-2-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="9" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
@@ -1861,7 +1861,7 @@ Tabela&nbsp;2.14: Análise de Suporte e Poda dos Itens Individuais (L1).
 <pre><code>Configuração: Suporte Mínimo = 40%, Confiança Mínima = 90%
 </code></pre>
 </div>
-<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="10">
+<div id="tbl-2-pratica2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="10" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro de Confiança.
@@ -2057,7 +2057,7 @@ Trios de candidatos gerados via L2 (com poda): 4
 Configuração: SUP_MIN 40% | CONF_MIN: 90%
 </code></pre>
 </div>
-<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="11">
+<div id="tbl-2-pratica3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="11" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos Antecedentes.
@@ -2364,7 +2364,7 @@ Figura&nbsp;2.14: Representação visual (Grafo) das regras de associação de n
 <pre><code>RELATÓRIO APRIORI COMPLETO (N=5, SUP_MIN=0.4,       CONF_MIN=0.9)
 </code></pre>
 </div>
-<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="13">
+<div id="tbl-2-pratica4" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="13" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Apriori Completo).
@@ -2862,7 +2862,7 @@ Figura&nbsp;2.15: Grafo de Influência: A intensidade da cor (Reds) indica o val
 <span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Exibição do Relatório</span></span>
 <span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>Markdown(df_final.to_markdown(index<span class="op">=</span><span class="va">False</span>, colalign<span class="op">=</span>(<span class="st">"center"</span>,) <span class="op">*</span> <span class="bu">len</span>(df_final.columns)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="false" data-execution_count="16">
+<div id="tbl-2-pratica5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="16" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.

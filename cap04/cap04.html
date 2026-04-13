@@ -269,7 +269,8 @@ window.Quarto = {
   <li><a href="#prática-4-validação-cruzada-k-fold-e-leave-one-out" id="toc-prática-4-validação-cruzada-k-fold-e-leave-one-out" class="nav-link" data-scroll-target="#prática-4-validação-cruzada-k-fold-e-leave-one-out"><span class="header-section-number">4.7.6</span> 🔹 Prática 4 — Validação Cruzada <em>k-fold</em> e <em>Leave-One-Out</em></a></li>
   <li><a href="#prática-5-comparação-de-métodos-de-avaliação-visão-geral" id="toc-prática-5-comparação-de-métodos-de-avaliação-visão-geral" class="nav-link" data-scroll-target="#prática-5-comparação-de-métodos-de-avaliação-visão-geral"><span class="header-section-number">4.7.7</span> 🔹 Prática 5 — Comparação de Métodos de Avaliação (Visão Geral)</a></li>
   <li><a href="#prática-6-oner-no-dataset-iris-com-validação-cruzada" id="toc-prática-6-oner-no-dataset-iris-com-validação-cruzada" class="nav-link" data-scroll-target="#prática-6-oner-no-dataset-iris-com-validação-cruzada"><span class="header-section-number">4.7.8</span> 🔹 Prática 6 — <em>oneR</em> no Dataset Iris com Validação Cruzada</a></li>
-  <li><a href="#conclusão-do-ciclo-de-aprendizado" id="toc-conclusão-do-ciclo-de-aprendizado" class="nav-link" data-scroll-target="#conclusão-do-ciclo-de-aprendizado"><span class="header-section-number">4.7.9</span> Conclusão do Ciclo de Aprendizado</a></li>
+  <li><a href="#prática-7-oner-no-dataset-iris-com-scikit-learn" id="toc-prática-7-oner-no-dataset-iris-com-scikit-learn" class="nav-link" data-scroll-target="#prática-7-oner-no-dataset-iris-com-scikit-learn"><span class="header-section-number">4.7.9</span> 🔹 Prática 7 — <em>oneR</em> no Dataset Iris com <code>scikit-learn</code></a></li>
+  <li><a href="#conclusão-do-ciclo-de-aprendizado" id="toc-conclusão-do-ciclo-de-aprendizado" class="nav-link" data-scroll-target="#conclusão-do-ciclo-de-aprendizado"><span class="header-section-number">4.7.10</span> Conclusão do Ciclo de Aprendizado</a></li>
   </ul></li>
   <li><a href="#uso-do-notebooklm-como-tutor-complementar" id="toc-uso-do-notebooklm-como-tutor-complementar" class="nav-link" data-scroll-target="#uso-do-notebooklm-como-tutor-complementar"><span class="header-section-number">4.8</span> 🤖 Uso do NotebookLM como Tutor Complementar</a></li>
   <li><a href="#considerações-finais" id="toc-considerações-finais" class="nav-link" data-scroll-target="#considerações-finais"><span class="header-section-number">4.9</span> Considerações Finais</a></li>
@@ -1153,7 +1154,7 @@ Tabela&nbsp;4.13: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em
 <p>O conteúdo deste capítulo é sequencial. As funções e variáveis definidas aqui são requisitos para as práticas seguintes. Execute as células em ordem; caso contrário, aparecerão erros de “variável não definida” (<code>NameError</code>).</p>
 </div>
 </div>
-<div id="setup-ambiente-cap04" class="cell" data-execution_count="1">
+<div id="setup-ambiente-cap04" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Instalação de dependências (Silenciosa)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1215,7 +1216,7 @@ Scikit-learn: 1.8.0
 <p>Esta prática depende do <strong>bloco de importações</strong> acima.</p>
 </div>
 </div>
-<div class="cell" data-quarto-raw="false" data-execution_count="2">
+<div class="cell" data-quarto-raw="false" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base de Dados: Tabela do Tempo</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>csv_raw <span class="op">=</span> <span class="st">"""Dia,Temperatura,Umidade,Vento,Partida</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Elevada,Alta,Falso,Não</span></span>
@@ -1295,13 +1296,13 @@ Regras geradas:
   SE Dia = Nublado  →  Partida = Sim
 </code></pre>
 </div>
-<div id="tbl-4-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2" data-quarto-raw="false">
+<div id="tbl-4-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="31" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;4.14: Taxa de Erros por Atributo — Algoritmo oneR (Tabela do Tempo).
 </figcaption>
 <div aria-describedby="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="31">
 <table class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1361,7 +1362,7 @@ Tabela&nbsp;4.14: Taxa de Erros por Atributo — Algoritmo oneR (Tabela do Tempo
 <p>Esta prática depende do <strong>dataset</strong> e das <strong>funções</strong> definidas na Prática 1.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica2" class="cell" data-quarto-raw="false" data-execution_count="3">
+<div id="cell-fig-4-pratica2" class="cell" data-quarto-raw="false" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função reutilizável para plotar Matriz de Confusão</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotar_matriz(reais, predicoes, classes, titulo<span class="op">=</span><span class="st">"Matriz de Confusão"</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plota a Matriz de Confusão e imprime as métricas de avaliação."""</span></span>
@@ -1453,7 +1454,7 @@ Figura&nbsp;4.6: Matriz de Confusão — oneR com Método <em>‘Use Training Se
 <p>Esta prática depende do <strong>dataset</strong>, da função <code>plotar_matriz</code> e da implementação <code>one_r_atributo</code> das Práticas 1 e 2.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica3" class="cell" data-quarto-raw="false" data-execution_count="4">
+<div id="cell-fig-4-pratica3" class="cell" data-quarto-raw="false" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Divisão Sequencial (Mimetizando o comportamento de split do Weka)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para coincidir com a matriz 2 1 / 2 0, usaremos os primeiros 5 para teste</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_teste  <span class="op">=</span> df_tempo.iloc[<span class="dv">0</span>:<span class="dv">5</span>]</span>
@@ -1540,7 +1541,7 @@ Figura&nbsp;4.7: Matriz de Confusão — oneR com Método <em>Holdout</em> 66%/3
 <p>Esta prática depende do <strong>dataset</strong>, de <code>one_r_atributo</code> e de <code>plotar_matriz</code> das práticas anteriores.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="5">
+<div id="cell-fig-4-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka embaralha os dados internamente com o gerador Java Random antes de</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dividir em folds. A função abaixo reproduz esse shuffle exato (Fisher-Yates</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># com LCG Java), permitindo replicar os resultados do Weka com weka_seed=0.</span></span>
@@ -1614,7 +1615,7 @@ Figura&nbsp;4.8: Matriz de Confusão — oneR com <em>Cross-validation</em> 10-f
 </div>
 </div>
 <p>A figura <a href="#fig-4-pratica4b" class="quarto-xref">Figura&nbsp;<span>4.9</span></a> reproduz as Matriz de Confusão da <a href="#tbl-4-12" class="quarto-xref">Tabela&nbsp;<span>4.12</span></a> do texto.</p>
-<div id="cell-fig-4-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="6">
+<div id="cell-fig-4-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leave-One-Out equivale a CV com k=N=14.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka usa weka_seed=42 nesta execução (semente diferente da usada no 10-fold),</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o que reproduz a matriz reportada no texto (tbl-4-12: 4 acertos, 29%).</span></span>
@@ -1670,7 +1671,7 @@ Figura&nbsp;4.9: Matriz de Confusão — oneR com <em>Leave-One-Out</em> (Tabela
 <p>Esta prática depende dos resultados das Práticas 2, 3 e 4.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica5" class="cell" data-quarto-raw="false" data-execution_count="7">
+<div id="cell-fig-4-pratica5" class="cell" data-quarto-raw="false" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>metodos <span class="op">=</span> [<span class="st">"Ressubstituição"</span>, <span class="st">"Holdout</span><span class="ch">\n</span><span class="st">(66%/34%)"</span>,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="ss">f"Cross-validation</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold)"</span>, <span class="ss">f"Leave-One-Out</span><span class="ch">\n</span><span class="ss">(k=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1761,7 +1762,7 @@ LOO (k=14)                |     28.57% |    4/14</code></pre>
 <p>Esta prática é independente das anteriores (exceto o bloco de importações). Certifique-se de ter executado o <strong>Bloco de Configuração do Ambiente</strong>.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica6a" class="cell" data-quarto-raw="false" data-execution_count="10">
+<div id="cell-fig-4-pratica6a" class="cell" data-quarto-raw="false" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Carregamento do Iris</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>X_iris <span class="op">=</span> iris.data</span>
@@ -1864,7 +1865,7 @@ Figura&nbsp;4.11: Matriz de Confusão — oneR com Cross-validation 10-fold no D
    Taxa VP (      virginica): 86.00%  (43/50)</code></pre>
 </div>
 </div>
-<div id="cell-fig-4-pratica6b" class="cell" data-quarto-raw="false" data-execution_count="9">
+<div id="cell-fig-4-pratica6b" class="cell" data-quarto-raw="false" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>K_iris <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>perm_iris    <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(df_iris), <span class="dv">0</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_iris_shuf <span class="op">=</span> df_iris.iloc[perm_iris].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
@@ -1952,9 +1953,314 @@ Figura&nbsp;4.12: Acurácia por Fold — <em>oneR</em> com Cross-validation 10-f
 </div>
 </div>
 </section>
-<section id="conclusão-do-ciclo-de-aprendizado" class="level3" data-number="4.7.9">
-<h3 data-number="4.7.9" class="anchored" data-anchor-id="conclusão-do-ciclo-de-aprendizado"><span class="header-section-number">4.7.9</span> Conclusão do Ciclo de Aprendizado</h3>
-<p>Através destas seis práticas, percorremos toda a jornada de Classificação por Regras e Avaliação de Desempenho:</p>
+<section id="prática-7-oner-no-dataset-iris-com-scikit-learn" class="level3" data-number="4.7.9">
+<h3 data-number="4.7.9" class="anchored" data-anchor-id="prática-7-oner-no-dataset-iris-com-scikit-learn"><span class="header-section-number">4.7.9</span> 🔹 Prática 7 — <em>oneR</em> no Dataset Iris com <code>scikit-learn</code></h3>
+<p>Esta prática complementa a <strong>Prática 6</strong> do Capítulo 4, substituindo a implementação manual do <em>oneR</em> pela biblioteca mais popular do ecossistema Python para Aprendizado de Máquina: o <strong><code>scikit-learn</code></strong>.</p>
+<p>A estratégia adotada é idêntica em espírito ao <em>oneR</em>:</p>
+<ol type="1">
+<li><strong>Discretizar</strong> cada atributo contínuo com <code>KBinsDiscretizer</code> (em vez do <code>pd.cut</code> manual).</li>
+<li>Para cada atributo isolado, treinar um <code>DecisionTreeClassifier</code> (em vez da função <code>one_r_atributo</code>).</li>
+<li><strong>Eleger</strong> o atributo com menor taxa de erro de treino.</li>
+<li>Avaliar com <strong>Validação Cruzada 10-<em>fold</em></strong> usando <code>StratifiedKFold</code>.</li>
+</ol>
+<section id="dependências" class="level4" data-number="4.7.9.1">
+<h4 data-number="4.7.9.1" class="anchored" data-anchor-id="dependências"><span class="header-section-number">4.7.9.1</span> Dependências</h4>
+<div id="imports-pratica7" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca mais popular de ML em Python</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets        <span class="im">import</span> load_iris</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree            <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing   <span class="im">import</span> KBinsDiscretizer</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline        <span class="im">import</span> Pipeline</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> StratifiedKFold</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics         <span class="im">import</span> confusion_matrix, accuracy_score</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy  <span class="im">as</span> np</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="carregamento-do-dataset-iris" class="level4" data-number="4.7.9.2">
+<h4 data-number="4.7.9.2" class="anchored" data-anchor-id="carregamento-do-dataset-iris"><span class="header-section-number">4.7.9.2</span> Carregamento do Dataset Iris</h4>
+<div id="carrega-iris-p7" class="cell" data-execution_count="40">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>iris          <span class="op">=</span> load_iris()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X             <span class="op">=</span> iris.data</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>y             <span class="op">=</span> iris.target</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>nomes_classes <span class="op">=</span> <span class="bu">list</span>(iris.target_names)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> <span class="bu">list</span>(iris.feature_names)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset Iris: </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> instâncias, </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> atributos"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Classes     : </span><span class="sc">{</span>nomes_classes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Atributos   : </span><span class="sc">{</span>feature_names<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset Iris: 150 instâncias, 4 atributos
+Classes     : [np.str_('setosa'), np.str_('versicolor'), np.str_('virginica')]
+Atributos   : ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']</code></pre>
+</div>
+</div>
+</section>
+<section id="implementação-do-oner-com-scikit-learn" class="level4" data-number="4.7.9.3">
+<h4 data-number="4.7.9.3" class="anchored" data-anchor-id="implementação-do-oner-com-scikit-learn"><span class="header-section-number">4.7.9.3</span> Implementação do <em>oneR</em> com <code>scikit-learn</code></h4>
+<p>A função abaixo encapsula a lógica do <em>oneR</em> usando componentes do <code>scikit-learn</code>:</p>
+<ul>
+<li><strong><code>KBinsDiscretizer</code></strong> — discretiza o atributo contínuo em <code>n_bins</code> intervalos de largura igual (<code>strategy='uniform'</code>), equivalente ao <code>pd.cut</code> da Prática 6.</li>
+<li><strong><code>DecisionTreeClassifier</code></strong> — treinado sobre os <em>bins</em> de um único atributo, captura a classe majoritária de cada intervalo (o mesmo que a função <code>one_r_atributo</code> fazia manualmente).</li>
+<li><strong><code>Pipeline</code></strong> — encadeia as duas etapas, garantindo que a discretização do conjunto de teste use sempre os limites aprendidos no treino (sem <em>data leakage</em>).</li>
+</ul>
+<div id="funcao-oner-sklearn" class="cell" data-execution_count="41">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneR_sklearn(X_treino, y_treino, X_teste, n_bins<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Implementação do oneR usando scikit-learn.</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Para cada atributo:</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">      - discretiza com KBinsDiscretizer</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">      - treina um DecisionTreeClassifier</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">      - calcula a taxa de erro no treino</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Elege o atributo com menor erro e retorna as predições no teste.</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Parâmetros</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">    X_treino, y_treino : dados de treinamento</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">    X_teste            : dados de teste</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co">    n_bins             : número de intervalos para discretização</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Retorna</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co">    predicoes  : array com as classes previstas para X_teste</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co">    melhor_j   : índice do atributo eleito</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>    melhor_j, menor_erro, melhor_pipe <span class="op">=</span> <span class="va">None</span>, <span class="bu">float</span>(<span class="st">'inf'</span>), <span class="va">None</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(X_treino.shape[<span class="dv">1</span>]):</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        pipe <span class="op">=</span> Pipeline([</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>            (<span class="st">'disc'</span>, KBinsDiscretizer(n_bins<span class="op">=</span>n_bins, encode<span class="op">=</span><span class="st">'ordinal'</span>,</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>                                     strategy<span class="op">=</span><span class="st">'uniform'</span>, subsample<span class="op">=</span><span class="va">None</span>)),</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>            (<span class="st">'clf'</span>,  DecisionTreeClassifier(random_state<span class="op">=</span><span class="dv">42</span>))</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>        pipe.fit(X_treino[:, [j]], y_treino)</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>        erro_treino <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> accuracy_score(y_treino, pipe.predict(X_treino[:, [j]]))</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> erro_treino <span class="op">&lt;</span> menor_erro:</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>            menor_erro  <span class="op">=</span> erro_treino</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>            melhor_j    <span class="op">=</span> j</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>            melhor_pipe <span class="op">=</span> pipe</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    predicoes <span class="op">=</span> melhor_pipe.predict(X_teste[:, [melhor_j]])</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> predicoes, melhor_j</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="avaliação-com-cross-validation-10-fold" class="level4" data-number="4.7.9.4">
+<h4 data-number="4.7.9.4" class="anchored" data-anchor-id="avaliação-com-cross-validation-10-fold"><span class="header-section-number">4.7.9.4</span> Avaliação com <em>Cross-validation</em> 10-<em>fold</em></h4>
+<p>Utilizamos <code>StratifiedKFold</code> para garantir que a proporção de cada classe seja mantida em todos os <em>folds</em> — o mesmo princípio adotado pelo Weka na Prática 6.</p>
+<div id="cv-oner-sklearn" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>K  <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span>K, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>todos_reais <span class="op">=</span> []</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>todos_pred  <span class="op">=</span> []</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>accs_fold   <span class="op">=</span> []</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>attrs_fold  <span class="op">=</span> []</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tr_idx, te_idx <span class="kw">in</span> cv.split(X, y):</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    pred, attr <span class="op">=</span> oneR_sklearn(X[tr_idx], y[tr_idx], X[te_idx])</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    todos_reais.extend(y[te_idx])</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    todos_pred.extend(pred)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    accs_fold.append(accuracy_score(y[te_idx], pred))</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    attrs_fold.append(attr)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado geral</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>ac_geral <span class="op">=</span> accuracy_score(todos_reais, todos_pred)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>media    <span class="op">=</span> np.mean(accs_fold)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>desvio   <span class="op">=</span> np.std(accs_fold)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Atributo mais eleito</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>cnt_attrs <span class="op">=</span> Counter(attrs_fold)</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>attr_mais_freq <span class="op">=</span> feature_names[cnt_attrs.most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">0</span>]]</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Acurácia Geral (CV </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold): </span><span class="sc">{</span>ac_geral<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Média  : </span><span class="sc">{</span>media<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Desvio : </span><span class="sc">{</span>desvio<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">   Atributo mais eleito: '</span><span class="sc">{</span>attr_mais_freq<span class="sc">}</span><span class="ss">' (</span><span class="sc">{</span>cnt_attrs<span class="sc">.</span>most_common(<span class="dv">1</span>)[<span class="dv">0</span>][<span class="dv">1</span>]<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> folds)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+🌸 Acurácia Geral (CV 10-fold): 94.00%
+   Média  : 94.00%
+   Desvio : 6.96%
+
+   Atributo mais eleito: 'petal width (cm)' (9/10 folds)</code></pre>
+</div>
+</div>
+</section>
+<section id="matriz-de-confusão-e-taxa-de-verdadeiro-positivo" class="level4" data-number="4.7.9.5">
+<h4 data-number="4.7.9.5" class="anchored" data-anchor-id="matriz-de-confusão-e-taxa-de-verdadeiro-positivo"><span class="header-section-number">4.7.9.5</span> Matriz de Confusão e Taxa de Verdadeiro Positivo</h4>
+<div id="cell-fig-pratica7-matriz" class="cell" data-quarto-raw="false" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> confusion_matrix(todos_reais, todos_pred)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(mat, cmap<span class="op">=</span><span class="st">"Blues"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> mat[i, j] <span class="op">&gt;</span> mat.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(mat[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Prev.: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_classes], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span>  <span class="cf">for</span> c <span class="kw">in</span> nomes_classes], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"oneR (scikit-learn) — Cross-validation </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold — Iris</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Acurácia = </span><span class="sc">{</span>ac_geral<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Acurácia Geral (CV </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold): </span><span class="sc">{</span>ac_geral<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, cls <span class="kw">in</span> <span class="bu">enumerate</span>(nomes_classes):</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    vp        <span class="op">=</span> mat[idx, idx]</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>    total_real <span class="op">=</span> mat[idx].<span class="bu">sum</span>()</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>    taxa_vp   <span class="op">=</span> vp <span class="op">/</span> total_real <span class="cf">if</span> total_real <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Taxa VP (</span><span class="sc">{</span>cls<span class="sc">:&gt;15}</span><span class="ss">): </span><span class="sc">{</span>taxa_vp<span class="sc">:.2%}</span><span class="ss">  (</span><span class="sc">{</span>vp<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total_real<span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-pratica7-matriz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pratica7-matriz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-pratica7-matriz-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pratica7-matriz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.13: Matriz de Confusão — oneR (scikit-learn) com Cross-validation 10-fold no Dataset Iris.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+🌸 Acurácia Geral (CV 10-fold): 94.00%
+
+   Taxa VP (         setosa): 100.00%  (50/50)
+   Taxa VP (     versicolor): 94.00%  (47/50)
+   Taxa VP (      virginica): 88.00%  (44/50)</code></pre>
+</div>
+</div>
+</section>
+<section id="acurácia-por-fold" class="level4" data-number="4.7.9.6">
+<h4 data-number="4.7.9.6" class="anchored" data-anchor-id="acurácia-por-fold"><span class="header-section-number">4.7.9.6</span> Acurácia por <em>Fold</em></h4>
+<div id="cell-fig-pratica7-folds" class="cell" data-quarto-raw="false" data-execution_count="44">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">"#27ae60"</span> <span class="cf">if</span> a <span class="op">&gt;=</span> media <span class="cf">else</span> <span class="st">"#e74c3c"</span> <span class="cf">for</span> a <span class="kw">in</span> accs_fold]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>bars  <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>), [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> accs_fold],</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>               color<span class="op">=</span>cores, edgecolor<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>ax.axhline(media <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#2c3e50"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>           label<span class="op">=</span><span class="ss">f"Média: </span><span class="sc">{</span>media<span class="sc">:.2%}</span><span class="ss"> ± </span><span class="sc">{</span>desvio<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Fold (Partição)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Validação Cruzada </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-Fold — oneR (scikit-learn) no Dataset Iris"</span>,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">0</span>, <span class="dv">115</span>])</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar, sc <span class="kw">in</span> <span class="bu">zip</span>(bars, accs_fold):</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    ax.text(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, bar.get_height() <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"</span><span class="sc">{</span>sc<span class="sc">:.0%}</span><span class="ss">"</span>, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"bottom"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>a_f <span class="op">=</span> accs_fold</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Validação Cruzada </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-Fold — oneR (scikit-learn) no Iris:"</span>)</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia Média : </span><span class="sc">{</span>media<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Desvio Padrão  : </span><span class="sc">{</span>desvio<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Melhor Fold    : </span><span class="sc">{</span><span class="bu">max</span>(a_f)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>a_f<span class="sc">.</span>index(<span class="bu">max</span>(a_f)) <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Pior Fold      : </span><span class="sc">{</span><span class="bu">min</span>(a_f)<span class="sc">:.2%}</span><span class="ss"> (Fold </span><span class="sc">{</span>a_f<span class="sc">.</span>index(<span class="bu">min</span>(a_f)) <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="fig-pratica7-folds" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pratica7-folds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cap04_files/figure-html/fig-pratica7-folds-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pratica7-folds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.14: Acurácia por Fold — oneR (scikit-learn) com Cross-validation 10-fold no Dataset Iris.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+📊 Validação Cruzada 10-Fold — oneR (scikit-learn) no Iris:
+   Acurácia Média : 94.00%
+   Desvio Padrão  : 6.96%
+   Melhor Fold    : 100.00% (Fold 1)
+   Pior Fold      : 80.00% (Fold 6)</code></pre>
+</div>
+</div>
+</section>
+<section id="comparação-entre-práticas-6-e-7" class="level4" data-number="4.7.9.7">
+<h4 data-number="4.7.9.7" class="anchored" data-anchor-id="comparação-entre-práticas-6-e-7"><span class="header-section-number">4.7.9.7</span> Comparação entre Práticas 6 e 7</h4>
+<p>A pequena diferença de acurácia entre as duas práticas, ver <a href="#tbl-4-comp-oneR" class="quarto-xref">Tabela&nbsp;<span>4.15</span></a>, decorre das sementes aleatórias distintas usadas nos embaralhamentos, e não de diferença algorítmica. Ambas elegem <strong><code>petal width (cm)</code></strong> como atributo mais discriminativo e produzem resultados equivalentes, confirmando a robustez do <em>oneR</em> neste dataset.</p>
+<div id="tbl-4-comp-oneR" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-comp-oneR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.15: Comparação de desempenho e implementação do algoritmo <em>OneR</em>: Manual (Prática 6) vs.&nbsp;<em>Scikit-Learn</em> (Prática 7).
+</figcaption>
+<div aria-describedby="tbl-4-comp-oneR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>Prática 6 (implementação manual)</th>
+<th>Prática 7 (<code>scikit-learn</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Discretização</td>
+<td><code>pd.cut</code> com 3 bins e shuffle Weka</td>
+<td><code>KBinsDiscretizer</code> (<code>uniform</code>, 3 bins)</td>
+</tr>
+<tr class="even">
+<td>Classificador por atributo</td>
+<td><code>one_r_atributo</code> (dicionário de maioria)</td>
+<td><code>DecisionTreeClassifier</code> via <code>Pipeline</code></td>
+</tr>
+<tr class="odd">
+<td>Particionamento CV</td>
+<td><code>KFold</code> + shuffle manual (seed Weka)</td>
+<td><code>StratifiedKFold</code> (seed 42)</td>
+</tr>
+<tr class="even">
+<td>Atributo eleito</td>
+<td><code>petal width (cm)</code></td>
+<td><code>petal width (cm)</code></td>
+</tr>
+<tr class="odd">
+<td>Acurácia CV 10-fold</td>
+<td>≈ 93%</td>
+<td>≈ 94%</td>
+</tr>
+<tr class="even">
+<td>Linhas de código</td>
+<td>~60</td>
+<td>~30</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>O <code>scikit-learn</code> é a biblioteca de referência para Aprendizado de Máquina clássico em Python por reunir, numa única API consistente (<code>fit</code> / <code>predict</code> / <code>transform</code>), desde pré-processamento até modelos avançados — facilitando tanto a experimentação rápida (como nesta prática) quanto a construção de pipelines de produção.</p>
+</section>
+</section>
+<section id="conclusão-do-ciclo-de-aprendizado" class="level3" data-number="4.7.10">
+<h3 data-number="4.7.10" class="anchored" data-anchor-id="conclusão-do-ciclo-de-aprendizado"><span class="header-section-number">4.7.10</span> Conclusão do Ciclo de Aprendizado</h3>
+<p>Através destas <strong>sete</strong> práticas, percorremos toda a jornada de Classificação por Regras e Avaliação de Desempenho:</p>
 <ol type="1">
 <li><strong>Algoritmo <em>oneR</em></strong> — Implementamos do zero a busca pelo atributo com menor taxa de erros, reproduzindo o raciocínio da <a href="#tbl-4-4" class="quarto-xref">Tabela&nbsp;<span>4.4</span></a>.</li>
 <li><strong>Ressubstituição</strong> — Confirmamos os 10 acertos e 4 erros esperados ao usar o conjunto de treinamento como teste.</li>
@@ -1962,6 +2268,7 @@ Figura&nbsp;4.12: Acurácia por Fold — <em>oneR</em> com Cross-validation 10-f
 <li><strong>Cross-validation e Leave-One-Out</strong> — Avaliamos o classificador de forma mais robusta e comparamos as estimativas de acurácia.</li>
 <li><strong>Comparação entre métodos</strong> — Visualizamos como a escolha do método de avaliação impacta a estimativa de desempenho, especialmente em conjuntos pequenos.</li>
 <li><strong>Dataset Iris</strong> — Aplicamos o <em>oneR</em> a um conjunto maior com 3 classes, explorando a discretização de atributos contínuos e a taxa de Verdadeiro Positivo por classe — base para o exercício 3 da lista.</li>
+<li><strong>oneR com <code>scikit-learn</code></strong> — Reproduzimos a Prática 6 usando a biblioteca mais popular de ML em Python, comparando a implementação manual com o <code>Pipeline</code> de <code>KBinsDiscretizer</code> + <code>DecisionTreeClassifier</code> e confirmando a equivalência dos resultados.</li>
 </ol>
 </section>
 </section>
