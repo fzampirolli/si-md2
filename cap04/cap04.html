@@ -2,16 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.28">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>4&nbsp; Classificação e Regras de Classificação – Sistemas Inteligentes e Mineração de Dados</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -92,14 +89,15 @@ div.csl-indent {
 <link href="../cap03/cap03.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-49e51e44f424ea8c7044b429bdbbbfe2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ca5f78b6db56a2920d9734ab057b0172.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e3a88be97731b91ec8d493139fb7b02c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -129,7 +127,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -1154,7 +1152,7 @@ Tabela&nbsp;4.13: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em
 <p>O conteúdo deste capítulo é sequencial. As funções e variáveis definidas aqui são requisitos para as práticas seguintes. Execute as células em ordem; caso contrário, aparecerão erros de “variável não definida” (<code>NameError</code>).</p>
 </div>
 </div>
-<div id="setup-ambiente-cap04" class="cell" data-execution_count="30">
+<div id="setup-ambiente-cap04" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Instalação de dependências (Silenciosa)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1190,11 +1188,11 @@ Tabela&nbsp;4.13: Matriz de Confusão para a Tabela do Tempo com o <em>PRISM</em
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Scikit-learn: </span><span class="sc">{</span>sklearn<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Python      : 3.12.3
-Pandas      : 3.0.1
-NumPy       : 2.4.2
-Matplotlib  : 3.10.8
-Scikit-learn: 1.8.0
+<pre><code>Python      : 3.9.7
+Pandas      : 2.3.3
+NumPy       : 2.0.2
+Matplotlib  : 3.9.4
+Scikit-learn: 1.6.1
 ✅ Ambiente pronto!</code></pre>
 </div>
 </div>
@@ -1216,7 +1214,7 @@ Scikit-learn: 1.8.0
 <p>Esta prática depende do <strong>bloco de importações</strong> acima.</p>
 </div>
 </div>
-<div class="cell" data-quarto-raw="false" data-execution_count="31">
+<div class="cell" data-quarto-raw="false" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base de Dados: Tabela do Tempo</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>csv_raw <span class="op">=</span> <span class="st">"""Dia,Temperatura,Umidade,Vento,Partida</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ensolarado,Elevada,Alta,Falso,Não</span></span>
@@ -1296,14 +1294,14 @@ Regras geradas:
   SE Dia = Nublado  →  Partida = Sim
 </code></pre>
 </div>
-<div id="tbl-4-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="31" data-quarto-raw="false">
+<div id="tbl-4-pratica1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2" data-quarto-raw="false">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;4.14: Taxa de Erros por Atributo — Algoritmo oneR (Tabela do Tempo).
 </figcaption>
 <div aria-describedby="tbl-4-pratica1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="31">
-<table class="cell caption-top table table-sm table-striped small">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Atributo</th>
@@ -1362,7 +1360,7 @@ Tabela&nbsp;4.14: Taxa de Erros por Atributo — Algoritmo oneR (Tabela do Tempo
 <p>Esta prática depende do <strong>dataset</strong> e das <strong>funções</strong> definidas na Prática 1.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica2" class="cell" data-quarto-raw="false" data-execution_count="32">
+<div id="cell-fig-4-pratica2" class="cell" data-quarto-raw="false" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função reutilizável para plotar Matriz de Confusão</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotar_matriz(reais, predicoes, classes, titulo<span class="op">=</span><span class="st">"Matriz de Confusão"</span>):</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Plota a Matriz de Confusão e imprime as métricas de avaliação."""</span></span>
@@ -1454,7 +1452,7 @@ Figura&nbsp;4.6: Matriz de Confusão — oneR com Método <em>‘Use Training Se
 <p>Esta prática depende do <strong>dataset</strong>, da função <code>plotar_matriz</code> e da implementação <code>one_r_atributo</code> das Práticas 1 e 2.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica3" class="cell" data-quarto-raw="false" data-execution_count="33">
+<div id="cell-fig-4-pratica3" class="cell" data-quarto-raw="false" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Divisão Sequencial (Mimetizando o comportamento de split do Weka)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Para coincidir com a matriz 2 1 / 2 0, usaremos os primeiros 5 para teste</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df_teste  <span class="op">=</span> df_tempo.iloc[<span class="dv">0</span>:<span class="dv">5</span>]</span>
@@ -1541,7 +1539,7 @@ Figura&nbsp;4.7: Matriz de Confusão — oneR com Método <em>Holdout</em> 66%/3
 <p>Esta prática depende do <strong>dataset</strong>, de <code>one_r_atributo</code> e de <code>plotar_matriz</code> das práticas anteriores.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="34">
+<div id="cell-fig-4-pratica4a" class="cell" data-quarto-raw="false" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka embaralha os dados internamente com o gerador Java Random antes de</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dividir em folds. A função abaixo reproduz esse shuffle exato (Fisher-Yates</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># com LCG Java), permitindo replicar os resultados do Weka com weka_seed=0.</span></span>
@@ -1615,7 +1613,7 @@ Figura&nbsp;4.8: Matriz de Confusão — oneR com <em>Cross-validation</em> 10-f
 </div>
 </div>
 <p>A figura <a href="#fig-4-pratica4b" class="quarto-xref">Figura&nbsp;<span>4.9</span></a> reproduz as Matriz de Confusão da <a href="#tbl-4-12" class="quarto-xref">Tabela&nbsp;<span>4.12</span></a> do texto.</p>
-<div id="cell-fig-4-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="35">
+<div id="cell-fig-4-pratica4b" class="cell" data-quarto-raw="false" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leave-One-Out equivale a CV com k=N=14.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># O Weka usa weka_seed=42 nesta execução (semente diferente da usada no 10-fold),</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o que reproduz a matriz reportada no texto (tbl-4-12: 4 acertos, 29%).</span></span>
@@ -1671,7 +1669,7 @@ Figura&nbsp;4.9: Matriz de Confusão — oneR com <em>Leave-One-Out</em> (Tabela
 <p>Esta prática depende dos resultados das Práticas 2, 3 e 4.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica5" class="cell" data-quarto-raw="false" data-execution_count="36">
+<div id="cell-fig-4-pratica5" class="cell" data-quarto-raw="false" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>metodos <span class="op">=</span> [<span class="st">"Ressubstituição"</span>, <span class="st">"Holdout</span><span class="ch">\n</span><span class="st">(66%/34%)"</span>,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>           <span class="ss">f"Cross-validation</span><span class="ch">\n</span><span class="ss">(</span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">-fold)"</span>, <span class="ss">f"Leave-One-Out</span><span class="ch">\n</span><span class="ss">(k=</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">)"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1762,7 +1760,7 @@ LOO (k=14)                |     28.57% |    4/14</code></pre>
 <p>Esta prática é independente das anteriores (exceto o bloco de importações). Certifique-se de ter executado o <strong>Bloco de Configuração do Ambiente</strong>.</p>
 </div>
 </div>
-<div id="cell-fig-4-pratica6a" class="cell" data-quarto-raw="false" data-execution_count="37">
+<div id="cell-fig-4-pratica6a" class="cell" data-quarto-raw="false" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Carregamento do Iris</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>X_iris <span class="op">=</span> iris.data</span>
@@ -1865,7 +1863,7 @@ Figura&nbsp;4.11: Matriz de Confusão — oneR com Cross-validation 10-fold no D
    Taxa VP (      virginica): 86.00%  (43/50)</code></pre>
 </div>
 </div>
-<div id="cell-fig-4-pratica6b" class="cell" data-quarto-raw="false" data-execution_count="38">
+<div id="cell-fig-4-pratica6b" class="cell" data-quarto-raw="false" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>K_iris <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>perm_iris    <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(df_iris), <span class="dv">0</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_iris_shuf <span class="op">=</span> df_iris.iloc[perm_iris].reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
@@ -1955,7 +1953,7 @@ Figura&nbsp;4.12: Acurácia por Fold — <em>oneR</em> com Cross-validation 10-f
 </section>
 <section id="prática-7-oner-no-dataset-iris-com-scikit-learn" class="level3" data-number="4.7.9">
 <h3 data-number="4.7.9" class="anchored" data-anchor-id="prática-7-oner-no-dataset-iris-com-scikit-learn"><span class="header-section-number">4.7.9</span> 🔹 Prática 7 — <em>oneR</em> no Dataset Iris com <code>scikit-learn</code></h3>
-<p>Esta prática complementa a <strong>Prática 6</strong> do Capítulo 4, substituindo a implementação manual do <em>oneR</em> pela biblioteca mais popular do ecossistema Python para Aprendizado de Máquina: o <strong><code>scikit-learn</code></strong>.</p>
+<p>Esta prática complementa a <strong>Prática 6</strong> deste capítulo, substituindo a implementação manual do <em>oneR</em> pela biblioteca mais popular do ecossistema Python para Aprendizado de Máquina: o <strong><code>scikit-learn</code></strong>.</p>
 <p>A estratégia adotada é idêntica em espírito ao <em>oneR</em>:</p>
 <ol type="1">
 <li><strong>Discretizar</strong> cada atributo contínuo com <code>KBinsDiscretizer</code> (em vez do <code>pd.cut</code> manual).</li>
@@ -1965,7 +1963,7 @@ Figura&nbsp;4.12: Acurácia por Fold — <em>oneR</em> com Cross-validation 10-f
 </ol>
 <section id="dependências" class="level4" data-number="4.7.9.1">
 <h4 data-number="4.7.9.1" class="anchored" data-anchor-id="dependências"><span class="header-section-number">4.7.9.1</span> Dependências</h4>
-<div id="imports-pratica7" class="cell" data-execution_count="39">
+<div id="imports-pratica7" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca mais popular de ML em Python</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets        <span class="im">import</span> load_iris</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree            <span class="im">import</span> DecisionTreeClassifier</span>
@@ -1981,7 +1979,7 @@ Figura&nbsp;4.12: Acurácia por Fold — <em>oneR</em> com Cross-validation 10-f
 </section>
 <section id="carregamento-do-dataset-iris" class="level4" data-number="4.7.9.2">
 <h4 data-number="4.7.9.2" class="anchored" data-anchor-id="carregamento-do-dataset-iris"><span class="header-section-number">4.7.9.2</span> Carregamento do Dataset Iris</h4>
-<div id="carrega-iris-p7" class="cell" data-execution_count="40">
+<div id="carrega-iris-p7" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>iris          <span class="op">=</span> load_iris()</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X             <span class="op">=</span> iris.data</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>y             <span class="op">=</span> iris.target</span>
@@ -2006,7 +2004,7 @@ Atributos   : ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'pe
 <li><strong><code>DecisionTreeClassifier</code></strong> — treinado sobre os <em>bins</em> de um único atributo, captura a classe majoritária de cada intervalo (o mesmo que a função <code>one_r_atributo</code> fazia manualmente).</li>
 <li><strong><code>Pipeline</code></strong> — encadeia as duas etapas, garantindo que a discretização do conjunto de teste use sempre os limites aprendidos no treino (sem <em>data leakage</em>).</li>
 </ul>
-<div id="funcao-oner-sklearn" class="cell" data-execution_count="41">
+<div id="funcao-oner-sklearn" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oneR_sklearn(X_treino, y_treino, X_teste, n_bins<span class="op">=</span><span class="dv">3</span>):</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Implementação do oneR usando scikit-learn.</span></span>
@@ -2051,7 +2049,7 @@ Atributos   : ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'pe
 <section id="avaliação-com-cross-validation-10-fold" class="level4" data-number="4.7.9.4">
 <h4 data-number="4.7.9.4" class="anchored" data-anchor-id="avaliação-com-cross-validation-10-fold"><span class="header-section-number">4.7.9.4</span> Avaliação com <em>Cross-validation</em> 10-<em>fold</em></h4>
 <p>Utilizamos <code>StratifiedKFold</code> para garantir que a proporção de cada classe seja mantida em todos os <em>folds</em> — o mesmo princípio adotado pelo Weka na Prática 6.</p>
-<div id="cv-oner-sklearn" class="cell" data-execution_count="42">
+<div id="cv-oner-sklearn" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>K  <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span>K, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2092,7 +2090,7 @@ Atributos   : ['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'pe
 </section>
 <section id="matriz-de-confusão-e-taxa-de-verdadeiro-positivo" class="level4" data-number="4.7.9.5">
 <h4 data-number="4.7.9.5" class="anchored" data-anchor-id="matriz-de-confusão-e-taxa-de-verdadeiro-positivo"><span class="header-section-number">4.7.9.5</span> Matriz de Confusão e Taxa de Verdadeiro Positivo</h4>
-<div id="cell-fig-pratica7-matriz" class="cell" data-quarto-raw="false" data-execution_count="43">
+<div id="cell-fig-pratica7-matriz" class="cell" data-quarto-raw="false" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> confusion_matrix(todos_reais, todos_pred)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
@@ -2147,7 +2145,7 @@ Figura&nbsp;4.13: Matriz de Confusão — oneR (scikit-learn) com Cross-validati
 </section>
 <section id="acurácia-por-fold" class="level4" data-number="4.7.9.6">
 <h4 data-number="4.7.9.6" class="anchored" data-anchor-id="acurácia-por-fold"><span class="header-section-number">4.7.9.6</span> Acurácia por <em>Fold</em></h4>
-<div id="cell-fig-pratica7-folds" class="cell" data-quarto-raw="false" data-execution_count="44">
+<div id="cell-fig-pratica7-folds" class="cell" data-quarto-raw="false" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">"#27ae60"</span> <span class="cf">if</span> a <span class="op">&gt;=</span> media <span class="cf">else</span> <span class="st">"#e74c3c"</span> <span class="cf">for</span> a <span class="kw">in</span> accs_fold]</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>bars  <span class="op">=</span> ax.bar(<span class="bu">range</span>(<span class="dv">1</span>, K <span class="op">+</span> <span class="dv">1</span>), [a <span class="op">*</span> <span class="dv">100</span> <span class="cf">for</span> a <span class="kw">in</span> accs_fold],</span>
