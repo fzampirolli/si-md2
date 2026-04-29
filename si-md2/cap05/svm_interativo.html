@@ -34,32 +34,32 @@
       <input type="range" id="svm-b" min="-40" max="40" step="1" value="0">
     </div>
     <hr class="svm-sep">
-    <div class="svm-sec">Ponto x<sub>1</sub> (classe +1) &#9679;</div>
+    <div class="svm-sec">Ponto x<sub>1</sub> (classe +1) sobre margem +1</div>
     <div class="ctrl-group">
       <label>x<sub>1,1</sub><span id="svm-lx1x">2.0</span></label>
-      <input type="range" id="svm-x1x" min="-10" max="50" step="1" value="20">
+      <input type="range" id="svm-x1x" min="-10" max="50" step="1" value="15">
     </div>
     <div class="ctrl-group">
       <label>x<sub>1,2</sub><span id="svm-lx1y">3.0</span></label>
-      <input type="range" id="svm-x1y" min="-10" max="50" step="1" value="30">
+      <input type="range" id="svm-x1y" min="-10" max="50" step="1" value="25">
     </div>
     <hr class="svm-sep">
-    <div class="svm-sec">Ponto x<sub>2</sub> (classe −1) &#9632;</div>
+    <div class="svm-sec">Ponto x<sub>2</sub> (classe −1) sobre margem −1</div>
     <div class="ctrl-group">
       <label>x<sub>2,1</sub><span id="svm-lx2x">0.5</span></label>
-      <input type="range" id="svm-x2x" min="-10" max="50" step="1" value="5">
+      <input type="range" id="svm-x2x" min="-10" max="50" step="1" value="10">
     </div>
     <div class="ctrl-group">
       <label>x<sub>2,2</sub><span id="svm-lx2y">2.0</span></label>
-      <input type="range" id="svm-x2y" min="-10" max="50" step="1" value="20">
+      <input type="range" id="svm-x2y" min="-10" max="50" step="1" value="15">
     </div>
     <hr class="svm-sep">
     <div class="svm-sec">Cenários</div>
     <div class="svm-btns">
-      <button onclick="svmScene(10,10,0,20,30,5,20)">① Padrão</button>
-      <button onclick="svmScene(5,5,0,30,40,5,10)">② Larga</button>
-      <button onclick="svmScene(25,25,0,15,25,8,18)">③ Estreita</button>
-      <button onclick="svmScene(20,-10,-10,35,20,5,30)">④ Oblíquo</button>
+      <button onclick="svmScene(10,10,0,15,25,10,15)">① Padrão</button>
+      <button onclick="svmScene(5,5,0,25,35,15,18)">② Larga</button>
+      <button onclick="svmScene(25,25,0,12,20,10,12)">③ Estreita</button>
+      <button onclick="svmScene(20,-10,-10,28,18,10,28)">④ Oblíquo</button>
     </div>
     <div id="svm-info"></div>
   </div>
@@ -173,15 +173,23 @@ function svmDraw(){
   cx.fillStyle='#e74c3c'; cx.font='bold 13px sans-serif'; cx.textAlign='left';
   cx.fillText('w',wx1+6,wy1-6);
 
-  // x1
+  // x1 - com validação se está na margem +1
   const [p1x,p1y]=toC(...x1);
   cx.beginPath(); cx.arc(p1x,p1y,7,0,2*Math.PI);
   cx.fillStyle='#e67e22'; cx.fill();
   cx.strokeStyle='#fff'; cx.lineWidth=1.5; cx.stroke();
   cx.fillStyle='#e67e22'; cx.font='12px sans-serif'; cx.textAlign='left';
   cx.fillText('x₁ (+1)',p1x+10,p1y-5);
+  
+  // Indicador se x1 está sobre a margem +1
+  const onMargin1 = Math.abs(dot([w1,w2],x1)+b - 1) < 0.05;
+  if(!onMargin1) {
+    cx.fillStyle='rgba(230,126,34,0.5)';
+    cx.font='9px sans-serif';
+    cx.fillText('⚠️ fora da margem +1',p1x+10,p1y+8);
+  }
 
-  // x2
+  // x2 - com validação se está na margem -1  
   const [p2x,p2y]=toC(...x2);
   cx.beginPath();
   cx.moveTo(p2x-7,p2y-7); cx.lineTo(p2x+7,p2y-7);
@@ -190,6 +198,14 @@ function svmDraw(){
   cx.strokeStyle='#fff'; cx.lineWidth=1.5; cx.stroke();
   cx.fillStyle='#c0392b'; cx.font='12px sans-serif'; cx.textAlign='left';
   cx.fillText('x₂ (−1)',p2x+10,p2y+14);
+  
+  // Indicador se x2 está sobre a margem -1
+  const onMargin2 = Math.abs(dot([w1,w2],x2)+b + 1) < 0.05;
+  if(!onMargin2) {
+    cx.fillStyle='rgba(192,57,43,0.5)';
+    cx.font='9px sans-serif';
+    cx.fillText('⚠️ fora da margem −1',p2x+10,p2y+24);
+  }
 
   // distância ‖x1-x2‖
   cx.save(); cx.strokeStyle='#7f8c8d'; cx.lineWidth=1.2; cx.setLineDash([5,4]);
@@ -204,9 +220,10 @@ function svmDraw(){
   document.getElementById('svm-info').innerHTML=
     '<b>‖w‖</b> = '+nw.toFixed(3)+'<br>'+
     '<b>Margem 2/‖w‖</b> = '+(isFinite(mg)?mg.toFixed(3):'∞')+'<br>'+
-    '<b>w·x₁+b</b> = '+wx1b.toFixed(3)+'<br>'+
-    '<b>w·x₂+b</b> = '+wx2b.toFixed(3)+'<br>'+
-    '<b>‖x₁−x₂‖</b> = '+d12.toFixed(3);
+    '<b>w·x₁+b</b> = '+wx1b.toFixed(3)+' (deveria +1)'+(onMargin1?' ✓':' ⚠️')+'<br>'+
+    '<b>w·x₂+b</b> = '+wx2b.toFixed(3)+' (deveria −1)'+(onMargin2?' ✓':' ⚠️')+'<br>'+
+    '<b>‖x₁−x₂‖</b> = '+d12.toFixed(3)+'<br>'+
+    '<b>2/‖w‖</b> = '+mg.toFixed(3);
 }
 
 ['w1','w2','b','x1x','x1y','x2x','x2y'].forEach(k=>
