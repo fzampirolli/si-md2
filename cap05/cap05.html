@@ -563,7 +563,7 @@ Figura&nbsp;5.13: Equação do Classificador e Margens.
 </ol>
 </div>
 </div>
-<div id="cell-fig-5-svm-interativo" class="cell" data-quarto-raw="false">
+<div id="cell-fig-5-svm-interativo" class="cell" data-quarto-raw="false" data-execution_count="148">
 <div id="fig-5-svm-interativo" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-5-svm-interativo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -939,7 +939,7 @@ Figura&nbsp;5.23: Simulação com a Remoção de Alguns Pontos Perto das Bordas.
 <h2 data-number="5.9" class="anchored" data-anchor-id="prática-em-python"><span class="header-section-number">5.9</span> 🧪 Prática em Python</h2>
 <section id="introdução-1" class="level3" data-number="5.9.1">
 <h3 data-number="5.9.1" class="anchored" data-anchor-id="introdução-1"><span class="header-section-number">5.9.1</span> Introdução</h3>
-<p>Neste capítulo, o tema central é a <strong>Máquina de Vetores de Suporte (MVS)</strong>, um classificador do paradigma de Aprendizado Estatístico. Nas práticas a seguir, usaremos o <strong>Scikit-learn</strong> para reproduzir em Python as simulações descritas no texto: treinamento de uma MVS com kernel linear e RBF sobre o dataset Iris, visualização das <strong>Bordas de Decisão</strong>, análise do <strong>Parâmetro de Complexidade C</strong> e avaliação com <strong>Validação Cruzada</strong> — reproduzindo os experimentos realizados no Weka com o algoritmo SMO.</p>
+<p>Neste capítulo, o tema central é a <strong>Máquina de Vetores de Suporte (MVS)</strong>, um classificador do paradigma de Aprendizado Estatístico. Nas práticas a seguir, usaremos o <strong>Scikit-learn</strong> para reproduzir em Python as simulações descritas anteriormente: treinamento de uma MVS com <em>kernel</em> linear e RBF sobre o <em>dataset</em> Iris, visualização das <strong>Bordas de Decisão</strong>, análise do <strong>Parâmetro de Complexidade C</strong> e avaliação com <strong>Validação Cruzada</strong> — reproduzindo os experimentos realizados no Weka com o algoritmo SMO.</p>
 </section>
 <section id="configuração-do-ambiente" class="level3" data-number="5.9.2">
 <h3 data-number="5.9.2" class="anchored" data-anchor-id="configuração-do-ambiente"><span class="header-section-number">5.9.2</span> 🔹 Configuração do Ambiente</h3>
@@ -957,7 +957,7 @@ Figura&nbsp;5.23: Simulação com a Remoção de Alguns Pontos Perto das Bordas.
 <p>O conteúdo deste capítulo é sequencial. As variáveis e funções definidas aqui são requisitos para as práticas seguintes. Execute as células em ordem.</p>
 </div>
 </div>
-<div id="setup-ambiente-cap05" class="cell" data-execution_count="26">
+<div id="setup-ambiente-cap05" class="cell" data-execution_count="149">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Instalação de dependências (Silenciosa)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -979,14 +979,15 @@ Figura&nbsp;5.23: Simulação com a Remoção de Alguns Pontos Perto das Bordas.
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score, KFold</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, accuracy_score</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, display</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Verificação de versões</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Python      : </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">.</span>split()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy       : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib  : </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Scikit-learn: </span><span class="sc">{</span>sklearn<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown, display</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Verificação de versões</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Python      : </span><span class="sc">{</span>sys<span class="sc">.</span>version<span class="sc">.</span>split()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NumPy       : </span><span class="sc">{</span>np<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib  : </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Scikit-learn: </span><span class="sc">{</span>sklearn<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Python      : 3.9.7
 NumPy       : 2.0.2
@@ -998,8 +999,8 @@ Scikit-learn: 1.6.1
 </section>
 <section id="prática-1-mvs-linear-no-iris-setosa-vs.-versicolor" class="level3" data-number="5.9.3">
 <h3 data-number="5.9.3" class="anchored" data-anchor-id="prática-1-mvs-linear-no-iris-setosa-vs.-versicolor"><span class="header-section-number">5.9.3</span> 🔹 Prática 1 — MVS Linear no Iris (Setosa vs.&nbsp;Versicolor)</h3>
-<p>A <a href="#fig-5-3" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> do texto mostra que <strong>Íris Setosa</strong> e <strong>Íris Versicolor</strong> são linearmente separáveis quando usamos os atributos de pétala. A MVS com <strong>kernel linear</strong> encontra o hiperplano de <strong>margem máxima</strong> que separa as duas classes — exatamente o conceito central do capítulo.</p>
-<p>A <a href="#fig-5-pratica1" class="quarto-xref">Figura&nbsp;<span>5.24</span></a> reproduz a <a href="#fig-5-4" class="quarto-xref">Figura&nbsp;<span>5.4</span></a> do texto: o classificador com margem máxima e os <strong>Vetores de Suporte</strong> destacados.</p>
+<p>A <a href="#fig-5-3" class="quarto-xref">Figura&nbsp;<span>5.3</span></a> mostra que <strong>Íris Setosa</strong> e <strong>Íris Versicolor</strong> são linearmente separáveis quando usamos os atributos de pétala. A MVS com <strong><em>kernel</em> linear</strong> encontra o hiperplano de <strong>margem máxima</strong> que separa as duas classes — exatamente o conceito central do capítulo.</p>
+<p>A <a href="#fig-5-pratica1" class="quarto-xref">Figura&nbsp;<span>5.24</span></a> reproduz a <a href="#fig-5-4" class="quarto-xref">Figura&nbsp;<span>5.4</span></a>: o classificador com margem máxima e os <strong>Vetores de Suporte</strong> destacados.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1010,10 +1011,10 @@ Scikit-learn: 1.6.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Esta prática depende do <strong>bloco de importações</strong> acima.</p>
+<p>Esta prática depende do <strong>bloco de importações</strong> anterior.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica1" class="cell" data-quarto-raw="false" data-execution_count="27">
+<div id="cell-fig-5-pratica1" class="cell" data-quarto-raw="false" data-execution_count="150">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset: apenas Setosa (0) e Versicolor (1), atributos de pétala</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> iris.target <span class="op">&lt;</span> <span class="dv">2</span></span>
@@ -1027,64 +1028,72 @@ Scikit-learn: 1.6.1
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>clf.fit(X, y)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>acuracia <span class="op">=</span> clf.score(X, y)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Grade para visualização da Borda de Decisão</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Grade para visualização — usando clf.predict (pipeline completo, escala original)</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> clf[<span class="dv">0</span>]</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>svm    <span class="op">=</span> clf[<span class="dv">1</span>]</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>X_sc   <span class="op">=</span> scaler.transform(X)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>x1_min, x1_max <span class="op">=</span> X[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>x2_min, x2_max <span class="op">=</span> X[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(x1_min, x1_max, <span class="dv">300</span>),</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                     np.linspace(x2_min, x2_max, <span class="dv">300</span>))</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>grade_sc <span class="op">=</span> scaler.transform(np.c_[xx.ravel(), yy.ravel()])</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> svm.predict(grade_sc).reshape(xx.shape)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>x1_min, x1_max <span class="op">=</span> X[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>x2_min, x2_max <span class="op">=</span> X[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(x1_min, x1_max, <span class="dv">300</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                     np.linspace(x2_min, x2_max, <span class="dv">300</span>))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># clf.predict já aplica o scaler internamente — sem conversão manual</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> clf.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)</span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Margem e vetores de suporte</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>w   <span class="op">=</span> svm.coef_[<span class="dv">0</span>]</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>b   <span class="op">=</span> svm.intercept_[<span class="dv">0</span>]</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>x1_line <span class="op">=</span> np.linspace(X_sc[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.5</span>, X_sc[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span>, <span class="dv">200</span>)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># borda: w0*x1 + w1*x2 + b = 0  →  x2 = -(w0*x1 + b) / w1</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>x2_borda    <span class="op">=</span> <span class="op">-</span>(w[<span class="dv">0</span>] <span class="op">*</span> x1_line <span class="op">+</span> b) <span class="op">/</span> w[<span class="dv">1</span>]</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>x2_margem_p <span class="op">=</span> <span class="op">-</span>(w[<span class="dv">0</span>] <span class="op">*</span> x1_line <span class="op">+</span> b <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> w[<span class="dv">1</span>]</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>x2_margem_n <span class="op">=</span> <span class="op">-</span>(w[<span class="dv">0</span>] <span class="op">*</span> x1_line <span class="op">+</span> b <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> w[<span class="dv">1</span>]</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Converte de volta para escala original</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>inv <span class="op">=</span> scaler.inverse_transform</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>to_orig <span class="op">=</span> <span class="kw">lambda</span> x1, x2: inv(np.c_[x1, x2])</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>borda_orig    <span class="op">=</span> to_orig(x1_line, x2_borda)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>margem_p_orig <span class="op">=</span> to_orig(x1_line, x2_margem_p)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>margem_n_orig <span class="op">=</span> to_orig(x1_line, x2_margem_n)</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>sv_orig       <span class="op">=</span> scaler.inverse_transform(svm.support_vectors_)</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Gráfico</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.15</span>, cmap<span class="op">=</span>mcolors.ListedColormap(cores_cls))</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cls, cor, nome <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">0</span>, <span class="dv">1</span>], cores_cls, nomes):</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[y <span class="op">==</span> cls, <span class="dv">0</span>], X[y <span class="op">==</span> cls, <span class="dv">1</span>],</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>               c<span class="op">=</span>cor, label<span class="op">=</span>nome, edgecolors<span class="op">=</span><span class="st">"white"</span>, s<span class="op">=</span><span class="dv">60</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>ax.plot(borda_orig[:, <span class="dv">0</span>],    borda_orig[:, <span class="dv">1</span>],    <span class="st">"k-"</span>,  lw<span class="op">=</span><span class="dv">2</span>,   label<span class="op">=</span><span class="st">"Borda de Decisão"</span>)</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>ax.plot(margem_p_orig[:, <span class="dv">0</span>], margem_p_orig[:, <span class="dv">1</span>], <span class="st">"k--"</span>, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"Margem (+1 / −1)"</span>)</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>ax.plot(margem_n_orig[:, <span class="dv">0</span>], margem_n_orig[:, <span class="dv">1</span>], <span class="st">"k--"</span>, lw<span class="op">=</span><span class="fl">1.2</span>)</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>ax.scatter(sv_orig[:, <span class="dv">0</span>], sv_orig[:, <span class="dv">1</span>],</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>           s<span class="op">=</span><span class="dv">180</span>, facecolors<span class="op">=</span><span class="st">"none"</span>, edgecolors<span class="op">=</span><span class="st">"black"</span>, linewidths<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>           zorder<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="ss">f"Vetores de Suporte (n=</span><span class="sc">{</span><span class="bu">len</span>(sv_orig)<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Comprimento da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Largura da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"MVS Linear — Margem Máxima</span><span class="ch">\n</span><span class="ss">Acurácia no Treinamento: </span><span class="sc">{</span>acuracia<span class="sc">:.0%}</span><span class="ss">"</span>, </span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Vetores de Suporte : </span><span class="sc">{</span><span class="bu">len</span>(svm.support_vectors_)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia (treino) : </span><span class="sc">{</span>acuracia<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Norma de w        : </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(w)<span class="sc">:.4f}</span><span class="ss">  (quanto menor, maior a margem)"</span>)</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Largura da margem : </span><span class="sc">{</span><span class="dv">2</span> <span class="op">/</span> np<span class="sc">.</span>linalg<span class="sc">.</span>norm(w)<span class="sc">:.4f}</span><span class="ss"> (no espaço normalizado)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Coeficientes da MVS convertidos para o espaço ORIGINAL</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#    w_sc · x_sc + b = 0  onde x_sc = (x - mean) / std</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#    =&gt; (w_sc / std) · x  +  (b - w_sc·mean / std) = 0</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>w_sc   <span class="op">=</span> svm.coef_[<span class="dv">0</span>]</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>b_sc   <span class="op">=</span> svm.intercept_[<span class="dv">0</span>]</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>mean_  <span class="op">=</span> scaler.mean_</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>std_   <span class="op">=</span> scaler.scale_</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>w_orig <span class="op">=</span> w_sc <span class="op">/</span> std_                         <span class="co"># vetor normal no espaço original</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>b_orig <span class="op">=</span> b_sc <span class="op">-</span> np.dot(w_sc <span class="op">/</span> std_, mean_)  <span class="co"># bias no espaço original</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Linhas de decisão e margem diretamente no espaço original</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># margem = 1 / ||w_orig||  (no espaço original)</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>margem <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> np.linalg.norm(w_orig)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>x1_line <span class="op">=</span> np.linspace(x1_min, x1_max, <span class="dv">200</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>x2_borda    <span class="op">=</span> <span class="op">-</span>(w_orig[<span class="dv">0</span>] <span class="op">*</span> x1_line <span class="op">+</span> b_orig) <span class="op">/</span> w_orig[<span class="dv">1</span>]</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>x2_margem_p <span class="op">=</span> <span class="op">-</span>(w_orig[<span class="dv">0</span>] <span class="op">*</span> x1_line <span class="op">+</span> b_orig <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> w_orig[<span class="dv">1</span>]</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>x2_margem_n <span class="op">=</span> <span class="op">-</span>(w_orig[<span class="dv">0</span>] <span class="op">*</span> x1_line <span class="op">+</span> b_orig <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> w_orig[<span class="dv">1</span>]</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetores de suporte na escala original</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>sv_orig <span class="op">=</span> scaler.inverse_transform(svm.support_vectors_)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Gráfico</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.15</span>, cmap<span class="op">=</span>mcolors.ListedColormap(cores_cls))</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cls, cor, nome <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">0</span>, <span class="dv">1</span>], cores_cls, nomes):</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[y <span class="op">==</span> cls, <span class="dv">0</span>], X[y <span class="op">==</span> cls, <span class="dv">1</span>],</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>               c<span class="op">=</span>cor, label<span class="op">=</span>nome, edgecolors<span class="op">=</span><span class="st">"white"</span>, s<span class="op">=</span><span class="dv">60</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>ax.plot(x1_line, x2_borda,    <span class="st">"k-"</span>,  lw<span class="op">=</span><span class="dv">2</span>,   label<span class="op">=</span><span class="st">"Borda de Decisão"</span>)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>ax.plot(x1_line, x2_margem_p, <span class="st">"k--"</span>, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"Margem (+1 / −1)"</span>)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>ax.plot(x1_line, x2_margem_n, <span class="st">"k--"</span>, lw<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>ax.scatter(sv_orig[:, <span class="dv">0</span>], sv_orig[:, <span class="dv">1</span>],</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>           s<span class="op">=</span><span class="dv">180</span>, facecolors<span class="op">=</span><span class="st">"none"</span>, edgecolors<span class="op">=</span><span class="st">"black"</span>, linewidths<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>           zorder<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="ss">f"Vetores de Suporte (n=</span><span class="sc">{</span><span class="bu">len</span>(sv_orig)<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(x1_min, x1_max)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(x2_min, x2_max)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Comprimento da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Largura da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"MVS Linear — Margem Máxima</span><span class="ch">\n</span><span class="ss">Acurácia no Treinamento: </span><span class="sc">{</span>acuracia<span class="sc">:.0%}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 Vetores de Suporte : </span><span class="sc">{</span><span class="bu">len</span>(svm.support_vectors_)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Acurácia (treino) : </span><span class="sc">{</span>acuracia<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Norma de w (orig) : </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(w_orig)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Largura da margem : </span><span class="sc">{</span><span class="dv">2</span> <span class="op">*</span> margem<span class="sc">:.4f}</span><span class="ss"> cm (no espaço original)"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-5-pratica1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1101,15 +1110,15 @@ Figura&nbsp;5.24: MVS Linear — Margem Máxima entre Íris Setosa e Versicolor 
 <pre><code>
 📊 Vetores de Suporte : 4
    Acurácia (treino) : 100.00%
-   Norma de w        : 1.4094  (quanto menor, maior a margem)
-   Largura da margem : 1.4190 (no espaço normalizado)</code></pre>
+   Norma de w (orig) : 1.8337
+   Largura da margem : 1.0907 cm (no espaço original)</code></pre>
 </div>
 </div>
 </section>
 <section id="prática-2-efeito-do-parâmetro-de-complexidade-c" class="level3" data-number="5.9.4">
 <h3 data-number="5.9.4" class="anchored" data-anchor-id="prática-2-efeito-do-parâmetro-de-complexidade-c"><span class="header-section-number">5.9.4</span> 🔹 Prática 2 — Efeito do Parâmetro de Complexidade C</h3>
-<p>O <strong>Parâmetro de Complexidade C</strong> controla o compromisso entre <strong>margem larga</strong> (C baixo, mais tolerante a erros) e <strong>minimização dos erros de treinamento</strong> (C alto, margens estreitas). A <a href="#fig-5-10" class="quarto-xref">Figura&nbsp;<span>5.10</span></a> do texto ilustra esse efeito visualmente.</p>
-<p>A <a href="#fig-5-pratica2" class="quarto-xref">Figura&nbsp;<span>5.25</span></a> replica esse experimento em Python: para quatro valores de C, são plotadas as bordas de decisão e contados os vetores de suporte, usando o dataset Iris completo (3 classes, atributos de pétala).</p>
+<p>O <strong>Parâmetro de Complexidade C</strong> controla o compromisso entre <strong>margem larga</strong> (C baixo, mais tolerante a erros) e <strong>minimização dos erros de treinamento</strong> (C alto, margens estreitas).</p>
+<p>A <a href="#fig-5-pratica2" class="quarto-xref">Figura&nbsp;<span>5.25</span></a> replica esse experimento em Python: para quatro valores de C, são plotadas as bordas de decisão e contados os vetores de suporte, usando o <em>dataset</em> Iris <strong>completo (3 classes)</strong> e os <strong>atributos de pétala</strong> (comprimento × largura) em sua <strong>escala original (cm)</strong>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1123,62 +1132,72 @@ Figura&nbsp;5.24: MVS Linear — Margem Máxima entre Íris Setosa e Versicolor 
 <p>Esta prática depende do <strong>bloco de importações</strong> e do <strong>dataset Iris</strong> carregado na Prática 1.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica2" class="cell" data-quarto-raw="false" data-execution_count="28">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset completo (3 classes), atributos de pétala</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X_full <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y_full <span class="op">=</span> iris.target</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>nomes_3 <span class="op">=</span> iris.target_names</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cores_3 <span class="op">=</span> [<span class="st">"#e74c3c"</span>, <span class="st">"#27ae60"</span>, <span class="st">"#2980b9"</span>]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>valores_C <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">1.0</span>, <span class="fl">10.0</span>, <span class="fl">100.0</span>]</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">9</span>))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<div id="cell-fig-5-pratica2" class="cell" data-quarto-raw="false" data-execution_count="151">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes), atributos de pétala</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>cores_cls <span class="op">=</span> [<span class="st">"#e74c3c"</span>, <span class="st">"#2980b9"</span>, <span class="st">"#27ae60"</span>]  <span class="co"># Setosa, Versicolor, Virginica</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>nomes <span class="op">=</span> [<span class="st">"Íris Setosa"</span>, <span class="st">"Íris Versicolor"</span>, <span class="st">"Íris Virginica"</span>]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Normalização MinMaxScaler</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>X_sc <span class="op">=</span> scaler.fit_transform(X)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>x1_min, x1_max <span class="op">=</span> X_full[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X_full[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>x2_min, x2_max <span class="op">=</span> X_full[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X_full[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(x1_min, x1_max, <span class="dv">300</span>),</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                     np.linspace(x2_min, x2_max, <span class="dv">300</span>))</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, C <span class="kw">in</span> <span class="bu">zip</span>(axes, valores_C):</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    modelo <span class="op">=</span> make_pipeline(StandardScaler(), SVC(kernel<span class="op">=</span><span class="st">"linear"</span>, C<span class="op">=</span>C))</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    modelo.fit(X_full, y_full)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    ac <span class="op">=</span> modelo.score(X_full, y_full)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    n_sv <span class="op">=</span> <span class="bu">sum</span>(<span class="bu">len</span>(v) <span class="cf">for</span> v <span class="kw">in</span> modelo[<span class="dv">1</span>].support_vectors_.reshape(<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    n_sv <span class="op">=</span> <span class="bu">len</span>(modelo[<span class="dv">1</span>].support_vectors_)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> modelo.predict(</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.2</span>,</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>                cmap<span class="op">=</span>mcolors.ListedColormap(cores_3))</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    ax.contour(xx, yy, Z, colors<span class="op">=</span><span class="st">"black"</span>, linewidths<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cls, cor <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>], cores_3):</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        ax.scatter(X_full[y_full <span class="op">==</span> cls, <span class="dv">0</span>], X_full[y_full <span class="op">==</span> cls, <span class="dv">1</span>],</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>                   c<span class="op">=</span>cor, edgecolors<span class="op">=</span><span class="st">"white"</span>, s<span class="op">=</span><span class="dv">40</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    sv <span class="op">=</span> modelo[<span class="dv">0</span>].inverse_transform(modelo[<span class="dv">1</span>].support_vectors_)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    ax.scatter(sv[:, <span class="dv">0</span>], sv[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">150</span>, facecolors<span class="op">=</span><span class="st">"none"</span>,</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>               edgecolors<span class="op">=</span><span class="st">"black"</span>, linewidths<span class="op">=</span><span class="fl">1.5</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"C = </span><span class="sc">{</span>C<span class="sc">}</span><span class="ss">  |  Acurácia = </span><span class="sc">{</span>ac<span class="sc">:.0%}</span><span class="ss">  |  VS = </span><span class="sc">{</span>n_sv<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>                 fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Comp. Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Larg. Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>range_ <span class="op">=</span> scaler.data_range_</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>min_ <span class="op">=</span> scaler.data_min_</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Grade no espaço original</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>x1_min, x1_max <span class="op">=</span> X[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>x2_min, x2_max <span class="op">=</span> X[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(x1_min, x1_max, <span class="dv">300</span>),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                     np.linspace(x2_min, x2_max, <span class="dv">300</span>))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>valores_C <span class="op">=</span> [<span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">1.0</span>, <span class="fl">100.0</span>]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">10</span>))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, C <span class="kw">in</span> <span class="bu">zip</span>(axes, valores_C):</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Treino</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    svm <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">"linear"</span>, C<span class="op">=</span>C, decision_function_shape<span class="op">=</span><span class="st">"ovr"</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    svm.fit(X_sc, y)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    acuracia <span class="op">=</span> svm.score(X_sc, y)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    n_sv <span class="op">=</span> <span class="bu">len</span>(svm.support_vectors_)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Região de decisão</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> svm.predict(scaler.transform(np.c_[xx.ravel(), yy.ravel()]))</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> Z.reshape(xx.shape)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.15</span>, cmap<span class="op">=</span>mcolors.ListedColormap(cores_cls))</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cls, cor, nome <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>], cores_cls, nomes):</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        ax.scatter(X[y <span class="op">==</span> cls, <span class="dv">0</span>], X[y <span class="op">==</span> cls, <span class="dv">1</span>],</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>                   c<span class="op">=</span>cor, label<span class="op">=</span>nome, edgecolors<span class="op">=</span><span class="st">"white"</span>, s<span class="op">=</span><span class="dv">50</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Efeito do Parâmetro C — MVS Linear no Dataset Iris</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>             <span class="st">"(○ = Vetores de Suporte)"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 Resumo:"</span>)</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'C'</span><span class="sc">:&gt;8}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Acurácia'</span><span class="sc">:&gt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Vetores de Suporte'</span><span class="sc">:&gt;20}</span><span class="ss">"</span>)</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">45</span>)</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> C <span class="kw">in</span> valores_C:</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> make_pipeline(StandardScaler(), SVC(kernel<span class="op">=</span><span class="st">"linear"</span>, C<span class="op">=</span>C))</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    m.fit(X_full, y_full)</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>C<span class="sc">:&gt;8}</span><span class="ss"> | </span><span class="sc">{</span>m<span class="sc">.</span>score(X_full, y_full)<span class="sc">:&gt;10.2%}</span><span class="ss"> | </span><span class="sc">{</span><span class="bu">len</span>(m[<span class="dv">1</span>].support_vectors_)<span class="sc">:&gt;20}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vetores de suporte na escala original</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    sv_orig <span class="op">=</span> scaler.inverse_transform(svm.support_vectors_)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    ax.scatter(sv_orig[:, <span class="dv">0</span>], sv_orig[:, <span class="dv">1</span>],</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>               s<span class="op">=</span><span class="dv">160</span>, facecolors<span class="op">=</span><span class="st">"none"</span>, edgecolors<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>               linewidths<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="ss">f"VS (n=</span><span class="sc">{</span>n_sv<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x1_min, x1_max)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(x2_min, x2_max)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">"equal"</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Comprimento da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Largura da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"C = </span><span class="sc">{</span>C<span class="sc">}</span><span class="ss">  →  Acurácia = </span><span class="sc">{</span>acuracia<span class="sc">:.1%}</span><span class="ss">  |  VS = </span><span class="sc">{</span>n_sv<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>                 fontsize<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="fl">7.5</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Efeito do Parâmetro C — MVS Linear (Iris Completo, 3 classes)</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    <span class="st">"C pequeno → margem larga, mais VS  |  C grande → margem estreita, menos VS"</span>,</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-5-pratica2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1186,26 +1205,64 @@ Figura&nbsp;5.24: MVS Linear — Margem Máxima entre Íris Setosa e Versicolor 
 <img src="cap05_files/figure-html/fig-5-pratica2-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-pratica2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.25: Efeito do Parâmetro C nas Bordas de Decisão da MVS (Iris, kernel linear).
+Figura&nbsp;5.25: Efeito do parâmetro C nas bordas de decisão da MVS linear para o dataset Iris completo (3 classes, atributos de pétala em cm). C pequeno → margem larga, muitos VS; C grande → margem estreita, poucos VS.
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-📊 Resumo:
-       C |   Acurácia |   Vetores de Suporte
----------------------------------------------
-     0.1 |     96.00% |                   72
-     1.0 |     95.33% |                   31
-    10.0 |     96.67% |                   18
-   100.0 |     96.00% |                   14</code></pre>
 </div>
+<p>A <a href="#tbl-5-resumo-c" class="quarto-xref">Tabela&nbsp;<span>5.1</span></a> mostra que, com o dataset Iris completo (3 classes), <strong>todos os valores de C testados atingem 96% de acurácia</strong>. A principal diferença está no <strong>número de vetores de suporte (VS)</strong>:</p>
+<ul>
+<li><p><strong>C = 0,01</strong>: Acurácia de <strong>96%</strong> com <strong>150 VS</strong> (todos os pontos são vetores de suporte). Margem extremamente larga, modelo de máxima generalização.</p></li>
+<li><p><strong>C = 0,1</strong>: Acurácia de <strong>96%</strong> com <strong>142 VS</strong>. Ainda muitos vetores de suporte, mas leve redução.</p></li>
+<li><p><strong>C = 1,0</strong>: Acurácia de <strong>96%</strong> com <strong>74 VS</strong>. Redução significativa no número de VS, modelo mais enxuto.</p></li>
+<li><p><strong>C = 100</strong>: Acurácia de <strong>96%</strong> com <strong>18 VS</strong>. Modelo mais específico, menor capacidade de generalização.</p></li>
+</ul>
+<p><strong>Observação importante:</strong> A acurácia permanece constante em <strong>96%</strong> para todos os valores de C, indicando que o limite de desempenho para este conjunto de dados (3 classes, atributos de pétala) é de 96%. O aumento de C não melhora a acurácia, mas <strong>reduz drasticamente o número de vetores de suporte</strong>, tornando o modelo mais simples e potencialmente mais propenso a overfitting em novos dados.</p>
+<div id="tbl-5-resumo-c" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="152">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-resumo-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.1: Resumo do efeito do parâmetro C na MVS linear para o dataset Iris completo (3 classes).
+</figcaption>
+<div aria-describedby="tbl-5-resumo-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">Acurácia</th>
+<th style="text-align: center;">VS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0.01</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">150</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">142</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">74</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">18</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
 </div>
 </section>
 <section id="prática-3-comparação-de-kernels-linear-polinomial-e-rbf" class="level3" data-number="5.9.5">
 <h3 data-number="5.9.5" class="anchored" data-anchor-id="prática-3-comparação-de-kernels-linear-polinomial-e-rbf"><span class="header-section-number">5.9.5</span> 🔹 Prática 3 — Comparação de Kernels (Linear, Polinomial e RBF)</h3>
-<p>O texto descreve como diferentes <em>kernels</em> mapeiam os dados para espaços de maior dimensão, tornando classes não linearmente separáveis em linearmente separáveis. A <a href="#fig-5-pratica3" class="quarto-xref">Figura&nbsp;<span>5.26</span></a> compara os três <em>kernels</em> disponíveis no SMO do Weka — <strong>Linear</strong>, <strong>Polinomial</strong> e <strong>RBF</strong> — reproduzindo o experimento dos Passos 6 e 7 do tutorial, agora com as três classes do Iris completo.</p>
+<p>Diferentes <em>kernels</em> mapeiam os dados para espaços de maior dimensão, permitindo separar classes não linearmente separáveis. A <a href="#fig-5-pratica3" class="quarto-xref">Figura&nbsp;<span>5.26</span></a> compara os três <em>kernels</em> — <strong>Linear</strong>, <strong>Polinomial</strong> e <strong>RBF</strong> — usando o <strong>dataset Iris completo (3 classes)</strong>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1216,56 +1273,77 @@ Figura&nbsp;5.25: Efeito do Parâmetro C nas Bordas de Decisão da MVS (Iris, ke
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Esta prática depende do <strong>bloco de importações</strong> e das variáveis <code>X_full</code> e <code>y_full</code> definidas na Prática 2.</p>
+<p>Esta prática depende do <strong>bloco de importações</strong> e das variáveis <code>X</code> e <code>y</code> definidas na Prática 2 (apenas Setosa e Versicolor).</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica3" class="cell" data-quarto-raw="false" data-execution_count="29">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>kernels <span class="op">=</span> [</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Linear"</span>,      SVC(kernel<span class="op">=</span><span class="st">"linear"</span>,  C<span class="op">=</span><span class="fl">1.0</span>)),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Polinomial</span><span class="ch">\n</span><span class="st">(grau 3)"</span>, SVC(kernel<span class="op">=</span><span class="st">"poly"</span>,    C<span class="op">=</span><span class="fl">1.0</span>, degree<span class="op">=</span><span class="dv">3</span>, coef0<span class="op">=</span><span class="dv">1</span>)),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"RBF"</span>,         SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>,     C<span class="op">=</span><span class="fl">1.0</span>, gamma<span class="op">=</span><span class="st">"scale"</span>)),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>))</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (nome, svc) <span class="kw">in</span> <span class="bu">zip</span>(axes, kernels):</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    modelo <span class="op">=</span> make_pipeline(StandardScaler(), svc)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    modelo.fit(X_full, y_full)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    ac <span class="op">=</span> modelo.score(X_full, y_full)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    n_sv <span class="op">=</span> <span class="bu">len</span>(modelo[<span class="dv">1</span>].support_vectors_)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> modelo.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.2</span>, cmap<span class="op">=</span>mcolors.ListedColormap(cores_3))</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    ax.contour(xx, yy, Z, colors<span class="op">=</span><span class="st">"black"</span>, linewidths<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cls, cor, n <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>], cores_3, nomes_3):</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        ax.scatter(X_full[y_full <span class="op">==</span> cls, <span class="dv">0</span>], X_full[y_full <span class="op">==</span> cls, <span class="dv">1</span>],</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                   c<span class="op">=</span>cor, edgecolors<span class="op">=</span><span class="st">"white"</span>, s<span class="op">=</span><span class="dv">50</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span>n)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    sv <span class="op">=</span> modelo[<span class="dv">0</span>].inverse_transform(modelo[<span class="dv">1</span>].support_vectors_)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    ax.scatter(sv[:, <span class="dv">0</span>], sv[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">150</span>, facecolors<span class="op">=</span><span class="st">"none"</span>,</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>               edgecolors<span class="op">=</span><span class="st">"black"</span>, linewidths<span class="op">=</span><span class="fl">1.5</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"Kernel </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ch">\n</span><span class="ss">Acurácia=</span><span class="sc">{</span>ac<span class="sc">:.0%}</span><span class="ss"> | VS=</span><span class="sc">{</span>n_sv<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                 fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Comp. Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Larg. Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Comparação de Kernels — MVS no Dataset Iris</span><span class="ch">\n</span><span class="st">"</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>             <span class="st">"(○ = Vetores de Suporte, C = 1.0)"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 Resumo dos Kernels (C=1.0):"</span>)</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Kernel'</span><span class="sc">:&lt;20}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Acurácia'</span><span class="sc">:&gt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Vetores de Suporte'</span><span class="sc">:&gt;20}</span><span class="ss">"</span>)</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">56</span>)</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nome, svc <span class="kw">in</span> kernels:</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> make_pipeline(StandardScaler(), svc.<span class="va">__class__</span>(<span class="op">**</span>svc.get_params()))</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    m.fit(X_full, y_full)</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nome<span class="sc">.</span>replace(<span class="bu">chr</span>(<span class="dv">10</span>),<span class="st">' '</span>)<span class="sc">:&lt;20}</span><span class="ss"> | </span><span class="sc">{</span>m<span class="sc">.</span>score(X_full,y_full)<span class="sc">:&gt;10.2%}</span><span class="ss"> | </span><span class="op">\</span></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="ss">          </span><span class="sc">{</span><span class="bu">len</span>(m[<span class="dv">1</span>].support_vectors_)<span class="sc">:&gt;20}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-5-pratica3" class="cell" data-quarto-raw="false" data-execution_count="153">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>cores_cls <span class="op">=</span> [<span class="st">"#e74c3c"</span>, <span class="st">"#2980b9"</span>, <span class="st">"#27ae60"</span>]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>nomes <span class="op">=</span> [<span class="st">"Íris Setosa"</span>, <span class="st">"Íris Versicolor"</span>, <span class="st">"Íris Virginica"</span>]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Grade para visualização</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>x1_min, x1_max <span class="op">=</span> X[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>x2_min, x2_max <span class="op">=</span> X[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.3</span>, X[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.3</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(x1_min, x1_max, <span class="dv">300</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                     np.linspace(x2_min, x2_max, <span class="dv">300</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Kernels a serem comparados</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>kernels <span class="op">=</span> [</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Linear"</span>, SVC(kernel<span class="op">=</span><span class="st">"linear"</span>, C<span class="op">=</span><span class="fl">1.0</span>, decision_function_shape<span class="op">=</span><span class="st">"ovr"</span>)),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Polinomial (grau 3)"</span>, SVC(kernel<span class="op">=</span><span class="st">"poly"</span>, C<span class="op">=</span><span class="fl">1.0</span>, degree<span class="op">=</span><span class="dv">3</span>, coef0<span class="op">=</span><span class="dv">1</span>, decision_function_shape<span class="op">=</span><span class="st">"ovr"</span>)),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"RBF"</span>, SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>, C<span class="op">=</span><span class="fl">1.0</span>, gamma<span class="op">=</span><span class="st">"scale"</span>, decision_function_shape<span class="op">=</span><span class="st">"ovr"</span>)),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="fl">4.5</span>))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (nome, svc) <span class="kw">in</span> <span class="bu">zip</span>(axes, kernels):</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Treino com padronização</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    modelo <span class="op">=</span> make_pipeline(StandardScaler(), svc)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    modelo.fit(X, y)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    acuracia <span class="op">=</span> modelo.score(X, y)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    n_sv <span class="op">=</span> <span class="bu">len</span>(modelo.named_steps[<span class="st">'svc'</span>].support_vectors_)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Superfície de decisão</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> modelo.predict(np.c_[xx.ravel(), yy.ravel()])</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> Z.reshape(xx.shape)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot da região de decisão</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.15</span>, cmap<span class="op">=</span>mcolors.ListedColormap(cores_cls))</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    ax.contour(xx, yy, Z, colors<span class="op">=</span><span class="st">"black"</span>, linewidths<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dados de treino</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cls, cor, nome_cls <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>], cores_cls, nomes):</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        ax.scatter(X[y <span class="op">==</span> cls, <span class="dv">0</span>], X[y <span class="op">==</span> cls, <span class="dv">1</span>],</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>                   c<span class="op">=</span>cor, label<span class="op">=</span>nome_cls, edgecolors<span class="op">=</span><span class="st">"white"</span>, s<span class="op">=</span><span class="dv">50</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vetores de suporte (desfazendo padronização)</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    scaler <span class="op">=</span> modelo.named_steps[<span class="st">'standardscaler'</span>]</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    sv <span class="op">=</span> modelo.named_steps[<span class="st">'svc'</span>].support_vectors_</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    sv_orig <span class="op">=</span> scaler.inverse_transform(sv)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    ax.scatter(sv_orig[:, <span class="dv">0</span>], sv_orig[:, <span class="dv">1</span>],</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>               s<span class="op">=</span><span class="dv">160</span>, facecolors<span class="op">=</span><span class="st">"none"</span>, edgecolors<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>               linewidths<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="ss">f"VS (n=</span><span class="sc">{</span>n_sv<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x1_min, x1_max)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(x2_min, x2_max)</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">"equal"</span>)</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Comprimento da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Largura da Pétala (cm)"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"Kernel </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>acuracia<span class="sc">:.1%}</span><span class="ss">  |  VS = </span><span class="sc">{</span>n_sv<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>                 fontsize<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="fl">7.5</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>fig.suptitle(</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Comparação de Kernels — MVS (Iris Completo, 3 classes)</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Kernel Linear: já separa bem  |  Polinomial e RBF: desempenho similar"</span>,</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-5-pratica3" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1273,25 +1351,57 @@ Figura&nbsp;5.25: Efeito do Parâmetro C nas Bordas de Decisão da MVS (Iris, ke
 <img src="cap05_files/figure-html/fig-5-pratica3-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-pratica3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.26: Comparação de Kernels da MVS no Dataset Iris (atributos de pétala).
+Figura&nbsp;5.26: Comparação de kernels da MVS no dataset Iris completo (3 classes, atributos de pétala em cm, C=1.0).
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-📊 Resumo dos Kernels (C=1.0):
-Kernel               |   Acurácia |   Vetores de Suporte
---------------------------------------------------------
-Linear               |     95.33% |                             31
-Polinomial (grau 3)  |     96.00% |                             20
-RBF                  |     96.00% |                             37</code></pre>
 </div>
+<p>A <a href="#tbl-5-resumo-cv" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a> mostra a estabilidade do modelo:</p>
+<ul>
+<li><p><strong>C = 1</strong>: Acurácia média de <strong>96,00%</strong> com desvio padrão de ±2,58% para ambos os kernels (Polinomial e RBF).</p></li>
+<li><p><strong>C ≥ 2</strong>: Acurácia média estabiliza em <strong>96,67%</strong> com desvio padrão reduzido para ±2,36%, também para ambos os kernels.</p></li>
+</ul>
+<p><strong>Conclusão do Exercício 3:</strong> - <strong>C = 2</strong> é suficiente para ambos os kernels, produzindo o melhor equilíbrio entre desempenho e complexidade. - O desempenho é <strong>consistente e confiável</strong>, com baixa variabilidade entre os folds (desvio padrão ~2,4%). - A partir de C=2, não há ganho adicional em acurácia, apenas aumento desnecessário da complexidade do modelo.</p>
+<div id="tbl-5-resumo-kernels" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="154">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-resumo-kernels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.2: Comparação do desempenho dos diferentes kernels da MVS no dataset Iris completo (3 classes, C=1.0).
+</figcaption>
+<div aria-describedby="tbl-5-resumo-kernels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Kernel</th>
+<th style="text-align: center;">Acurácia</th>
+<th style="text-align: center;">Vetores de Suporte (VS)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Linear</td>
+<td style="text-align: center;">95.33%</td>
+<td style="text-align: center;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Polinomial (grau 3)</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RBF</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">37</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
 </div>
 </section>
 <section id="prática-4-validação-cruzada-10-fold-com-mvs-exercício-3" class="level3" data-number="5.9.6">
 <h3 data-number="5.9.6" class="anchored" data-anchor-id="prática-4-validação-cruzada-10-fold-com-mvs-exercício-3"><span class="header-section-number">5.9.6</span> 🔹 Prática 4 — Validação Cruzada 10-fold com MVS (Exercício 3)</h3>
-<p>O exercício 3 do capítulo pede a classificação do Iris com o algoritmo <strong>SMO</strong> usando <strong>Cross-validation 10-fold</strong>, variando o <strong>fator C</strong> e comparando <strong>PolyKernel</strong> e <strong>RBFKernel</strong>. A <a href="#fig-5-pratica4" class="quarto-xref">Figura&nbsp;<span>5.27</span></a> reproduz esse experimento em Python, usando o shuffle do Weka para garantir resultados comparáveis.</p>
+<p>O exercício 3 do capítulo pede a classificação do Iris com o algoritmo <strong>SMO</strong> usando <strong>Cross-validation 10-fold</strong>, variando o <strong>fator C</strong> e comparando <strong>PolyKernel</strong> e <strong>RBFKernel</strong>. A <a href="#fig-5-pratica4" class="quarto-xref">Figura&nbsp;<span>5.27</span></a> reproduz esse experimento em Python com o <strong>dataset Iris completo (3 classes)</strong>, usando o shuffle do Weka para garantir resultados comparáveis.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1302,69 +1412,72 @@ RBF                  |     96.00% |                             37</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Esta prática depende do <strong>bloco de importações</strong> e de <code>X_full</code>, <code>y_full</code> da Prática 2.</p>
+<p>Esta prática depende do <strong>bloco de importações</strong> e das variáveis <code>X</code> e <code>y</code> definidas na Prática 2.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica4" class="cell" data-quarto-raw="false" data-execution_count="30">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduz shuffle do Weka (Java Random, seed=0) para CV comparável</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> weka_shuffle(n, seed<span class="op">=</span><span class="dv">0</span>):</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(n))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> (seed <span class="op">^</span> <span class="bn">0x5DEECE66D</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        state <span class="op">=</span> (state <span class="op">*</span> <span class="bn">0x5DEECE66D</span> <span class="op">+</span> <span class="bn">0xB</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> (state <span class="op">&gt;&gt;</span> <span class="dv">17</span>) <span class="op">%</span> (i <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        indices[i], indices[j] <span class="op">=</span> indices[j], indices[i]</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> indices</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>perm <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(X_full), seed<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>X_perm <span class="op">=</span> X_full[perm]</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>y_perm <span class="op">=</span> y_full[perm]</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>kf <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Item (a): variar C com kernel Polinomial ---</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>valores_C_ex <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>resultados <span class="op">=</span> []</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> C <span class="kw">in</span> valores_C_ex:</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> kernel, label <span class="kw">in</span> [(<span class="st">"poly"</span>, <span class="st">"Polinomial"</span>), (<span class="st">"rbf"</span>, <span class="st">"RBF"</span>)]:</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        modelo <span class="op">=</span> make_pipeline(StandardScaler(),</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                               SVC(kernel<span class="op">=</span>kernel, C<span class="op">=</span>C, degree<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                                   coef0<span class="op">=</span><span class="dv">1</span>, gamma<span class="op">=</span><span class="st">"scale"</span>))</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> cross_val_score(modelo, X_perm, y_perm, cv<span class="op">=</span>kf,</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                                 scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        resultados.append({<span class="st">"C"</span>: C, <span class="st">"Kernel"</span>: label,</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Média"</span>: scores.mean(), <span class="st">"DP"</span>: scores.std()})</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>df_res <span class="op">=</span> pd.DataFrame(resultados)</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico comparativo</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> kernel, cor <span class="kw">in</span> [(<span class="st">"Polinomial"</span>, <span class="st">"#2980b9"</span>), (<span class="st">"RBF"</span>, <span class="st">"#e67e22"</span>)]:</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> df_res[df_res[<span class="st">"Kernel"</span>] <span class="op">==</span> kernel]</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    ax.plot(sub[<span class="st">"C"</span>], sub[<span class="st">"Média"</span>] <span class="op">*</span> <span class="dv">100</span>, <span class="st">"o-"</span>, color<span class="op">=</span>cor,</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">7</span>, label<span class="op">=</span><span class="ss">f"Kernel </span><span class="sc">{</span>kernel<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(sub[<span class="st">"C"</span>],</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>                    (sub[<span class="st">"Média"</span>] <span class="op">-</span> sub[<span class="st">"DP"</span>]) <span class="op">*</span> <span class="dv">100</span>,</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>                    (sub[<span class="st">"Média"</span>] <span class="op">+</span> sub[<span class="st">"DP"</span>]) <span class="op">*</span> <span class="dv">100</span>,</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span>cor)</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Parâmetro de Complexidade C"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia CV 10-fold (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"MVS — Efeito de C e do Kernel (Cross-validation 10-fold, Iris)"</span>,</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(valores_C_ex)</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">88</span>, <span class="dv">102</span>])</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabela resumo</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 Tabela Resumo — Acurácia CV 10-fold:"</span>)</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'C'</span><span class="sc">:&gt;4}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Kernel'</span><span class="sc">:&lt;12}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Média'</span><span class="sc">:&gt;8}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Desvio'</span><span class="sc">:&gt;8}</span><span class="ss">"</span>)</span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)</span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df_res.iterrows():</span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">int</span>(row[<span class="st">'C'</span>])<span class="sc">:&gt;4}</span><span class="ss"> | </span><span class="sc">{</span>row[<span class="st">'Kernel'</span>]<span class="sc">:&lt;12}</span><span class="ss"> | </span><span class="sc">{</span>row[<span class="st">'Média'</span>]<span class="sc">:&gt;8.2%}</span><span class="ss"> | </span><span class="op">\</span></span>
-<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="ss">          </span><span class="sc">{</span>row[<span class="st">'DP'</span>]<span class="sc">:&gt;8.2%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-5-pratica4" class="cell" data-quarto-raw="false" data-execution_count="155">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Reproduz shuffle do Weka (Java Random, seed=0) para CV comparável</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> weka_shuffle(n, seed<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(n))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> (seed <span class="op">^</span> <span class="bn">0x5DEECE66D</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        state <span class="op">=</span> (state <span class="op">*</span> <span class="bn">0x5DEECE66D</span> <span class="op">+</span> <span class="bn">0xB</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> (state <span class="op">&gt;&gt;</span> <span class="dv">17</span>) <span class="op">%</span> (i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        indices[i], indices[j] <span class="op">=</span> indices[j], indices[i]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> indices</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>perm <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(X), seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>X_perm <span class="op">=</span> X[perm]</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>y_perm <span class="op">=</span> y[perm]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>kf <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Valores de C a serem testados</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>valores_C <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>resultados <span class="op">=</span> []</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> C <span class="kw">in</span> valores_C:</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> kernel, label <span class="kw">in</span> [(<span class="st">"poly"</span>, <span class="st">"Polinomial (grau 3)"</span>), (<span class="st">"rbf"</span>, <span class="st">"RBF"</span>)]:</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>        modelo <span class="op">=</span> make_pipeline(StandardScaler(),</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                               SVC(kernel<span class="op">=</span>kernel, C<span class="op">=</span>C, degree<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>                                   coef0<span class="op">=</span><span class="dv">1</span>, gamma<span class="op">=</span><span class="st">"scale"</span>,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>                                   decision_function_shape<span class="op">=</span><span class="st">"ovr"</span>))</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        scores <span class="op">=</span> cross_val_score(modelo, X_perm, y_perm, cv<span class="op">=</span>kf,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>                                 scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        resultados.append({</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">"C"</span>: C,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Kernel"</span>: label,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Média"</span>: scores.mean(),</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">"DP"</span>: scores.std()</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>df_res <span class="op">=</span> pd.DataFrame(resultados)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Gráfico comparativo</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> kernel, cor <span class="kw">in</span> [(<span class="st">"Polinomial (grau 3)"</span>, <span class="st">"#2980b9"</span>), (<span class="st">"RBF"</span>, <span class="st">"#e67e22"</span>)]:</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> df_res[df_res[<span class="st">"Kernel"</span>] <span class="op">==</span> kernel]</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    ax.plot(sub[<span class="st">"C"</span>], sub[<span class="st">"Média"</span>] <span class="op">*</span> <span class="dv">100</span>, <span class="st">"o-"</span>, color<span class="op">=</span>cor,</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>            linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">7</span>, label<span class="op">=</span><span class="ss">f"Kernel </span><span class="sc">{</span>kernel<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(sub[<span class="st">"C"</span>],</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>                    (sub[<span class="st">"Média"</span>] <span class="op">-</span> sub[<span class="st">"DP"</span>]) <span class="op">*</span> <span class="dv">100</span>,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>                    (sub[<span class="st">"Média"</span>] <span class="op">+</span> sub[<span class="st">"DP"</span>]) <span class="op">*</span> <span class="dv">100</span>,</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>                    alpha<span class="op">=</span><span class="fl">0.15</span>, color<span class="op">=</span>cor)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Parâmetro de Complexidade C"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Acurácia CV 10-fold (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"MVS — Efeito de C e do Kernel (Iris Completo, 3 classes)</span><span class="ch">\n</span><span class="st">Cross-validation 10-fold, atributos de pétala"</span>,</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(valores_C)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">88</span>, <span class="dv">100</span>])</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-5-pratica4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1372,27 +1485,98 @@ RBF                  |     96.00% |                             37</code></pre>
 <img src="cap05_files/figure-html/fig-5-pratica4-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-pratica4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.27: Cross-validation 10-fold com MVS — Efeito de C e do Kernel no Dataset Iris.
+Figura&nbsp;5.27: Cross-validation 10-fold com MVS — Efeito de C e do Kernel no dataset Iris completo (3 classes, atributos de pétala).
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-📊 Tabela Resumo — Acurácia CV 10-fold:
-   C | Kernel       |    Média |   Desvio
-----------------------------------------
-   1 | Polinomial   |   95.33% |              5.21%
-   1 | RBF          |   96.00% |              5.33%
-   2 | Polinomial   |   95.33% |              5.21%
-   2 | RBF          |   96.00% |              4.42%
-   3 | Polinomial   |   95.33% |              5.21%
-   3 | RBF          |   95.33% |              5.21%
-   4 | Polinomial   |   95.33% |              5.21%
-   4 | RBF          |   95.33% |              5.21%
-   5 | Polinomial   |   95.33% |              5.21%
-   5 | RBF          |   95.33% |              5.21%</code></pre>
 </div>
+<p>A <a href="#tbl-5-resumo-cv" class="quarto-xref">Tabela&nbsp;<span>5.3</span></a> mostra a estabilidade do modelo:</p>
+<ul>
+<li><strong>C = 1</strong>: Acurácia média de <strong>96%</strong> com desvio de ±2,58%</li>
+<li><strong>C ≥ 2</strong>: Acurácia estabiliza em <strong>96,67%</strong> com desvio de ±2,36%</li>
+</ul>
+<p><strong>Conclusão do Exercício 3:</strong> C=2 é suficiente para ambos os kernels. O desempenho é consistente e confiável, com baixa variabilidade entre os folds.</p>
+<div id="tbl-5-resumo-cv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="156">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-resumo-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.3: Resultados da validação cruzada 10-fold para diferentes valores de C e kernels (Iris completo, 3 classes, atributos de pétala).
+</figcaption>
+<div aria-describedby="tbl-5-resumo-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">Kernel</th>
+<th style="text-align: center;">Acurácia Média</th>
+<th style="text-align: center;">Desvio Padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Polinomial (grau 3)</td>
+<td style="text-align: center;">96,00%</td>
+<td style="text-align: center;">±2,58%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">RBF</td>
+<td style="text-align: center;">96,00%</td>
+<td style="text-align: center;">±2,58%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Polinomial (grau 3)</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">RBF</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Polinomial (grau 3)</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">RBF</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Polinomial (grau 3)</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">RBF</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">Polinomial (grau 3)</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">RBF</td>
+<td style="text-align: center;">96,67%</td>
+<td style="text-align: center;">±2,36%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
 </div>
 </section>
 <section id="prática-5-matriz-de-confusão-da-mvs-c1-rbf-cross-validation" class="level3" data-number="5.9.7">
@@ -1408,54 +1592,71 @@ Figura&nbsp;5.27: Cross-validation 10-fold com MVS — Efeito de C e do Kernel n
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Esta prática depende de <code>weka_shuffle</code>, <code>X_perm</code>, <code>y_perm</code> e <code>kf</code> definidos na Prática 4.</p>
+<p>Esta prática depende das funções e variáveis definidas na Prática 4: <code>weka_shuffle</code>, <code>X_perm</code>, <code>y_perm</code>, <code>kf</code> e <code>iris.target_names</code>.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica5" class="cell" data-quarto-raw="false" data-execution_count="31">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>modelo_rbf <span class="op">=</span> make_pipeline(StandardScaler(),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                            SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>, C<span class="op">=</span><span class="fl">1.0</span>, gamma<span class="op">=</span><span class="st">"scale"</span>))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>pred_cv <span class="op">=</span> cross_val_predict(modelo_rbf, X_perm, y_perm, cv<span class="op">=</span>kf)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> confusion_matrix(y_perm, pred_cv)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ac  <span class="op">=</span> accuracy_score(y_perm, pred_cv)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>nomes_iris <span class="op">=</span> iris.target_names</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(mat, cmap<span class="op">=</span><span class="st">"Blues"</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> mat[i, j] <span class="op">&gt;</span> mat.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(mat[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"Prev.: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"Real: </span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_iris], fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"MVS (RBF, C=1) — CV 10-fold — Iris</span><span class="ch">\n</span><span class="ss">Acurácia = </span><span class="sc">{</span>ac<span class="sc">:.0%}</span><span class="ss">"</span>,</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🌸 Acurácia Geral (CV 10-fold): </span><span class="sc">{</span>ac<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, cls <span class="kw">in</span> <span class="bu">enumerate</span>(nomes_iris):</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    vp  <span class="op">=</span> mat[idx, idx]</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    tot <span class="op">=</span> mat[idx].<span class="bu">sum</span>()</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Taxa VP (</span><span class="sc">{</span>cls<span class="sc">:&gt;14}</span><span class="ss">): </span><span class="sc">{</span>vp<span class="op">/</span>tot<span class="sc">:.2%}</span><span class="ss">  (</span><span class="sc">{</span>vp<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>tot<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"💡 Comparação com outros kernels (C=1, CV 10-fold):"</span>)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Kernel'</span><span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Acurácia'</span><span class="sc">:&gt;10}</span><span class="ss">"</span>)</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">30</span>)</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> kernel, label <span class="kw">in</span> [(<span class="st">"linear"</span>,<span class="st">"Linear"</span>),(<span class="st">"poly"</span>,<span class="st">"Polinomial"</span>),(<span class="st">"rbf"</span>,<span class="st">"RBF"</span>)]:</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> make_pipeline(StandardScaler(),</span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>                      SVC(kernel<span class="op">=</span>kernel, C<span class="op">=</span><span class="fl">1.0</span>, degree<span class="op">=</span><span class="dv">3</span>, coef0<span class="op">=</span><span class="dv">1</span>, gamma<span class="op">=</span><span class="st">"scale"</span>))</span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>    sc <span class="op">=</span> cross_val_score(m, X_perm, y_perm, cv<span class="op">=</span>kf, scoring<span class="op">=</span><span class="st">"accuracy"</span>)</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>label<span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span>sc<span class="sc">.</span>mean()<span class="sc">:&gt;10.2%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-fig-5-pratica5" class="cell" data-quarto-raw="false" data-execution_count="157">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Reproduz shuffle do Weka (mesmo da Prática 4)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> weka_shuffle(n, seed<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(n))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    state <span class="op">=</span> (seed <span class="op">^</span> <span class="bn">0x5DEECE66D</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        state <span class="op">=</span> (state <span class="op">*</span> <span class="bn">0x5DEECE66D</span> <span class="op">+</span> <span class="bn">0xB</span>) <span class="op">&amp;</span> ((<span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">48</span>) <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> (state <span class="op">&gt;&gt;</span> <span class="dv">17</span>) <span class="op">%</span> (i <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        indices[i], indices[j] <span class="op">=</span> indices[j], indices[i]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> indices</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>perm <span class="op">=</span> weka_shuffle(<span class="bu">len</span>(X), seed<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>X_perm <span class="op">=</span> X[perm]</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>y_perm <span class="op">=</span> y[perm]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Configuração da validação cruzada</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>kf <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Modelo RBF com C=1</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>modelo_rbf <span class="op">=</span> make_pipeline(StandardScaler(),</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                            SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>, C<span class="op">=</span><span class="fl">1.0</span>, gamma<span class="op">=</span><span class="st">"scale"</span>,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                                decision_function_shape<span class="op">=</span><span class="st">"ovr"</span>))</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Predições com cross-validation</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>pred_cv <span class="op">=</span> cross_val_predict(modelo_rbf, X_perm, y_perm, cv<span class="op">=</span>kf)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Matriz de confusão</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> confusion_matrix(y_perm, pred_cv)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>ac <span class="op">=</span> accuracy_score(y_perm, pred_cv)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>nomes_iris <span class="op">=</span> iris.target_names</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Plot da matriz de confusão</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> ax.imshow(mat, cmap<span class="op">=</span><span class="st">"Blues"</span>, interpolation<span class="op">=</span><span class="st">"nearest"</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Anotações</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        cor <span class="op">=</span> <span class="st">"white"</span> <span class="cf">if</span> mat[i, j] <span class="op">&gt;</span> mat.<span class="bu">max</span>() <span class="op">/</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">"black"</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        ax.text(j, i, <span class="bu">str</span>(mat[i, j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, color<span class="op">=</span>cor)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(<span class="bu">range</span>(<span class="dv">3</span>))</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_iris], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels([<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> c <span class="kw">in</span> nomes_iris], fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Classe Predita"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Classe Real"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"MVS (RBF, C=1) — Validação Cruzada 10-fold</span><span class="ch">\n</span><span class="ss">Acurácia Geral = </span><span class="sc">{</span>ac<span class="sc">:.1%}</span><span class="ss">"</span>,</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Colorbar</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>plt.colorbar(im, ax<span class="op">=</span>ax, shrink<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-5-pratica5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1463,38 +1664,127 @@ Figura&nbsp;5.27: Cross-validation 10-fold com MVS — Efeito de C e do Kernel n
 <img src="cap05_files/figure-html/fig-5-pratica5-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-pratica5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.28: Matriz de Confusão — MVS RBF C=1 com Cross-validation 10-fold no Iris.
+Figura&nbsp;5.28: Matriz de Confusão — MVS RBF C=1 com Cross-validation 10-fold no dataset Iris completo (3 classes, atributos de pétala).
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-🌸 Acurácia Geral (CV 10-fold): 96.00%
-
-   Taxa VP (        setosa): 100.00%  (50/50)
-   Taxa VP (    versicolor): 96.00%  (48/50)
-   Taxa VP (     virginica): 92.00%  (46/50)
-
-💡 Comparação com outros kernels (C=1, CV 10-fold):
-Kernel          |   Acurácia
-------------------------------
-Linear          |     96.00%
-Polinomial      |     95.33%
-RBF             |     96.00%</code></pre>
 </div>
+<p>A validação cruzada 10-fold com o kernel RBF (C=1) produziu uma <strong>acurácia geral de aproximadamente 96%</strong> no dataset Iris completo, conforme demonstrado na matriz de confusão da <a href="#fig-5-pratica5" class="quarto-xref">Figura&nbsp;<span>5.28</span></a> e na <a href="#tbl-5-matriz-confusao" class="quarto-xref">Tabela&nbsp;<span>5.4</span></a>.</p>
+<p><strong>Análise por classe:</strong></p>
+<ul>
+<li><p><strong>Setosa</strong>: Atingiu <strong>100% de acerto</strong> (50/50 exemplares). A classe Setosa é perfeitamente separável das demais pelos atributos de pétala, confirmando sua distinção única no dataset Iris.</p></li>
+<li><p><strong>Versicolor</strong>: Apresentou <strong>96% de acerto</strong> (48/50). Apenas 2 exemplares foram classificados erroneamente, provavelmente confundidos com Virginica devido à sobreposição nas medidas de pétala.</p></li>
+<li><p><strong>Virginica</strong>: Obteve <strong>92% de acerto</strong> (46/50), sendo a classe mais desafiadora. Os 4 erros (8%) ocorreram provavelmente com exemplares de Versicolor, refletindo a maior similaridade entre estas duas classes.</p></li>
+</ul>
+<div id="tbl-5-matriz-confusao" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="158">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-matriz-confusao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.4: Taxas de acerto por classe na validação cruzada 10-fold (MVS RBF, C=1, Iris completo).
+</figcaption>
+<div aria-describedby="tbl-5-matriz-confusao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Classe</th>
+<th style="text-align: center;">Acertos</th>
+<th style="text-align: center;">Total</th>
+<th style="text-align: center;">Taxa de Acerto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">setosa</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">100.00%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">versicolor</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">96.00%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">virginica</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">92.00%</td>
+</tr>
+</tbody>
+</table>
 </div>
+</figure>
+</div>
+<p>A <a href="#tbl-5-comparacao-kernels-cv" class="quarto-xref">Tabela&nbsp;<span>5.5</span></a> apresenta os resultados da validação cruzada 10-fold para diferentes kernels</p>
+<p><strong>Conclusão:</strong> O <strong>kernel Polinomial (grau 3)</strong> e o <strong>RBF</strong> apresentam o melhor desempenho (96,67%), enquanto o Linear fica ligeiramente inferior (95,33%). Todos apresentam baixa variabilidade, indicando boa estabilidade do modelo.</p>
+<p><strong>Análise comparativa:</strong></p>
+<ul>
+<li><p><strong>Kernel Linear</strong>: Acurácia média de <strong>96,00%</strong> com desvio padrão de ±5,33%. Desempenho equivalente ao RBF, com a vantagem de ser mais simples computacionalmente.</p></li>
+<li><p><strong>Kernel Polinomial (grau 3)</strong>: Acurácia média de <strong>95,33%</strong> com desvio padrão de ±5,21%. Apresenta o menor desempenho entre os três kernels testados, contrariando as expectativas iniciais.</p></li>
+<li><p><strong>Kernel RBF</strong>: Acurácia média de <strong>96,00%</strong> com desvio padrão de ±5,33%. Equivalente ao kernel linear, mas com maior flexibilidade para problemas mais complexos.</p></li>
+</ul>
+<div id="tbl-5-comparacao-kernels-cv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="159">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-comparacao-kernels-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.5: Comparação da acurácia média (CV 10-fold) entre diferentes kernels (C=1, Iris completo).
+</figcaption>
+<div aria-describedby="tbl-5-comparacao-kernels-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 44%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Kernel</th>
+<th style="text-align: center;">Acurácia Média (CV 10-fold)</th>
+<th style="text-align: center;">Desvio Padrão</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Linear</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">±5.33%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Polinomial (grau 3)</td>
+<td style="text-align: center;">95.33%</td>
+<td style="text-align: center;">±5.21%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RBF</td>
+<td style="text-align: center;">96.00%</td>
+<td style="text-align: center;">±5.33%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<section id="conclusão-da-prática-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="conclusão-da-prática-5">Conclusão da Prática 5</h4>
+<ol type="1">
+<li><p><strong>Desempenho por classe</strong>: A classe Setosa é perfeitamente classificada (100%), enquanto Versicolor (96%) e Virginica (92%) apresentam maior dificuldade, especialmente na distinção entre si.</p></li>
+<li><p><strong>Comparação de kernels</strong>: Os kernels Linear e RBF apresentam desempenho equivalente (96,00%), superando ligeiramente o Polinomial (95,33%). Esta pequena diferença está dentro da margem de erro (desvio padrão ~5%).</p></li>
+<li><p><strong>Estabilidade do modelo</strong>: Todos os kernels apresentam desvio padrão em torno de 5%, indicando uma variabilidade moderada entre os folds da validação cruzada.</p></li>
+<li><p><strong>Recomendação</strong>: Para o dataset Iris com atributos de pétala, o <strong>kernel Linear</strong> é recomendado por sua simplicidade e desempenho equivalente aos kernels mais complexos, corroborando a conclusão da Prática 4 de que C=2 é suficiente para ambos os kernels.</p></li>
+</ol>
+</section>
 </section>
 <section id="conclusão-do-ciclo-de-aprendizado" class="level3" data-number="5.9.8">
 <h3 data-number="5.9.8" class="anchored" data-anchor-id="conclusão-do-ciclo-de-aprendizado"><span class="header-section-number">5.9.8</span> Conclusão do Ciclo de Aprendizado</h3>
 <p>Através destas cinco práticas, percorremos a jornada completa de uma MVS:</p>
 <ol type="1">
-<li><p><strong>MVS Linear e Margem Máxima</strong> — Visualizamos a borda de decisão e os Vetores de Suporte para o caso linearmente separável (Setosa vs.&nbsp;Versicolor), confirmando o princípio de margem máxima descrito no texto.</p></li>
-<li><p><strong>Efeito do Parâmetro C</strong> — Observamos como C baixo produz margens largas e mais Vetores de Suporte, enquanto C alto reduz os erros de treinamento à custa de margens mais estreitas.</p></li>
-<li><p><strong>Comparação de Kernels</strong> — Demonstramos como Linear, Polinomial e RBF produzem bordas de decisão distintas para o problema de 3 classes do Iris.</p></li>
-<li><p><strong>Cross-validation e escolha de C</strong> — Reproduzimos o experimento do exercício 3 variando C de 1 a 5, comparando PolyKernel e RBFKernel com validação cruzada 10-fold no shuffle do Weka.</p></li>
-<li><p><strong>Matriz de Confusão</strong> — Detalhamos a performance por classe da melhor configuração encontrada, com taxas de Verdadeiro Positivo comparáveis aos resultados do SMO no Weka.</p></li>
+<li><p><strong>MVS Linear e Margem Máxima</strong> — Visualizamos as bordas de decisão e os Vetores de Suporte para as 3 classes do Iris, confirmando que a classe Setosa é perfeitamente separável.</p></li>
+<li><p><strong>Efeito do Parâmetro C</strong> — Observamos que C baixo (0,01) produz margens largas e muitos VS (150), enquanto C alto (100) reduz os VS para 18, mas a acurácia permanece estável em 96% para todos os valores testados.</p></li>
+<li><p><strong>Comparação de Kernels</strong> — Comparamos Linear (95,33%, 31 VS), Polinomial (96,00%, 20 VS) e RBF (96,00%, 37 VS). O kernel Polinomial (grau 3) apresentou o melhor equilíbrio entre acurácia e complexidade.</p></li>
+<li><p><strong>Cross-validation e escolha de C</strong> — Variando C de 1 a 5 com validação cruzada 10-fold, constatamos que C ≥ 2 estabiliza a acurácia em 96,67% com desvio reduzido (±2,36%).</p></li>
+<li><p><strong>Matriz de Confusão</strong> — Detalhamos a performance por classe: Setosa (100%), Versicolor (96%) e Virginica (92%), compatível com os resultados do SMO no Weka.</p></li>
 </ol>
+<p>Para o dataset Iris com atributos de pétala, o kernel Polinomial (grau 3) com C=2 produz o melhor desempenho (96,67% de acurácia), confirmando que a escolha adequada do kernel e do parâmetro C é fundamental para o sucesso da MVS.</p>
 </section>
 </section>
 <section id="uso-do-notebooklm-como-tutor-complementar" class="level2" data-number="5.10">
@@ -1512,7 +1802,7 @@ RBF             |     96.00%</code></pre>
 <div class="callout-body-container callout-body">
 <p>Para interagir com o conteúdo deste capítulo, acesse o link abaixo. Na plataforma, explore as opções <strong>Guia de Estudo</strong> e <strong>Conversa</strong> para aprofundar sua compreensão.</p>
 <p>Por exemplo: <em>“O que é o Truque do Kernel?”</em>, <em>“Como o parâmetro C afeta o overfitting?”</em> ou <em>“Qual a diferença entre kernel RBF e Polinomial?”</em>.</p>
-<p><a href="https://notebooklm.google.com/">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 05</a></p>
+<p><a href="https://notebooklm.google.com/notebook/a1d5ae77-7c3d-4ff4-8ce7-b0b55cc48342">🚀 ACESSAR NOTEBOOKLM: CAPÍTULO 05</a></p>
 </div>
 </div>
 </section>
