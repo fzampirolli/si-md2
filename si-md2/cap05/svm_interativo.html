@@ -1,0 +1,217 @@
+<style>
+#svm-wrap *{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}
+#svm-wrap{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;background:#f8f9fa;padding:16px;border-radius:8px;margin:1rem 0}
+#svm-panel{width:250px;flex-shrink:0;background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:14px;font-size:13px}
+#svm-panel h3{font-size:13px;font-weight:600;color:#1a7a4a;margin-bottom:10px}
+.ctrl-group{margin-bottom:8px}
+.ctrl-group label{display:flex;justify-content:space-between;align-items:center;color:#444;margin-bottom:2px;font-size:12px}
+.ctrl-group label span{font-family:monospace;font-size:12px;color:#111;min-width:36px;text-align:right}
+.ctrl-group input[type=range]{width:100%;accent-color:#1a7a4a;cursor:pointer}
+.svm-sep{border:none;border-top:1px solid #eee;margin:8px 0}
+.svm-sec{font-size:10px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.svm-btns{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.svm-btns button{font-size:11px;padding:3px 7px;border:1px solid #ccc;border-radius:4px;background:#fff;cursor:pointer}
+.svm-btns button:hover{background:#f0f0f0}
+#svm-info{margin-top:10px;background:#f0faf3;border:1px solid #b7dfc5;border-radius:6px;padding:8px;font-size:12px;line-height:1.75}
+#svm-info b{color:#1a7a4a}
+#svm-canvas{border:1px solid #dee2e6;border-radius:8px;background:#fff;display:block;max-width:100%}
+</style>
+
+<div id="svm-wrap">
+  <div id="svm-panel">
+    <h3>Controles — SVM</h3>
+    <div class="svm-sec">Vetor de pesos <b>w</b></div>
+    <div class="ctrl-group">
+      <label>w<sub>1</sub><span id="svm-lw1">1.0</span></label>
+      <input type="range" id="svm-w1" min="-30" max="30" step="1" value="10">
+    </div>
+    <div class="ctrl-group">
+      <label>w<sub>2</sub><span id="svm-lw2">1.0</span></label>
+      <input type="range" id="svm-w2" min="-30" max="30" step="1" value="10">
+    </div>
+    <div class="ctrl-group">
+      <label>b<span id="svm-lb">0.0</span></label>
+      <input type="range" id="svm-b" min="-40" max="40" step="1" value="0">
+    </div>
+    <hr class="svm-sep">
+    <div class="svm-sec">Ponto x<sub>1</sub> (classe +1) &#9679;</div>
+    <div class="ctrl-group">
+      <label>x<sub>1,1</sub><span id="svm-lx1x">2.0</span></label>
+      <input type="range" id="svm-x1x" min="-10" max="50" step="1" value="20">
+    </div>
+    <div class="ctrl-group">
+      <label>x<sub>1,2</sub><span id="svm-lx1y">3.0</span></label>
+      <input type="range" id="svm-x1y" min="-10" max="50" step="1" value="30">
+    </div>
+    <hr class="svm-sep">
+    <div class="svm-sec">Ponto x<sub>2</sub> (classe −1) &#9632;</div>
+    <div class="ctrl-group">
+      <label>x<sub>2,1</sub><span id="svm-lx2x">0.5</span></label>
+      <input type="range" id="svm-x2x" min="-10" max="50" step="1" value="5">
+    </div>
+    <div class="ctrl-group">
+      <label>x<sub>2,2</sub><span id="svm-lx2y">2.0</span></label>
+      <input type="range" id="svm-x2y" min="-10" max="50" step="1" value="20">
+    </div>
+    <hr class="svm-sep">
+    <div class="svm-sec">Cenários</div>
+    <div class="svm-btns">
+      <button onclick="svmScene(10,10,0,20,30,5,20)">① Padrão</button>
+      <button onclick="svmScene(5,5,0,30,40,5,10)">② Larga</button>
+      <button onclick="svmScene(25,25,0,15,25,8,18)">③ Estreita</button>
+      <button onclick="svmScene(20,-10,-10,35,20,5,30)">④ Oblíquo</button>
+    </div>
+    <div id="svm-info"></div>
+  </div>
+  <canvas id="svm-canvas" width="460" height="460"></canvas>
+</div>
+
+<script>
+(function(){
+const cv = document.getElementById('svm-canvas');
+const cx = cv.getContext('2d');
+const W = cv.width, H = cv.height;
+const MG = 50, XMIN=-1, XMAX=6, YMIN=-1, YMAX=6;
+
+function toC(px,py){
+  return [MG+(px-XMIN)/(XMAX-XMIN)*(W-2*MG),
+          H-MG-(py-YMIN)/(YMAX-YMIN)*(H-2*MG)];
+}
+function g(id){return parseFloat(document.getElementById(id).value)/10;}
+function lbl(id,v){document.getElementById(id).textContent=v.toFixed(1);}
+function dot(a,b){return a[0]*b[0]+a[1]*b[1];}
+function nrm(a){return Math.sqrt(a[0]*a[0]+a[1]*a[1]);}
+function lineY(x,w1,w2,b,off){
+  return Math.abs(w2)<1e-9?null:-(w1*x+b-off)/w2;
+}
+
+window.svmScene=function(w1,w2,b,x1x,x1y,x2x,x2y){
+  ['w1','w2','b','x1x','x1y','x2x','x2y'].forEach((k,i)=>{
+    document.getElementById('svm-'+k).value=[w1,w2,b,x1x,x1y,x2x,x2y][i];
+  });
+  svmDraw();
+};
+
+function svmDraw(){
+  const w1=g('svm-w1'),w2=g('svm-w2'),b=g('svm-b');
+  const x1=[g('svm-x1x'),g('svm-x1y')];
+  const x2=[g('svm-x2x'),g('svm-x2y')];
+  ['w1','w2','b','x1x','x1y','x2x','x2y'].forEach(k=>{
+    lbl('svm-l'+k, g('svm-'+k));
+  });
+  const w=[w1,w2], nw=nrm(w), mg=nw>1e-9?2/nw:Infinity;
+
+  cx.clearRect(0,0,W,H);
+  cx.fillStyle='#ffffff'; cx.fillRect(0,0,W,H);
+
+  // grade
+  for(let i=0;i<=7;i++){
+    const v=XMIN+i*(XMAX-XMIN)/7;
+    const [gx]=toC(v,0), [,gy]=toC(0,v);
+    cx.strokeStyle='#e8e8e8'; cx.lineWidth=0.7;
+    cx.beginPath(); cx.moveTo(gx,MG); cx.lineTo(gx,H-MG); cx.stroke();
+    cx.beginPath(); cx.moveTo(MG,gy); cx.lineTo(W-MG,gy); cx.stroke();
+    if(Math.abs(v)>0.05){
+      cx.fillStyle='#aaa'; cx.font='10px sans-serif'; cx.textAlign='center';
+      cx.fillText(v.toFixed(1),gx,H-MG+13);
+      cx.textAlign='right';
+      cx.fillText(v.toFixed(1),MG-5,gy+4);
+    }
+  }
+  // eixos
+  const [ox,oy]=toC(0,0);
+  cx.strokeStyle='#999'; cx.lineWidth=1;
+  cx.beginPath(); cx.moveTo(MG,oy); cx.lineTo(W-MG,oy); cx.stroke();
+  cx.beginPath(); cx.moveTo(ox,MG); cx.lineTo(ox,H-MG); cx.stroke();
+  cx.fillStyle='#666'; cx.font='12px sans-serif'; cx.textAlign='left';
+  cx.fillText('x₁',W-MG+4,oy+4); cx.fillText('x₂',ox+4,MG-4);
+
+  // faixa entre margens
+  if(Math.abs(w2)>1e-9){
+    const xs=[XMIN,XMAX];
+    const band=[];
+    xs.forEach(xv=>{const y=lineY(xv,w1,w2,b,-1);if(y!==null)band.push(toC(xv,y));});
+    [...xs].reverse().forEach(xv=>{const y=lineY(xv,w1,w2,b,1);if(y!==null)band.push(toC(xv,y));});
+    cx.save(); cx.beginPath(); cx.moveTo(...band[0]);
+    band.slice(1).forEach(p=>cx.lineTo(...p)); cx.closePath();
+    cx.fillStyle='rgba(46,204,113,0.10)'; cx.fill(); cx.restore();
+
+    const drawL=(off,col,lw,dash)=>{
+      const y0=lineY(XMIN,w1,w2,b,off), y1=lineY(XMAX,w1,w2,b,off);
+      if(y0===null||y1===null)return;
+      const [x0c,y0c]=toC(XMIN,y0),[x1c,y1c]=toC(XMAX,y1);
+      cx.save(); cx.strokeStyle=col; cx.lineWidth=lw; cx.setLineDash(dash);
+      cx.beginPath(); cx.moveTo(x0c,y0c); cx.lineTo(x1c,y1c); cx.stroke();
+      cx.setLineDash([]); cx.restore();
+    };
+    drawL(0,'#1a7a4a',2.2,[]);
+    drawL(1,'#27ae60',1.5,[6,4]);
+    drawL(-1,'#27ae60',1.5,[6,4]);
+
+    // rótulos das retas
+    cx.font='11px sans-serif'; cx.fillStyle='#1a7a4a'; cx.textAlign='left';
+    const [lx,ly]=toC(3.5, lineY(3.5,w1,w2,b,0)??0);
+    if(ly>MG&&ly<H-MG) cx.fillText('w·x+b=0',lx+4,ly-5);
+    cx.fillStyle='#27ae60';
+    const [lpx,lpy]=toC(3.5, lineY(3.5,w1,w2,b,1)??0);
+    if(lpy>MG&&lpy<H-MG) cx.fillText('w·x+b=+1',lpx+4,lpy-5);
+    const [lnx,lny]=toC(3.5, lineY(3.5,w1,w2,b,-1)??0);
+    if(lny>MG&&lny<H-MG) cx.fillText('w·x+b=−1',lnx+4,lny-5);
+  }
+
+  // vetor w
+  const sc=nw>1e-9?0.9/nw:0;
+  const [wx0,wy0]=toC(0,0),[wx1,wy1]=toC(w1*sc,w2*sc);
+  const ang=Math.atan2(wy1-wy0,wx1-wx0), al=10;
+  cx.save(); cx.strokeStyle='#e74c3c'; cx.fillStyle='#e74c3c'; cx.lineWidth=2.2;
+  cx.beginPath(); cx.moveTo(wx0,wy0); cx.lineTo(wx1,wy1); cx.stroke();
+  cx.beginPath();
+  cx.moveTo(wx1,wy1);
+  cx.lineTo(wx1-al*Math.cos(ang-.4),wy1-al*Math.sin(ang-.4));
+  cx.lineTo(wx1-al*Math.cos(ang+.4),wy1-al*Math.sin(ang+.4));
+  cx.closePath(); cx.fill(); cx.restore();
+  cx.fillStyle='#e74c3c'; cx.font='bold 13px sans-serif'; cx.textAlign='left';
+  cx.fillText('w',wx1+6,wy1-6);
+
+  // x1
+  const [p1x,p1y]=toC(...x1);
+  cx.beginPath(); cx.arc(p1x,p1y,7,0,2*Math.PI);
+  cx.fillStyle='#e67e22'; cx.fill();
+  cx.strokeStyle='#fff'; cx.lineWidth=1.5; cx.stroke();
+  cx.fillStyle='#e67e22'; cx.font='12px sans-serif'; cx.textAlign='left';
+  cx.fillText('x₁ (+1)',p1x+10,p1y-5);
+
+  // x2
+  const [p2x,p2y]=toC(...x2);
+  cx.beginPath();
+  cx.moveTo(p2x-7,p2y-7); cx.lineTo(p2x+7,p2y-7);
+  cx.lineTo(p2x+7,p2y+7); cx.lineTo(p2x-7,p2y+7); cx.closePath();
+  cx.fillStyle='#c0392b'; cx.fill();
+  cx.strokeStyle='#fff'; cx.lineWidth=1.5; cx.stroke();
+  cx.fillStyle='#c0392b'; cx.font='12px sans-serif'; cx.textAlign='left';
+  cx.fillText('x₂ (−1)',p2x+10,p2y+14);
+
+  // distância ‖x1-x2‖
+  cx.save(); cx.strokeStyle='#7f8c8d'; cx.lineWidth=1.2; cx.setLineDash([5,4]);
+  cx.beginPath(); cx.moveTo(p1x,p1y); cx.lineTo(p2x,p2y); cx.stroke();
+  cx.setLineDash([]); cx.restore();
+  cx.fillStyle='#555'; cx.font='10px sans-serif'; cx.textAlign='center';
+  cx.fillText('‖x₁−x₂‖',(p1x+p2x)/2,(p1y+p2y)/2-7);
+
+  // painel numérico
+  const wx1b=dot(w,x1)+b, wx2b=dot(w,x2)+b;
+  const d12=nrm([x1[0]-x2[0],x1[1]-x2[1]]);
+  document.getElementById('svm-info').innerHTML=
+    '<b>‖w‖</b> = '+nw.toFixed(3)+'<br>'+
+    '<b>Margem 2/‖w‖</b> = '+(isFinite(mg)?mg.toFixed(3):'∞')+'<br>'+
+    '<b>w·x₁+b</b> = '+wx1b.toFixed(3)+'<br>'+
+    '<b>w·x₂+b</b> = '+wx2b.toFixed(3)+'<br>'+
+    '<b>‖x₁−x₂‖</b> = '+d12.toFixed(3);
+}
+
+['w1','w2','b','x1x','x1y','x2x','x2y'].forEach(k=>
+  document.getElementById('svm-'+k).addEventListener('input',svmDraw)
+);
+svmDraw();
+})();
+</script>
