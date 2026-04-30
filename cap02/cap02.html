@@ -1638,11 +1638,11 @@ Figura&nbsp;2.13: As 30 Regras de Associação Geradas com o Arquivo “Transaco
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Matplotlib: </span><span class="sc">{</span>matplotlib<span class="sc">.</span>__version__<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ Ambiente pronto!"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Python    : 3.12.3
-Pandas    : 3.0.1
-NumPy     : 2.4.2
-Networkx  : 3.6.1
-Matplotlib: 3.10.8
+<pre><code>Python    : 3.9.7
+Pandas    : 2.3.3
+NumPy     : 2.0.2
+Networkx  : 3.2.1
+Matplotlib: 3.9.4
 ✅ Ambiente pronto!</code></pre>
 </div>
 </div>
@@ -1897,13 +1897,13 @@ Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro d
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Feijão → Óleo</td>
+<td style="text-align: center;">Óleo → Feijão</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Óleo → Feijão</td>
+<td style="text-align: center;">Feijão → Óleo</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">ACEITO</td>
@@ -2047,7 +2047,7 @@ Tabela&nbsp;2.15: Análise de Regras de Associação entre Pares (L2) e Filtro d
 <div class="cell-output cell-output-stdout">
 <pre><code>Trios de candidatos gerados via L1: 20
 Trios de candidatos gerados via L2 (com poda): 4
-['Batata, Feijão, Óleo', 'Arroz, Feijão, Óleo', 'Arroz, Batata, Feijão', 'Arroz, Batata, Óleo']
+['Arroz, Batata, Feijão', 'Batata, Feijão, Óleo', 'Arroz, Batata, Óleo', 'Arroz, Feijão, Óleo']
 Configuração: SUP_MIN 40% | CONF_MIN: 90%
 </code></pre>
 </div>
@@ -2077,6 +2077,20 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: center;">Arroz, Batata, Feijão</td>
+<td style="text-align: center;">{Arroz, Batata} → {Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Arroz, Batata, Feijão</td>
+<td style="text-align: center;">{Batata, Feijão} → {Arroz}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">Batata, Feijão, Óleo</td>
 <td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
 <td style="text-align: center;">40%</td>
@@ -2086,6 +2100,20 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 <tr class="even">
 <td style="text-align: center;">Batata, Feijão, Óleo</td>
 <td style="text-align: center;">{Batata, Óleo} → {Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Arroz, Batata, Óleo</td>
+<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Arroz, Batata, Óleo</td>
+<td style="text-align: center;">{Batata, Óleo} → {Arroz}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">ACEITO</td>
@@ -2113,42 +2141,14 @@ Tabela&nbsp;2.16: Mineração de Trios Frequentes (L3) e Regras com Múltiplos A
 </tr>
 <tr class="even">
 <td style="text-align: center;">Arroz, Batata, Feijão</td>
-<td style="text-align: center;">{Arroz, Batata} → {Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Arroz, Batata, Feijão</td>
-<td style="text-align: center;">{Batata, Feijão} → {Arroz}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Arroz, Batata, Óleo</td>
-<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Arroz, Batata, Óleo</td>
-<td style="text-align: center;">{Batata, Óleo} → {Arroz}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Batata, Feijão, Óleo</td>
-<td style="text-align: center;">{Feijão, Óleo} → {Batata}</td>
+<td style="text-align: center;">{Arroz, Feijão} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Arroz, Batata, Feijão</td>
-<td style="text-align: center;">{Arroz, Feijão} → {Batata}</td>
+<td style="text-align: center;">Batata, Feijão, Óleo</td>
+<td style="text-align: center;">{Feijão, Óleo} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">PODADO</td>
@@ -2398,28 +2398,28 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão} → {Óleo}</td>
-<td style="text-align: center;">60%</td>
+<td style="text-align: center;">{Batata} → {Feijão}</td>
+<td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Óleo} → {Feijão}</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
 <td style="text-align: center;">{Feijão} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Óleo} → {Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
 <tr class="even">
-<td style="text-align: center;">{Batata} → {Feijão}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -2440,46 +2440,18 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão} → {Batata, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata} → {Feijão, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
-<td style="text-align: center;">40%</td>
+<td style="text-align: center;">{Óleo} → {Feijão}</td>
+<td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Óleo} → {Batata, Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata, Óleo} → {Feijão}</td>
-<td style="text-align: center;">40%</td>
+<td style="text-align: center;">{Feijão} → {Óleo}</td>
+<td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Feijão, Óleo} → {Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">{Óleo} → {Arroz, Batata}</td>
@@ -2496,7 +2468,7 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz, Feijão} → {Óleo}</td>
+<td style="text-align: center;">{Feijão} → {Arroz, Óleo}</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -2510,116 +2482,18 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">{Arroz, Feijão} → {Óleo}</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
 <td style="text-align: center;">{Óleo} → {Arroz, Feijão}</td>
 <td style="text-align: center;">60%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Feijão} → {Arroz, Óleo}</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Batata, Óleo} → {Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata, Feijão} → {Arroz, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Batata} → {Feijão, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz, Feijão} → {Batata, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Batata, Feijão} → {Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz, Feijão, Óleo} → {Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz, Óleo} → {Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Feijão} → {Arroz, Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata} → {Arroz, Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata, Óleo} → {Arroz, Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Feijão} → {Arroz, Batata, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata} → {Arroz, Feijão, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Óleo} → {Arroz, Batata, Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.67</td>
-<td style="text-align: center;">1.67</td>
-<td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">{Arroz, Feijão} → {Batata}</td>
@@ -2636,7 +2510,21 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão, Óleo} → {Arroz, Batata}</td>
+<td style="text-align: center;">{Feijão} → {Arroz, Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata} → {Arroz, Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Feijão, Óleo} → {Batata}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">0.67</td>
 <td style="text-align: center;">1.67</td>
@@ -2650,31 +2538,115 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz} → {Batata}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.5</td>
-<td style="text-align: center;">1.25</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata} → {Arroz}</td>
+<td style="text-align: center;">{Batata, Óleo} → {Arroz, Feijão}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Arroz, Batata} → {Feijão, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Arroz} → {Óleo}</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">0.75</td>
-<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">{Batata} → {Arroz, Feijão, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão, Óleo} → {Arroz, Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Feijão} → {Batata, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Óleo} → {Arroz}</td>
-<td style="text-align: center;">60%</td>
+<td style="text-align: center;">{Batata, Feijão} → {Arroz, Óleo}</td>
+<td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Feijão} → {Batata, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata} → {Feijão, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Batata, Óleo} → {Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Óleo} → {Batata, Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Óleo} → {Arroz, Batata, Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão} → {Arroz, Batata, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão, Óleo} → {Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.67</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz, Batata, Óleo} → {Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Arroz, Batata, Feijão} → {Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="odd">
@@ -2692,6 +2664,48 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">PODADO</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">{Óleo} → {Arroz}</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Arroz} → {Óleo}</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">0.75</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Batata} → {Arroz}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Arroz} → {Batata}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Arroz} → {Batata, Óleo}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">PODADO</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Batata, Óleo} → {Arroz}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.25</td>
+<td style="text-align: center;">ACEITO</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">{Batata, Feijão} → {Arroz}</td>
 <td style="text-align: center;">40%</td>
 <td style="text-align: center;">1</td>
@@ -2699,23 +2713,9 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Arroz} → {Batata, Feijão}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.5</td>
-<td style="text-align: center;">1.25</td>
-<td style="text-align: center;">PODADO</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata, Óleo} → {Arroz}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.25</td>
-<td style="text-align: center;">ACEITO</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Arroz} → {Batata, Óleo}</td>
-<td style="text-align: center;">40%</td>
-<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">{Arroz} → {Feijão, Óleo}</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">0.75</td>
 <td style="text-align: center;">1.25</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
@@ -2727,9 +2727,9 @@ Tabela&nbsp;2.17: Relatório Consolidado de Regras de Associação (Algoritmo Ap
 <td style="text-align: center;">ACEITO</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Arroz} → {Feijão, Óleo}</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">0.75</td>
+<td style="text-align: center;">{Arroz} → {Batata, Feijão}</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">0.5</td>
 <td style="text-align: center;">1.25</td>
 <td style="text-align: center;">PODADO</td>
 </tr>
@@ -2892,13 +2892,13 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">2.5</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão} → {Óleo}</td>
+<td style="text-align: center;">{Óleo} → {Feijão}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Óleo} → {Feijão}</td>
+<td style="text-align: center;">{Feijão} → {Óleo}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -2916,43 +2916,43 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata, Arroz} → {Óleo}</td>
+<td style="text-align: center;">{Batata} → {Arroz, Feijão}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata} → {Feijão, Arroz}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Óleo}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata, Arroz} → {Feijão}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Feijão}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
+<td style="text-align: center;">{Óleo, Batata} → {Feijão}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão} → {Óleo, Arroz}</td>
+<td style="text-align: center;">{Óleo} → {Arroz, Feijão}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">{Arroz, Feijão} → {Óleo}</td>
+<td style="text-align: center;">60.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">{Óleo, Arroz} → {Feijão}</td>
-<td style="text-align: center;">60.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Feijão, Arroz} → {Óleo}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
@@ -2964,61 +2964,61 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata, Arroz} → {Feijão, Óleo}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">{Batata, Feijão, Arroz} → {Óleo}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">{Batata, Óleo, Arroz} → {Feijão}</td>
-<td style="text-align: center;">40.0%</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1.67</td>
-</tr>
-<tr class="even">
 <td style="text-align: center;">{Batata, Feijão} → {Óleo, Arroz}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
+<tr class="even">
+<td style="text-align: center;">{Óleo, Arroz, Batata} → {Feijão}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata} → {Feijão, Óleo, Arroz}</td>
+<td style="text-align: center;">{Arroz, Batata, Feijão} → {Óleo}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Óleo} → {Feijão, Arroz}</td>
+<td style="text-align: center;">{Óleo, Batata} → {Arroz, Feijão}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">{Batata} → {Óleo, Arroz, Feijão}</td>
+<td style="text-align: center;">40.0%</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">{Feijão} → {Óleo, Arroz}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata, Óleo} → {Feijão}</td>
+<td style="text-align: center;">{Batata, Feijão} → {Óleo}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata} → {Feijão, Óleo}</td>
+<td style="text-align: center;">{Batata} → {Óleo, Feijão}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Batata, Óleo} → {Feijão, Arroz}</td>
+<td style="text-align: center;">{Arroz, Batata} → {Óleo, Feijão}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.67</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata, Óleo} → {Arroz}</td>
+<td style="text-align: center;">{Óleo, Batata} → {Arroz}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>
@@ -3048,13 +3048,13 @@ Tabela&nbsp;2.18: Regras de Associação Geradas com a Biblioteca MLxtend.
 <td style="text-align: center;">1.25</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">{Feijão, Óleo} → {Arroz}</td>
+<td style="text-align: center;">{Óleo, Feijão} → {Arroz}</td>
 <td style="text-align: center;">60.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">{Batata, Feijão, Óleo} → {Arroz}</td>
+<td style="text-align: center;">{Óleo, Batata, Feijão} → {Arroz}</td>
 <td style="text-align: center;">40.0%</td>
 <td style="text-align: center;">1</td>
 <td style="text-align: center;">1.25</td>

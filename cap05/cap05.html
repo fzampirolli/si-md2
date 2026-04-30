@@ -570,7 +570,7 @@ Figura&nbsp;5.13: Equação do Classificador e Margens.
 </ol>
 </div>
 </div>
-<div id="cell-fig-5-svm-interativo" class="cell" data-quarto-raw="false" data-execution_count="46">
+<div id="cell-fig-5-svm-interativo" class="cell" data-quarto-raw="false" data-execution_count="1">
 <div id="fig-5-svm-interativo" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-5-svm-interativo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -961,7 +961,7 @@ Figura&nbsp;5.23: Simulação com a Remoção de Alguns Pontos Perto das Bordas.
 <p>O conteúdo deste capítulo é sequencial. As variáveis e funções definidas aqui são requisitos para as práticas seguintes. Execute as células em ordem.</p>
 </div>
 </div>
-<div id="setup-ambiente-cap05" class="cell" data-execution_count="47">
+<div id="setup-ambiente-cap05" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Instalação de dependências (Silenciosa)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install scikit<span class="op">-</span>learn <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1018,7 +1018,7 @@ Scikit-learn: 1.6.1
 <p>Esta prática depende do <strong>bloco de importações</strong> anterior.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica1" class="cell" data-quarto-raw="false" data-execution_count="48">
+<div id="cell-fig-5-pratica1" class="cell" data-quarto-raw="false" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset: apenas Setosa (0) e Versicolor (1), atributos de pétala</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> iris.target <span class="op">&lt;</span> <span class="dv">2</span></span>
@@ -1137,7 +1137,7 @@ Figura&nbsp;5.24: MVS Linear — Margem Máxima entre Íris Setosa e Versicolor 
 <p>Esta prática depende do <strong>bloco de importações</strong> e do <strong><em>dataset</em> Iris</strong> carregado na Prática 1.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica2" class="cell" data-quarto-raw="false" data-execution_count="49">
+<div id="cell-fig-5-pratica2" class="cell" data-quarto-raw="false" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes), atributos de pétala</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
@@ -1224,7 +1224,7 @@ Figura&nbsp;5.25: Efeito do parâmetro C nas bordas de decisão da MVS linear pa
 <li><p><strong>C = 100</strong>: Acurácia de <strong>96%</strong> com <strong>18 VS</strong>. Modelo mais específico, menor capacidade de generalização.</p></li>
 </ul>
 <p><strong>Observação importante:</strong> A acurácia permanece constante em <strong>96%</strong> para todos os valores de C, indicando que o limite de desempenho para este conjunto de dados (3 classes, atributos de pétala) é de 96%. O aumento de C não melhora a acurácia, mas <strong>reduz drasticamente o número de vetores de suporte</strong>, tornando o modelo mais simples e potencialmente mais propenso a <em>overfitting</em> em novos dados.</p>
-<div id="tbl-5-resumo-c" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="50">
+<div id="tbl-5-resumo-c" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="5">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-resumo-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;5.1: Resumo do efeito do parâmetro C na MVS linear para o <em>dataset</em> Iris completo (3 classes).
@@ -1284,7 +1284,7 @@ Tabela&nbsp;5.1: Resumo do efeito do parâmetro C na MVS linear para o <em>datas
 <p>Esta prática depende do <strong>bloco de importações</strong> e das variáveis <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(y\)</span> definidas na Prática 2.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica3" class="cell" data-quarto-raw="false" data-execution_count="60">
+<div id="cell-fig-5-pratica3" class="cell" data-quarto-raw="false" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
@@ -1367,7 +1367,7 @@ Figura&nbsp;5.26: Comparação de <em>kernels</em> da MVS no <em>dataset</em> Ir
 </div>
 </div>
 <p>A <a href="#tbl-5-resumo-kernels" class="quarto-xref">Tabela&nbsp;<span>5.2</span></a> detalha os resultados da <a href="#fig-5-pratica3" class="quarto-xref">Figura&nbsp;<span>5.26</span></a>, com <span class="math inline">\(C = 1.0\)</span>. O <em>kernel</em> RBF atingiu <strong>96,00%</strong> de acurácia, desempenho equivalente ao do <em>kernel</em> Polinomial (96,00%) e ligeiramente superior ao Linear (95,33%). Contudo, o RBF demandou <strong>37 vetores de suporte (VS)</strong> — valor significativamente maior que os 20 VS do Polinomial e os 31 VS do Linear —, o que implica maior custo computacional durante a fase de classificação.</p>
-<div id="tbl-5-resumo-kernels" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="52">
+<div id="tbl-5-resumo-kernels" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="7">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-resumo-kernels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;5.2: Comparação do desempenho dos diferentes <em>kernels</em> da MVS no dataset Iris completo (3 classes, C=1.0).
@@ -1419,7 +1419,7 @@ Tabela&nbsp;5.2: Comparação do desempenho dos diferentes <em>kernels</em> da M
 <p>Esta prática depende do <strong>bloco de importações</strong> e das variáveis <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(y\)</span> definidas na Prática 2.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica4" class="cell" data-quarto-raw="false" data-execution_count="53">
+<div id="cell-fig-5-pratica4" class="cell" data-quarto-raw="false" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
@@ -1501,7 +1501,7 @@ Figura&nbsp;5.27: <em>Cross-validation</em> 10-<em>fold</em> com MVS — Efeito 
 <li><strong>C ≥ 2</strong>: Acurácia estabiliza em <strong>96,67%</strong> com desvio de ±2,36%</li>
 </ul>
 <p><strong>Conclusão do Exercício 3:</strong> C=2 é suficiente para ambos os <em>kernels</em>. O desempenho é consistente e confiável, com baixa variabilidade entre os <em>folds</em>.</p>
-<div id="tbl-5-resumo-cv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true">
+<div id="tbl-5-resumo-cv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="9">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-resumo-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;5.3: Estabilidade dos modelos Polinomial (grau 3) e RBF — resultados da validação cruzada 10-<em>fold</em> para diferentes valores de <span class="math inline">\(C\)</span> no <em>dataset</em> Iris completo (3 classes, atributos de pétala).
@@ -1599,7 +1599,7 @@ Tabela&nbsp;5.3: Estabilidade dos modelos Polinomial (grau 3) e RBF — resultad
 <p>Esta prática depende das funções e variáveis definidas na Prática 4: <code>weka_shuffle</code>, <code>X_perm</code>, <code>y_perm</code>, <code>kf</code> e <code>iris.target_names</code>.</p>
 </div>
 </div>
-<div id="cell-fig-5-pratica5" class="cell" data-quarto-raw="false" data-execution_count="55">
+<div id="cell-fig-5-pratica5" class="cell" data-quarto-raw="false" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Dataset Iris completo (3 classes)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:]  <span class="co"># comprimento e largura da pétala</span></span>
@@ -1681,7 +1681,7 @@ Figura&nbsp;5.28: Matriz de Confusão — MVS RBF C=1 com <em>Cross-validation</
 <li><p><strong>Versicolor</strong>: Apresentou <strong>96% de acerto</strong> (48/50). Apenas 2 exemplares foram classificados erroneamente, provavelmente confundidos com Virginica devido à sobreposição nas medidas de pétala.</p></li>
 <li><p><strong>Virginica</strong>: Obteve <strong>92% de acerto</strong> (46/50), sendo a classe mais desafiadora. Os 4 erros (8%) ocorreram provavelmente com exemplares de Versicolor, refletindo a maior similaridade entre estas duas classes.</p></li>
 </ul>
-<div id="tbl-5-matriz-confusao" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="56">
+<div id="tbl-5-matriz-confusao" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="11">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-matriz-confusao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;5.4: Taxas de acerto por classe na validação cruzada 10-<em>fold</em> (MVS RBF, C=1, Iris completo).
@@ -1726,7 +1726,7 @@ Tabela&nbsp;5.4: Taxas de acerto por classe na validação cruzada 10-<em>fold</
 <li><p><strong><em>Kernel</em> Polinomial (grau 3)</strong>: Acurácia média de <strong>95,33%</strong> com desvio padrão de ±5,21%. Apresenta o menor desempenho entre os três <em>kernels</em> testados, contrariando as expectativas iniciais.</p></li>
 <li><p><strong><em>Kernel</em> RBF</strong>: Acurácia média de <strong>96,00%</strong> com desvio padrão de ±5,33%. Equivalente ao <em>kernel</em> linear, mas com maior flexibilidade para problemas mais complexos.</p></li>
 </ul>
-<div id="tbl-5-comparacao-kernels-cv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="57">
+<div id="tbl-5-comparacao-kernels-cv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-quarto-raw="true" data-execution_count="12">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-5-comparacao-kernels-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;5.5: Comparação da acurácia média (CV 10-<em>fold</em>) entre diferentes <em>kernels</em> (C=1, Iris completo).
@@ -1818,7 +1818,7 @@ Tabela&nbsp;5.5: Comparação da acurácia média (CV 10-<em>fold</em>) entre di
 <li><p>As MVS estão menos sujeitas ao problema do <em>overfitting</em> comparativamente às Redes Neurais, porque a indução do classificador é menos sensível à retirada ou acréscimo de um ou outro Vetor de Treinamento (a menos que seja um Vetor de Suporte. Na prática, porém, os Vetores de Suporte constituem uma pequena fração dos Vetores de Treinamento).</p></li>
 </ul>
 <p>Comparando com os algoritmos de Aprendizado Orientado a Conhecimento, as MVS apresentam tempo de treinamento mais elevado, porém sua taxa de acerto costuma ser mais elevada, porque o princípio de Margem (Suave) Máxima pode ser funcionalmente equivalente a uma borda de decisão não linear.</p>
-<p>Como desvantagem com relação aos algoritmos de Aprendizado Orientado a Conhecimento, podemos citar a dificuldade em interpretar os resultados do aprendizado, que na prática é um conjunto de pesos do vetor <strong>w</strong>, ou algo equivalente. Outro aspecto que pode ser visto como uma desvantagem das MVS em relação a outros modelos, é que não é possível incorporar Conhecimento do Domínio do Problema no Modelo gerado. Numa Rede Neural, por exemplo, a topologia da rede reflete o Conhecimento do Domínio do Problema. Além disso, redes com multicamadas de neurônios podem aprender a ignorar Atributos irrelevantes (Witten &amp; Frank, 2005).</p>
+<p>Como desvantagem com relação aos algoritmos de Aprendizado Orientado a Conhecimento, podemos citar a dificuldade em interpretar os resultados do aprendizado, que na prática é um conjunto de pesos do vetor <strong>w</strong>, ou algo equivalente. Outro aspecto que pode ser visto como uma desvantagem das MVS em relação a outros modelos, é que não é possível incorporar Conhecimento do Domínio do Problema no Modelo gerado. Numa Rede Neural, por exemplo, a topologia da rede reflete o Conhecimento do Domínio do Problema. Além disso, redes com multicamadas de neurônios podem aprender a ignorar Atributos irrelevantes <span class="citation" data-cites="witten2005">(<a href="#ref-witten2005" role="doc-biblioref">Witten; Frank, 2005</a>)</span>.</p>
 <p>Através de exemplos e interpretações geométricas, tentamos mostrar que o desempenho de uma MVS pode ser substancialmente influenciado pela escolha do <strong><em>kernel</em></strong> e do <strong>Parâmetro de Complexidade C</strong>. Por se tratar de um algoritmo de aprendizado supervisionado, ou seja, os rótulos das classes dos Vetores de Treinamento já são previamente conhecidos, é possível desenvolver um <em>kernel</em> específico para uma aplicação especial (embora não seja algo muito simples) e avaliar empiricamente o desempenho do <em>kernel</em> usando o método da <em>Cross-validation</em>.</p>
 <p>Os argumentos e ilustrações aqui utilizados para explicar o algoritmo das MVS foram baseados num <strong>espaço bidimensional</strong>. No entanto, eles podem ser estendidos para o <strong>espaço tridimensional</strong>, quando então a reta que representa o classificador deve ser substituída por um <strong>plano</strong>. Da forma semelhante, os mesmos argumentos podem ser aplicados a <strong>espaços com mais de três dimensões</strong>, e neste caso o classificador passa a ser representado por um <strong>hiperplano</strong>.</p>
 </section>
@@ -1834,7 +1834,7 @@ Tabela&nbsp;5.5: Comparação da acurácia média (CV 10-<em>fold</em>) entre di
 </section>
 <section id="referências-do-capítulo" class="level2" data-number="5.13">
 <h2 data-number="5.13" class="anchored" data-anchor-id="referências-do-capítulo"><span class="header-section-number">5.13</span> Referências do Capítulo</h2>
-<p>Este capítulo baseou-se nos fundamentos teóricos e práticos que consolidaram o aprendizado de máquina e a mineração de dados. A base histórica das redes neurais seguiu o trabalho clássico de <span class="citation" data-cites="rosenblatt1957">Rosenblatt (<a href="#ref-rosenblatt1957" role="doc-biblioref">1957</a>)</span> sobre o Perceptron. Para a fundamentação de Support Vector Machines (SVM), apoiamo-nos no artigo seminal de <span class="citation" data-cites="cortes1995">Cortes; Vapnik (<a href="#ref-cortes1995" role="doc-biblioref">1995</a>)</span> e nas otimizações práticas propostas por <span class="citation" data-cites="platt1998">Platt (<a href="#ref-platt1998" role="doc-biblioref">1998</a>)</span>, complementados pela teoria de kernels detalhada em <span class="citation" data-cites="scholkopf2001">Schölkopf; Smola (<a href="#ref-scholkopf2001" role="doc-biblioref">2001</a>)</span>. Os conceitos estruturais do processo de descoberta de conhecimento e algoritmos foram fundamentados nas obras de <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span> e <span class="citation" data-cites="rocha2008analise">Rocha; Cortez; Neves (<a href="#ref-rocha2008analise" role="doc-biblioref">2008</a>)</span>, utilizando como suporte técnico a ferramenta WEKA (<span class="citation" data-cites="frank2016weka">Frank; Hall; Witten (<a href="#ref-frank2016weka" role="doc-biblioref">2016</a>)</span>). Por fim, a contextualização em sistemas inteligentes utilizou a organização de <span class="citation" data-cites="rezende2005">Rezende (<a href="#ref-rezende2005" role="doc-biblioref">2005</a>)</span>.</p>
+<p>Este capítulo baseou-se nos fundamentos teóricos e práticos que consolidaram o aprendizado de máquina e a mineração de dados. A base histórica das redes neurais seguiu o trabalho clássico de <span class="citation" data-cites="rosenblatt1957">Rosenblatt (<a href="#ref-rosenblatt1957" role="doc-biblioref">1957</a>)</span> sobre o Perceptron. Para a fundamentação de Support Vector Machines (SVM), apoiamo-nos no artigo seminal de <span class="citation" data-cites="cortes1995">Cortes; Vapnik (<a href="#ref-cortes1995" role="doc-biblioref">1995</a>)</span> e nas otimizações práticas propostas por <span class="citation" data-cites="platt1998">Platt (<a href="#ref-platt1998" role="doc-biblioref">1998</a>)</span>, complementados pela teoria de kernels detalhada em <span class="citation" data-cites="scholkopf2001">Schölkopf; Smola (<a href="#ref-scholkopf2001" role="doc-biblioref">2001</a>)</span>. Os conceitos estruturais do processo de descoberta de conhecimento e algoritmos foram fundamentados nas obras de <span class="citation" data-cites="witten2005">Witten; Frank (<a href="#ref-witten2005" role="doc-biblioref">2005</a>)</span>, <span class="citation" data-cites="tan2009">Tan; Steinbach; Kumar (<a href="#ref-tan2009" role="doc-biblioref">2009</a>)</span> e <span class="citation" data-cites="rocha2008analise">Rocha; Cortez; Neves (<a href="#ref-rocha2008analise" role="doc-biblioref">2008</a>)</span>, utilizando como suporte técnico a ferramenta WEKA (<span class="citation" data-cites="frank2016weka">Frank; Hall; Witten (<a href="#ref-frank2016weka" role="doc-biblioref">2016</a>)</span>). Por fim, a contextualização em sistemas inteligentes utilizou a organização de <span class="citation" data-cites="rezende2005">Rezende (<a href="#ref-rezende2005" role="doc-biblioref">2005</a>)</span>.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list">
