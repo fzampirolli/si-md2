@@ -1118,6 +1118,8 @@ def process_cell(source, key_to_num: dict, elem_map: dict, bib: dict) -> list:
     def replace_direct(m):
         """@key isolado (fora de colchetes) -> Autor (ano)"""
         key = m.group(1)
+        if key.upper() in ["RELATION", "ATTRIBUTE", "DATA"]:
+            return "@" + key
         if CROSSREF_RE.match(key):
             return m.group(0)   # deixa para o passo 4 tratar
         return _fmt_key(key, "direct")
@@ -1237,15 +1239,40 @@ def clean_notebook(notebook: dict) -> dict:
 
     cleaned = []
     removed = {
-        "yaml": 0, 
-        "empty_code": 0, 
-        "ref_section": 0, 
-        "quarto_params": 0  # <--- Esta linha resolve o KeyError
+        "yaml": 0,
+        "empty_code": 0,
+        "ref_section": 0,
+        "quarto_params": 0,
+        "html_only": 0,       # células dentro de ::: {.content-visible when-format="html"}
     }
+
+    # Rastreia se estamos dentro de um bloco html-only
+    # (delimitado por células markdown com ::: {.content-visible when-format="html"} e :::)
+    inside_html_only = False
 
     for cell in notebook.get("cells", []):
         src = source_to_str(cell.get("source", []))
         kind = cell.get("cell_type", "")
+
+        # Detecta delimitadores ::: {.content-visible when-format="html"} e :::
+        # As células markdown delimitadoras são removidas (não fazem sentido no Colab).
+        # As células de código DENTRO do bloco são mantidas: o output (botão HTML)
+        # deve aparecer no Colab; o código é ocultado via echo:false / cellView:form.
+        if kind == "markdown":
+            src_stripped = src.strip()
+            if re.match(r'^:::\s*\{[^}]*content-visible[^}]*when-format=["\']html["\'][^}]*\}', src_stripped):
+                inside_html_only = True
+                removed["html_only"] += 1
+                continue   # remove a célula delimitadora de abertura
+            if inside_html_only and re.match(r'^:::\s*$', src_stripped):
+                inside_html_only = False
+                removed["html_only"] += 1
+                continue   # remove a célula delimitadora de fechamento
+            # Células markdown comuns dentro do bloco (ex: instruções "Utilize o botão...")
+            # também são removidas — são instruções só para HTML/PDF, não para Colab
+            if inside_html_only:
+                removed["html_only"] += 1
+                continue
 
         # Limpa parâmetros Quarto e injeta tag de ocultar no Colab
         if kind == "code":
@@ -1316,6 +1343,7 @@ def clean_notebook(notebook: dict) -> dict:
         if removed["yaml"]:        parts.append(f"{removed['yaml']} celulas YAML")
         if removed["empty_code"]:  parts.append(f"{removed['empty_code']} cod.vazias")
         if removed["ref_section"]: parts.append(f"{removed['ref_section']} secoes-ref antigas")
+        if removed["html_only"]:   parts.append(f"{removed['html_only']} celulas html-only")
         print(f"  Limpeza: removidas {', '.join(parts)}")
         
     return notebook
